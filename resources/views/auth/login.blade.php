@@ -1,5 +1,7 @@
 @extends('layouts.site')
-
+@section('title')
+{{ __('Sign in') }}
+@endsection
 @section('content')
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -101,7 +103,7 @@
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
                                         <h3 class="">Sign in</h3>
-                                        <p>Don't have an account yet? <a href="authentication-signup.html">Sign up here</a>
+                                        <p>Don't have an account yet? <a href="{{ route('register') }}">Sign up here</a>
                                         </p>
                                     </div>
                                     <div class="d-grid">
@@ -143,16 +145,16 @@
                                                     <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password ?</a>
+                                            <div class="col-md-6 text-end">	<a href="{{ route('password.request') }}">Forgot Password ?</a>
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-grid">
                                                     <button type="submit" class="btn btn-light"><i class="bx bxs-lock-open"></i>{{ __('Login') }}</button>
-                                                    @if (Route::has('password.request'))
+                                                    {{-- @if (Route::has('password.request'))
                                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                                             {{ __('Forgot Your Password?') }}
                                                         </a>
-                                                    @endif
+                                                    @endif --}}
                                                 </div>
                                             </div>
                                         </form>

@@ -20,7 +20,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
-	<title>eTrans - eCommerce HTML Template</title>
+	<title>@yield('title')</title>
 </head>
 
 <body class="bg-theme bg-theme1">	<b class="screen-overlay"></b>

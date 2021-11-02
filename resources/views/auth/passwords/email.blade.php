@@ -1,5 +1,8 @@
 @extends('layouts.site')
 
+@section('title')
+Forgot Password
+@endsection
 @section('content')
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -47,6 +50,7 @@
 <!--start breadcrumb-->
 <section class="py-3 border-bottom d-none d-md-flex">
     <div class="container">
+
         <div class="page-breadcrumb d-flex align-items-center">
             <h3 class="breadcrumb-title pe-3">Forgot Password</h3>
             <div class="ms-auto">
@@ -71,18 +75,33 @@
             <div class="card forgot-box">
                 <div class="card-body">
                     <div class="p-4 rounded  border">
+                        @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                         <div class="text-center">
-                            <img src="assets/images/icons/forgot-2.png" width="120" alt="" />
+                            <img src="{{ asset('assets/images/icons/forgot-2.png') }}" width="120" alt="" />
                         </div>
                         <h4 class="mt-5 font-weight-bold">Forgot Password?</h4>
                         <p class="">Enter your registered email ID to reset the password</p>
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
                         <div class="my-4">
-                            <label class="form-label">Email id</label>
-                            <input type="text" class="form-control form-control-lg" placeholder="example@user.com" />
+                            <label class="form-label" for="email">{{ __('E-Mail Address') }}</label>
+                            <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" placeholder="example@user.com"  value="{{ old('email') }}" required autocomplete="email" autofocus />
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-light btn-lg">Send</button> <a href="authentication-signin.html" class="btn btn-light btn-lg"><i class='bx bx-arrow-back me-1'></i>Back to Login</a>
+                            <button type="submit" class="btn btn-light btn-lg">{{ __('Send Password Reset Link') }}</button>
+                            <a href="{{ route('login') }}" class="btn btn-light btn-lg"><i class='bx bx-arrow-back me-1'></i>Back to Login</a>
                         </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

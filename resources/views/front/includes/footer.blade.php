@@ -84,10 +84,10 @@
                             <h6 class="mb-3 text-uppercase">Download our app</h6>
                             <div class="d-flex align-items-center gap-2">
                                 <a href="javascript:;">
-                                    <img src="assets/images/icons/apple-store.png" class="" width="160" alt="" />
+                                    <img src="{{ asset('assets/images/icons/apple-store.png') }}" class="" width="160" alt="" />
                                 </a>
                                 <a href="javascript:;">
-                                    <img src="assets/images/icons/play-store.png" class="" width="160" alt="" />
+                                    <img src="{{ asset('assets/images/icons/play-store.png') }}" class="" width="160" alt="" />
                                 </a>
                             </div>
                         </div>
