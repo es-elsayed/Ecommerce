@@ -24,3 +24,4 @@ Auth::routes(['verify'=>true]);
 
 Route::post('/register', [RegisterController::class, 'create'])->name('register');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin', [HomeController::class, 'admin'])->name('admin');

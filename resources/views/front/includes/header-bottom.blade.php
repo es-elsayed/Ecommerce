@@ -57,7 +57,7 @@
                             <!-- end col-3 -->
                             <div class="col-md-4">
                                 <div class="pramotion-banner1">
-                                    <img src="{{ asset('assets/images/gallery/menu-img.jpg') }}" class="img-fluid" alt="" />
+                                    <img src="{{ asset('assets/front/images/gallery/menu-img.jpg') }}" class="img-fluid" alt="" />
                                 </div>
                             </div>
                             <!-- end col-3 -->

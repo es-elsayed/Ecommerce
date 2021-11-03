@@ -7,7 +7,7 @@
                     </div>
                     <div class="logo d-none d-lg-flex">
                         <a href="index.html">
-                            <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="" />
+                            <img src="{{ asset('assets/front/images/logo-icon.png') }}" class="logo-icon" alt="" />
                         </a>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/01.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/01.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +76,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/05.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/05.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,7 +91,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/17.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/17.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,7 +106,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/10.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/10.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/08.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/08.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,7 +136,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/18.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/18.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/04.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/04.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,7 +166,7 @@
                                                     <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
                                                     </div>
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/images/products/16.png') }}" class="" alt="product image">
+                                                        <img src="{{ asset('assets/front/images/products/16.png') }}" class="" alt="product image">
                                                     </div>
                                                 </div>
                                             </div>
