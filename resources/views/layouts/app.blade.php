@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@include('includes.icon')
+    @include('front.includes.style')
+
 </head>
 <body>
     <div id="app">

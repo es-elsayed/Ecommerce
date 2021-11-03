@@ -81,7 +81,7 @@ Forgot Password
                         </div>
                     @endif
                         <div class="text-center">
-                            <img src="{{ asset('assets/images/icons/forgot-2.png') }}" width="120" alt="" />
+                            <img src="{{ asset('assets/front/images/icons/forgot-2.png') }}" width="120" alt="" />
                         </div>
                         <h4 class="mt-5 font-weight-bold">Forgot Password?</h4>
                         <p class="">Enter your registered email ID to reset the password</p>

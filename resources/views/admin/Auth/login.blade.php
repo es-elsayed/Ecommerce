@@ -14,6 +14,7 @@
                     <div class="card-body">
                         <div class="border p-4 rounded">
                             <div class="text-center">
+                                @include('includes.alerts.error')
                                 <h3 class="">Sign in</h3>
                                 <p>Don't have an account yet? <a href="authentication-signup.html">Sign up here</a>
                                 </p>
@@ -25,7 +26,7 @@
                                     </span>
                                 </a> <a href="javascript:;" class="btn btn-light"><i class="bx bxl-facebook"></i>Sign in with Facebook</a>
                             </div>
-                            <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span>
+                            {{-- <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span> --}}
                                 <hr/>
                             </div>
                             <div class="form-body">

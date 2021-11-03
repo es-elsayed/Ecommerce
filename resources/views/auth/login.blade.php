@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="d-grid">
                                         <a class="btn my-4 shadow-sm btn-light" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
-                                            <img class="me-2" src="assets/images/icons/search.svg" width="16" alt="Image Description">
+                                            <img class="me-2" src="assets/front/images/icons/search.svg" width="16" alt="Image Description">
                                             <span>Sign in with Google</span>
                                             </span>
                                         </a> <a href="javascript:;" class="btn btn-light"><i class="bx bxl-facebook"></i>Sign in with Facebook</a>

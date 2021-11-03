@@ -24,8 +24,16 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=> 'required||email|exists:admins,email',
-            'password'=> 'required',
+            'email' => 'required||email|exists:admins,email',
+            'password' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'required' => 'This field is required',
+            'email' => 'enter valid email',
+            'email.exists' => 'Uncorrect E-mail Address..!',
         ];
     }
 }

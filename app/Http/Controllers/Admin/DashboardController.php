@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +14,8 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('admin.Auth.login');
-    }
-    public function login(LoginRequest $request)
-    {
-        $admin = Admin::where('email', $request['email'])->first();
-
-        if(Hash::check(request('password'), $admin->password)){
-            return redirect()->route('admin.dashboard');
-        }
-        return redirect()->back()->with(['error' => 'Information Error']);
-
-        // $remember_me = $request->has('remember_me') ? true : false;
-        // if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-        // return redirect()->route('admin.dashboard');
-        // }
-        // return redirect()->back()->with(['error' => 'Information Error']);
-
+        return 'dashboard';
+        return view('admin.dashboard');
     }
 
     /**
