@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,13 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('layouts.site');
+Route::group(['namespace'=>'Admin','middleware'=>'guest:admin'],function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('admin.index');
+    Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
 });
-
-Auth::routes(['verify'=>true]);
-
-Route::post('/register', [RegisterController::class, 'create'])->name('register');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-// Route::get('/admin', [HomeController::class, 'admin'])->name('admin');

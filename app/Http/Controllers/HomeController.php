@@ -27,10 +27,5 @@ class HomeController extends Controller
     {
         return view('front.home');
     }
-    public function admin()
-    {
-        // return 'hi';
-        return view('admin.home');
-    }
 
 }
