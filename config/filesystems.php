@@ -34,7 +34,12 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'maincategory' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/assets/images/maincategory/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

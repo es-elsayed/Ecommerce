@@ -38,20 +38,25 @@ class MainCategoryController extends Controller
     public function store(MainCategoryRequest $request) {
         try {
             if ($request->has('is_active')){
-                // dd($request->files);
+                if ($request->has('image')) {
+                    $image_path = upload_image('maincategory', $request->image);
+                }
                 Category::create([
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
-                    'is_active'=> 1,
-                    'is_parent'=> 1,
-                    'image'=> $request['name_ar'],
+                    'is_active'=> '1',
+                    'is_parent'=> '1',
+                    'slug' => $request['name_en'],
+                    'image'=> $image_path,
                 ]);
+                return 'added';
             }else {
                 return 'no has';
 
             }
         } catch (\Throwable $th) {
             return $th;
+            return redirect()->back()->with('error',"sorry.. cannot add Category right now! please try again later");
         }
     }
     /**
