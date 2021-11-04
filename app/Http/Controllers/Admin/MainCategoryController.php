@@ -16,7 +16,7 @@ class MainCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.main-categories.categories');
     }
 
     /**
@@ -37,22 +37,26 @@ class MainCategoryController extends Controller
 
     public function store(MainCategoryRequest $request) {
         try {
-            if ($request->has('is_active')){
-                if ($request->has('image')) {
-                    $image_path = upload_image('maincategory', $request->image);
-                }
+            if ($request->has('image')) {
+                $image_path = upload_image('maincategory', $request->image);
                 Category::create([
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
-                    'is_active'=> '1',
+                    'is_active'=> $request->has('is_active')? '1':'0',
                     'is_parent'=> '1',
                     'slug' => $request['name_en'],
                     'image'=> $image_path,
                 ]);
-                return 'added';
+                return redirect()->route('admin.maincategory')->with('success',"Category Added Successfully");
             }else {
-                return 'no has';
-
+                Category::create([
+                    'name_en'=> $request['name_en'],
+                    'name_ar'=> $request['name_ar'],
+                    'is_active'=> $request->has('is_active')? '1':'0',
+                    'is_parent'=> '1',
+                    'slug' => $request['name_en'],
+                ]);
+                return redirect()->route('admin.maincategory')->with('success',"Category Added Successfully");
             }
         } catch (\Throwable $th) {
             return $th;

@@ -31,6 +31,7 @@ Route::name('admin.')->group(function(){
 
         // start category routes
         Route::group(['prefix' => 'main_category'], function () {
+            Route::get('/', [MainCategoryController::class, 'index'])->name('maincategory');
             Route::get('/create', [MainCategoryController::class, 'create'])->name('maincategory.create');
             Route::post('/store', [MainCategoryController::class, 'store'])->name('maincategory.store');
         });
