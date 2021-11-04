@@ -29,6 +29,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard')->with('success','Welcome to admin dashboard');
         }
+        return redirect()->back()->with(['error' => 'Information Error']);
     }
 
     public function logout(Request $request)
