@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +14,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['namespace'=>'Admin'],function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-});
-Route::group(['namespace'=>'Admin'],function () {
+Route::group(['namespace'=>'Admin','middleware'=>'guest:admin'],function () {
     Route::get('/login', [LoginController::class, 'index'])->name('admin.getlogin');
     Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
-    Route::get('/{any}',function(){
-        return redirect()->route('admin.login');
-    });
 });
+Route::group(['namespace'=>'Admin','middleware'=>'auth:admin'],function () {
+    // dd('after route');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/home', [DashboardController::class, 'index'])->name('admin.dashboard');
+});
+Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+// Route::get('/{any}',function(){
+//     return redirect()->route('admin.login');
+// });
