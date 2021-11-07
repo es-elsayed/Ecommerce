@@ -16,5 +16,8 @@ class Category extends Model
         'image',
         'slug',
     ];
-
+    public function getActive()
+    {
+        return $this->is_active == 1 ? 'active': 'in-active';
+    }
 }

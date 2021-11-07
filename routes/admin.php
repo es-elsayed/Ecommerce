@@ -30,10 +30,13 @@ Route::name('admin.')->group(function(){
         Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
         // start category routes
-        Route::group(['prefix' => 'main_category'], function () {
+        Route::group(['prefix' => 'main-category'], function () {
             Route::get('/', [MainCategoryController::class, 'index'])->name('maincategory');
             Route::get('/create', [MainCategoryController::class, 'create'])->name('maincategory.create');
             Route::post('/store', [MainCategoryController::class, 'store'])->name('maincategory.store');
+            Route::get('/active/{id}', [MainCategoryController::class, 'active'])->name('maincategory.active');
+            Route::get('/un-active/{id}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
+            Route::get('/delete/{id}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
         });
         Route::group(['prefix' => 'sub_category'], function () {
             Route::get('/create', [SubCategoryController::class, 'create'])->name('subcategory.create');

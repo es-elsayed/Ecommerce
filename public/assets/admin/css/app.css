@@ -6,7 +6,7 @@ Email: codervent@gmail.com
 File: app.css
 */
 
-/*  
+/*
   - Google Font
   - General
   - Sidebar
@@ -20,7 +20,7 @@ File: app.css
   - Navs and Tabs
   - Background Colors
   - Authentication
-  - Buttons 
+  - Buttons
   - Pricing Table
   - Forms
   - Responsive
@@ -35,7 +35,7 @@ body {
 	letter-spacing: .5px;
 
 	font-family: Roboto, sans-serif;
-	
+
 	overflow-x:hidden
 
 }
@@ -4070,4 +4070,42 @@ body.bg-theme12 {
 
 	}
 
+}
+
+/* custom style */
+/* main categories */
+img.maincat-img {
+width: 4rem;
+height: 4rem;
+border-radius: 50%;
+}
+
+.order-actions a.success ,
+.order-actions a.danger {
+    display: inline-block;
+    width: fit-content;
+    border-radius: 4px;
+    padding: 5px ;
+    background-color: transparent;
+    border:  1px solid;
+}
+.order-actions a.success:hover ,
+.order-actions a.danger:hover {
+    color: #fff;
+}
+.order-actions a.success:hover {
+    background-color: green;
+}
+.order-actions a.danger:hover {
+    background-color: red;
+
+}
+
+.order-actions a.success {
+    border-color:rgb(0, 242, 96);
+    color: rgb(0, 242, 96);
+}
+.order-actions a.danger {
+    border-color:rgb(242, 1, 1);
+    color: rgb(242, 1, 1);
 }

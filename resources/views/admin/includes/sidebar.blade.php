@@ -18,7 +18,7 @@
                 <div class="menu-title">Main Categories</div>
             </a>
             <ul>
-                <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>All Main Categories</a>
+                <li> <a href="{{ route('admin.maincategory') }}"><i class="bx bx-right-arrow-alt"></i>All Main Categories</a>
                 </li>
                 <li> <a href="{{ route('admin.maincategory.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Main Category</a>
                 </li>

@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCategoryRequest;
+use App\Http\Resources\MainCategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+// use Illuminate\Support\Facades\Config;
 
 class MainCategoryController extends Controller
 {
@@ -16,7 +20,9 @@ class MainCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.main-categories.categories');
+        // return Config::get('app.locale');
+        $categories = MainCategoryResource::collection(Category::where('is_parent','1')->get());
+        return view('admin.pages.main-categories.index',['categories'=>$categories]);
     }
 
     /**
@@ -44,7 +50,7 @@ class MainCategoryController extends Controller
                     'name_ar'=> $request['name_ar'],
                     'is_active'=> $request->has('is_active')? '1':'0',
                     'is_parent'=> '1',
-                    'slug' => $request['name_en'],
+                    'slug' => str_slug($request['name_en']),
                     'image'=> $image_path,
                 ]);
                 return redirect()->route('admin.maincategory')->with('success',"Category Added Successfully");
@@ -54,7 +60,7 @@ class MainCategoryController extends Controller
                     'name_ar'=> $request['name_ar'],
                     'is_active'=> $request->has('is_active')? '1':'0',
                     'is_parent'=> '1',
-                    'slug' => $request['name_en'],
+                    'slug' => str_slug($request['name_en']),
                 ]);
                 return redirect()->route('admin.maincategory')->with('success',"Category Added Successfully");
             }
@@ -84,6 +90,22 @@ class MainCategoryController extends Controller
     {
         //
     }
+    public function active($id)
+    {
+        // return 'finishing sub cat and product first';
+        $category = Category::findOrFail($id);
+        $category->is_active = '1';
+        $category->update();
+        return redirect()->route('admin.maincategory')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
+    }
+    public function unActive($id)
+    {
+        // return 'finishing sub cat and product first';
+        $category = Category::findOrFail($id);
+        $category->is_active = '0';
+        $category->update();
+        return redirect()->route('admin.maincategory')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
+    }
 
     /**
      * Update the specified resource in storage.
@@ -105,6 +127,14 @@ class MainCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // return 'finishing sub cat and product first';
+        $category = Category::findOrFail($id);
+        if ($category->image != 'notfound.jpg') {
+            Storage::delete('/public/assets/images/maincategory/' . $category->image);
+        }
+        $category->delete();
+
+        return redirect()->route('admin.maincategory')->with('success', 'The ' . $category->name_en . ' Category has been deleted successfully');
+
     }
 }
