@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MainCategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,17 @@ Route::name('admin.')->group(function () {
             Route::get('/active/{id}', [SubCategoryController::class, 'active'])->name('subcategory.active');
             Route::get('/un-active/{id}', [SubCategoryController::class, 'unActive'])->name('subcategory.unactive');
             Route::get('/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
+        });
+        // *****************************************
+        // ********** Product Routes **********
+        // *****************************************
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('/', [ProductController::class, 'index'])->name('product');
+            Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+            Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+            Route::get('/active/{id}', [ProductController::class, 'active'])->name('product.active');
+            Route::get('/un-active/{id}', [ProductController::class, 'unActive'])->name('product.unactive');
+            Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         });
     });
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
