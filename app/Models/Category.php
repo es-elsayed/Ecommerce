@@ -20,4 +20,8 @@ class Category extends Model
     {
         return $this->is_active == 1 ? 'active': 'in-active';
     }
+    public function parent()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

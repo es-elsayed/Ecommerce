@@ -4073,6 +4073,10 @@ body.bg-theme12 {
 }
 
 /* custom style */
+/* side bar */
+.sidebar-wrapper .metismenu ul a {
+    text-transform: capitalize;
+}
 /* main categories */
 img.maincat-img {
 width: 4rem;

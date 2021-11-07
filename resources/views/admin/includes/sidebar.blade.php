@@ -31,9 +31,22 @@
                 <div class="menu-title">Sub Categories</div>
             </a>
             <ul>
-                <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>All Sub Categories</a>
+                <li> <a href="{{ route('admin.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All Sub Categories</a>
                 </li>
                 <li> <a href="{{ route('admin.subcategory.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Sub Category</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                </div>
+                <div class="menu-title">Products</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.dashboard') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
+                </li>
+                <li> <a href="{{ route('admin.dashboard') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
                 </li>
             </ul>
         </li>

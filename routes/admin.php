@@ -17,19 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->group(function(){
+Route::name('admin.')->group(function () {
 
     Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin'], function () {
         Route::get('/login', [LoginController::class, 'index'])->name('getlogin');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
     });
+    // **********************************************
+    // ********* Admin Authenicated Routes **********
+    // **********************************************
     Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
         Route::get('/', function () {
             return redirect()->route('dashboard');
         });
         Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
-        // start category routes
+        // ******************************************
+        // ********* Main Category Routes ***********
+        // ******************************************
         Route::group(['prefix' => 'main-category'], function () {
             Route::get('/', [MainCategoryController::class, 'index'])->name('maincategory');
             Route::get('/create', [MainCategoryController::class, 'create'])->name('maincategory.create');
@@ -38,11 +43,17 @@ Route::name('admin.')->group(function(){
             Route::get('/un-active/{id}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
             Route::get('/delete/{id}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
         });
-        Route::group(['prefix' => 'sub_category'], function () {
+        // *****************************************
+        // ********** Sub Category Routes **********
+        // *****************************************
+        Route::group(['prefix' => 'sub-category'], function () {
+            Route::get('/', [SubCategoryController::class, 'index'])->name('subcategory');
             Route::get('/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
             Route::post('/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
+            Route::get('/active/{id}', [SubCategoryController::class, 'active'])->name('subcategory.active');
+            Route::get('/un-active/{id}', [SubCategoryController::class, 'unActive'])->name('subcategory.unactive');
+            Route::get('/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
         });
     });
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 });

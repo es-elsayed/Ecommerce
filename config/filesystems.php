@@ -40,6 +40,18 @@ return [
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
+        'subcategory' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/assets/images/subcategory/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'product' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/assets/images/product/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

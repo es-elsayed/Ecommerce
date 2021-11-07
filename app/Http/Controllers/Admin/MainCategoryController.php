@@ -92,7 +92,7 @@ class MainCategoryController extends Controller
     }
     public function active($id)
     {
-        // return 'finishing sub cat and product first';
+        return 'finishing sub cat and product first';
         $category = Category::findOrFail($id);
         $category->is_active = '1';
         $category->update();
@@ -100,7 +100,7 @@ class MainCategoryController extends Controller
     }
     public function unActive($id)
     {
-        // return 'finishing sub cat and product first';
+        return 'finishing sub cat and product first';
         $category = Category::findOrFail($id);
         $category->is_active = '0';
         $category->update();
@@ -127,7 +127,7 @@ class MainCategoryController extends Controller
      */
     public function destroy($id)
     {
-        // return 'finishing sub cat and product first';
+        return 'finishing sub cat and product first';
         $category = Category::findOrFail($id);
         if ($category->image != 'notfound.jpg') {
             Storage::delete('/public/assets/images/maincategory/' . $category->image);
