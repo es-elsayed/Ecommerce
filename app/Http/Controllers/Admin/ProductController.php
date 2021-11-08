@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -39,11 +40,10 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // dd($request);
         try {
             if ($request->has('main_image')) {
                 $image_path = upload_image('product', $request->image);
-                Category::create([
+                Product::create([
                     'name_en' => $request['name_en'],
                     'name_ar' => $request['name_ar'],
                     'details_en' => $request['details_en'],
@@ -59,7 +59,7 @@ class ProductController extends Controller
                 ]);
                 return redirect()->route('admin.product')->with('success', "Product Added Successfully");
             } else {
-                Category::create([
+                Product::create([
                     'name_en' => $request['name_en'],
                     'name_ar' => $request['name_ar'],
                     'details_en' => $request['details_en'],
@@ -78,7 +78,6 @@ class ProductController extends Controller
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
         }
         // 'category_id' => $request['category_id'],
-        // 'image' => $request->has('image') ? upload_image('product', $request->image) : '',
         return redirect()->route('admin.product')->with('success', "Product Added Successfully");
     }
 
