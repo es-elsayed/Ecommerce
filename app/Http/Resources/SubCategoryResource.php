@@ -17,7 +17,7 @@ class SubCategoryResource extends JsonResource
         return [
             'name_en'=> $this->name_en,
             'name_ar'=> $this->name_ar,
-            'is_active'=> $this->is_active,
+            'status'=> $this->status,
             'is_parent'=> $this->is_parent,
             'image'=> $this->image,
             'slug'=> $this->slug,

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +16,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -24,8 +25,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        //return 'hi';
+        $categories = Category::all();
+        return view('admin.pages.products.create', ['categories' => $categories]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -33,9 +37,49 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        // dd($request);
+        try {
+            if ($request->has('main_image')) {
+                $image_path = upload_image('product', $request->image);
+                Category::create([
+                    'name_en' => $request['name_en'],
+                    'name_ar' => $request['name_ar'],
+                    'details_en' => $request['details_en'],
+                    'details_ar' => $request['details_ar'],
+                    'description_en' => $request['description_en'],
+                    'description_ar' => $request['description_ar'],
+                    'price' => $request['price'],
+                    'sale_price' => $request['sale_price'],
+                    'status' => $request->has('status') ? 1 : 0,
+                    'slug' => str_slug($request['name_en']),
+                    'main_image' => $image_path,
+
+                ]);
+                return redirect()->route('admin.product')->with('success', "Product Added Successfully");
+            } else {
+                Category::create([
+                    'name_en' => $request['name_en'],
+                    'name_ar' => $request['name_ar'],
+                    'details_en' => $request['details_en'],
+                    'details_ar' => $request['details_ar'],
+                    'description_en' => $request['description_en'],
+                    'description_ar' => $request['description_ar'],
+                    'price' => $request['price'],
+                    'sale_price' => $request['sale_price'],
+                    'status' => $request->has('status') ? 1 : 0,
+                    'slug' => str_slug($request['name_en']),
+                ]);
+                return redirect()->route('admin.product')->with('success', "Product Added Successfully");
+            }
+        } catch (\Throwable $th) {
+            return $th;
+            return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
+        }
+        // 'category_id' => $request['category_id'],
+        // 'image' => $request->has('image') ? upload_image('product', $request->image) : '',
+        return redirect()->route('admin.product')->with('success', "Product Added Successfully");
     }
 
     /**

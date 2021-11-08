@@ -60,11 +60,11 @@
                         </div>
                     </div>
                     <div class="mb-3 form-check form-switch">
-                        <input id="is_active" class="form-check-input" type="checkbox" checked="" name="is_active">
-                        <label for="is_active" class="form-check-label">Activation</label>
+                        <input id="status" class="form-check-input" type="checkbox" checked="" name="status">
+                        <label for="status" class="form-check-label">Activation</label>
                     </div>
                     <div class="mb-3">
-                        <label for="image" class="form-label">Disabled file input example</label>
+                        <label for="image" class="form-label">Select Image</label>
                         <input id="image" type="file" name="image" class="form-control">
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>

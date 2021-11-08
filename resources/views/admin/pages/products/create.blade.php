@@ -14,7 +14,7 @@ Add ategories
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
                                 class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add New Sub-Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add New Product</li>
                 </ol>
             </nav>
         </div>
@@ -37,60 +37,157 @@ Add ategories
 
     <div class="card">
         <div class="card-body p-4">
-            <h5 class="card-title">Add New Sub-Category</h5>
+            <h5 class="card-title">Add New Product</h5>
             <hr />
             @include('includes.alerts.error')
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg">
-                        <form action="{{ route('admin.subcategory.store') }}" method="post"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="border border-3 p-4 rounded">
                                 <div class="row">
                                     <div class="col-xl mb-3">
-                                        <label for="name_en" class="form-label">Category Name (en)</label>
-                                        <input id="name_en" type="text" name="name_en" class="form-control"
-                                            placeholder="Category Name in English" required min="3" max="255"
-                                            value="{{ old('name_en') }}">
+                                        <label for="name_en" class="form-label">Product Name (en)</label>
+                                        <input id="name_en" type="text" name="name_en" required min="3" max="191"
+                                            class="form-control @error('name_en') is-invalid @enderror"
+                                            placeholder="Product Name in English" value="{{ old('name_en') }}">
                                         @error('name_en')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <div class="invalid-feedback">{{ $message
+                                            }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-xl mb-3">
-                                        <label for="name_ar" class="form-label">Category Name (ar)</label>
-                                        <input id="name_ar" type="text" name="name_ar" class="form-control"
-                                            placeholder="Category Name in Arabic" required min="3" max="255"
-                                            value="{{ old('name_ar') }}">
+                                        <label for="name_ar" class="form-label">Product Name (ar)</label>
+                                        <input id="name_ar" type="text" name="name_ar" required min="3" max="191"
+                                            class="form-control @error('name_ar') is-invalid @enderror"
+                                            placeholder="Product Name in Arabic" value="{{ old('name_ar') }}">
                                         @error('name_ar')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <div class="invalid-feedback">{{ $message
+                                            }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl mb-3">
+                                        <label for="details_en" class="form-label">Details (en)</label>
+                                        <textarea class="form-control @error('details_en') is-invalid @enderror"
+                                            id="details_en" name="details_en" placeholder="Details in English..." required min="3" max="191"
+                                            rows="3">{{ old('details_en') }}</textarea>
+                                        @error('details_en')
+                                        <div class="invalid-feedback">{{ $message
+                                            }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-xl mb-3">
+                                        <label for="details_ar" class="form-label">Details (ar)</label>
+                                        <textarea class="form-control @error('details_ar') is-invalid @enderror"
+                                            id="details_ar" name="details_ar" placeholder="Details in Arabic..." required min="3" max="191"
+                                            rows="3">{{ old('details_ar') }}</textarea>
+                                        @error('details_ar')
+                                        <div class="invalid-feedback">{{ $message
+                                            }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="description_en" class="form-label">Description (en)</label>
+                                    <textarea class="form-control @error('description_en') is-invalid @enderror"
+                                        id="description_en" name="description_en" required min="3"
+                                        placeholder="Description in English..." rows="3">{{ old('description_en') }}</textarea>
+                                    @error('description_en')
+                                    <div class="invalid-feedback">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="description_ar" class="form-label">Description (ar)</label>
+                                    <textarea class="form-control @error('description_ar') is-invalid @enderror"
+                                        id="description_ar" name="description_ar" placeholder="Description in Arabic..." required min="3"
+                                        rows="3">{{ old('description_ar') }}</textarea>
+                                    @error('description_ar')
+                                    <div class="invalid-feedback">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl mb-3">
+                                        <label class="form-label">Price</label>
+                                        <div class="input-group input-spinner">
+                                            <input type="number" step=".05" class="form-control" min="0" maxlength="9" required
+                                                value="{{ old('price') }}" name="price">
+                                        </div>
+                                        @error('price')
+                                        <div class="invalid-feedback">{{ $message
+                                            }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-xl mb-3">
+                                        <label class="form-label">Sale Price</label>
+                                        <div class="input-group input-spinner">
+                                            <input type="number" step=".05" class="form-control" min="0" maxlength="9" required
+                                                value="{{ old('sale_price') }}" name="sale_price">
+                                        </div>
+                                        @error('sale_price')
+                                        <div class="invalid-feedback">{{ $message
+                                            }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 form-check form-switch">
-                                    <input id="is_active" class="form-check-input" type="checkbox" checked=""
-                                        name="is_active">
-                                    <label for="is_active" class="form-check-label">Activation</label>
+                                    <input id="status" class="form-check-input" type="checkbox" checked=""
+                                        name="status">
+                                    <label for="status" class="form-check-label">Activation</label>
                                 </div>
                                 <div class="mb-3">
-                                    <select class="form-select" name="parent_id"
-                                        aria-label="Default select example">
-                                        <option selected="">Main Category</option>
+                                    <hr /><label for="status" class="form-check-label d-block mb-3">Category</label>
+                                    @foreach ($categories as $category )
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="cat_[{{ $category->id }}]"
+                                            name="categories_id[]" value="{{ $category->id }}">
+                                        <label class="form-check-label" for="cat_[{{ $category->id }}]">{{
+                                            $category->name_en }}</label>
+                                    </div>
+                                    @endforeach
+
+                                    {{-- <select class="form-select @error('category_id') is-invalid @enderror"
+                                        name="category_id" aria-label="Default select example">
+                                        <option selected="">Category</option>
                                         @foreach ($categories as $category )
                                         <option value="{{ $category->id }}">{{ $category->name_en }}</option>
                                         @endforeach
-                                    </select>
-                                    @error('parent_id')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    </select> --}}
+                                    @error('categories_id')
+                                    <div class="invalid-feedback">{{ $message }}
+                                    </div>
                                     @enderror
 
                                 </div>
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Disabled file input example</label>
-                                    <input id="image" type="file" name="image" class="form-control">
-                                    @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <label for="main_image" class="form-label">Select Image</label>
+                                    <input id="main_image" type="file" name="main_image" class="form-control">
+                                    @error("main_image")
+                                    <div class="invalid-feedback">{{ $message }}
+                                    </div>
                                     @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="images" class="form-label">Select Image</label>
+                                    <input id="images" type="file" name="images[]" class="form-control" multiple>
+                                    {{-- @error("images.1")
+                                    <div class="invalid-feedback">{{ $message }}
+                                    </div>
+                                    @enderror --}}
+                                    {{-- @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif --}}
                                 </div>
                                 <div class="col-12 mt-5">
                                     <div class="d-grid">

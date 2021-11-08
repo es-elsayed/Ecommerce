@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SubCategoryRequest extends FormRequest
 {
@@ -13,7 +14,10 @@ class SubCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (Auth::guard('admin')){
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -48,7 +48,7 @@ class MainCategoryController extends Controller
                 Category::create([
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
-                    'is_active'=> $request->has('is_active')? '1':'0',
+                    'status'=> $request->has('status')? 1:0,
                     'is_parent'=> '1',
                     'slug' => str_slug($request['name_en']),
                     'image'=> $image_path,
@@ -58,7 +58,7 @@ class MainCategoryController extends Controller
                 Category::create([
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
-                    'is_active'=> $request->has('is_active')? '1':'0',
+                    'status'=> $request->has('status')? 1:0,
                     'is_parent'=> '1',
                     'slug' => str_slug($request['name_en']),
                 ]);
@@ -94,7 +94,7 @@ class MainCategoryController extends Controller
     {
         return 'finishing sub cat and product first';
         $category = Category::findOrFail($id);
-        $category->is_active = '1';
+        $category->status = 1;
         $category->update();
         return redirect()->route('admin.maincategory')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
     }
@@ -102,7 +102,7 @@ class MainCategoryController extends Controller
     {
         return 'finishing sub cat and product first';
         $category = Category::findOrFail($id);
-        $category->is_active = '0';
+        $category->status = 0;
         $category->update();
         return redirect()->route('admin.maincategory')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
     }

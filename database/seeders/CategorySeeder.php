@@ -20,7 +20,7 @@ class CategorySeeder extends Seeder
             Category::insert([
                 'name_en' => $cat_en,
                 'name_ar' =>  Str::random(3)." ".Str::random(3),
-                'is_active' => rand(0,1)? '1': '0',
+                'status' => rand(0,1)? 1: 0,
                 'is_parent' => '1',
                 'image' => 'assets/images/notfound.jpg',
                 'slug' => str_slug($cat_en),
@@ -31,7 +31,7 @@ class CategorySeeder extends Seeder
             Category::insert([
                 'name_en' => $cat_en,
                 'name_ar' =>  Str::random(3)." ".Str::random(3),
-                'is_active' => rand(0,1)? '1': '0',
+                'status' => rand(0,1)? 1: 0,
                 'is_parent' => '0',
                 'image' => 'assets/images/notfound.jpg',
                 'slug' => str_slug($cat_en),

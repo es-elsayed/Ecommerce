@@ -11,14 +11,14 @@ class Category extends Model
     protected $fillable = [
         'name_en',
         'name_ar',
-        'is_active',
+        'status',
         'is_parent',
         'image',
         'slug',
     ];
     public function getActive()
     {
-        return $this->is_active == 1 ? 'active': 'in-active';
+        return $this->status == 1 ? 'active': 'in-active';
     }
     public function parent()
     {
