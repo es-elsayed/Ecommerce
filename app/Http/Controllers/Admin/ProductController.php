@@ -42,7 +42,7 @@ class ProductController extends Controller
     {
         try {
             if ($request->has('main_image')) {
-                $image_path = upload_image('product', $request->image);
+                $image_path = upload_image('product', $request->main_image);
                 Product::create([
                     'name_en' => $request['name_en'],
                     'name_ar' => $request['name_ar'],
