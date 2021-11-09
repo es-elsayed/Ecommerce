@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
+use App\Models\CategoryProduct;
 use App\Models\Product;
-use App\Models\ProductsCategory;
 use App\Models\ProductsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //  return $products = ProductResource::collection(Product::all());
+        $products = ProductResource::collection(Product::all());
+        return view('admin.pages.products.index', ['products' => $products]);
     }
 
     /**
@@ -62,7 +66,7 @@ class ProductController extends Controller
                 'main_image' => $image_path,
             ]);
             foreach ($request->categories as $category) {
-                ProductsCategory::insert([
+                CategoryProduct::insert([
                     'category_id' => $category,
                     'product_id' => $product_id
                 ]);
@@ -80,7 +84,7 @@ class ProductController extends Controller
             return redirect()->route('admin.product')->with('success', "Product Added Successfully");
         } catch (\Throwable $th) {
             DB::rollback();
-            // return $th;
+            return $th;
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
         }
         // 'category_id' => $request['category_id'],

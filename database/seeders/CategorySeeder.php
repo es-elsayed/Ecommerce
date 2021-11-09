@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class CategorySeeder extends Seeder
 {
@@ -15,27 +16,22 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 6; $i++) {
-            $cat_en = Str::random(3)." ".Str::random(4);
-            Category::insert([
-                'name_en' => $cat_en,
-                'name_ar' =>  Str::random(3)." ".Str::random(3),
-                'status' => rand(0,1)? 1: 0,
-                'is_parent' => '1',
-                'image' => 'assets/images/notfound.jpg',
-                'slug' => str_slug($cat_en),
-            ]);
-        }
+        //create random main-categories
+        \App\Models\Category::factory(10)->create();
+
+        //create random sub-categories
+        $faker_en = Faker::create();
+        $faker_ar = Faker::create('ar_JO');
         for ($i = 0; $i < 6; $i++) {
             $cat_en =  Str::random(4)." ".Str::random(3);
             Category::insert([
-                'name_en' => $cat_en,
-                'name_ar' =>  Str::random(3)." ".Str::random(3),
-                'status' => rand(0,1)? 1: 0,
+                'name_en' => $faker_en->city,
+                'name_ar' =>  $faker_ar->name,
+                'status' => rand(0,1) || rand(0,1) ? 1: 0,
                 'is_parent' => '0',
                 'image' => 'assets/images/notfound.jpg',
-                'slug' => str_slug($cat_en),
-                'parent_id' => rand(0,6)
+                'slug' => $faker_en->unique()->slug,
+                'parent_id' => rand(1,10)
             ]);
         }
     }

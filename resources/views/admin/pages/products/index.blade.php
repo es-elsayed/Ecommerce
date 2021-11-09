@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Main Categories
+Main Products
 @endsection
 @section('content')
 {{ Form::hidden('', $increment = 1) }}
@@ -14,7 +14,7 @@ Main Categories
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
                                 class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Sub Categories</li>
+                    <li class="breadcrumb-item active" aria-current="page">Sub Products</li>
                 </ol>
             </nav>
         </div>
@@ -54,35 +54,42 @@ Main Categories
                         <tr>
                             <th>Order#</th>
                             <th>Image</th>
-                            <th>Category Name</th>
-                            <th>Parent Name</th>
+                            <th>Product Name</th>
+                            <th>Categories</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category )
+                        @foreach ($products as $product )
                         <tr>
                             <td>
                                 <h6 class="mb-0 font-14 text-center">{{ $increment }}</h6>
                             </td>
-                            <td><img src="{{ asset($category->image) }}" class="maincat-img"
-                                    alt="category image"></td>
-                            <td>{{ $category->name_en }}</td>
-                            <td>{{ $category->parent->name_en }}</td>
+                            <td><img src="{{ asset($product->main_image) }}" class="maincat-img"
+                                    alt="product image"></td>
+                            <td>{{ $product->name_en }}</td>
+                            <td style="max-width: 15rem; overflow-x: auto;">
+                                {{-- <textarea name="categories" id="categories" class="form-control scro" style="width:15rem; line-height: 1" disabled> --}}
+                                     @foreach($product->categories as $category )
+                                {{ $category->name_en }} <span class="bold text-danger"> & </span>
+                                @endforeach
+                                {{-- </textarea> --}}
+
+                            </td>
                             <td>
                                 <div
-                                    class="badge rounded-pill {{ $category->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
-                                    <i class="bx bxs-circle me-1"></i>{{ $category->getActive() }}</div>
+                                    class="badge rounded-pill {{ $product->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
+                                    <i class="bx bxs-circle me-1"></i>{{ $product->getActive() }}</div>
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
                                     <a href="javascript:;" class="ms-3"><i class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('admin.maincategory.delete', $category->id) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
-                                    @if ($category->status == 0)
-                                    <a href="{{ route('admin.maincategory.active', $category->id) }}" class="success text-capitalize ms-3">Activate</a>
+                                    <a href="{{ route('admin.product.delete', $product->id) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
+                                    @if ($product->status == 0)
+                                    <a href="{{ route('admin.product.active', $product->id) }}" class="success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.maincategory.unactive', $category->id) }}" class="danger text-capitalize ms-3">deactivate</a>
+                                    <a href="{{ route('admin.product.unactive', $product->id) }}" class="danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>
                             </td>

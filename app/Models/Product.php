@@ -33,4 +33,12 @@ class Product extends Model
         'status'    =>  'boolean',
         'featured'  =>  'boolean'
     ];
+    public function getActive()
+    {
+        return $this->status == 1 ? 'active' : 'in-active';
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
