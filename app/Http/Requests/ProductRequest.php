@@ -39,17 +39,16 @@ class ProductRequest extends FormRequest
             'main_image'=>'required|mimes:png,jpg,jpeg',
             'images' => 'array',
             'images.*' => 'mimes:png,jpg,jpeg',
-            // 'categories_id'=>'required|array|exists:categories,id',
+            'qty' => 'required|min:0',
+            'categories_id'=>'required|array|exists:categories,id',
         ];
     }
     public function messages()
     {
         return [
             'required'=>'this field is required',
-            // 'min'=>'min char is 3',
-            // 'max'=>'min char is 5',
             'unique'=>'this name is used before',
-            'mimes'=>'Image must be: png ,jpg or jpeg ',
+            'mimes'=>'must be: png ,jpg or jpeg ',
             'exists'=>'Sorry..! Invalid Main Category',
         ];
     }

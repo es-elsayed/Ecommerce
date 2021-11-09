@@ -72,8 +72,8 @@ Add ategories
                                     <div class="col-xl mb-3">
                                         <label for="details_en" class="form-label">Details (en)</label>
                                         <textarea class="form-control @error('details_en') is-invalid @enderror"
-                                            id="details_en" name="details_en" placeholder="Details in English..." required min="3" max="191"
-                                            rows="3">{{ old('details_en') }}</textarea>
+                                            id="details_en" name="details_en" placeholder="Details in English..."
+                                            required min="3" max="191" rows="3">{{ old('details_en') }}</textarea>
                                         @error('details_en')
                                         <div class="invalid-feedback">{{ $message
                                             }}</div>
@@ -82,8 +82,8 @@ Add ategories
                                     <div class="col-xl mb-3">
                                         <label for="details_ar" class="form-label">Details (ar)</label>
                                         <textarea class="form-control @error('details_ar') is-invalid @enderror"
-                                            id="details_ar" name="details_ar" placeholder="Details in Arabic..." required min="3" max="191"
-                                            rows="3">{{ old('details_ar') }}</textarea>
+                                            id="details_ar" name="details_ar" placeholder="Details in Arabic..."
+                                            required min="3" max="191" rows="3">{{ old('details_ar') }}</textarea>
                                         @error('details_ar')
                                         <div class="invalid-feedback">{{ $message
                                             }}</div>
@@ -94,7 +94,8 @@ Add ategories
                                     <label for="description_en" class="form-label">Description (en)</label>
                                     <textarea class="form-control @error('description_en') is-invalid @enderror"
                                         id="description_en" name="description_en" required min="3"
-                                        placeholder="Description in English..." rows="3">{{ old('description_en') }}</textarea>
+                                        placeholder="Description in English..."
+                                        rows="3">{{ old('description_en') }}</textarea>
                                     @error('description_en')
                                     <div class="invalid-feedback">{{ $message }}
                                     </div>
@@ -103,8 +104,8 @@ Add ategories
                                 <div class="col-12 mb-3">
                                     <label for="description_ar" class="form-label">Description (ar)</label>
                                     <textarea class="form-control @error('description_ar') is-invalid @enderror"
-                                        id="description_ar" name="description_ar" placeholder="Description in Arabic..." required min="3"
-                                        rows="3">{{ old('description_ar') }}</textarea>
+                                        id="description_ar" name="description_ar" placeholder="Description in Arabic..."
+                                        required min="3" rows="3">{{ old('description_ar') }}</textarea>
                                     @error('description_ar')
                                     <div class="invalid-feedback">{{ $message }}
                                     </div>
@@ -112,10 +113,10 @@ Add ategories
                                 </div>
                                 <div class="row">
                                     <div class="col-xl mb-3">
-                                        <label class="form-label">Price</label>
+                                        <label for="price" class="form-label">Price</label>
                                         <div class="input-group input-spinner">
-                                            <input type="number" step=".05" class="form-control" min="0" maxlength="9" required
-                                                value="{{ old('price') }}" name="price">
+                                            <input type="number" step=".05" class="form-control" min="0" maxlength="9"
+                                                required value="{{ old('price') }}" name="price">
                                         </div>
                                         @error('price')
                                         <div class="invalid-feedback">{{ $message
@@ -123,14 +124,23 @@ Add ategories
                                         @enderror
                                     </div>
                                     <div class="col-xl mb-3">
-                                        <label class="form-label">Sale Price</label>
+                                        <label for="sale_price" class="form-label">Sale Price</label>
                                         <div class="input-group input-spinner">
-                                            <input type="number" step=".05" class="form-control" min="0" maxlength="9" required
-                                                value="{{ old('sale_price') }}" name="sale_price">
+                                            <input type="number" step=".05" class="form-control" min="0" maxlength="9"
+                                                required value="{{ old('sale_price') }}" name="sale_price">
                                         </div>
                                         @error('sale_price')
-                                        <div class="invalid-feedback">{{ $message
-                                            }}</div>
+                                        <div class="invalid-feedback">{{ $message}}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-xl mb-3">
+                                        <label for="qty" class="form-label">Quantity</label>
+                                        <div class="input-group input-spinner">
+                                            <input type="number" step="1" class="form-control" min="0" maxlength="9"
+                                                required value="{{ old('qty') }}" name="qty">
+                                        </div>
+                                        @error('qty')
+                                        <div class="invalid-feedback">{{ $message}}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -149,52 +159,37 @@ Add ategories
                                             $category->name_en }}</label>
                                     </div>
                                     @endforeach
-
-                                    {{-- <select class="form-select @error('category_id') is-invalid @enderror"
-                                        name="category_id" aria-label="Default select example">
-                                        <option selected="">Category</option>
-                                        @foreach ($categories as $category )
-                                        <option value="{{ $category->id }}">{{ $category->name_en }}</option>
-                                        @endforeach
-                                    </select> --}}
                                     @error('categories_id')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 
                                 </div>
                                 <div class="mb-3">
                                     <label for="main_image" class="form-label">Select Image</label>
                                     <input id="main_image" type="file" name="main_image" class="form-control">
-                                    @error("main_image")
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
-                                    @enderror
+                                    @if ($errors->has('main_image'))
+                                    @foreach ($errors->get('main_image') as $message)
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @endforeach
+                                    @endif
                                 </div>
                                 <div class="mb-3">
                                     <label for="images" class="form-label">Select Image</label>
                                     <input id="images" type="file" name="images[]" class="form-control" multiple>
-                                    {{-- @error("images.1")
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
-                                    @enderror --}}
-                                    {{-- @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    @endif --}}
-                                </div>
-                                <div class="col-12 mt-5">
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-light">Add</button>
+                                    @if ($errors->has('images.*'))
+                                    @foreach ($errors->get('images.*') as $messages)
+                                    @foreach($messages as $message)
+                                    <div class="invalid-feedback d-block">Image no: {{ $loop->parent->iteration }} {{
+                                        $message }}</div>
+                                    @endforeach
+                                    @endforeach
+                                    @endif
+                                    <div class="col-12 mt-5">
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-light">Add</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>

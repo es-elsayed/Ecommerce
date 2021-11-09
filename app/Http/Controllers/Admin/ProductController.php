@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        // dd($request);
         try {
+            // DB::beginTransaction();
             if ($request->has('main_image')) {
                 $image_path = upload_image('product', $request->main_image);
                 Product::create([
@@ -52,6 +55,7 @@ class ProductController extends Controller
                     'description_ar' => $request['description_ar'],
                     'price' => $request['price'],
                     'sale_price' => $request['sale_price'],
+                    'quantity' => $request['qty'],
                     'status' => $request->has('status') ? 1 : 0,
                     'slug' => str_slug($request['name_en']),
                     'main_image' => $image_path,
@@ -71,9 +75,11 @@ class ProductController extends Controller
                     'status' => $request->has('status') ? 1 : 0,
                     'slug' => str_slug($request['name_en']),
                 ]);
+                DB::commit();
                 return redirect()->route('admin.product')->with('success', "Product Added Successfully");
             }
         } catch (\Throwable $th) {
+            DB::rollback();
             return $th;
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
         }
