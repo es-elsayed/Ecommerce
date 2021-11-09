@@ -40,7 +40,8 @@ class ProductRequest extends FormRequest
             'images' => 'array',
             'images.*' => 'mimes:png,jpg,jpeg',
             'qty' => 'required|min:0',
-            'categories_id'=>'required|array|exists:categories,id',
+            'categories'=>'required|array',
+            'categories.*'=>'exists:categories,id',
         ];
     }
     public function messages()

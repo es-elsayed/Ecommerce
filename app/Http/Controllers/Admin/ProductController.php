@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductsCategory;
+use App\Models\ProductsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,46 +43,44 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // dd($request);
+        // dd($request->categories);
         try {
-            // DB::beginTransaction();
-            if ($request->has('main_image')) {
-                $image_path = upload_image('product', $request->main_image);
-                Product::create([
-                    'name_en' => $request['name_en'],
-                    'name_ar' => $request['name_ar'],
-                    'details_en' => $request['details_en'],
-                    'details_ar' => $request['details_ar'],
-                    'description_en' => $request['description_en'],
-                    'description_ar' => $request['description_ar'],
-                    'price' => $request['price'],
-                    'sale_price' => $request['sale_price'],
-                    'quantity' => $request['qty'],
-                    'status' => $request->has('status') ? 1 : 0,
-                    'slug' => str_slug($request['name_en']),
-                    'main_image' => $image_path,
-
+            DB::beginTransaction();
+            $image_path = upload_image('product', $request->main_image);
+            $product_id = Product::insertGetId([
+                'name_en' => $request['name_en'],
+                'name_ar' => $request['name_ar'],
+                'details_en' => $request['details_en'],
+                'details_ar' => $request['details_ar'],
+                'description_en' => $request['description_en'],
+                'description_ar' => $request['description_ar'],
+                'price' => $request['price'],
+                'sale_price' => $request['sale_price'],
+                'quantity' => $request['qty'],
+                'status' => $request->has('status') ? 1 : 0,
+                'slug' => str_slug($request['name_en']),
+                'main_image' => $image_path,
+            ]);
+            foreach ($request->categories as $category) {
+                ProductsCategory::insert([
+                    'category_id' => $category,
+                    'product_id' => $product_id
                 ]);
-                return redirect()->route('admin.product')->with('success', "Product Added Successfully");
-            } else {
-                Product::create([
-                    'name_en' => $request['name_en'],
-                    'name_ar' => $request['name_ar'],
-                    'details_en' => $request['details_en'],
-                    'details_ar' => $request['details_ar'],
-                    'description_en' => $request['description_en'],
-                    'description_ar' => $request['description_ar'],
-                    'price' => $request['price'],
-                    'sale_price' => $request['sale_price'],
-                    'status' => $request->has('status') ? 1 : 0,
-                    'slug' => str_slug($request['name_en']),
-                ]);
-                DB::commit();
-                return redirect()->route('admin.product')->with('success', "Product Added Successfully");
             }
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $image_path = upload_image('product', $image);
+                    ProductsImage::insert([
+                        'image' => $image_path,
+                        'product_id' => $product_id
+                    ]);
+                }
+            }
+            DB::commit();
+            return redirect()->route('admin.product')->with('success', "Product Added Successfully");
         } catch (\Throwable $th) {
             DB::rollback();
-            return $th;
+            // return $th;
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
         }
         // 'category_id' => $request['category_id'],

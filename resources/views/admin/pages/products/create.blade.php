@@ -154,14 +154,25 @@ Add ategories
                                     @foreach ($categories as $category )
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="cat_[{{ $category->id }}]"
-                                            name="categories_id[]" value="{{ $category->id }}">
+                                            name="categories[]" value="{{ $category->id }}">
                                         <label class="form-check-label" for="cat_[{{ $category->id }}]">{{
                                             $category->name_en }}</label>
                                     </div>
                                     @endforeach
-                                    @error('categories_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    @if ($errors->has('categories'))
+                                    @foreach ($errors->get('categories') as $message)
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @endforeach
+
+                                    @endif
+                                    @if ($errors->has('categories.*'))
+                                    @foreach ($errors->get('categories.*') as $messages)
+                                    @foreach($messages as $message)
+                                    <div class="invalid-feedback d-block">Image no: {{ $loop->parent->iteration }} {{
+                                        $message }}</div>
+                                    @endforeach
+                                    @endforeach
+                                    @endif
 
                                 </div>
                                 <div class="mb-3">
