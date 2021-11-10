@@ -195,14 +195,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     $product = Product::findOrFail($id);
-    //     if($product->main_image){
-    //             drop_image($image);
-    //         $image = upload_image('product', $request->main_image);
-    //     }
-    //     $product->delete();
-    //     return redirect()->route('admin.product')->with('success', 'The Product has been Deleted Successfuly');
-    // }
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        if($product->main_image){
+                drop_image($product->main_image);
+        }
+        $product->delete();
+        return redirect()->route('admin.product')->with('success', 'The Product has been Deleted Successfuly');
+    }
 }

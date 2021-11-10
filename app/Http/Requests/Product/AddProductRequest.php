@@ -28,8 +28,6 @@ class AddProductRequest extends FormRequest
     public function rules()
     {
         $add_prod_req = [
-            'name_en' => 'required|string|min:3|max:255|unique:categories,name_en',
-            'name_ar' => 'required|string|min:3|max:255|unique:categories,name_ar',
             'main_image' => 'required|mimes:png,jpg,jpeg'
         ];
 

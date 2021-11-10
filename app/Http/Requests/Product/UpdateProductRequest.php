@@ -28,14 +28,11 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         $update_prod_req = [
-            'name_en' => "required|string|min:3|max:255|unique:categories,name_en,$this->id",
-            'name_ar' => "required|string|min:3|max:255|unique:categories,name_ar,$this->id",
             'main_image' => 'mimes:png,jpg,jpeg',
         ];
 
         //  genaral validation of product
         $prod_req = (new ProductRequest())->rules();
-
         return array_merge(
             $prod_req,
             $update_prod_req
