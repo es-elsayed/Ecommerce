@@ -29,7 +29,7 @@ Route::name('admin.')->group(function () {
     // **********************************************
     Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
         Route::get('/', function () {
-            return redirect()->route('dashboard');
+            return redirect()->route('admin.dashboard');
         });
         Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -65,6 +65,8 @@ Route::name('admin.')->group(function () {
             Route::get('/active/{id}', [ProductController::class, 'active'])->name('product.active');
             Route::get('/un-active/{id}', [ProductController::class, 'unActive'])->name('product.unactive');
             Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+            Route::get('/{slug}/edit', [ProductController::class, 'edit'])->name('product.edit');
+            Route::put('/{slug}/update', [ProductController::class, 'update'])->name('product.update');
         });
     });
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

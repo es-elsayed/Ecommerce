@@ -21,3 +21,4 @@
 	new PerfectScrollbar('.product-list');
 	new PerfectScrollbar('.customers-list');
 </script> --}}
+@yield('extra-js')

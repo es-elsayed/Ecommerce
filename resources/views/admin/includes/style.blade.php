@@ -14,3 +14,4 @@
 {{-- <link rel="stylesheet" href="{{ asset('assets/admin/css/dark-theme.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/admin/css/semi-dark.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/admin/css/header-colors.css')}}" /> --}}
+@yield('extra-css')
