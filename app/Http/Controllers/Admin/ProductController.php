@@ -50,7 +50,15 @@ class ProductController extends Controller
         // dd($request->categories);
         try {
             DB::beginTransaction();
+
+            // check if slug is exists
+            $slug = str_slug($request['name_en']);
+            while (Product::whereSlug($slug)->exists()) {
+                $slug = str_slug($request['name_en'])."-".rand(0,1000);
+            }
+
             $image_path = upload_image('product', $request->main_image);
+
             $product_id = Product::insertGetId([
                 'name_en' => $request['name_en'],
                 'name_ar' => $request['name_ar'],
@@ -62,15 +70,17 @@ class ProductController extends Controller
                 'sale_price' => $request['sale_price'],
                 'quantity' => $request['qty'],
                 'status' => $request->has('status') ? 1 : 0,
-                'slug' => str_slug($request['name_en']),
+                'slug' => $slug,
                 'main_image' => $image_path,
             ]);
+
             foreach ($request->categories as $category) {
                 CategoryProduct::insert([
                     'category_id' => $category,
                     'product_id' => $product_id
                 ]);
             }
+
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $image_path = upload_image('product', $image);
