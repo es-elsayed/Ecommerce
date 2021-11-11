@@ -20,7 +20,7 @@ class CategoryFactory extends Factory
             'name_en' => $cat_en,
             'name_ar' =>  $faker_ar->name(),
             'status' => rand(0,1) || rand(0,1) ? 1: 0,
-            'is_parent' => '1',
+            'is_parent' => 1,
             'image' => 'assets/images/notfound.jpg',
             'slug' => $this->faker->unique()->slug,
         ];

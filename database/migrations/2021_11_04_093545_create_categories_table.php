@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name_en')->unique();
             $table->string('name_ar')->unique();
             $table->boolean('status')->default(1);
-            $table->enum('is_parent',[0,1])->default(1);
+            $table->boolean('is_parent')->default(1);
             $table->string('image')->default('assets/images/notfound.jpg');
             $table->string('slug')->unique();
             $table->timestamps();

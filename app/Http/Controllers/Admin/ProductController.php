@@ -156,6 +156,15 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
             $product = Product::where('slug', $slug)->first();
+            $new_slug = $product->slug;
+            if ($product->name_en !== $request['name_en']) {
+                $new_slug = str_slug($request['name_en']);
+                $count = 1;
+                while (Product::whereSlug($new_slug)->exists()) {
+                    $new_slug = str_slug($request['name_en']) . "-" . $count;
+                    $count++;
+                }
+            }
             $image = $product->main_image;
             if ($request->hasFile('main_image')) {
                 if (file_exists($image)) {
@@ -174,7 +183,7 @@ class ProductController extends Controller
                 'sale_price' => $request['sale_price'],
                 'quantity' => $request['qty'],
                 'status' => $request->has('status') ? 1 : 0,
-                'slug' => str_slug($request['name_en']),
+                'slug' => $new_slug,
                 'main_image' => $image,
             ]);
             $old_categories = CategoryProduct::where('product_id', $product->id)->delete();

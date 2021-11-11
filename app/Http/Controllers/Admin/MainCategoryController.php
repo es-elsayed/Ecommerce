@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCategoryRequest;
 use App\Http\Resources\MainCategoryResource;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +22,7 @@ class MainCategoryController extends Controller
     public function index()
     {
         // return Config::get('app.locale');
-        $categories = MainCategoryResource::collection(Category::where('is_parent','1')->get());
+        $categories = MainCategoryResource::collection(Category::where('is_parent',1)->get());
         return view('admin.pages.main-categories.index',['categories'=>$categories]);
     }
 
@@ -49,7 +50,7 @@ class MainCategoryController extends Controller
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
                     'status'=> $request->has('status')? 1:0,
-                    'is_parent'=> '1',
+                    'is_parent'=> 1,
                     'slug' => str_slug($request['name_en']),
                     'image'=> $image_path,
                 ]);
@@ -59,7 +60,7 @@ class MainCategoryController extends Controller
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
                     'status'=> $request->has('status')? 1:0,
-                    'is_parent'=> '1',
+                    'is_parent'=> 1,
                     'slug' => str_slug($request['name_en']),
                 ]);
                 return redirect()->route('admin.maincategory')->with('success',"Category Added Successfully");
@@ -127,12 +128,13 @@ class MainCategoryController extends Controller
      */
     public function destroy($slug)
     {
-        return 'finishing sub cat and product first';
+        // return 'finishing sub cat and product first';
         $category = Category::whereSlug($slug)->firstOrFail();
         if ($category->image != 'notfound.jpg') {
             Storage::delete('/public/assets/images/maincategory/' . $category->image);
         }
         $category->delete();
+        // Product::where('')
 
         return redirect()->route('admin.maincategory')->with('success', 'The ' . $category->name_en . ' Category has been deleted successfully');
 

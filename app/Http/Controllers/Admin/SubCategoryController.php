@@ -47,7 +47,7 @@ class SubCategoryController extends Controller
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
                     'status'=> $request->has('status')? 1:0,
-                    'is_parent'=> '0',
+                    'is_parent'=> 0,
                     'parent_id'=> $request['parent_id'],
                     'slug' => str_slug($request['name_en']),
                     'image'=> $image_path,
@@ -58,7 +58,7 @@ class SubCategoryController extends Controller
                     'name_en'=> $request['name_en'],
                     'name_ar'=> $request['name_ar'],
                     'status'=> $request->has('status')? 1:0,
-                    'is_parent'=> '0',
+                    'is_parent'=> 0,
                     'parent_id'=> $request['parent_id'],
                     'slug' => str_slug($request['name_en']),
                 ]);
