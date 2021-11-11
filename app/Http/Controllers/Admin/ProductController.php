@@ -53,8 +53,10 @@ class ProductController extends Controller
 
             // check if slug is exists
             $slug = str_slug($request['name_en']);
+            $count = 1;
             while (Product::whereSlug($slug)->exists()) {
-                $slug = str_slug($request['name_en'])."-".rand(0,1000);
+                $slug = str_slug($request['name_en']) . "-" . $count;
+                $count++;
             }
 
             $image_path = upload_image('product', $request->main_image);
@@ -125,16 +127,17 @@ class ProductController extends Controller
         $category_shared = $product->categories->pluck('id');
         return view('admin.pages.products.edit', ['product' => $product, 'categories' => $categories, 'category_shared' => $category_shared]);
     }
-    public function active($id)
+    public function active($slug)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::whereSlug($slug)->firstOrFail();
         $product->status = 1;
         $product->update();
         return redirect()->route('admin.product')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
     }
-    public function unActive($id)
+    public function unActive($slug)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::whereSlug($slug)->firstOrFail();
+
         $product->status = 0;
         $product->update();
         return redirect()->route('admin.product')->with('success', 'The "' . $product->name_en . '" Product status has been Unactivated Successfuly');
@@ -150,10 +153,10 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $product= Product::where('slug',$slug)->first();
-            $image= $product->main_image;
-            if($request->hasFile('main_image')){
-                if(file_exists($image)){
+            $product = Product::where('slug', $slug)->first();
+            $image = $product->main_image;
+            if ($request->hasFile('main_image')) {
+                if (file_exists($image)) {
                     drop_image($image);
                 }
                 $image = upload_image('product', $request->main_image);
@@ -172,7 +175,7 @@ class ProductController extends Controller
                 'slug' => str_slug($request['name_en']),
                 'main_image' => $image,
             ]);
-            $old_categories = CategoryProduct::where('product_id',$product->id)->delete();
+            $old_categories = CategoryProduct::where('product_id', $product->id)->delete();
             foreach ($request->categories as $category) {
                 CategoryProduct::insert([
                     'category_id' => $category,
@@ -205,11 +208,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $product = Product::findOrFail($id);
-        if($product->main_image){
-                drop_image($product->main_image);
+        $product = Product::whereSlug($slug)->firstOrFail();
+        if ($product->main_image) {
+            drop_image($product->main_image);
         }
         $product->delete();
         return redirect()->route('admin.product')->with('success', 'The Product has been Deleted Successfuly');

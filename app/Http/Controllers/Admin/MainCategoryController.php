@@ -125,10 +125,10 @@ class MainCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         return 'finishing sub cat and product first';
-        $category = Category::findOrFail($id);
+        $category = Category::whereSlug($slug)->firstOrFail();
         if ($category->image != 'notfound.jpg') {
             Storage::delete('/public/assets/images/maincategory/' . $category->image);
         }

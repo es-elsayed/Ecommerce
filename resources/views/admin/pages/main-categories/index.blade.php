@@ -76,11 +76,11 @@ Main Categories
                             <td>
                                 <div class="d-flex order-actions">
                                     <a href="javascript:;" class="ms-3"><i class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('admin.maincategory.delete', $category->id) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
+                                    <a href="{{ route('admin.maincategory.delete', $category->slug) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
                                     @if ($category->status == 0)
-                                    <a href="{{ route('admin.maincategory.active', $category->id) }}" class="success text-capitalize ms-3">Activate</a>
+                                    <a href="{{ route('admin.maincategory.active', $category->slug) }}" class="success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.maincategory.unactive', $category->id) }}" class="danger text-capitalize ms-3">deactivate</a>
+                                    <a href="{{ route('admin.maincategory.unactive', $category->slug) }}" class="danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>
                             </td>

@@ -40,9 +40,9 @@ Route::name('admin.')->group(function () {
             Route::get('/', [MainCategoryController::class, 'index'])->name('maincategory');
             Route::get('/create', [MainCategoryController::class, 'create'])->name('maincategory.create');
             Route::post('/store', [MainCategoryController::class, 'store'])->name('maincategory.store');
-            Route::get('/active/{id}', [MainCategoryController::class, 'active'])->name('maincategory.active');
-            Route::get('/un-active/{id}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
-            Route::get('/delete/{id}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
+            Route::get('/active/{slug}', [MainCategoryController::class, 'active'])->name('maincategory.active');
+            Route::get('/un-active/{slug}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
+            Route::get('/delete/{slug}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
         });
         // *****************************************
         // ********** Sub Category Routes **********
@@ -51,9 +51,9 @@ Route::name('admin.')->group(function () {
             Route::get('/', [SubCategoryController::class, 'index'])->name('subcategory');
             Route::get('/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
             Route::post('/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
-            Route::get('/active/{id}', [SubCategoryController::class, 'active'])->name('subcategory.active');
-            Route::get('/un-active/{id}', [SubCategoryController::class, 'unActive'])->name('subcategory.unactive');
-            Route::get('/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
+            Route::get('/active/{slug}', [SubCategoryController::class, 'active'])->name('subcategory.active');
+            Route::get('/un-active/{slug}', [SubCategoryController::class, 'unActive'])->name('subcategory.unactive');
+            Route::get('/delete/{slug}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
         });
         // *****************************************
         // ********** Product Routes **********
@@ -62,9 +62,9 @@ Route::name('admin.')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('product');
             Route::get('/create', [ProductController::class, 'create'])->name('product.create');
             Route::post('/store', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/active/{id}', [ProductController::class, 'active'])->name('product.active');
-            Route::get('/un-active/{id}', [ProductController::class, 'unActive'])->name('product.unactive');
-            Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+            Route::get('/active/{slug}', [ProductController::class, 'active'])->name('product.active');
+            Route::get('/un-active/{slug}', [ProductController::class, 'unActive'])->name('product.unactive');
+            Route::get('/delete/{slug}', [ProductController::class, 'destroy'])->name('product.delete');
             Route::get('/{slug}/edit', [ProductController::class, 'edit'])->name('product.edit');
             Route::put('/{slug}/update', [ProductController::class, 'update'])->name('product.update');
         });

@@ -87,18 +87,18 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function active($id)
+    public function active($slug)
     {
         return 'finishing sub cat and product first';
-        $category = Category::findOrFail($id);
+        $category = Category::whereSlug($slug)->firstOrFail();
         $category->status = 1;
         $category->update();
         return redirect()->route('admin.subcategory')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
     }
-    public function unActive($id)
+    public function unActive($slug)
     {
         return 'finishing sub cat and product first';
-        $category = Category::findOrFail($id);
+        $category = Category::whereSlug($slug)->firstOrFail();
         $category->status = 0;
         $category->update();
         return redirect()->route('admin.subcategory')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
@@ -126,10 +126,10 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         return 'finishing sub cat and product first';
-        $category = Category::findOrFail($id);
+        $category = Category::findOrFail($slug);
         if ($category->image != 'notfound.jpg') {
             Storage::delete('/public/assets/images/subcategory/' . $category->image);
         }
