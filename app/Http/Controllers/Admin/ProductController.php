@@ -125,7 +125,9 @@ class ProductController extends Controller
         $product = Product::where('slug', $slug)->first();
         $categories = Category::all();
         $category_shared = $product->categories->pluck('id');
-        return view('admin.pages.products.edit', ['product' => $product, 'categories' => $categories, 'category_shared' => $category_shared]);
+        $images = $product->images;
+        // dd(get_defined_vars());
+        return view('admin.pages.products.edit', get_defined_vars());
     }
     public function active($slug)
     {
@@ -182,15 +184,25 @@ class ProductController extends Controller
                     'product_id' => $product->id
                 ]);
             }
-            // if ($request->hasFile('images')) {
-            //     foreach ($request->file('images') as $image) {
-            //         $image_path = upload_image('product', $image);
-            //         ProductsImage::insert([
-            //             'image' => $image_path,
-            //             'product_id' => $product->id
-            //         ]);
-            //     }
-            // }
+
+            if ($request->has('deleted_images')) {
+                $deleted_images = explode(",", $request->deleted_images);
+                foreach ($deleted_images as $deleted_image) {
+                    ImageProduct::where('image', $deleted_image)->delete();
+                    if (file_exists($deleted_image)) {
+                        drop_image($deleted_image);
+                    }
+                }
+            }
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $image_path = upload_image('product', $image);
+                    ImageProduct::insert([
+                        'image' => $image_path,
+                        'product_id' => $product->id
+                    ]);
+                }
+            }
             DB::commit();
             return redirect()->route('admin.product')->with('success', "Product has been Updated Successfully");
         } catch (\Exception $ex) {
@@ -211,7 +223,7 @@ class ProductController extends Controller
     public function destroy($slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();
-        if ($product->main_image) {
+        if (file_exists($product->main_image)) {
             drop_image($product->main_image);
         }
         $product->delete();

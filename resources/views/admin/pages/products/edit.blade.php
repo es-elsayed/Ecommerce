@@ -5,6 +5,33 @@ Edit Product
 @section('extra-css')
 <link href="{{ asset('assets/admin/plugins/fancy-file-uploader/fancy_fileupload.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/admin/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet" />
+<style>
+    div.prod-sub-img {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        width: 100px;
+        margin-inline: 5px;
+        height: 100px;
+    }
+
+    div.prod-sub-img img.sub-img {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+
+    }
+
+    div.prod-sub-img img.sub-img+button {
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: .7;
+        margin;
+        : 0;
+    }
+</style>
 @endsection
 @section('content')
 <!--breadcrumb-->
@@ -179,7 +206,7 @@ Edit Product
 
                             </div>
                             <div class="mb-3">
-                                <label for="main_image" class="form-label">Select Image</label>
+                                <label for="main_image" class="form-label">Select Main-Image</label>
                                 <input id="main_image" type="file" name="main_image" class="form-control">
                                 @if ($errors->has('main_image'))
                                 @foreach ($errors->get('main_image') as $message)
@@ -187,24 +214,8 @@ Edit Product
                                 @endforeach
                                 @endif
                             </div>
-                            {{-- <div class="card">
-                                <div class="card-body">
-                                        <input id="image-uploadify" type="file"
-                                            accept=".xlsx,.xls,image/*,.jpeg,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                                            multiple="" style="display: none;" name="jk[]">
-                                        <div class="imageuploadify well">
-                                            <div class="imageuploadify-overlay"><i class="fa fa-picture-o"></i></div>
-                                            <div class="imageuploadify-images-list text-center"><i
-                                                    class="bx bxs-cloud-upload"></i><span
-                                                    class="imageuploadify-message">Drag&amp;Drop Your File(s)Here To
-                                                    Upload</span><button type="button" class="btn btn-default"
-                                                    style="background: white; color: rgb(58, 160, 255);">or select file
-                                                    to upload</button></div>
-                                        </div>
-                                </div>
-                            </div> --}}
                             <div class="mb-3">
-                                <label for="images" class="form-label">Select Image</label>
+                                <label for="images" class="form-label">Select Sub-Image</label>
                                 <input id="images" type="file" name="images[]" class="form-control" multiple>
                                 @if ($errors->has('images.*'))
                                 @foreach ($errors->get('images.*') as $messages)
@@ -215,9 +226,21 @@ Edit Product
                                 @endforeach
                                 @endif
                             </div>
+
+                            <div class="mb-3">
+                                @foreach ($images as $image )
+                                <div class="prod-sub-img">
+                                    <img src="{{asset($image->image) }}" class="sub-img"
+                                        data-real-src="{{ $image->image }}" alt="product image">
+                                    <button type="button" class="btn btn-danger">x</button>
+                                </div>
+                                @endforeach
+                                <input type="hidden" id="deleted_images" name="deleted_images" value="">
+                            </div>
+
                             <div class="col-12 mt-5">
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-light">Add</button>
+                                    <button type="submit" class="btn btn-light">Update</button>
                                 </div>
                             </div>
                     </form>
@@ -249,5 +272,18 @@ Edit Product
 </script>
 <!--app JS-->
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+<script>
+    const buttons = document.querySelectorAll('.btn-danger');
+const deleted = document.querySelector('#deleted_images');
+const deleted_array = [];
+buttons.forEach((button)=>{
+    button.addEventListener('click', (e)=>{
+        deleted_array.push(e.target.previousElementSibling.dataset.realSrc);
+        deleted.value=deleted_array
+        // console.log(deleted.value);
+        e.target.parentElement.remove();
 
+    })
+})
+</script>
 @endsection
