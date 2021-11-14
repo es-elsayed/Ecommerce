@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Add ategories
+Add Product
 @endsection
 @section('content')
 <!--breadcrumb-->
@@ -147,13 +147,35 @@ Add ategories
                             </div>
                             <div class="mb-3">
                                 <hr /><label for="status" class="form-check-label d-block mb-3">Category</label>
-                                @foreach ($categories as $category )
-                                <div class="form-check form-check-inline">
+                                @foreach ($parent_categories as $parent_category)
+                                <ul style="list-style-type: none">
+                                    <li><input class="form-check-input" type="checkbox"
+                                            id="cat_[{{ $parent_category->id }}]" name="categories[]"
+                                            value="{{ $parent_category->id }}">
+                                        <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
+                                            $parent_category->name_en }}</label>
+                                        <ul>
+                                            @foreach(\App\Models\Category::getChildrenByParentId($parent_category->id)
+                                            as $sub_cat)
+                                            <li class="d-inline">
+                                                <input class="form-check-input sub-cat" type="checkbox"
+                                                    id="cat_[{{ $sub_cat->id }}]" name="categories[]"
+                                                    value="{{ $sub_cat->id }}">
+                                                <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">{{
+                                                    $sub_cat->name_en }}</label>
+
+                                            </li>
+                                            @endforeach
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                                {{-- <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="cat_[{{ $category->id }}]"
                                         name="categories[]" value="{{ $category->id }}">
                                     <label class="form-check-label" for="cat_[{{ $category->id }}]">{{
                                         $category->name_en }}</label>
-                                </div>
+                                </div> --}}
                                 @endforeach
                                 @if ($errors->has('categories'))
                                 @foreach ($errors->get('categories') as $message)
@@ -204,4 +226,7 @@ Add ategories
         </div>
     </div>
 </div>
+@endsection
+@section('extra-js')
+@include('admin.includes.product.category-check')
 @endsection

@@ -34,8 +34,8 @@ class ProductController extends Controller
     public function create()
     {
         //return 'hi';
-        $categories = Category::all();
-        return view('admin.pages.products.create', ['categories' => $categories]);
+        $parent_categories = Category::where('is_parent', 1)->get();
+        return view('admin.pages.products.create', ['parent_categories' => $parent_categories]);
     }
 
 
@@ -123,7 +123,7 @@ class ProductController extends Controller
     public function edit($slug)
     {
         $product = Product::where('slug', $slug)->first();
-        $categories = Category::all();
+        $parent_categories = Category::where('is_parent', 1)->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
         // dd(get_defined_vars());

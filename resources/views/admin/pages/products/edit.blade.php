@@ -180,14 +180,37 @@ Edit Product
                             </div>
                             <div class="mb-3">
                                 <hr /><label for="status" class="form-check-label d-block mb-3">Category</label>
-                                @foreach ($categories as $category )
-                                <div class="form-check form-check-inline">
+                                @foreach ($parent_categories as $parent_category)
+                                <ul style="list-style-type: none">
+                                    <li><input class="form-check-input" type="checkbox"
+                                            id="cat_[{{ $parent_category->id }}]" name="categories[]"
+                                            value="{{ $parent_category->id }}" @foreach($category_shared as $shared)
+                                            @if($shared===$parent_category->id) checked @endif @endforeach>
+                                        <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
+                                            $parent_category->name_en }}</label>
+                                        <ul>
+                                            @foreach(\App\Models\Category::getChildrenByParentId($parent_category->id)
+                                            as $sub_cat)
+                                            <li class="d-inline">
+                                                <input class="form-check-input sub-cat" type="checkbox"
+                                                    id="cat_[{{ $sub_cat->id }}]" name="categories[]"
+                                                    value="{{ $sub_cat->id }}" @foreach($category_shared as $shared)
+                                                    @if($shared===$sub_cat->id) checked @endif @endforeach>
+                                                <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">{{
+                                                    $sub_cat->name_en }}</label>
+
+                                            </li>
+                                            @endforeach
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                                {{-- <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="cat_[{{ $category->id }}]"
-                                        name="categories[]" value="{{ $category->id }}" @foreach($category_shared as
-                                        $shared) @if ($shared===$category->id) checked @endif @endforeach >
+                                        name="categories[]" value="{{ $category->id }}">
                                     <label class="form-check-label" for="cat_[{{ $category->id }}]">{{
                                         $category->name_en }}</label>
-                                </div>
+                                </div> --}}
                                 @endforeach
                                 @if ($errors->has('categories'))
                                 @foreach ($errors->get('categories') as $message)
@@ -274,16 +297,19 @@ Edit Product
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
 <script>
     const buttons = document.querySelectorAll('.btn-danger');
-const deleted = document.querySelector('#deleted_images');
-const deleted_array = [];
-buttons.forEach((button)=>{
-    button.addEventListener('click', (e)=>{
-        deleted_array.push(e.target.previousElementSibling.dataset.realSrc);
-        deleted.value=deleted_array
-        // console.log(deleted.value);
-        e.target.parentElement.remove();
+    const deleted = document.querySelector('#deleted_images');
+    const deleted_array = [];
+    buttons.forEach((button)=>{
+        button.addEventListener('click', (e)=>{
+            deleted_array.push(e.target.previousElementSibling.dataset.realSrc);
+            deleted.value=deleted_array
+            // console.log(deleted.value);
+            e.target.parentElement.remove();
 
+        })
     })
-})
 </script>
+
+@include('admin.includes.product.category-check')
+
 @endsection

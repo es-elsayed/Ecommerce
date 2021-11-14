@@ -28,4 +28,7 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+    static function getChildrenByParentId($id){
+        return Category::where(['is_parent'=> 0, 'parent_id'=>$id])->get();
+    }
 }

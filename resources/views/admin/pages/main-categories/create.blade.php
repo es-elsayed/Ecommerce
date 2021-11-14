@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Add ategories
+    Add Main-Category
 @endsection
 @section('content')
 <div class="page-content">

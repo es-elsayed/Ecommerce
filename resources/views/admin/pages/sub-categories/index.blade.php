@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Main Categories
+Sub Categories
 @endsection
 @section('content')
 {{ Form::hidden('', $increment = 1) }}
