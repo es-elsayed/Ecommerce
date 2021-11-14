@@ -5,33 +5,6 @@ Edit Product
 @section('extra-css')
 <link href="{{ asset('assets/admin/plugins/fancy-file-uploader/fancy_fileupload.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/admin/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet" />
-<style>
-    div.prod-sub-img {
-        display: inline-block;
-        position: relative;
-        padding: 0;
-        width: 100px;
-        margin-inline: 5px;
-        height: 100px;
-    }
-
-    div.prod-sub-img img.sub-img {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-
-    }
-
-    div.prod-sub-img img.sub-img+button {
-        border-radius: 50%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        opacity: .7;
-        margin;
-        : 0;
-    }
-</style>
 @endsection
 @section('content')
 <!--breadcrumb-->
@@ -229,7 +202,7 @@ Edit Product
 
                             </div>
                             <div class="mb-3">
-                                <label for="main_image" class="form-label">Select Main-Image</label>
+                                <label for="main_image" class="form-label">Change Main-Image</label>
                                 <input id="main_image" type="file" name="main_image" class="form-control">
                                 @if ($errors->has('main_image'))
                                 @foreach ($errors->get('main_image') as $message)
@@ -237,8 +210,12 @@ Edit Product
                                 @endforeach
                                 @endif
                             </div>
+                            <div class="img-style">
+                                <img src="{{asset($product->main_image) }}" class="img-style"
+                                    data-real-src="{{ $product->main_image }}" alt="product image">
+                            </div>
                             <div class="mb-3">
-                                <label for="images" class="form-label">Select Sub-Image</label>
+                                <label for="images" class="form-label">Change Sub-Image</label>
                                 <input id="images" type="file" name="images[]" class="form-control" multiple>
                                 @if ($errors->has('images.*'))
                                 @foreach ($errors->get('images.*') as $messages)
@@ -252,8 +229,8 @@ Edit Product
 
                             <div class="mb-3">
                                 @foreach ($images as $image )
-                                <div class="prod-sub-img">
-                                    <img src="{{asset($image->image) }}" class="sub-img"
+                                <div class="img-style">
+                                    <img src="{{asset($image->image) }}" class="img-style"
                                         data-real-src="{{ $image->image }}" alt="product image">
                                     <button type="button" class="btn btn-danger">x</button>
                                 </div>

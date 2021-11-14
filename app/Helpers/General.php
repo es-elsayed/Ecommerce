@@ -12,7 +12,10 @@ function upload_image($folder, $image)
 }
 function drop_image($path)
 {
-    return File::delete($path);
+    if (file_exists($path) && $path !== "assets/images/notfound.jpg") {
+        return File::delete($path);
+    }
+    return true;
 }
 function str_slug($val)
 {

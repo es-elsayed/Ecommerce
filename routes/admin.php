@@ -43,6 +43,8 @@ Route::name('admin.')->group(function () {
             Route::get('/active/{slug}', [MainCategoryController::class, 'active'])->name('maincategory.active');
             Route::get('/un-active/{slug}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
             Route::get('/delete/{slug}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
+            Route::get('/{slug}/edit', [MainCategoryController::class, 'edit'])->name('maincategory.edit');
+            Route::put('/{slug}/update', [MainCategoryController::class, 'update'])->name('maincategory.update');
         });
         // *****************************************
         // ********** Sub Category Routes **********
@@ -54,6 +56,8 @@ Route::name('admin.')->group(function () {
             Route::get('/active/{slug}', [SubCategoryController::class, 'active'])->name('subcategory.active');
             Route::get('/un-active/{slug}', [SubCategoryController::class, 'unActive'])->name('subcategory.unactive');
             Route::get('/delete/{slug}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
+            Route::get('/{slug}/edit', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+            Route::put('/{slug}/update', [SubCategoryController::class, 'update'])->name('subcategory.update');
         });
         // *****************************************
         // ********** Product Routes **********

@@ -13,12 +13,17 @@ class Category extends Model
         'name_ar',
         'status',
         'is_parent',
+        'parent_id',
         'image',
         'slug',
     ];
     public function getActive()
     {
         return $this->status == 1 ? 'active': 'in-active';
+    }
+    public function active()
+    {
+        return $this->status == 1 ? true: false;
     }
     public function parent()
     {

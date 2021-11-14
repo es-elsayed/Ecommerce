@@ -75,7 +75,7 @@ Main Categories
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    <a href="javascript:;" class="ms-3"><i class="bx bxs-edit"></i></a>
+                                    <a href="{{ route('admin.maincategory.edit', $category->slug) }}" class="ms-3"><i class="bx bxs-edit"></i></a>
                                     <a href="{{ route('admin.maincategory.delete', $category->slug) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
                                     @if ($category->status == 0)
                                     <a href="{{ route('admin.maincategory.active', $category->slug) }}" class="success text-capitalize ms-3">Activate</a>

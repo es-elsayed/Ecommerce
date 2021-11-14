@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\SubCategory;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class MainCategoryRequest extends FormRequest
+class SubCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,19 +28,17 @@ class MainCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en'=>'required|min:3|max:255|unique:categories,name_en',
-            'name_ar'=>'required|min:3|max:255|unique:categories,name_ar',
             'image' => 'mimes:png,jpg,jpeg',
+            'parent_id'=>'required|exists:categories,id',
         ];
     }
     public function messages()
     {
         return [
             'required'=>'this field is required',
-            'min'=>'min char is 3',
-            'max'=>'min char is 5',
             'unique'=>'this name is used before',
             'mimes'=>'invalid file',
+            'exists'=>'Sorry..! Invalid Main Category',
         ];
     }
 }

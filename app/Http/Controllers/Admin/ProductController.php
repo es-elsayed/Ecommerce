@@ -167,9 +167,7 @@ class ProductController extends Controller
             }
             $image = $product->main_image;
             if ($request->hasFile('main_image')) {
-                if (file_exists($image)) {
-                    drop_image($image);
-                }
+                drop_image($image);
                 $image = upload_image('product', $request->main_image);
             }
             $product->update([
@@ -198,9 +196,7 @@ class ProductController extends Controller
                 $deleted_images = explode(",", $request->deleted_images);
                 foreach ($deleted_images as $deleted_image) {
                     ImageProduct::where('image', $deleted_image)->delete();
-                    if (file_exists($deleted_image)) {
-                        drop_image($deleted_image);
-                    }
+                    drop_image($deleted_image);
                 }
             }
             if ($request->hasFile('images')) {
@@ -232,9 +228,7 @@ class ProductController extends Controller
     public function destroy($slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();
-        if (file_exists($product->main_image)) {
-            drop_image($product->main_image);
-        }
+        drop_image($product->main_image);
         $product->delete();
         return redirect()->route('admin.product')->with('success', 'The Product has been Deleted Successfuly');
     }
