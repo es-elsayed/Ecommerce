@@ -46,7 +46,7 @@ Products
                             class="bx bx-search"></i></span>
                 </div>
                 <div class="ms-auto"><a href="{{ route('admin.product.create') }}" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
-                            class="bx bxs-plus-square"></i>Add New Product</a></div>
+                            class="bx bxs-plus-square"></i>Add New Record</a></div>
             </div>
             <div class="table-responsive">
                 <table class="table mb-0 table-border">

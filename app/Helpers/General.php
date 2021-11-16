@@ -5,9 +5,12 @@ use Illuminate\Support\Facades\File;
 
 function upload_image($folder, $image)
 {
-    $image->store('/', $folder);
-    $filename = $image->hashName();
-    $path = 'assets/images/' . $folder . '/' . $filename;
+    $path = "assets/images/notfound.jpg";
+    if ($image) {
+        $image->store('/', $folder);
+        $filename = $image->hashName();
+        $path = 'assets/images/' . $folder . '/' . $filename;
+    }
     return $path;
 }
 function drop_image($path)
@@ -19,9 +22,16 @@ function drop_image($path)
 }
 function str_slug($val)
 {
-    return Str::slug($val,'-');
+    return Str::slug($val, '-');
 }
 function currency($val)
 {
-    return $val." $";
+    return $val . " $";
+}
+function un_defined_cat_error($cat)
+{
+    if ($cat->id === 1 || $cat->name_en === "un-defined") {
+        return false;
+    }
+    return true;
 }

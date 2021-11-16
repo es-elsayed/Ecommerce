@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->boolean('status')->default(1);
             $table->boolean('is_parent')->default(1);
             $table->string('image')->default('assets/images/notfound.jpg');
+            $table->string('banner')->default('assets/images/notfound.jpg');
             $table->string('slug')->unique();
             $table->timestamps();
         });

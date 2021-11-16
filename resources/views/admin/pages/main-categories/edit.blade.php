@@ -49,6 +49,7 @@ Edit Main-Category
                             @csrf
                             <div class="border border-3 p-4 rounded">
                                 <div class="row">
+                                    <input type="hidden" name="cat_id" value="{{ $category->id }}">
                                     <div class="col-xl mb-3">
                                         <label for="name_en" class="form-label">Category Name (en)</label>
                                         <input id="name_en" type="text" name="name_en" class="form-control"
@@ -76,11 +77,26 @@ Edit Main-Category
                                     <label for="status" class="form-check-label">Activation</label>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Select Image</label>
+                                    <label for="image" class="form-label">Change Image</label>
                                     <input id="image" type="file" name="image" class="form-control">
                                     @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
+                                    <div class="mt-2 img-style">
+                                        <img src="{{asset($category->image) }}" class="img-style"
+                                            data-real-src="{{ $category->image }}" alt="category banner">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Change Banner</label>
+                                    <input id="image" type="file" name="banner" class="form-control">
+                                    @error('banner')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <div class="mt-2 img-style">
+                                        <img src="{{asset($category->banner) }}" class="img-style"
+                                            data-real-src="{{ $category->banner }}" alt="category banner">
+                                    </div>
                                 </div>
                                 <div class="col-12 mt-5">
                                     <div class="d-grid">

@@ -70,6 +70,13 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Select Banner</label>
+                        <input id="image" type="file" name="banner" class="form-control">
+                        @error('banner')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="col-12 mt-5">
                         <div class="d-grid">
                             <button type="submit" class="btn btn-light">Add</button>

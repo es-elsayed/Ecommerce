@@ -41,11 +41,6 @@ class UpdateMainCategoryRequest extends FormRequest
     }
     public function messages()
     {
-        return [
-            'required'=>'this field is required',
-            'min'=>'min char is 3',
-            'max'=>'min char is 5',
-            'unique'=>'this name is used before',
-        ];
+        return (new MainCategoryRequest())->messages();
     }
 }

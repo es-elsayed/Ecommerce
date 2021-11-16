@@ -15,6 +15,7 @@ class Category extends Model
         'is_parent',
         'parent_id',
         'image',
+        'banner',
         'slug',
     ];
     public function getActive()
@@ -35,5 +36,8 @@ class Category extends Model
     }
     static function getChildrenByParentId($id){
         return Category::where(['is_parent'=> 0, 'parent_id'=>$id])->get();
+    }
+    static function isChild($slug){
+        return Category::where(['is_parent'=> 0, 'slug'=>$slug])->firstOrFail();
     }
 }

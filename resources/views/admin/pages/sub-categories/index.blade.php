@@ -46,7 +46,7 @@ Sub Categories
                             class="bx bx-search"></i></span>
                 </div>
                 <div class="ms-auto"><a href="javascript:;" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
-                            class="bx bxs-plus-square"></i>Add New Order</a></div>
+                            class="bx bxs-plus-square"></i>Add New Record</a></div>
             </div>
             <div class="table-responsive">
                 <table class="table mb-0">
@@ -69,7 +69,7 @@ Sub Categories
                             <td><img src="{{ asset($category->image) }}" class="maincat-img"
                                     alt="category image"></td>
                             <td>{{ $category->name_en }}</td>
-                            <td>{{ $category->parent->name_en }}</td>
+                            <td>{{ $category->parent ? $category->parent->name_en: '' }}</td>
                             <td>
                                 <div
                                     class="badge rounded-pill {{ $category->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">

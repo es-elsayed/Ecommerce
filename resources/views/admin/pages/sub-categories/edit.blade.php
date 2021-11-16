@@ -93,10 +93,21 @@ Edit Sub-Category
                                     @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
+                                    <div class="mt-2 img-style">
+                                        <img src="{{asset($category->image) }}" class="img-style"
+                                            data-real-src="{{ $category->image }}" alt="category banner">
+                                    </div>
                                 </div>
-                                <div class="img-style">
-                                    <img src="{{asset($category->image) }}" class="img-style"
-                                        data-real-src="{{ $category->image }}" alt="category image">
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Change Banner</label>
+                                    <input id="image" type="file" name="banner" class="form-control">
+                                    @error('banner')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <div class="mt-2 img-style">
+                                        <img src="{{asset($category->banner) }}" class="img-style"
+                                            data-real-src="{{ $category->banner }}" alt="category banner">
+                                    </div>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <div class="d-grid">

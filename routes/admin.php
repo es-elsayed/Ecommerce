@@ -40,9 +40,9 @@ Route::name('admin.')->group(function () {
             Route::get('/', [MainCategoryController::class, 'index'])->name('maincategory');
             Route::get('/create', [MainCategoryController::class, 'create'])->name('maincategory.create');
             Route::post('/store', [MainCategoryController::class, 'store'])->name('maincategory.store');
-            Route::get('/active/{slug}', [MainCategoryController::class, 'active'])->name('maincategory.active');
-            Route::get('/un-active/{slug}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
-            Route::get('/delete/{slug}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
+            Route::get('/active/{id}', [MainCategoryController::class, 'active'])->name('maincategory.active');
+            Route::get('/un-active/{id}', [MainCategoryController::class, 'unActive'])->name('maincategory.unactive');
+            Route::get('/delete/{id}', [MainCategoryController::class, 'destroy'])->name('maincategory.delete');
             Route::get('/{slug}/edit', [MainCategoryController::class, 'edit'])->name('maincategory.edit');
             Route::put('/{slug}/update', [MainCategoryController::class, 'update'])->name('maincategory.update');
         });

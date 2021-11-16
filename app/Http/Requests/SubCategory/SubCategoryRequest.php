@@ -29,6 +29,7 @@ class SubCategoryRequest extends FormRequest
     {
         return [
             'image' => 'mimes:png,jpg,jpeg',
+            'banner' => 'mimes:png,jpg,jpeg',
             'parent_id'=>'required|exists:categories,id',
         ];
     }

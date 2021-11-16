@@ -45,8 +45,9 @@ Main Categories
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="javascript:;" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
-                            class="bx bxs-plus-square"></i>Add New Order</a></div>
+                <div class="ms-auto"><a href="{{ route('admin.maincategory.create') }}"
+                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Record</a>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table mb-0">
@@ -65,24 +66,30 @@ Main Categories
                             <td>
                                 <h6 class="mb-0 font-14 text-center">{{ $increment }}</h6>
                             </td>
-                            <td><img src="{{ asset($category->image) }}" class="maincat-img"
-                                    alt="category image"></td>
+                            <td><img src="{{ asset($category->image) }}" class="maincat-img" alt="category image"></td>
                             <td>{{ $category->name_en }}</td>
                             <td>
                                 <div
                                     class="badge rounded-pill {{ $category->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
-                                    <i class="bx bxs-circle me-1"></i>{{ $category->getActive() }}</div>
+                                    <i class="bx bxs-circle me-1"></i>{{ $category->getActive() }}
+                                </div>
                             </td>
                             <td>
+                                @if ($category->id !== 1 || $category->name_en !== "un-defined")
                                 <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.maincategory.edit', $category->slug) }}" class="ms-3"><i class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('admin.maincategory.delete', $category->slug) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
+                                    <a href="{{ route('admin.maincategory.edit', $category->slug) }}" class="ms-3"><i
+                                            class="bx bxs-edit"></i></a>
+                                    <a href="{{ route('admin.maincategory.delete', $category->id) }}" class="ms-3"><i
+                                            class="bx bxs-trash"></i></a>
                                     @if ($category->status == 0)
-                                    <a href="{{ route('admin.maincategory.active', $category->slug) }}" class="success text-capitalize ms-3">Activate</a>
+                                    <a href="{{ route('admin.maincategory.active', $category->id) }}"
+                                        class="success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.maincategory.unactive', $category->slug) }}" class="danger text-capitalize ms-3">deactivate</a>
+                                    <a href="{{ route('admin.maincategory.unactive', $category->id) }}"
+                                        class="danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>
+                                @endif
                             </td>
                         </tr>
                         {{ Form::hidden('', $increment += 1) }}
