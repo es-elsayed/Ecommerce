@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MainCategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,19 @@ Route::name('admin.')->group(function () {
             Route::get('/delete/{slug}', [ProductController::class, 'destroy'])->name('product.delete');
             Route::get('/{slug}/edit', [ProductController::class, 'edit'])->name('product.edit');
             Route::put('/{slug}/update', [ProductController::class, 'update'])->name('product.update');
+        });
+        // *****************************************
+        // ********** Slider Routes **********
+        // *****************************************
+        Route::group(['prefix' => 'slider'], function () {
+            Route::get('/', [SliderController::class, 'index'])->name('slider');
+            Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+            Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
+            Route::get('/active/{slug}', [SliderController::class, 'active'])->name('slider.active');
+            Route::get('/un-active/{slug}', [SliderController::class, 'unActive'])->name('slider.unactive');
+            Route::get('/delete/{slug}', [SliderController::class, 'destroy'])->name('slider.delete');
+            Route::get('/{slug}/edit', [SliderController::class, 'edit'])->name('slider.edit');
+            Route::put('/{slug}/update', [SliderController::class, 'update'])->name('slider.update');
         });
     });
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

@@ -13,7 +13,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add New Main-Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Main-Category</li>
                 </ol>
             </nav>
         </div>
@@ -34,7 +34,7 @@
 
   <div class="card">
       <div class="card-body p-4">
-          <h5 class="card-title">Add New Main-Category</h5>
+          <h5 class="card-title">Add Main-Category</h5>
           <hr/>
           @include('includes.alerts.error')
            <div class="form-body mt-4">
