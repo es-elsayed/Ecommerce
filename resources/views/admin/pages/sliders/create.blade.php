@@ -86,15 +86,25 @@ Add Slider
                                 </div>
                                 @enderror
                             </div>
+                            <div class="col-xl mb-3">
+                                <label for="link" class="form-label">Link</label>
+                                <input id="link" type="text" name="link" required min="3" max="191"
+                                    class="form-control @error('link') is-invalid @enderror"
+                                    placeholder="ex: https://www.expamle.com.ar/" value="{{ old('link') }}">
+                                @error('link')
+                                <div class="invalid-feedback">{{ $message
+                                    }}</div>
+                                @enderror
+                            </div>
                             <div class="mb-3 form-check form-switch">
                                 <input id="status" class="form-check-input" type="checkbox" checked="" name="status">
                                 <label for="status" class="form-check-label">Activation</label>
                             </div>
                             <div class="mb-3">
-                                <label for="main_image" class="form-label">Select Image</label>
-                                <input id="main_image" type="file" name="main_image" class="form-control">
-                                @if ($errors->has('main_image'))
-                                @foreach ($errors->get('main_image') as $message)
+                                <label for="image" class="form-label">Select Image</label>
+                                <input id="image" type="file" name="image" class="form-control">
+                                @if ($errors->has('image'))
+                                @foreach ($errors->get('image') as $message)
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @endforeach
                                 @endif

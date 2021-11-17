@@ -46,7 +46,8 @@ Sliders
                             class="bx bx-search"></i></span>
                 </div>
                 <div class="ms-auto"><a href="{{ route('admin.maincategory.create') }}"
-                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Record</a>
+                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
+                        Record</a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -61,35 +62,33 @@ Sliders
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category )
+                        @foreach ($sliders as $slider )
                         <tr>
                             <td>
                                 <h6 class="mb-0 font-14 text-center">{{ $increment }}</h6>
                             </td>
-                            <td><img src="{{ asset($category->image) }}" class="maincat-img" alt="category image"></td>
-                            <td>{{ $category->name_en }}</td>
+                            <td><img src="{{ asset($slider->image) }}" class="maincat-img" alt="category image"></td>
+                            <td>{{ $slider->title_en }}</td>
                             <td>
                                 <div
-                                    class="badge rounded-pill {{ $category->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
-                                    <i class="bx bxs-circle me-1"></i>{{ $category->getActive() }}
+                                    class="badge rounded-pill {{ $slider->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
+                                    <i class="bx bxs-circle me-1"></i>{{ $slider->getActive() }}
                                 </div>
                             </td>
                             <td>
-                                @if ($category->id !== 1 || $category->name_en !== "un-defined")
                                 <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.maincategory.edit', $category->slug) }}" class="ms-3"><i
+                                    <a href="{{ route('admin.slider.edit', $slider->id) }}" class="ms-3"><i
                                             class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('admin.maincategory.delete', $category->id) }}" class="ms-3"><i
+                                    <a href="{{ route('admin.slider.delete', $slider->id) }}" class="ms-3"><i
                                             class="bx bxs-trash"></i></a>
-                                    @if ($category->status == 0)
-                                    <a href="{{ route('admin.maincategory.active', $category->id) }}"
+                                    @if ($slider->status == 0)
+                                    <a href="{{ route('admin.slider.active', $slider->id) }}"
                                         class="success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.maincategory.unactive', $category->id) }}"
+                                    <a href="{{ route('admin.slider.unactive', $slider->id) }}"
                                         class="danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>
-                                @endif
                             </td>
                         </tr>
                         {{ Form::hidden('', $increment += 1) }}

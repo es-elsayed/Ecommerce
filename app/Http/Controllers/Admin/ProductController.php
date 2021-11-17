@@ -21,7 +21,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //  return $products = ProductResource::collection(Product::all());
         $products = ProductResource::collection(Product::all());
         return view('admin.pages.products.index', ['products' => $products]);
     }
@@ -33,7 +32,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //return 'hi';
         $parent_categories = Category::where('is_parent', 1)->get();
         return view('admin.pages.products.create', ['parent_categories' => $parent_categories]);
     }
@@ -47,7 +45,6 @@ class ProductController extends Controller
      */
     public function store(AddProductRequest $request)
     {
-        // dd($request->categories);
         try {
             DB::beginTransaction();
 
@@ -96,11 +93,9 @@ class ProductController extends Controller
             return redirect()->route('admin.product')->with('success', "Product Added Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
-            return $ex;
+            // return $ex;
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
         }
-        // 'category_id' => $request['category_id'],
-        return redirect()->route('admin.product')->with('success', "Product Added Successfully");
     }
 
     /**
@@ -126,7 +121,6 @@ class ProductController extends Controller
         $parent_categories = Category::where('is_parent', 1)->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
-        // dd(get_defined_vars());
         return view('admin.pages.products.edit', get_defined_vars());
     }
     public function active($slug)
@@ -212,7 +206,6 @@ class ProductController extends Controller
             return redirect()->route('admin.product')->with('success', "Product has been Updated Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
-            return $ex;
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
         // 'category_id' => $request['category_id'],

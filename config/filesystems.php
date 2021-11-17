@@ -52,6 +52,13 @@ return [
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
+        'slider' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/assets/images/slider/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

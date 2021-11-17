@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Models\Admin;
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Support\Facades\Session as FacadesSession;
-use Session;
 
 class LoginController extends Controller
 {

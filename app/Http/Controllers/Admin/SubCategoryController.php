@@ -113,38 +113,42 @@ class SubCategoryController extends Controller
      */
     public function update(UpdateSubCategoryRequest $request, $slug)
     {
-        $category = Category::isChild($slug);
-        // dd($category->image);
-        $image_path = $category->image;
-        if ($request->hasFile('image')) {
-            drop_image($image_path);
-            $image_path = upload_image('subcategory', $request->image);
-        }
-        $banner_path = $category->banner;
-        if ($request->hasFile('banner')) {
-            drop_image($banner_path);
-            $banner_path = upload_image('subcategory', $request->banner);
-        }
-        $new_slug = $category->slug;
-        if ($category->name_en !== $request['name_en']) {
-            $new_slug = str_slug($request['name_en']);
-            $count = 1;
-            while (Category::whereSlug($new_slug)->exists()) {
-                $new_slug = str_slug($request['name_en']) . "-" . $count;
-                $count++;
+        try {
+            $category = Category::isChild($slug);
+            // dd($category->image);
+            $image_path = $category->image;
+            if ($request->hasFile('image')) {
+                drop_image($image_path);
+                $image_path = upload_image('subcategory', $request->image);
             }
+            $banner_path = $category->banner;
+            if ($request->hasFile('banner')) {
+                drop_image($banner_path);
+                $banner_path = upload_image('subcategory', $request->banner);
+            }
+            $new_slug = $category->slug;
+            if ($category->name_en !== $request['name_en']) {
+                $new_slug = str_slug($request['name_en']);
+                $count = 1;
+                while (Category::whereSlug($new_slug)->exists()) {
+                    $new_slug = str_slug($request['name_en']) . "-" . $count;
+                    $count++;
+                }
+            }
+            $category->update([
+                'name_en' => $request['name_en'],
+                'name_ar' => $request['name_ar'],
+                'status' => $request->has('status') ? 1 : 0,
+                'is_parent' => 0,
+                'parent_id' => $request['parent_id'],
+                'slug' => $new_slug,
+                'image' => $image_path,
+                'banner' => $banner_path,
+            ]);
+            return redirect()->route('admin.subcategory')->with('success', 'The "' . $category->name_en . '" Category has been Updated Successfuly');
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', "Sorry!! Try again later");
         }
-        $category->update([
-            'name_en' => $request['name_en'],
-            'name_ar' => $request['name_ar'],
-            'status' => $request->has('status') ? 1 : 0,
-            'is_parent' => 0,
-            'parent_id' => $request['parent_id'],
-            'slug' => $new_slug,
-            'image' => $image_path,
-            'banner' => $banner_path,
-        ]);
-        return redirect()->route('admin.subcategory')->with('success', 'The "' . $category->name_en . '" Category has been Updated Successfuly');
     }
 
     /**
@@ -158,7 +162,7 @@ class SubCategoryController extends Controller
         // dd()
         // return 'finishing sub cat and product first';
         $category = Category::where(['slug' => $slug, 'is_parent' => 0])->firstOrFail();
-        if (CategoryProduct::where('category_id',$category->id)->exists()) {
+        if (CategoryProduct::where('category_id', $category->id)->exists()) {
             return redirect()->back()->with('error', 'Sorry.. Cannot delete this Category!! There are products belongs to');
         }
         drop_image($category->image);
