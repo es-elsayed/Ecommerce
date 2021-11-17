@@ -103,7 +103,7 @@ class SliderController extends Controller
             $image_path = $slider->image;
             if ($request->hasFile('image')) {
                 drop_image($image_path);
-                $image_path = upload_image('slider', $request->main_image);
+                $image_path = upload_image('slider', $request->image);
             }
             $slider->update([
                 'title_en'          => $request->title_en,

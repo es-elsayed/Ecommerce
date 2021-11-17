@@ -27,12 +27,6 @@ class Product extends Model
     /**
      * @var array
      */
-    protected $casts = [
-        'quantity'  =>  'integer',
-        'brand_id'  =>  'integer',
-        'status'    =>  'boolean',
-        'featured'  =>  'boolean'
-    ];
     public function getActive()
     {
         return $this->status == 1 ? 'active' : 'in-active';

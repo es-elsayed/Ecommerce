@@ -132,7 +132,7 @@
                                      </div>
                                  </div>
                                  <div class="col-lg-7">
-                                     <img src="{{ asset('assets/front/images/login-images/forgot-password-frent-img.jpg') }}" class="card-img login-img h-100" alt="...">
+                                     <img src="{{ asset('assets/site/images/login-images/forgot-password-frent-img.jpg') }}" class="card-img login-img h-100" alt="...">
                                  </div>
                              </div>
                          </div>

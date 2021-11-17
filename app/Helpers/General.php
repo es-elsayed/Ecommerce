@@ -26,7 +26,7 @@ function str_slug($val)
 }
 function currency($val)
 {
-    return $val . " $";
+    return "$".$val;
 }
 function un_defined_cat_error($cat)
 {

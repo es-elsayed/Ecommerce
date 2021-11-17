@@ -40,4 +40,7 @@ class Category extends Model
     static function isChild($slug){
         return Category::where(['is_parent'=> 0, 'slug'=>$slug])->firstOrFail();
     }
+    static function activeParent(){
+        return Category::where(['is_parent'=> 1, 'status'=>1])->get();
+    }
 }

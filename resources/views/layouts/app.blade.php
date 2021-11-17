@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@include('includes.icon')
-    @include('front.includes.style')
+    @include('site.includes.style')
 
 </head>
 <body>

@@ -27,6 +27,7 @@ class CreateProductsTable extends Migration
             $table->string('main_image');
             $table->decimal('price', 8, 2)->nullable();
             $table->decimal('sale_price', 8, 2)->nullable();
+            $table->boolean('sale')->default(0);
             $table->boolean('status')->default(1);
 
             $table->timestamps();

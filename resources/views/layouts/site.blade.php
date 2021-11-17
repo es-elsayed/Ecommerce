@@ -8,7 +8,7 @@
 	<!--favicon-->
 	@include('includes.icon')
 	<!--plugins-->
-    @include('front.includes.style')
+    @include('site.includes.style')
 
 	<title>@yield('title')</title>
 </head>
@@ -29,9 +29,9 @@
 		<!--start top header wrapper-->
 		<div class="header-wrapper bg-dark-1">
 
-            @include('front.includes.header-top')
-            @include('front.includes.header-center')
-            @include('front.includes.header-bottom')
+            @include('site.includes.header-top')
+            @include('site.includes.header-center')
+            @include('site.includes.header-bottom')
 
 		</div>
 		<!--end top header wrapper-->
@@ -46,7 +46,7 @@
 		</div>
 		<!--end page wrapper -->
 		<!--start footer section-->
-        @include('front.includes.footer')
+        @include('site.includes.footer')
 		<!--end footer section-->
 
 	</div>
@@ -54,7 +54,7 @@
 	<!--start switcher-->
     @include('includes.themes')
 	<!--end switcher-->
-    @include('front.includes.scripts')
+    @include('site.includes.scripts')
 </body>
 
 </html>

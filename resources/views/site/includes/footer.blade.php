@@ -84,10 +84,10 @@
                             <h6 class="mb-3 text-uppercase">Download our app</h6>
                             <div class="d-flex align-items-center gap-2">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('assets/front/images/icons/apple-store.png') }}" class="" width="160" alt="" />
+                                    <img src="{{ asset('assets/site/images/icons/apple-store.png') }}" class="" width="160" alt="" />
                                 </a>
                                 <a href="javascript:;">
-                                    <img src="{{ asset('assets/front/images/icons/play-store.png') }}" class="" width="160" alt="" />
+                                    <img src="{{ asset('assets/site/images/icons/play-store.png') }}" class="" width="160" alt="" />
                                 </a>
                             </div>
                         </div>
@@ -104,16 +104,16 @@
                     <div class="payment-icon">
                         <div class="row row-cols-auto g-2 justify-content-end">
                             <div class="col">
-                                <img src="{{ asset('assets/front/images/icons/visa.png') }}" alt="" />
+                                <img src="{{ asset('assets/site/images/icons/visa.png') }}" alt="" />
                             </div>
                             <div class="col">
-                                <img src="{{ asset('assets/front/images/icons/paypal.png') }}" alt="" />
+                                <img src="{{ asset('assets/site/images/icons/paypal.png') }}" alt="" />
                             </div>
                             <div class="col">
-                                <img src="{{ asset('assets/front/images/icons/mastercard.png') }}" alt="" />
+                                <img src="{{ asset('assets/site/images/icons/mastercard.png') }}" alt="" />
                             </div>
                             <div class="col">
-                                <img src="{{ asset('assets/front/images/icons/american-express.png') }}" alt="" />
+                                <img src="{{ asset('assets/site/images/icons/american-express.png') }}" alt="" />
                             </div>
                         </div>
                     </div>
