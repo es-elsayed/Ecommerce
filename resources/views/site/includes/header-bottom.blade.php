@@ -12,7 +12,7 @@
                         data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
                     <div class="dropdown-menu dropdown-large-menu">
                         <div class="row">
-                            @foreach ($main_categories as $main_category )
+                            @foreach (\App\Models\Category::activeParent() as $main_category )
                             <div class="col-md-4">
                                 <h6 class="large-menu-title">{{ $main_category->name_en }}</h6>
                                 <ul class="">

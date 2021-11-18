@@ -17,7 +17,7 @@
                     <input type="text" class="form-control w-100" placeholder="Search for Products">
                     <select class="form-select flex-shrink-0" aria-label="Default select example" style="width: 10.5rem;">
                         <option selected>All Categories</option>
-                        @foreach ($main_categories as $main_category)
+                        @foreach (\App\Models\Category::activeParent() as $main_category)
                         <option value="{{ $main_category->id }}">{{ $main_category->name_en }}</option>
                         @endforeach
                     </select>	<span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>

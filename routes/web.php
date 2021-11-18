@@ -24,9 +24,24 @@ Auth::routes(['verify' => true]);
 Route::post('/register', [RegisterController::class, 'create'])->name('register');
 // Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::name('site.')->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('site.home');
+    // ******************************************************
+    // ******************** Guest Routes ********************
+    // ******************************************************
+    Route::middleware(['guest:web'])->group(function () {
+        Route::get('/', function () {
+            return redirect()->route('site.home');
+        });
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::get('/test', [HomeController::class, 'test'])->name('test');
+
+        Route::get('/shop', [SiteController::class, 'shop'])->name('shop');
+        Route::get('/add-to-cart/{id}', [SiteController::class, 'addToCart'])->name('add-to-cart');
     });
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/shop', [SiteController::class, 'shop'])->name('shop');
+    // ******************************************************
+    // ******************** Auth Routes ********************
+    // ******************************************************
+    Route::middleware(['auth:web'])->group(function () {
+
+    });
+
 });
