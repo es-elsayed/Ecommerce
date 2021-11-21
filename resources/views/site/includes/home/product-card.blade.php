@@ -13,7 +13,7 @@
             </div>
         </div>
         <a href="product-details.html">
-            <img src="assets/site/images/products/01.png" class="card-img-top" alt="...">
+            <img src="{{ asset($product->main_image) }}" class="card-img-top" alt="...">
         </a>
         <div class="card-body">
             <div class="product-info">
