@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
+use Illuminate\Support\Str;
 
 class CategoryFactory extends Factory
 {
@@ -22,7 +23,7 @@ class CategoryFactory extends Factory
             'status' => rand(0,1) || rand(0,1) ? 1: 0,
             'is_parent' => 1,
             'image' => 'assets/images/notfound.jpg',
-            'slug' => $this->faker->unique()->slug,
+            'slug' => Str::slug($cat_en),
         ];
     }
 

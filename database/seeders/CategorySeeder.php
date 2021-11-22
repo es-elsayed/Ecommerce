@@ -30,17 +30,15 @@ class CategorySeeder extends Seeder
 
 
         //create random sub-categories
-        $faker_en = Faker::create();
-        $faker_ar = Faker::create('ar_JO');
         for ($i = 0; $i < 6; $i++) {
-            $cat_en =  Str::random(4)." ".Str::random(3);
+            $cat_en =  $this->faker->name();
             Category::insert([
-                'name_en' => $faker_en->city,
-                'name_ar' =>  $faker_ar->name,
+                'name_en' => $cat_en,
+                'name_ar' =>  Faker::create('ar_JO')->name,
                 'status' => rand(0,1) || rand(0,1) ? 1: 0,
                 'is_parent' => 0,
                 'image' => 'assets/images/notfound.jpg',
-                'slug' => $faker_en->unique()->slug,
+                'slug' => Str::slug($cat_en),
                 'parent_id' => rand(1,10)
             ]);
         }
