@@ -15,6 +15,7 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $i = 0;
         $cat_en = $this->faker->name();
         $faker_ar = Faker::create('ar_JO');
         return [
@@ -22,7 +23,7 @@ class CategoryFactory extends Factory
             'name_ar' =>  $faker_ar->name(),
             'status' => rand(0,1) || rand(0,1) ? 1: 0,
             'is_parent' => 1,
-            'image' => 'assets/images/notfound.jpg',
+            'image' => 'assets/site/images/shop-categories/0'. rand(1,8) .'.png',
             'slug' => Str::slug($cat_en),
         ];
     }

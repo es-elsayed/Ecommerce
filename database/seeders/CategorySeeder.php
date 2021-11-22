@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 
@@ -30,16 +31,16 @@ class CategorySeeder extends Seeder
 
 
         //create random sub-categories
-        for ($i = 0; $i < 6; $i++) {
-            $cat_en =  $this->faker->name();
+        for ($i = 1; $i < 12; $i++) {
+            $cat_en =  Faker::create()->name;
             Category::insert([
                 'name_en' => $cat_en,
                 'name_ar' =>  Faker::create('ar_JO')->name,
                 'status' => rand(0,1) || rand(0,1) ? 1: 0,
                 'is_parent' => 0,
-                'image' => 'assets/images/notfound.jpg',
+                'image' => 'assets/site/images/categories/0'. $i .'.png',
                 'slug' => Str::slug($cat_en),
-                'parent_id' => rand(1,10)
+                'parent_id' => rand(1,8)
             ]);
         }
     }

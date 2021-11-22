@@ -15,10 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(10)->create();
+        // Product::factory(10)->create();
         $this->call([
             AdminSeeder::class,
+            SliderSeeder::class,
             CategorySeeder::class,
+            ProductSeeder::class,
         ]);
         $categories = Category::all();
         Product::all()->each(function($product) use ($categories) {
