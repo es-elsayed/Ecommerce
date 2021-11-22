@@ -25,66 +25,17 @@ Shop
                                 <div class="product-categories">
                                     <h6 class="text-uppercase mb-3">Categories</h6>
                                     <ul class="list-unstyled mb-0 categories-list">
-                                        <li><a href="javascript:;">Clothings <span
-                                                    class="float-end badge rounded-pill bg-light">42</span></a>
+                                        @forelse ($sub_categories as $sub_category)
+                                        <li>
+                                            <a href="javascript:;">{{ $sub_category->name_en }}
+                                                {{-- <span class="float-end badge rounded-pill bg-light">42</span> --}}
+                                            </a>
                                         </li>
-                                        <li><a href="javascript:;">Sunglasses <span
-                                                    class="float-end badge rounded-pill bg-light">32</span></a>
-                                        </li>
-                                        <li><a href="javascript:;">Bags <span
-                                                    class="float-end badge rounded-pill bg-light">17</span></a>
-                                        </li>
-                                        <li><a href="javascript:;">Watches <span
-                                                    class="float-end badge rounded-pill bg-light">217</span></a>
-                                        </li>
-                                        <li><a href="javascript:;">Furniture <span
-                                                    class="float-end badge rounded-pill bg-light">28</span></a>
-                                        </li>
-                                        <li><a href="javascript:;">Shoes <span
-                                                    class="float-end badge rounded-pill bg-light">145</span></a>
-                                        </li>
-                                        <li><a href="javascript:;">Accessories <span
-                                                    class="float-end badge rounded-pill bg-light">15</span></a>
-                                        </li>
-                                        <li><a href="javascript:;">Headphones <span
-                                                    class="float-end badge rounded-pill bg-light">8</span></a>
-                                        </li>
+                                        <hr>
+                                        @empty
+
+                                        @endforelse
                                     </ul>
-                                </div>
-                                <hr>
-                                <div class="price-range">
-                                    <h6 class="text-uppercase mb-3">Price</h6>
-                                    <div class="my-4 noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" id="slider">
-                                        <div class="noUi-base">
-                                            <div class="noUi-connects">
-                                                <div class="noUi-connect"
-                                                    style="transform: translate(20%, 0px) scale(0.6, 1);"></div>
-                                            </div>
-                                            <div class="noUi-origin"
-                                                style="transform: translate(-800%, 0px); z-index: 5;">
-                                                <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
-                                                    role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-                                                    aria-valuemax="80.0" aria-valuenow="20.0" aria-valuetext="20.00">
-                                                    <div class="noUi-touch-area"></div>
-                                                </div>
-                                            </div>
-                                            <div class="noUi-origin"
-                                                style="transform: translate(-200%, 0px); z-index: 4;">
-                                                <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
-                                                    role="slider" aria-orientation="horizontal" aria-valuemin="20.0"
-                                                    aria-valuemax="100.0" aria-valuenow="80.0" aria-valuetext="80.00">
-                                                    <div class="noUi-touch-area"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <button type="button"
-                                            class="btn btn-white btn-sm text-uppercase rounded-0 font-13 fw-500">Filter</button>
-                                        <div class="ms-auto">
-                                            <p class="mb-0">Price: $200.00 - $900.00</p>
-                                        </div>
-                                    </div>
                                 </div>
                                 {{--
                                 <hr>
@@ -254,11 +205,11 @@ Shop
                         </div>
                         <div class="product-grid">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
-                                @if ($products)
-                                @foreach ($products as $product )
+                                @forelse ($products as $product )
                                 @include('site.includes.product.product-card')
-                                @endforeach
-                                @endif
+                                @empty
+                                <div>No Products</div>
+                                @endforelse
                             </div>
                             <!--end row-->
                         </div>
@@ -274,5 +225,6 @@ Shop
     </section>
     <!--end shop area-->
 </div>
+
 @endsection
 {{-- --}}

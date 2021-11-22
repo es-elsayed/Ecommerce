@@ -18,6 +18,8 @@ class Category extends Model
         'banner',
         'slug',
     ];
+
+
     public function getActive()
     {
         return $this->status == 1 ? 'active': 'in-active';
@@ -34,23 +36,32 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    // ----------------------------------------------------------
+    // ------------------------ FOR ADMIN ------------------------
+    // ----------------------------------------------------------
     static function getChildrenByParentId($id){
         return Category::where(['is_parent'=> 0, 'parent_id'=>$id])->get();
-    }
-    static function getChildrenByParentSlug($slug){
-        $category = Category::whereSlug($slug)->firstOrFail();
-        return Category::where(['is_parent'=> 0, 'parent_id'=>$category->id])->get();
     }
     static function isChild($slug){
         return Category::where(['is_parent'=> 0, 'slug'=>$slug])->firstOrFail();
     }
-    static function isParent($slug){
-        return Category::where(['is_parent'=> 1, 'slug'=>$slug])->firstOrFail();
+    /*
+    static function getChildrenByParentSlug($slug){
+        $category = Category::whereSlug($slug)->firstOrFail();
+        return Category::where(['slug' => $slug,'is_parent'=> 0, 'parent_id'=>$category->id])->get();
     }
-    static function activeChild(){
-        return Category::where(['is_parent'=> 0, 'status'=>1])->get();
-    }
+    */
+
+    // ----------------------------------------------------------
+    // ------------------------ FOR SITE ------------------------
+    // ----------------------------------------------------------
+
     static function activeParent(){
-        return Category::where(['is_parent'=> 1, 'status'=>1])->get();
+        return Category::where(['is_parent'=> 1, 'status'=>1]);
+    }
+    static function getActiveChildrenByParentSlug($slug){
+        $category = Category::whereSlug($slug)->firstOrFail();
+        return Category::where(['is_parent'=> 0,'status' => 1, 'parent_id'=>$category->id])->get();
     }
 }

@@ -12,16 +12,19 @@
 					<div class="container">
 						<div class="product-categories">
 							<div class="row row-cols-1 row-cols-lg-4">
-                            @if ($categories)
-                                @foreach ($categories as $category )
+                                @forelse ($categories as $category )
                                 @include('site.includes.category.category-card')
-                                @endforeach
-                            @endif
+                                @empty
+                                <div>No Products</div>
+                                @endforelse
                             </div>
 							<!--end row-->
 						</div>
 					</div>
 				</section>
+                <div class="links">
+                    {{ $categories->links() }}
+                </div>
 				<!--end shop categories-->
 			</div>
 @endsection

@@ -1,11 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Site\CategoryController;
-use App\Http\Controllers\Site\ShopController;
 use App\Http\Controllers\Site\SiteController;
-use App\Http\Controllers\Site\SubCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+define('PAGINATION_COUNT', 8);
 
 Auth::routes(['verify' => true]);
 
 Route::post('/register', [RegisterController::class, 'create'])->name('register');
-// Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::name('site.')->group(function () {
     // ******************************************************
     // ******************** Guest Routes ********************
@@ -34,8 +31,8 @@ Route::name('site.')->group(function () {
         Route::get('/', function () {
             return redirect()->route('site.home');
         });
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
-        Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+        Route::get('/home', [SiteController::class, 'home'])->name('home');
+        Route::get('/shop', [SiteController::class, 'shop'])->name('shop');
         // ******************************************************
         // ******************** Categories Routes ********************
         // ******************************************************
