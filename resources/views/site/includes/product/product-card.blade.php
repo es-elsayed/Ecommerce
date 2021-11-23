@@ -188,16 +188,3 @@
 </div>
 {{-- ======================= End Pop up details==================== --}}
 
-@section('extra-js')
-<script>
-    const anchors = document.querySelectorAll('.anchor');
-    const deleted_array = [];
-    anchors.forEach((anchor)=>{
-        anchor.addEventListener('click', (e)=>{
-            e.preventDefault()
-            document.cookie = anchor.dataset
-            console.log(document.cookie);
-        })
-    })
-</script>
-@endsection

@@ -11,6 +11,7 @@ Shop
     <section class="py-4">
         <div class="container">
             <div class="row">
+                {{-- @if ($sub_categories) --}}
                 <div class="col-12 col-xl-3">
                     <div class="btn-mobile-filter d-xl-none"><i class="bx bx-slider-alt"></i>
                     </div>
@@ -23,19 +24,32 @@ Shop
                                 </div>
                                 <hr class="d-flex d-xl-none">
                                 <div class="product-categories">
-                                    <h6 class="text-uppercase mb-3">Categories</h6>
+                                    <h6 class="text-uppercase mb-3">Other Categories</h6>
                                     <ul class="list-unstyled mb-0 categories-list">
-                                        @forelse ($sub_categories as $sub_category)
+                                        @foreach ($sub_categories as $sub_category)
                                         <li>
-                                            <a href="javascript:;">{{ $sub_category->name_en }}
+                                            <a href="{{ route('site.category.show', $sub_category->slug) }}">{{ $sub_category->name_en }}
                                                 {{-- <span class="float-end badge rounded-pill bg-light">42</span> --}}
                                             </a>
                                         </li>
                                         <hr>
-                                        @empty
-
-                                        @endforelse
+                                        @endforeach
                                     </ul>
+                                </div>
+                                <div class="size-range">
+                                    <h6 class="text-uppercase mb-3">Sort By Price</h6>
+                                            <div class="form-check">
+                                                <input class="form-check-input sort" type="radio" data-sort="default" name="sort" @if(!request()->has('sort')) checked @endif>
+                                                <a href="{{ route('site.category.show',$category->slug) }}" id="id1">Default</a>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input sort" type="radio" data-sort="low-to-high" name="sort" @if(request()->get('sort')=='low-to-high') checked @endif>
+                                                <a href="{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'low-to-high']) }}" id="id2">Low to High</a>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input sort" type="radio" data-sort="high-to-low" name="sort" @if(request()->get('sort')=='high-to-low') checked @endif>
+                                                <a href="{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'high-to-low']) }}" id="id3">High to Low</a>
+                                            </div>
                                 </div>
                                 {{--
                                 <hr>
@@ -68,7 +82,7 @@ Shop
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>id2
                                 <hr>
                                 <div class="product-brands">
                                     <h6 class="text-uppercase mb-3">Brands</h6>
@@ -167,23 +181,21 @@ Shop
                         </div>
                     </div>
                 </div>
+                {{-- @endif --}}
                 <div class="col-12 col-xl-9">
                     <div class="product-wrapper">
-                        <div class="toolbox d-flex align-items-center mb-3 gap-2">
+                        {{-- <div class="toolbox d-flex align-items-center mb-3 gap-2">
                             <div class="d-flex flex-wrap flex-grow-1 gap-1">
                                 <div class="d-flex align-items-center flex-nowrap">
                                     <p class="mb-0 font-13 text-nowrap text-white">Sort By:</p>
                                     <select class="form-select ms-3 rounded-0">
-                                        <option value="menu_order" selected="selected">Default sorting</option>
-                                        <option value="popularity">Sort by popularity</option>
-                                        <option value="rating">Sort by average rating</option>
-                                        <option value="date">Sort by newness</option>
-                                        <option value="price">Sort by price: low to high</option>
-                                        <option value="price-desc">Sort by price: high to low</option>
+                                        <option value="menu_order" selected="selected"><a href="{{ route('site.category.show',$category->slug) }}">Default sorting</a></option>
+                                        <option value="popularity"><a href="{{ route('site.category.show',$category->slug, ['sort'=>'low to high']) }}">Low to Height</a></option>
+                                        <option value="rating"><a href="{{ Request::url().'ll' }}">Height to Low</a></option>
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="d-flex flex-wrap">
+                             <div class="d-flex flex-wrap">
                                 <div class="d-flex align-items-center flex-nowrap">
                                     <p class="mb-0 font-13 text-nowrap text-white">Show:</p>
                                     <select class="form-select ms-3 rounded-0">
@@ -195,14 +207,14 @@ Shop
                                         <option>100</option>
                                     </select>
                                 </div>
-                            </div> --}}
-                            {{-- <div> <a href="shop-grid-left-sidebar.html" class="btn btn-white rounded-0"><i
+                            </div>
+                             <div> <a href="shop-grid-left-sidebar.html" class="btn btn-white rounded-0"><i
                                         class="bx bxs-grid me-0"></i></a>
                             </div>
                             <div> <a href="shop-list-left-sidebar.html" class="btn btn-light rounded-0"><i
                                         class="bx bx-list-ul me-0"></i></a>
-                            </div> --}}
-                        </div>
+                            </div>
+                        </div>--}}
                         <div class="product-grid">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
                                 @forelse ($products as $product )
@@ -228,3 +240,44 @@ Shop
 
 @endsection
 {{-- --}}
+
+
+
+@section('extra-js')
+<script type="text/javascript">
+    // ----------------------------------------------------------
+    // ---------------------- For Products ----------------------
+    // ----------------------------------------------------------
+const sorting_buttons = document.querySelectorAll('.sort');
+sorting_buttons.forEach(button => {
+    button.addEventListener('click',(e)=>{
+        if(e.target.dataset.sort == 'low-to-high') {
+                window.location.href = "{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'low-to-high']) }}";
+        }
+            else if(e.target.dataset.sort == 'high-to-low'){
+                window.location.href = "{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'high-to-low']) }}";
+            }
+            else{
+                window.location.href = "{{ route('site.category.show',$category->slug) }}";
+            }
+    })
+
+});
+
+</script>
+<script>
+    // --------------------------------------------------------------
+    // ---------------------- For Product Card ----------------------
+    // --------------------------------------------------------------
+    const anchors = document.querySelectorAll('.anchor');
+    const deleted_array = [];
+    anchors.forEach((anchor)=>{
+        anchor.addEventListener('click', (e)=>{
+            e.preventDefault()
+            document.cookie = anchor.dataset
+            console.log(document.cookie);
+        })
+    })
+</script>
+@endsection
+
