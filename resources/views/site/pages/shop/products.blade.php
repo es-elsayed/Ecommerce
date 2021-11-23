@@ -11,7 +11,6 @@ Shop
     <section class="py-4">
         <div class="container">
             <div class="row">
-                {{-- @if ($sub_categories) --}}
                 <div class="col-12 col-xl-3">
                     <div class="btn-mobile-filter d-xl-none"><i class="bx bx-slider-alt"></i>
                     </div>
@@ -181,7 +180,6 @@ Shop
                         </div>
                     </div>
                 </div>
-                {{-- @endif --}}
                 <div class="col-12 col-xl-9">
                     <div class="product-wrapper">
                         {{-- <div class="toolbox d-flex align-items-center mb-3 gap-2">

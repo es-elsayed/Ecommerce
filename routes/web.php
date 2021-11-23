@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ Route::name('site.')->group(function () {
         // ******************************************************
         // ******************** Categories Routes ********************
         // ******************************************************
-        Route::get('categories/{slug}', [CategoryController::class,'show'])->name('category.show');
+        Route::get('categories/{slug}', [CategoryController::class, 'show'])->name('category.show');
         // Route::get('subcategories/{slug}', [SubCategoryController::class,'show'])->name('subcategory.show');
         // ******************************************************
         // ******************** Products Routes ********************
@@ -45,12 +46,17 @@ Route::name('site.')->group(function () {
             Route::get('/{product}', []);
         });
         Route::get('/add-to-cart/{id}', [SiteController::class, 'addToCart'])->name('add-to-cart');
+
+
+        Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+        Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+        Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+        Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+        Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
     });
     // ******************************************************
     // ******************** Auth Routes ********************
     // ******************************************************
     Route::middleware(['auth:web'])->group(function () {
-
     });
-
 });
