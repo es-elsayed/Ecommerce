@@ -15,11 +15,11 @@
             </div>
             <div class="col-12 col-md order-4 order-md-2">
                 <div class="input-group flex-nowrap px-xl-4">
-                    <input type="text" class="form-control w-100" placeholder="Search for Products">
+                    <input type="text" class="form-control w-100" placeholder="{{ __('content.header.center.search for products') }}">
                     <select class="form-select flex-shrink-0" aria-label="Default select example"
                         style="width: 10.5rem;">
-                        <option selected>All Categories</option>
-                        @foreach (\App\Models\Category::activeParent() as $main_category)
+                        <option selected>{{ __('content.header.center.categories') }}</option>
+                        @foreach (\App\Models\Category::activeParent()->get() as $main_category)
                         <option value="{{ $main_category->id }}">{{ $main_category->name_en }}</option>
                         @endforeach
                     </select> <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
@@ -29,7 +29,7 @@
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>
                 <div class="ms-2">
-                    <p class="mb-0 font-13">CALL US NOW</p>
+                    <p class="mb-0 font-13">{{ __('content.header.center.call us') }}</p>
                     <h5 class="mb-0">+011 5827918</h5>
                 </div>
             </div>

@@ -6,13 +6,13 @@
                 <h5 class="py-2 text-white">Navigation</h5>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home') }}">{{ __('content.header.home') }} </a>
+                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home') }}">{{ __('content.header.bottom.home') }} </a>
                 </li>
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                         data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
                     <div class="dropdown-menu dropdown-large-menu">
                         <div class="row">
-                            @foreach (\App\Models\Category::activeParent() as $main_category )
+                            @foreach (\App\Models\Category::activeParent()->get() as $main_category )
                             <div class="col-md-4">
                                 <h6 class="large-menu-title">{{ $main_category->name_en }}</h6>
                                 <ul class="">

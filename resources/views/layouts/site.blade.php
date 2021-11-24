@@ -29,9 +29,9 @@
 		<!--start top header wrapper-->
 		<div class="header-wrapper bg-dark-1">
 
-            @include('site.includes.header-top')
-            @include('site.includes.header-center')
-            @include('site.includes.header-bottom')
+            @include('site.includes.header.top')
+            @include('site.includes.header.center')
+            @include('site.includes.header.bottom')
 
 		</div>
 		<!--end top header wrapper-->
