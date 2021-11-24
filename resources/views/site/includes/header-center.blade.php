@@ -73,10 +73,10 @@
                                                             @csrf
                                                             <input type="hidden" value="{{ $item->id }}" name="id">
                                                             <button type="submit"  class="cart-product-cancel position-absolute"><i class='bx bx-x'></i></button>
-                                                          </form>
+                                                        </form>
                                                     {{-- </div> --}}
                                                     <div class="cart-product">
-                                                        <img src="{{ asset('assets/site/images/products/01.png') }}"
+                                                        <img src="{{ asset($item->attributes->image) }}"
                                                             class="" alt="product image">
                                                     </div>
                                                 </div>
