@@ -6,7 +6,7 @@
                 <h5 class="py-2 text-white">Navigation</h5>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home') }}">Home </a>
+                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home') }}">{{ __('content.header.home') }} </a>
                 </li>
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                         data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>

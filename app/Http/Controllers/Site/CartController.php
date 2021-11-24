@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
-    public function cartList()
+    public function index()
     {
-        $cartItems = \Cart::getContent();
-        // dd($cartItems);
-        return redirect()->back();
+        // $cartItems = \Cart::getContent()->get()->toArray();
+        $cartItems = \Cart::getContent()->sortBy('id');
+        return view('site.pages.cart.index',compact('cartItems'));
     }
 
 
-    public function addToCart(Request $request)
+    public function store(Request $request)
     {
         \Cart::add([
             'id' => $request->id,
@@ -31,7 +31,7 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function updateCart(Request $request)
+    public function update(Request $request)
     {
         \Cart::update(
             $request->id,
@@ -48,7 +48,7 @@ class CartController extends Controller
         return redirect()->route('site.cart.list');
     }
 
-    public function removeCart(Request $request)
+    public function destroy(Request $request)
     {
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
@@ -56,7 +56,7 @@ class CartController extends Controller
         return redirect()->route('site.cart.list');
     }
 
-    public function clearAllCart()
+    public function clearAll()
     {
         \Cart::clear();
 
