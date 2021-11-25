@@ -6,6 +6,7 @@ use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\CategoryController;
+use App\Http\Controllers\Site\CheckoutController;
 use App\Http\Controllers\Site\HomeController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -64,6 +65,9 @@ Route::group(
             // ************************** Auth Routes **************************
             // *****************************************************************
             Route::middleware(['auth:web'])->group(function () {
+                Route::prefix('checkout')->name('checkout.')->group(function () {
+                    Route::get('/', [CheckoutController::class, 'index'])->name('index');
+            });
             });
         });
 

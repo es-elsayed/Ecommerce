@@ -62,6 +62,6 @@ class Category extends Model
     }
     static function getActiveChildrenByParentSlug($slug){
         $category = Category::whereSlug($slug)->firstOrFail();
-        return Category::where(['is_parent'=> 0,'status' => 1, 'parent_id'=>$category->id])->get();
+        return Category::where(['is_parent'=> 0,'status' => 1, 'parent_id'=>$category->id])->select('categories.id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','categories.created_at','categories.updated_at')->get();
     }
 }

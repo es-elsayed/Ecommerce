@@ -35,3 +35,24 @@ function un_defined_cat_error($cat)
     }
     return true;
 }
+
+function getNumbers()
+{
+    $tax = config('shopping_cart.tax') / 100;
+    // $discount = session()->get('coupon')['discount'] ?? 0;
+    // $code = session()->get('coupon')['name'] ?? null;
+    // $newSubtotal = (Cart::getTotal() - $discount);
+    $subTotal = Cart::getTotal();
+    // if ($newSubtotal < 0) {
+    //     $newSubtotal = 0;
+    // }
+    $newTax = $subTotal * $tax;
+    $newTotal = $subTotal * (1 + $tax);
+
+    return collect([
+        'tax' => $tax,
+        'subTotal' => $subTotal,
+        'newTax' => $newTax,
+        'newTotal' => $newTotal,
+    ]);
+}

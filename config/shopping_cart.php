@@ -16,6 +16,8 @@ return [
 
     'thousands_sep' => env('SHOPPING_THOUSANDS_SEP', ','),
 
+    'tax' => 13,
+
     /*
      * ---------------------------------------------------------------
      * persistence

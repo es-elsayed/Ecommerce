@@ -29,7 +29,7 @@
     <div class="col-12 col-lg-3">
         <div class="text-center">
             <div class="d-flex gap-2 justify-content-center justify-content-lg-end"> <a href="javascript:;"
-                    class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-x-circle"></i> Remove</a>
+                    class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-x-circle"></i> {{ __('content.remove') }}</a>
                 <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-heart me-0"></i></a>
             </div>
         </div>

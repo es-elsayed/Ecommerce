@@ -23,7 +23,7 @@ Shop
                                 </div>
                                 <hr class="d-flex d-xl-none">
                                 <div class="product-categories">
-                                    <h6 class="text-uppercase mb-3">Other Categories</h6>
+                                    <h4 class="text-uppercase fw-bold mb-3">{{ $category->name }}</h4>
                                     <ul class="list-unstyled mb-0 categories-list">
                                         @foreach ($sub_categories as $sub_category)
                                         <li>
@@ -31,24 +31,25 @@ Shop
                                                 {{-- <span class="float-end badge rounded-pill bg-light">42</span> --}}
                                             </a>
                                         </li>
-                                        <hr>
                                         @endforeach
+                                        <hr>
                                     </ul>
                                 </div>
                                 <div class="size-range">
-                                    <h6 class="text-uppercase mb-3">Sort By Price</h6>
-                                            <div class="form-check">
-                                                <input class="form-check-input sort" type="radio" data-sort="default" name="sort" @if(!request()->has('sort')) checked @endif>
-                                                <a href="{{ route('site.category.show',$category->slug) }}" id="id1">Default</a>
-                                            </div>
+                                    <h6 class="text-uppercase mb-3">{{ __('content.sort by price') }}</h6>
                                             <div class="form-check">
                                                 <input class="form-check-input sort" type="radio" data-sort="low-to-high" name="sort" @if(request()->get('sort')=='low-to-high') checked @endif>
-                                                <a href="{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'low-to-high']) }}" id="id2">Low to High</a>
+                                                <a href="{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'low-to-high']) }}" id="id1"> {{ __('content.low to high') }} </a>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input sort" type="radio" data-sort="high-to-low" name="sort" @if(request()->get('sort')=='high-to-low') checked @endif>
-                                                <a href="{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'high-to-low']) }}" id="id3">High to Low</a>
+                                                <a href="{{ route('site.category.show',['slug'=>$category->slug,'sort'=>'high-to-low']) }}" id="id2"> {{ __('content.high to low') }} </a>
                                             </div>
+                                </div>
+                                <hr>
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ route('site.category.show',$category->slug) }}"  class="btn btn-white btn-sm text-uppercase rounded-0 font-13 fw-500"> {{ __('content.clear') }} </a>
+                                    {{-- <button type="button">{{ __('content.clear') }}</button> --}}
                                 </div>
                                 {{--
                                 <hr>
