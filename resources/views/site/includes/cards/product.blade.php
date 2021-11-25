@@ -6,7 +6,7 @@
                     <div class="product-compare"><span><i class="bx bx-git-compare"></i> Compare</span>
                     </div>
                 </a>
-                <a href="" data-name[{{ $loop->iteration }}]="{{ $product->name_en }}" class="anchor">
+                <a href="" data-name[{{ $loop->iteration }}]="{{ $product->name }}" class="anchor">
                     <div class="product-wishlist"> <i class="bx bx-heart"></i>
                     </div>
                 </a>
@@ -18,10 +18,10 @@
         <div class="card-body">
             <div class="product-info">
                 {{-- <a href="javascript:;">
-                    <p class="product-catergory font-13 mb-1">{{ $product->parent->name_en }}</p>
+                    <p class="product-catergory font-13 mb-1">{{ $product->parent->name }}</p>
                 </a> --}}
                 <a href="javascript:;">
-                    <h6 class="product-name mb-2">{{ $product->name_en }}</h6>
+                    <h6 class="product-name mb-2">{{ $product->name }}</h6>
                 </a>
                 <div class="d-flex align-items-center">
                     <div class="mb-1 product-price">
@@ -44,7 +44,7 @@
                         <form action="{{ route('site.cart.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{ $product->id }}" name="id">
-                        <input type="hidden" value="{{ $product->name_en }}" name="name">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
                         <input type="hidden" value="{{ $product->price }}" name="price">
                         <input type="hidden" value="{{ $product->main_image }}"  name="image">
                         <input type="hidden" value="1" name="quantity">
@@ -122,7 +122,7 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="product-info-section p-3">
-                            <h3 class="mt-3 mt-lg-0 mb-0">{{ $product->name_en }}</h3>
+                            <h3 class="mt-3 mt-lg-0 mb-0">{{ $product->name }}</h3>
                             <div class="product-rating d-flex align-items-center mt-2">
                                 <div class="rates cursor-pointer font-13"> <i class="bx bxs-star text-warning"></i>
                                     <i class="bx bxs-star text-warning"></i>
@@ -139,10 +139,8 @@
                                 <h4 class="mb-0">$49.00</h4>
                             </div>
                             <div class="mt-3">
-                                <h6>Discription :</h6>
-                                <p class="mb-0">Virgil Abloh’s Off-White is a streetwear-inspired collection that
-                                    continues to break away from the conventions of mainstream fashion. Made in Italy,
-                                    these black and brown Odsy-1000 low-top sneakers.</p>
+                                <h6>{{ __('content.details') }} :</h6>
+                                <p class="mb-0">{{ $product->details}}</p>
                             </div>
                             <dl class="row mt-3">
                                 <dt class="col-sm-3">Product id</dt>

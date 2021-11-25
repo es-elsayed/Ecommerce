@@ -4,56 +4,42 @@
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
                 <div class="col">
                     <div class="footer-section1 mb-3">
-                        <h6 class="mb-3 text-uppercase">Contact Info</h6>
+                        <h6 class="mb-3 text-uppercase"> {{ __('content.contact info') }} </h6>
                         <div class="address mb-3">
-                            <p class="mb-0 text-uppercase text-white">Address</p>
+                            <p class="mb-0 text-uppercase text-white"> {{ __('content.address') }} </p>
                             <p class="mb-0 font-12">123 Street Name, City, Australia</p>
                         </div>
                         <div class="phone mb-3">
-                            <p class="mb-0 text-uppercase text-white">Phone</p>
+                            <p class="mb-0 text-uppercase text-white"> {{ __('content.phone') }} </p>
                             <p class="mb-0 font-13">Toll Free (123) 472-796</p>
                             <p class="mb-0 font-13">Mobile : +91-9910XXXX</p>
                         </div>
                         <div class="email mb-3">
-                            <p class="mb-0 text-uppercase text-white">Email</p>
+                            <p class="mb-0 text-uppercase text-white"> {{ __('content.email') }} </p>
                             <p class="mb-0 font-13">mail@example.com</p>
                         </div>
                         <div class="working-days mb-3">
-                            <p class="mb-0 text-uppercase text-white">WORKING DAYS</p>
+                            <p class="mb-0 text-uppercase text-white"> {{ __('content.working days') }} </p>
                             <p class="mb-0 font-13">Mon - FRI / 9:30 AM - 6:30 PM</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="footer-section2 mb-3">
-                        <h6 class="mb-3 text-uppercase">Shop Categories</h6>
+                        <h6 class="mb-3 text-uppercase"> {{ __('content.shop categories') }} </h6>
                         <ul class="list-unstyled">
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Jeans</a>
+                            @foreach (\App\Models\Category::activeParent()->paginate(5) as $main_category)
+                            <li class="mb-1"><a href="{{ route('site.category.show', $main_category->slug) }}"><i class='bx bx-chevron-right'></i> {{ $main_category->name }} </a>
                             </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> T-Shirts</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Sports</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Shirts & Tops</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Clogs & Mules</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Sunglasses</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Bags & Wallets</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Sneakers & Athletic</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Electronis</a>
-                            </li>
-                            <li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Furniture</a>
+                            <a href="" class="tag-link">Electronis</a>includes.product.product-card'
+                            @endforeach
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col">
                     <div class="footer-section3 mb-3">
-                        <h6 class="mb-3 text-uppercase">Popular Tags</h6>
+                        <h6 class="mb-3 text-uppercase"> {{ __('content.popular tags') }} </h6>
                         <div class="tags-box"> <a href="javascript:;" class="tag-link">Cloths</a>
                             <a href="javascript:;" class="tag-link">Electronis</a>
                             <a href="javascript:;" class="tag-link">Furniture</a>
@@ -73,7 +59,7 @@
                 </div>
                 <div class="col">
                     <div class="footer-section4 mb-3">
-                        <h6 class="mb-3 text-uppercase">Stay informed</h6>
+                        <h6 class="mb-3 text-uppercase"> {{ __('content.stay informed') }} </h6>
                         <div class="subscribe">
                             <input type="text" class="form-control radius-30" placeholder="Enter Your Email" />
                             <div class="mt-2 d-grid">	<a href="javascript:;" class="btn btn-white btn-ecomm radius-30">Subscribe</a>

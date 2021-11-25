@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function show($slug)
     {
-        $category = Category::whereSlug($slug)->firstOrFail();
+        $category = Category::whereSlug($slug)->select('id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','created_at','updated_at')->firstOrFail();
         if ($category->parent) {
             // if Sub Category
             $sub_categories = SubCategoryResource::collection($category->getActiveChildrenByParentSlug($category->parent->slug));
@@ -40,3 +40,4 @@ class ProductController extends Controller
         return view('site.pages.shop.products', get_defined_vars());
     }
 }
+// select('id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','created_at','updated_at')->

@@ -6,10 +6,10 @@
                 <h5 class="py-2 text-white">Navigation</h5>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home') }}">{{ __('content.header.bottom.home') }} </a>
+                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home') }}">{{ __('content.home') }} </a>
                 </li>
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                        data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
+                        data-bs-toggle="dropdown"> {{ __('content.categories') }}<i class='bx bx-chevron-down'></i></a>
                     <div class="dropdown-menu dropdown-large-menu">
                         <div class="row">
                             @foreach (\App\Models\Category::activeParent()->get() as $main_category )
@@ -29,15 +29,15 @@
                     </div>
                     <!-- dropdown-large.// -->
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('site.shop') }}">Shop </a>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('site.shop') }}"> {{ __('content.shop') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="blog.html">Blog </a>
+                <li class="nav-item"> <a class="nav-link" href="blog.html"> {{ __('content.blog') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="about-us.html">About Us </a>
+                <li class="nav-item"> <a class="nav-link" href="about-us.html"> {{ __('content.about') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="contact-us.html">Contact Us </a>
+                <li class="nav-item"> <a class="nav-link" href="contact-us.html"> {{ __('content.contact') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
+                <li class="nav-item"> <a class="nav-link" href="shop-categories.html">{{ __('content.our stores') }}</a>
                 </li>
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                         data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>

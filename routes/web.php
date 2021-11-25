@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\CartController;
-use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\CategoryController;
+use App\Http\Controllers\Site\HomeController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -41,8 +41,8 @@ Route::group(
                 Route::get('/', function () {
                     return redirect()->route('site.home');
                 });
-                Route::get('/home', [SiteController::class, 'home'])->name('home');
-                Route::get('/shop', [SiteController::class, 'shop'])->name('shop');
+                Route::get('/home', [HomeController::class, 'index'])->name('home');
+                Route::get('/shop', [CategoryController::class, 'index'])->name('shop');
                 // ***********************************************************
                 // ******************** Categories Routes ********************
                 // ***********************************************************

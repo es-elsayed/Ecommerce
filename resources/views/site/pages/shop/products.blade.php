@@ -5,7 +5,7 @@ Shop
 @section('content')
 <div class="page-content">
     <!--start breadcrumb-->
-    @include('site.includes.shop.header')
+    @include('site.includes.headers.shop')
     <!--end breadcrumb-->
     <!--start shop area-->
     <section class="py-4">
@@ -27,7 +27,7 @@ Shop
                                     <ul class="list-unstyled mb-0 categories-list">
                                         @foreach ($sub_categories as $sub_category)
                                         <li>
-                                            <a href="{{ route('site.category.show', $sub_category->slug) }}">{{ $sub_category->name_en }}
+                                            <a href="{{ route('site.category.show', $sub_category->slug) }}">{{ $sub_category->name}}
                                                 {{-- <span class="float-end badge rounded-pill bg-light">42</span> --}}
                                             </a>
                                         </li>
@@ -216,7 +216,7 @@ Shop
                         <div class="product-grid">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
                                 @forelse ($products as $product )
-                                @include('site.includes.product.product-card')
+                                @include('site.includes.cards.product')
                                 @empty
                                 <div>No Products</div>
                                 @endforelse

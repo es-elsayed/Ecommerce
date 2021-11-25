@@ -1,26 +1,30 @@
 <?php
 return [
-    "header" => [
-        "about" => "حول",
-        "blog" => "المدونة",
-        "contact" => "الاتصال",
-        "top" => [
-            "welcome to our store!" => "!مرحبًا بكم في متجرنا",
-            "track order" => "!مرحبًا بكم في متجرنا",
-            "our stores" => "مخازننا",
-            "help" => "المساعدة",
-            "lang" => "اللغة",
-        ],
-        "center" => [
-            "categories" => "التصنيفات",
-            "search for products" => "ابحث عن منتج",
-            "call us" => "اتصل بنا",
-        ],
-        "bottom" => [
-            "home" => "الرئيسية",
-            "categories" => "التصنيفات",
-            "shop" => "التصنيفات",
-            "our stores" => "مخازننا",
-        ]
-    ]
+
+    "about" => "حول",
+    "blog" => "المدونة",
+    "contact" => "الاتصال",
+    "categories" => "التصنيفات",
+    "our stores" => "مخازننا",
+    "welcome to our store!" => "!مرحبًا بكم في متجرنا",
+    "track order" => "!مرحبًا بكم في متجرنا",
+    "help" => "المساعدة",
+    "lang" => "اللغة",
+    "search for products" => "ابحث عن منتج",
+    "call us" => "اتصل بنا",
+    "home" => "الرئيسية",
+    "shop" => "المتجر",
+    "contact info" => "معلومات الاتصال",
+    "address" => "العنوان",
+    "phone" => "الهاتف",
+    "email" => "الإيميل",
+    "working days" => "أيام العمل",
+    "shop categories" => "تصنيفات المتجر",
+    "popular tags" => "العلامات الشائعة",
+    "stay informed" => "ابق مطلعًا",
+    "details" => "الوصف",
+    "description" => "التفاصيل",
+    "item" =>"منتج",
+    "items" =>"منتج",
+    "view cart" =>"إظهار السلة",
 ];

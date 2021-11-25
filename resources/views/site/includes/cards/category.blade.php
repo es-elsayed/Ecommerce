@@ -5,7 +5,7 @@
         </a>
         <div class="list-group list-group-flush">
         <a href="{{ route('site.category.show', $category->slug) }}" class="list-group-item bg-transparent">
-                <h6 class="mb-0 text-uppercase">{{ $category->name_en }}</h6>
+                <h6 class="mb-0 text-uppercase">{{ $category->name }}</h6>
         </a>
         {{-- @foreach (\App\Models\Category::getChildrenByParentId($category->id) as $sub_cat )
         <a href="{{ route('site.category.show', $sub_cat->slug) }}" class="list-group-item bg-transparent d-flex justify-content-between align-items-center">

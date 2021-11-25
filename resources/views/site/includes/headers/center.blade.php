@@ -15,10 +15,10 @@
             </div>
             <div class="col-12 col-md order-4 order-md-2">
                 <div class="input-group flex-nowrap px-xl-4">
-                    <input type="text" class="form-control w-100" placeholder="{{ __('content.header.center.search for products') }}">
+                    <input type="text" class="form-control w-100" placeholder="{{ __('content.search for products') }}">
                     <select class="form-select flex-shrink-0" aria-label="Default select example"
                         style="width: 10.5rem;">
-                        <option selected>{{ __('content.header.center.categories') }}</option>
+                        <option selected>{{ __('content.categories') }}</option>
                         @foreach (\App\Models\Category::activeParent()->get() as $main_category)
                         <option value="{{ $main_category->id }}">{{ $main_category->name_en }}</option>
                         @endforeach
@@ -29,7 +29,7 @@
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>
                 <div class="ms-2">
-                    <p class="mb-0 font-13">{{ __('content.header.center.call us') }}</p>
+                    <p class="mb-0 font-13">{{ __('content.call us') }}</p>
                     <h5 class="mb-0">+011 5827918</h5>
                 </div>
             </div>
@@ -53,8 +53,8 @@
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="{{ route('site.cart.list') }}">
                                         <div class="cart-header">
-                                            <p class="cart-header-title mb-0">{{ Cart::getTotalQuantity()}} ITEMS</p>
-                                            <p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
+                                            <p class="cart-header-title mb-0">{{ Cart::getTotalQuantity() == 1 ? Cart::getTotalQuantity() ." ". __('content.item') : Cart::getTotalQuantity() ." ". __('content.items') }}</p>
+                                            <p class="cart-header-clear ms-auto mb-0">{{ __('content.view cart') }}</p>
                                         </div>
                                     </a>
                                     {{-- @if (isset(\Cart::getContent())) --}}

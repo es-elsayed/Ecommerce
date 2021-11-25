@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-content">
     <!--start breadcrumb-->
-@include('site.includes.cart.header')
+@include('site.includes.headers.cart')
     <!--end breadcrumb-->
     <!--start shop cart-->
     <section class="py-4">
@@ -14,10 +14,10 @@
                         <div class="shop-cart-list mb-3 p-3">
                             @if ($cartItems)
                             @foreach ($cartItems as $item)
-                            @include('site.includes.cart.card')
+                            @include('site.includes.cards.cart')
                             @endforeach
                             @endif
-                            @include('site.includes.cart.footer')
+                            @include('site.includes.footers.cart')
                         </div>
                     </div>
                     <div class="col-12 col-xl-4">

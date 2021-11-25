@@ -2,28 +2,28 @@
     <div class="container">
         <nav class="navbar navbar-expand">
             <div class="shiping-title text-uppercase font-13 text-white d-none d-sm-flex"> {{
-                __('content.header.top.welcome to our store!') }} </div>
+                __('content.welcome to our store!') }} </div>
             <ul class="navbar-nav ms-auto d-none d-lg-flex">
-                <li class="nav-item"> <a class="nav-link" href="order-tracking.html"> {{ __('content.header.top.track order') }} </a>
+                <li class="nav-item"> <a class="nav-link" href="order-tracking.html"> {{ __('content.track order') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="about-us.html"> {{ __('content.header.about') }}
+                <li class="nav-item"> <a class="nav-link" href="about-us.html"> {{ __('content.about') }}
                     </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="shop-categories.html"> {{ __('content.header.top.our stores') }} </a>
+                <li class="nav-item"> <a class="nav-link" href="shop-categories.html"> {{ __('content.our stores') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="blog.html"> {{ __('content.header.blog') }} </a>
+                <li class="nav-item"> <a class="nav-link" href="blog.html"> {{ __('content.blog') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="contact-us.html"> {{ __('content.header.contact') }}
+                <li class="nav-item"> <a class="nav-link" href="contact-us.html"> {{ __('content.contact') }}
                     </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="javascript:;"> {{ __('content.header.top.help') }} </a>
+                <li class="nav-item"> <a class="nav-link" href="javascript:;"> {{ __('content.help') }} </a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                         <div class="lang d-flex gap-1">
-                            <div><span> {{ __('content.header.top.lang') }} </span>
+                            <div><span> {{ __('content.lang') }} </span>
                             </div>
                         </div>
                     </a>

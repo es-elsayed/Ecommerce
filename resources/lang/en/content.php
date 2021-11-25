@@ -1,24 +1,31 @@
 <?php
 return [
-    "header" => [
-        "about" => "About",
-        "blog" => "Blog",
-        "contact" => "Contact",
-        "top" => [
-            "welcome to our store!" => "Welcome to our Store!",
-            "track order" => "Track Order",
-            "our stores" => "Our Stores",
-            "help" => "Help",
-            "lang" => "Lang",
-        ],
-        "center" => [
-            "categories" => "Categories",
-            "search for products" => "Search for Product",
-            "call us" => "CALL US",
-        ],
-        "bottom" => [
-            "home" => "Home",
-            "categories" => "Categories",
-        ]
-    ]
+
+    "about" => "About",
+    "blog" => "Blog",
+    "contact" => "Contact",
+    "categories" => "Categories",
+    "our stores" => "Our Stores",
+    "welcome to our store!" => "Welcome to our Store!",
+    "track order" => "Track Order",
+    "help" => "Help",
+    "lang" => "Lang",
+    "search for products" => "Search for Product",
+    "call us" => "CALL US",
+    "home" => "Home",
+    "shop" => "Shop",
+    "contact info" => "CONTACT INFO",
+    "address" => "ADDRESS",
+    "phone" => "PHONE",
+    "email" => "EMAIL",
+    "working days" => "WORKING DAYS",
+    "shop categories" => "SHOP CATEGORIES",
+    "popular tags" => "POPULAR TAGS",
+    "stay informed" => "STAY INFORMED",
+    "details" => "Details",
+    "description" => "Description",
+    "item" =>"Item",
+    "items" =>"Items",
+    "view cart" =>"View Cart",
+
 ];

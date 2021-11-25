@@ -5,7 +5,7 @@
 @section('content')
     <div class="page-content">
 				<!--start breadcrumb-->
-				@include('site.includes.shop.header')
+				@include('site.includes.headers.shop')
 				<!--end breadcrumb-->
 				<!--start shop categories-->
 				<section class="py-4">
@@ -13,7 +13,7 @@
 						<div class="product-categories">
 							<div class="row row-cols-1 row-cols-lg-4">
                                 @forelse ($categories as $category )
-                                @include('site.includes.category.category-card')
+                                @include('site.includes.cards.category')
                                 @empty
                                 <div>No Products</div>
                                 @endforelse

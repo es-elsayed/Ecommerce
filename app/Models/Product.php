@@ -34,7 +34,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->select('categories.id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','categories.created_at','categories.updated_at');
     }
 
     public function orders()
@@ -45,6 +45,11 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(ImageProduct::class);
+    }
+
+    public static function popularProduct()
+    {
+        return Product::select('products.id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','products.created_at','products.updated_at')->paginate(PAGINATION_COUNT);
     }
 
 }
