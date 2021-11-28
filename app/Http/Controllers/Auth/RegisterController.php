@@ -69,11 +69,12 @@ class RegisterController extends Controller
         // dd($data['email'],$data['f_name'],$data['l_name']);
         // dd($data['f_name']);
         // dd($data['l_name']);
-        return User::create([
+        User::create([
             'f_name' => $data['f_name'],
             'l_name' => $data['l_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        return redirect()->route('site.home');
     }
 }

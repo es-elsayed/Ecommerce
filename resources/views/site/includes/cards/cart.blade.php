@@ -36,9 +36,15 @@ $cart_prod = \App\Models\Product::getProductById($item->id)
     </div>
     <div class="col-12 col-lg-3">
         <div class="text-center">
-            <div class="d-flex gap-2 justify-content-center justify-content-lg-end"> <a href="javascript:;"
-                    class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-x-circle"></i> {{ __('content.remove') }}</a>
-                <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-heart me-0"></i></a>
+            <div class="d-flex gap-2 justify-content-center justify-content-lg-end">
+                    <form class="" action="{{ route('site.cart.remove') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{ $item->id }}" name="id">
+                        <button type="submit"  class="btn btn-light rounded-0 btn-ecomm"> <i class="bx bx-x-circle"></i>{{ __('content.remove') }}</button>
+                    </form>
+                <a href="{{ route('site.cart.remove',) }}" class="btn btn-light rounded-0 btn-ecomm">
+                    <i class="bx bx-heart me-0"></i>
+                </a>
             </div>
         </div>
     </div>

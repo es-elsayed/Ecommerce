@@ -69,7 +69,7 @@
                                         <div class="text-center cart-footer d-flex align-items-center">
                                             <h5 class="mb-0">TOTAL</h5>
                                             {{-- <h5 class="mb-0 ms-auto">{{ currency(Cart::getTotal()) }}</h5> --}}
-                                            <h5 class="mb-0 ms-auto">{{ currency(getNumbers()['total_price']) }}</h5>
+                                            <h5 class="mb-0 ms-auto">{{ currency(getNumbers()['subTotal']) }}</h5>
                                         </div>
                                     </a>
                                     <div class="d-grid p-3 border-top"> <a href="javascript:;"
