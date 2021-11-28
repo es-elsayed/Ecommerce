@@ -51,5 +51,8 @@ class Product extends Model
     {
         return Product::select('products.id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','products.created_at','products.updated_at')->paginate(PAGINATION_COUNT);
     }
+    static function getProductById($id){
+        return Product::where('id',$id)->select('id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','created_at','updated_at')->firstOrFail();
+    }
 
 }

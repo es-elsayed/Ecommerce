@@ -20,7 +20,7 @@
                         style="width: 10.5rem;">
                         <option selected>{{ __('content.categories') }}</option>
                         @foreach (\App\Models\Category::activeParent()->get() as $main_category)
-                        <option value="{{ $main_category->id }}">{{ $main_category->name_en }}</option>
+                        <option value="{{ $main_category->id }}">{{ $main_category->name }}</option>
                         @endforeach
                     </select> <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
@@ -60,28 +60,7 @@
                                     {{-- @if (isset(\Cart::getContent())) --}}
                                     <div class="cart-list">
                                         @foreach (\Cart::getContent() as $item)
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-grow-1">
-                                                    <h6 class="cart-product-title">{{ $item->name }}</h6>
-                                                    <p class="cart-product-price">{{ $item->quantity }} x {{
-                                                        currency($item->price) }}</p>
-                                                </div>
-                                                <div class="position-relative">
-                                                    {{-- <div> --}}
-                                                        <form class="position-absolute" action="{{ route('site.cart.remove') }}" method="POST">
-                                                            @csrf
-                                                            <input type="hidden" value="{{ $item->id }}" name="id">
-                                                            <button type="submit"  class="cart-product-cancel position-absolute"><i class='bx bx-x'></i></button>
-                                                        </form>
-                                                    {{-- </div> --}}
-                                                    <div class="cart-product">
-                                                        <img src="{{ asset($item->attributes->image) }}"
-                                                            class="" alt="product image">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
+                                        @include('site.includes.cards.cart-header')
                                         @endforeach
                                     </div>
 
@@ -89,7 +68,8 @@
                                     <a href="javascript:;">
                                         <div class="text-center cart-footer d-flex align-items-center">
                                             <h5 class="mb-0">TOTAL</h5>
-                                            <h5 class="mb-0 ms-auto">{{ currency(Cart::getTotal()) }}</h5>
+                                            {{-- <h5 class="mb-0 ms-auto">{{ currency(Cart::getTotal()) }}</h5> --}}
+                                            <h5 class="mb-0 ms-auto">{{ currency(getNumbers()['total_price']) }}</h5>
                                         </div>
                                     </a>
                                     <div class="d-grid p-3 border-top"> <a href="javascript:;"

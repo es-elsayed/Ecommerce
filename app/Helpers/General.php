@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -26,7 +27,7 @@ function str_slug($val)
 }
 function currency($val)
 {
-    return "$".$val;
+    return "$" . $val;
 }
 function un_defined_cat_error($cat)
 {
@@ -42,10 +43,18 @@ function getNumbers()
     // $discount = session()->get('coupon')['discount'] ?? 0;
     // $code = session()->get('coupon')['name'] ?? null;
     // $newSubtotal = (Cart::getTotal() - $discount);
-    $subTotal = Cart::getTotal();
-    // if ($newSubtotal < 0) {
-    //     $newSubtotal = 0;
-    // }
+    $subTotal = \Cart::getTotal();
+    $items = \Cart::getContent();
+    $cart_items = $items->pluck('quantity','id');
+
+    $products = Product::whereIn('id', $cart_items->keys())->get();
+    $subTotal = 0;
+    foreach ($products as $product) {
+        $price = $product->sale ? $product->sale_price :  $product->price;
+        $price = $price*$cart_items[$product->id];
+        $subTotal += $price;
+    }
+
     $newTax = $subTotal * $tax;
     $newTotal = $subTotal * (1 + $tax);
 
@@ -54,5 +63,6 @@ function getNumbers()
         'subTotal' => $subTotal,
         'newTax' => $newTax,
         'newTotal' => $newTotal,
+        // 'total_price' => $total_price,
     ]);
 }

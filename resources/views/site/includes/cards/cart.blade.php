@@ -1,17 +1,25 @@
+@php
+$cart_prod = \App\Models\Product::getProductById($item->id)
+@endphp
 <div class="row align-items-center g-3">
     <div class="col-12 col-lg-6">
         <div class="d-lg-flex align-items-center gap-2">
             <div class="cart-img text-center text-lg-start">
                 {{-- @dd($item) --}}
-                <img src="{{ asset($item->attributes->image) }}" width="130" alt="">
+                <img src="{{ asset($cart_prod->main_image) }}" width="130" alt="">
             </div>
             <div class="cart-detail text-center text-lg-start">
-                <h6 class="mb-2">{{ $item->name }}</h6>
+                <h6 class="mb-2">{{ $cart_prod->name }}</h6>
                 <p class="mb-0">Size: <span>Regular</span>
                 </p>
                 <p class="mb-2">Color: <span>White &amp; Blue</span>
                 </p>
-                <h5 class="mb-0">{{ $item->price }}</h5>
+                @if ($cart_prod->sale)
+                <span class="text-white fs-5">{{ currency($cart_prod->sale_price) }}</span>
+                <span class="me-1 text-decoration-line-through">{{ currency($cart_prod->price) }}</span>
+                @else
+                <span class="text-white fs-5">{{ currency($cart_prod->price) }}</span>
+                @endif
             </div>
         </div>
     </div>
