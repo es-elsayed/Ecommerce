@@ -22,6 +22,8 @@ class CreateCategoriesTable extends Migration
             $table->string('image')->default('assets/images/notfound.jpg');
             $table->string('banner')->default('assets/images/notfound.jpg');
             $table->string('slug')->unique();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

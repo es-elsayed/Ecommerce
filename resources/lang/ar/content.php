@@ -50,4 +50,8 @@ return [
     "e-mail"=>"البريد الإلكتروني",
     "phone number"=>"رقم الهاتف",
     "my account" => "حسابي",
+    "region" => "المنطقة",
+    "enter region" => "ادخل المنطقة",
+    "saudi arabia" => "السعودية",
+    "egypt" => "مصر",
 ];

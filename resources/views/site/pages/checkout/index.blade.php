@@ -62,29 +62,34 @@
                             <div class="card rounded-0">
                                 <div class="card-body">
                                     <div class="border p-3">
-                                        <h2 class="h5 mb-0">Shipping Address</h2>
+                                        <h2 class="h5 mb-0">Address</h2>
                                         <div class="my-3 border-bottom"></div>
                                         <div class="form-body">
                                             <form class="row g-3">
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.first name') }}</label>
-                                                    <input type="text" class="form-control rounded-0" value="{{ auth()->user()->f_name }}">
+                                                    <input type="text" class="form-control rounded-0" value="{{ auth()->user()->f_name }}" disabled>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.last name') }}</label>
-                                                    <input type="text" class="form-control rounded-0" value="{{ auth()->user()->l_name }}">
+                                                    <input type="text" class="form-control rounded-0" value="{{ auth()->user()->l_name }}" disabled>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.e-mail') }}</label>
-                                                    <input type="email" class="form-control rounded-0" value="{{ auth()->user()->email }}">
+                                                    <input type="email" class="form-control rounded-0" value="{{ auth()->user()->email }}" disabled>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.phone number') }}</label>
-                                                    <input type="tel" class="form-control rounded-0" value="{{ auth()->user()->phone }}">
+                                                    <input type="tel" class="form-control rounded-0" value="{{ auth()->user()->phone }}" disabled>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label">Company</label>
-                                                    <input type="text" class="form-control rounded-0">
+                                                    <label class="form-label">{{ __('content.region') }}</label>
+                                                    <input type="text" name="region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
+                                                    {{-- <select class="form-select rounded-0">
+                                                        <option>{{ __('content.select region') }}</option>
+                                                        <option>{{ __('content.saudi arabia') }}</option>
+                                                        <option>{{ __('content.egypt') }}</option>
+                                                    </select> --}}
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">State/Province</label>
@@ -97,22 +102,10 @@
                                                     <label class="form-label">Zip/Postal Code</label>
                                                     <input type="text" class="form-control rounded-0">
                                                 </div>
+
                                                 <div class="col-md-6">
-                                                    <label class="form-label">Country</label>
-                                                    <select class="form-select rounded-0">
-                                                        <option>United States</option>
-                                                        <option>India</option>
-                                                        <option>China</option>
-                                                        <option>Turkey</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Address 1</label>
-                                                    <textarea class="form-control rounded-0"></textarea>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Address 2</label>
-                                                    <textarea class="form-control rounded-0"></textarea>
+                                                    <label class="form-label">{{ __('content.address') }}</label>
+                                                    <input type="text" class="form-control rounded-0" value="">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <h6 class="mb-0 h5">Billing Address</h6>
@@ -184,4 +177,17 @@
         </div>
     </section>
     <!--end shop cart-->
+@endsection
+@section('extra-js')
+<script>
+var path = "{{ route('site.search.region') }}"
+$('#region').typeahead({
+    source: function(query, process){
+        return $.get(path, {query:query}, function(data){
+            console.log(process(data));
+        })
+    }
+})
+</script>
+
 @endsection

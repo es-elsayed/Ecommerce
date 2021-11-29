@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\CheckoutController;
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\UserController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -60,6 +61,12 @@ Route::group(
                 Route::post('update-cart', [CartController::class, 'update'])->name('update');
                 Route::post('remove', [CartController::class, 'destroy'])->name('remove');
                 Route::post('clear', [CartController::class, 'clearAll'])->name('clear');
+            });
+            // ***********************************************************
+            // ******************** Search Routes ************************
+            // ***********************************************************
+            Route::prefix('search')->name('search.')->group(function () {
+                Route::get('/', [SearchController::class, 'region'])->name('region');
             });
 
 

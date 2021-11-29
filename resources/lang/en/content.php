@@ -50,6 +50,9 @@ return [
     "e-mail"=>"E-mail",
     "phone number"=>"Phone Number",
     "my account" => "My Acount",
-
+    "region" => "Region",
+    "enter region" => "Enter Region",
+    "saudi arabia" => "Saudi Arabia",
+    "egypt" => "Egypt",
 
 ];
