@@ -40,7 +40,7 @@
                 <li class="nav-item"> <a class="nav-link" href="shop-categories.html">{{ __('content.our stores') }}</a>
                 </li>
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                        data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>
+                        data-bs-toggle="dropdown"> {{ __('content.my account') }} <i class='bx bx-chevron-down'></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="account-dashboard.html">Dashboard</a>
                         </li>

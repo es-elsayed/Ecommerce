@@ -44,4 +44,10 @@ return [
     "taxes" => "الضرائب",
     "discount" => "الخصم",
     "proceed to checkout"=>"الإستمرار للدفع",
+    "checkout"=>"الدفع",
+    "first name"=>"الاسم الأول",
+    "last name"=>"الاسم الثاني",
+    "e-mail"=>"البريد الإلكتروني",
+    "phone number"=>"رقم الهاتف",
+    "my account" => "حسابي",
 ];

@@ -8,7 +8,7 @@
                     </div>
                     <div class="logo d-none d-lg-flex">
                         <a href="index.html">
-                            <img src="{{ asset('assets/site/images/logo-icon.png') }}" class="logo-icon" alt="" />
+                            <img src="https://twision.dev/images/Logow.svg" class="logo-icon" alt="" />
                         </a>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="top-cart-icons">
                     <nav class="navbar navbar-expand">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a href="javascript:;" class="nav-link cart-link"><i
+                            <li class="nav-item"><a href="{{ route('site.profile.index') }}" class="nav-link cart-link"><i
                                         class='bx bx-user'></i></a>
                             </li>
                             <li class="nav-item"><a href="javascript:;" class="nav-link cart-link"><i
@@ -72,8 +72,8 @@
                                             <h5 class="mb-0 ms-auto">{{ currency(getNumbers()['subTotal']) }}</h5>
                                         </div>
                                     </a>
-                                    <div class="d-grid p-3 border-top"> <a href="javascript:;"
-                                            class="btn btn-light btn-ecomm">CHECKOUT</a>
+                                    <div class="d-grid p-3 border-top"> <a href="{{ route('site.checkout.index') }}"
+                                            class="btn btn-light btn-ecomm">{{ __('content.checkout') }}</a>
                                     </div>
                                 </div>
                             </li>

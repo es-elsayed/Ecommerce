@@ -44,5 +44,12 @@ return [
     'taxes' => 'Taxes',
     'discount' => 'Discount',
     "proceed to checkout"=>"Proceed to Checkout",
+    "checkout"=>"Checkout",
+    "first name"=>"First Name",
+    "last name"=>"Last Name",
+    "e-mail"=>"E-mail",
+    "phone number"=>"Phone Number",
+    "my account" => "My Acount",
+
 
 ];
