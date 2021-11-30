@@ -52,6 +52,11 @@ return [
     "my account" => "حسابي",
     "region" => "المنطقة",
     "enter region" => "ادخل المنطقة",
+    "city" => "المدينة",
+    "enter city" => "أدخل المدينة",
+    "district" => "الحي",
+    "enter district" => "أدخل الحي",
+    "saudi arabia" => "Saudi Arabia",
     "saudi arabia" => "السعودية",
     "egypt" => "مصر",
 ];

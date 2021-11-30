@@ -89,18 +89,23 @@
                                                     </datalist>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label">State/Province</label>
-                                                    <select class="form-select rounded-0">
-                                                        <option>United Kingdom</option>
-                                                        <option>California</option>
-                                                    </select>
+                                                    <label class="form-label">{{ __('content.city') }}</label>
+                                                    <input autocomplete="off" list="citys" name="city" id="city" class="form-control rounded-0" placeholder="{{ __('content.enter city') }}">
+                                                    <datalist id="citys">
+                                                    </datalist>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">{{ __('content.district') }}</label>
+                                                    <input autocomplete="off" list="districts" name="district" id="district" class="form-control rounded-0" placeholder="{{ __('content.enter district') }}">
+                                                    <datalist id="districts">
+                                                    </datalist>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Zip/Postal Code</label>
                                                     <input type="text" class="form-control rounded-0">
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <label class="form-label">{{ __('content.address') }}</label>
                                                     <input type="text" class="form-control rounded-0" value="">
                                                 </div>
@@ -184,19 +189,26 @@
 
 
 $(document).ready(function(){
-    $('#region').on('keyup',function(){
+    $('#region').on('keyup',null, myfun)
+    $('#city').on('keyup',null, myfun)
+    $('#district').on('keyup',null, myfun)
+
+    function myfun(e){
+
+        let id = e.target.attributes.id.value
+        let target = "#"+id+"s"
+
         var query = $(this).val();
         $.ajax({
-            url:"{{ route('site.search.region') }}",
+            url:"{{ route('site.search') }}",
             type: "GET",
-            data: {'search':query},
-            // dataType:'json',
+            data: {'search':query,'where':id},
             success: function(data){
-                // console.log(data);
-                $('#regions').html(data);
+                console.log(data);
+                $(target).html(data);
             }
         })
-    })
+    }
 })
 </script>
 @endsection

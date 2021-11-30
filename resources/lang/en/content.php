@@ -52,6 +52,10 @@ return [
     "my account" => "My Acount",
     "region" => "Region",
     "enter region" => "Enter Region",
+    "city" => "City",
+    "enter city" => "Enter City",
+    "district" => "District",
+    "enter district" => "Enter District",
     "saudi arabia" => "Saudi Arabia",
     "egypt" => "Egypt",
 
