@@ -84,12 +84,9 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.region') }}</label>
-                                                    <input type="text" name="region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
-                                                    {{-- <select class="form-select rounded-0">
-                                                        <option>{{ __('content.select region') }}</option>
-                                                        <option>{{ __('content.saudi arabia') }}</option>
-                                                        <option>{{ __('content.egypt') }}</option>
-                                                    </select> --}}
+                                                    <input autocomplete="off" list="search_region" name="search_region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
+                                                    <datalist id="search_region">
+                                                    </datalist>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">State/Province</label>
@@ -179,15 +176,40 @@
     <!--end shop cart-->
 @endsection
 @section('extra-js')
-<script>
-var path = "{{ route('site.search.region') }}"
-$('#region').typeahead({
-    source: function(query, process){
-        return $.get(path, {query:query}, function(data){
-            console.log(process(data));
-        })
-    }
-})
-</script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 
+<script>
+
+
+$(document).ready(function(){
+    $('#region').on('keyup',function(){
+        var query = $(this).val();
+        $.ajax({
+            url:"{{ route('site.search.region') }}",
+            type: "GET",
+            data: {'search':query},
+            // dataType:'json',
+            success: function(data){
+                // console.log(path);
+                $('#search_region').html(data);
+            }
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 @endsection

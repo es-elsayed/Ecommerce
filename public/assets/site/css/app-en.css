@@ -1790,3 +1790,13 @@ body.bg-theme15 {
         padding: 2rem 1rem
     }
 }
+
+
+/* Start Search */
+
+#search_region option {
+    background-color: #171717 !important;
+}
+
+
+/* End Search */

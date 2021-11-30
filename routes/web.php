@@ -66,7 +66,7 @@ Route::group(
             // ******************** Search Routes ************************
             // ***********************************************************
             Route::prefix('search')->name('search.')->group(function () {
-                Route::get('/', [SearchController::class, 'region'])->name('region');
+                Route::get('/region', [SearchController::class, 'region'])->name('region');
             });
 
 
