@@ -84,8 +84,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.region') }}</label>
-                                                    <input autocomplete="off" list="search_region" name="search_region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
-                                                    <datalist id="search_region">
+                                                    <input autocomplete="off" list="regions" name="region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
+                                                    <datalist id="regions">
                                                     </datalist>
                                                 </div>
                                                 <div class="col-md-6">
@@ -192,24 +192,11 @@ $(document).ready(function(){
             data: {'search':query},
             // dataType:'json',
             success: function(data){
-                // console.log(path);
-                $('#search_region').html(data);
+                // console.log(data);
+                $('#regions').html(data);
             }
         })
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 @endsection

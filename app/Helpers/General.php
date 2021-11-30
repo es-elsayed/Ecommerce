@@ -37,6 +37,11 @@ function un_defined_cat_error($cat)
     return true;
 }
 
+function isArabic($value)
+{
+    return preg_match('/\p{Arabic}/u', $value);
+}
+
 function getNumbers()
 {
     $tax = config('shopping_cart.tax') / 100;

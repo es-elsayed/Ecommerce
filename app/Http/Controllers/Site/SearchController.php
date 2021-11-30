@@ -15,16 +15,15 @@ class SearchController extends Controller
             $output="";
             if(!$request->search==''){
                 $data =
-                    Region::where('id', 'like', '%' . $request->search . '%')
-                    ->orwhere('name_en', 'like', '%' . $request->search . '%')
+                    Region::where('name_en', 'like', '%' . $request->search . '%')
                     ->orwhere('name_ar', 'like', '%' . $request->search . '%')
                     ->get();
                     // return 'hi';
                 if(count($data)>0){
-                    $name_lang = 'name_'.app()->getLocale();
                     foreach ($data as $row) {
+                        $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
                             $output .= '
-                            <option>'.$row[$name_lang] .'</option>';
+                            <option>'. $name .'</option>';
                         }
                 }else{
                     $output="no result";
