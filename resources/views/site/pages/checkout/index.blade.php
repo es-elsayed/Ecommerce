@@ -62,10 +62,11 @@
                             <div class="card rounded-0">
                                 <div class="card-body">
                                     <div class="border p-3">
-                                        <h2 class="h5 mb-0">Address</h2>
-                                        <div class="my-3 border-bottom"></div>
                                         <div class="form-body">
-                                            <form class="row g-3">
+                                            <form method="POST" action="{{ route('site.checkout.details') }}" class="row g-3">
+                                                @csrf
+                                                <h2 class="h5 mb-0">Details</h2>
+                                                <div class="my-3 border-bottom"></div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.first name') }}</label>
                                                     <input type="text" class="form-control rounded-0" value="{{ auth()->user()->f_name }}" disabled>
@@ -82,32 +83,53 @@
                                                     <label class="form-label">{{ __('content.phone number') }}</label>
                                                     <input type="tel" class="form-control rounded-0" value="{{ auth()->user()->phone }}" disabled>
                                                 </div>
+                                                <h2 class="h5 mb-0">Address</h2>
+                                                <div class="my-3 border-bottom"></div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.region') }}</label>
                                                     <input autocomplete="off" list="regions" name="region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
+                                                    @error('region')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     <datalist id="regions">
                                                     </datalist>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.city') }}</label>
                                                     <input autocomplete="off" list="citys" name="city" id="city" class="form-control rounded-0" placeholder="{{ __('content.enter city') }}">
+                                                    @error('city')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     <datalist id="citys">
                                                     </datalist>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.district') }}</label>
-                                                    <input autocomplete="off" list="districts" name="district" id="district" class="form-control rounded-0" placeholder="{{ __('content.enter district') }}">
+                                                    <input autocomplete="off" list="districts" name="district" id="district" value="{{ old('district') }}" class="form-control rounded-0" placeholder="{{ __('content.enter district') }}">
+                                                    @error('district')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     <datalist id="districts">
                                                     </datalist>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Zip/Postal Code</label>
-                                                    <input type="text" class="form-control rounded-0">
+                                                    <input type="text" name="zip" class="form-control rounded-0" value="{{ old('zip') }}">
+                                                    @error('zip')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <label class="form-label">{{ __('content.address') }}</label>
-                                                    <input type="text" class="form-control rounded-0" value="">
+                                                    <input type="text" class="form-control rounded-0" name="address" value="{{ old('address') }}">
+                                                    @error('address')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="save_address" name="save_address" checked="">
+                                                    <label class="form-check-label" for="save_address">Save new Address</label>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <h6 class="mb-0 h5">Billing Address</h6>
@@ -118,11 +140,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="d-grid">	<a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-chevron-left"></i>Back to Cart</a>
+                                                    <div class="d-grid">
+                                                        <a href="{{ route('site.cart.list') }}" class="btn btn-light btn-ecomm">
+                                                            <i class="bx bx-chevron-left"></i>Back to Cart
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="d-grid">	<a href="javascript:;" class="btn btn-white btn-ecomm">Proceed to Checkout<i class="bx bx-chevron-right"></i></a>
+                                                    <div class="d-grid">
+                                                        <button type="submit" class="btn btn-white btn-ecomm">
+                                                            Proceed to Checkout<i class="bx bx-chevron-right"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -179,36 +207,4 @@
         </div>
     </section>
     <!--end shop cart-->
-@endsection
-@section('extra-js')
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
-
-<script>
-
-
-$(document).ready(function(){
-    $('#region').on('keyup',null, myfun)
-    $('#city').on('keyup',null, myfun)
-    $('#district').on('keyup',null, myfun)
-
-    function myfun(e){
-
-        let id = e.target.attributes.id.value
-        let target = "#"+id+"s"
-
-        var query = $(this).val();
-        $.ajax({
-            url:"{{ route('site.search') }}",
-            type: "GET",
-            data: {'search':query,'where':id},
-            success: function(data){
-                console.log(data);
-                $(target).html(data);
-            }
-        })
-    }
-})
-</script>
 @endsection

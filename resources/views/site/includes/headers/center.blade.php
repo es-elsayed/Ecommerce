@@ -15,7 +15,9 @@
             </div>
             <div class="col-12 col-md order-4 order-md-2">
                 <div class="input-group flex-nowrap px-xl-4">
-                    <input type="text" class="form-control w-100" placeholder="{{ __('content.search for products') }}">
+                    <input autocomplete="off" list="products" name="product" id="product" class="form-control w-100" placeholder="{{ __('content.search for products') }}">
+                    <datalist id="products">
+                    </datalist>
                     <select class="form-select flex-shrink-0" aria-label="Default select example"
                         style="width: 10.5rem;">
                         <option selected>{{ __('content.categories') }}</option>
@@ -85,3 +87,10 @@
         <!--end row-->
     </div>
 </div>
+@section('extra-js')
+<script>
+    $("#product").on('change', function () {
+    console.log('changed');
+});
+</script>
+@endsection

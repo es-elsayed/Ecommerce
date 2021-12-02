@@ -75,7 +75,8 @@ Route::group(
             // *****************************************************************
             Route::middleware(['auth:web'])->group(function () {
                 Route::prefix('checkout')->name('checkout.')->group(function () {
-                    Route::get('/', [CheckoutController::class, 'index'])->name('index');
+                    Route::get('/details', [CheckoutController::class, 'index'])->name('index');
+                    Route::post('/details', [CheckoutController::class, 'address'])->name('details');
                 });
                 Route::prefix('profile')->name('profile.')->group(function () {
                     Route::get('/', [UserController::class, 'index'])->name('index');
