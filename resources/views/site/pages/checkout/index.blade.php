@@ -87,7 +87,7 @@
                                                 <div class="my-3 border-bottom"></div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.region') }}</label>
-                                                    <input autocomplete="off" list="regions" name="region" id="region" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
+                                                    <input autocomplete="off" list="regions" name="region" id="region" value="{{ old('region') }}" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
                                                     @error('region')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -96,7 +96,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.city') }}</label>
-                                                    <input autocomplete="off" list="citys" name="city" id="city" class="form-control rounded-0" placeholder="{{ __('content.enter city') }}">
+                                                    <input autocomplete="off" list="citys" name="city" id="city" value="{{ old('city') }}" class="form-control rounded-0" placeholder="{{ __('content.enter city') }}">
                                                     @error('city')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

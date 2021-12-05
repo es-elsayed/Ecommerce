@@ -17,31 +17,49 @@
 <script>
 $(document).ready(function(){
 
-    $('#product').on('keyup',null, search)
-    $('#region').on('keyup',null, search)
-    $('#city').on('keyup',null, search)
-    $('#district').on('keyup',null, search)
-$('#region').on('change',function(e){
-    console.log(e.value());
-})
-    function search(e){
+    $('#city').prop('disabled',true)
+    $('#district').prop('disabled',true)
 
-        let id = e.target.attributes.id.value
-        let target = "#"+id+"s"
+    $('#product').on('keyup',null, function(){
+        search(this,'product')
+    })
+    $('#region').on('keyup',null, function(){
+        search(this,'region')
+    })
+    $('#city').on('keyup',null, function(){
+        search(this,'city',$( "#regions input[type='hidden']" ).val())
+    })
+    $('#district').on('keyup',null, function(){
+        search(this,'district',$( "#regions input[type='hidden']" ).val(),$( "#citys input[type='hidden']" ).val())
+    })
 
-        var query = $(this).val();
+    $('#region').on('change',function()
+    {
+        $('#city').val('')
+        $('#district').val('')
+        $('#district').prop('disabled',true)
+        $('#city').prop('disabled',false)
+    });
+    $('#city').on('change',function()
+    {
+        $('#district').val('')
+        $('#district').prop('disabled',false)
+    });
+    function search(e,where, region_id=null, city_id=null){
+        let target = "#"+where+"s"
+        var query = e.value;
+        // console.log();
+        console.log(region_id,city_id);
         $.ajax({
             url:"{{ route('site.search') }}",
             type: "GET",
-            data: {'search':query,'where':id},
+            data: {'search':query,'where':where,region_id,city_id},
             success: function(data){
-                // console.log(data);
+                console.log(data);
                 $(target).html(data);
             }
         })
     }
-
 })
-
 </script>
 @yield('extra-js')

@@ -75,7 +75,8 @@ class SearchController extends Controller
                     foreach ($data as $row) {
                         $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
                             $output .= '
-                            <option data-region-id="'.$row->id.'">'. $name .'</option>';
+                            <option class="region-options" data-region-id="'.$row->id.'">'. $name .'</option>
+                            <input type="hidden" name="region_id" value="'.$row->id.'">';
                         }
                 }else{
                     $output="no result";
@@ -87,11 +88,12 @@ class SearchController extends Controller
     }
     public function city(Request $request)
     {
+        // return $request->region_id;
         if ($request->ajax()) {
             $output="";
             if(!$request->search==''){
                 $data =
-                    City::where('name_en', 'like', '%' . $request->search . '%')
+                    City::where('region_id',$request->region_id)->where('name_en', 'like', '%' . $request->search . '%')
                     ->orwhere('name_ar', 'like', '%' . $request->search . '%')
                     ->paginate(PAGINATION_COUNT);
                     // return 'hi';
@@ -99,7 +101,8 @@ class SearchController extends Controller
                     foreach ($data as $row) {
                         $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
                             $output .= '
-                            <option>'. $name .'</option>';
+                            <option data-city-id="'.$row->id.'">'. $name .'</option>
+                            <input type="hidden" name="city_id" value="'.$row->id.'">';
                         }
                 }else{
                     $output="no result";
@@ -115,7 +118,7 @@ class SearchController extends Controller
             $output="";
             if(!$request->search==''){
                 $data =
-                    Districts::where('name_en', 'like', '%' . $request->search . '%')
+                    Districts::where(['region_id'=>$request->region_id,'city_id'=>$request->city_id])->where('name_en', 'like', '%' . $request->search . '%')
                     ->orwhere('name_ar', 'like', '%' . $request->search . '%')
                     ->paginate(PAGINATION_COUNT);
                     // return 'hi';
@@ -123,7 +126,8 @@ class SearchController extends Controller
                     foreach ($data as $row) {
                         $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
                             $output .= '
-                            <option>'. $name .'</option>';
+                            <option data-district-id="'.$row->id.'">'. $name .'</option>
+                            <input type="hidden" name="district_id" value="'.$row->id.'">';
                         }
                 }else{
                     $output="no result";

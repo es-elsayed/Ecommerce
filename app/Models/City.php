@@ -14,4 +14,7 @@ class City extends Model
     public function districts(){
         return $this->hasMany(Districts::class);
     }
+    static function haveDist($id){
+        return City::where(['city_id'=>$id])->get();
+    }
 }
