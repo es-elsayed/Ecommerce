@@ -19,6 +19,7 @@ class CreateAddressesTable extends Migration
             $table->foreignId('city_id')->constrained();
             $table->foreignId('district_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->integer('zip');
             $table->string('address');
             $table->timestamps();
         });

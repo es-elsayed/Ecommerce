@@ -17,4 +17,8 @@ class City extends Model
     static function haveDist($id){
         return City::where(['city_id'=>$id])->get();
     }
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'city_id');
+    }
 }

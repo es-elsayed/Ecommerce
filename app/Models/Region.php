@@ -14,4 +14,8 @@ class Region extends Model
     public function districts(){
         return $this->hasMany(Districts::class);
     }
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
 }

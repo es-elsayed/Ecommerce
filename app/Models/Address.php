@@ -13,6 +13,25 @@ class Address extends Model
         'city_id',
         'district_id',
         'address',
+        'zip',
         'user_id',
     ];
+    public function region()
+    {
+        return $this->belongsTo(Region::class)->select('name_'.app()->getLocale().' as name');
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class)->select('name_'.app()->getLocale().' as name');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(Districts::class)->select('name_'.app()->getLocale().' as name');
+    }
+    // public function regions()
+    // {
+    //     return $this->hasMany(Region::class,'_id');
+    // }
+
 }

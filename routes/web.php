@@ -78,6 +78,8 @@ Route::group(
                     Route::get('/details', [CheckoutController::class, 'index'])->name('index');
                     Route::post('/details', [CheckoutController::class, 'address'])->name('details');
                     Route::get('/shipping', [CheckoutController::class, 'shipping'])->name('shipping');
+                    Route::get('/render-billingaddress', [CheckoutController::class, 'renderBilling'])->name('renderbilling');
+                    Route::get('/render-newaddress', [CheckoutController::class, 'renderNew'])->name('rendernew');
                 });
                 Route::prefix('profile')->name('profile.')->group(function () {
                     Route::get('/', [UserController::class, 'index'])->name('index');

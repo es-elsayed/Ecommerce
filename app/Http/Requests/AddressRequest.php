@@ -24,14 +24,22 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         // $input = $this->all()['region'];
+        switch ($this->address_choise) {
+            case 'new':
+                return [
+                    "region"    => isArabic($this->region) ? "exists:regions,name_ar" : "exists:regions,name_en" . "|required",
+                    "city"      => isArabic($this->city) ? "exists:cities,name_ar" : "exists:cities,name_en" . "|required",
+                    "district"  => isArabic($this->district) ? "exists:districts,name_ar" : "exists:districts,name_en",
+                    "zip"       => "required|integer",
+                    "address"   => "required|min:5",
+                ];
+                break;
 
-        return [
-
-            "region"    => isArabic($this->region) ? "exists:regions,name_ar" : "exists:regions,name_en" . "|required",
-            "city"      => isArabic($this->city) ? "exists:cities,name_ar" : "exists:cities,name_en" . "|required",
-            "district"  => isArabic($this->district) ? "exists:districts,name_ar" : "exists:districts,name_en",
-            "zip"       => "required|integer",
-            "address"   => "required|min:5",
-        ];
+            default:
+                return [
+                    "address_choise"    =>"required|exists:addresses,id",
+                ];
+                break;
+        }
     }
 }

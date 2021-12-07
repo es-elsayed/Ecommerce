@@ -60,31 +60,35 @@
                                 </div>
                             </div>
                             <div class="card rounded-0">
+                                {{-- <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="d-grid">
+                                            <a href="{{ route('site.checkout.renderbilling') }}" class="btn btn-white btn-ecomm billing-address">
+                                                <i class="bx bx-chevron-down"></i>Billing Address
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-grid">
+                                            <a href="{{ route('site.checkout.rendernew') }}" class="btn btn-light btn-ecomm new-address">
+                                                New Address<i class="bx bx-chevron-down"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div> --}}
                                 <div class="card-body">
                                     <div class="border p-3">
                                         <div class="form-body">
                                             <form method="POST" action="{{ route('site.checkout.details') }}" class="row g-3">
                                                 @csrf
-                                                <h2 class="h5 mb-0">Details</h2>
-                                                <div class="my-3 border-bottom"></div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">{{ __('content.first name') }}</label>
-                                                    <input type="text" class="form-control rounded-0" value="{{ auth()->user()->f_name }}" disabled>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">{{ __('content.last name') }}</label>
-                                                    <input type="text" class="form-control rounded-0" value="{{ auth()->user()->l_name }}" disabled>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">{{ __('content.e-mail') }}</label>
-                                                    <input type="email" class="form-control rounded-0" value="{{ auth()->user()->email }}" disabled>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">{{ __('content.phone number') }}</label>
-                                                    <input type="tel" class="form-control rounded-0" value="{{ auth()->user()->phone }}" disabled>
-                                                </div>
                                                 <h2 class="h5 mb-0">Address</h2>
                                                 <div class="my-3 border-bottom"></div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="address_choise"  value="new" type="radio" id="new_address" checked>
+                                                    <label class="form-check-label" for="new_address">
+                                                        Add new Address
+                                                    </label>
+                                                </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">{{ __('content.region') }}</label>
                                                     <input autocomplete="off" list="regions" name="region" id="region" value="{{ old('region') }}" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
@@ -119,7 +123,6 @@
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-
                                                 <div class="col-md-12">
                                                     <label class="form-label">{{ __('content.address') }}</label>
                                                     <input type="text" class="form-control rounded-0" name="address" value="{{ old('address') }}">
@@ -134,10 +137,20 @@
                                                 <div class="col-md-12">
                                                     <h6 class="mb-0 h5">Billing Address</h6>
                                                     <div class="my-3 border-bottom"></div>
+                                                    @foreach ($addresses as $address)
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="gridCheck" checked="">
-                                                        <label class="form-check-label" for="gridCheck">Same as shipping address</label>
+                                                        <input class="form-check-input" name="address_choise" value="{{ $address->id }}" type="radio" id="address_{{ $loop->iteration }}">
+                                                        <label class="form-check-label" for="address_{{ $loop->iteration }}">
+                                                            {{ $address->region->name }},
+                                                            {{ $address->city->name }},
+                                                            {{ $address->district->name }},
+                                                            {{ $address->address }}
+                                                        </label>
                                                     </div>
+                                                    @endforeach
+                                                    @error("address_choise")
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="d-grid">
@@ -208,3 +221,8 @@
     </section>
     <!--end shop cart-->
 @endsection
+@section('extra-js')
+
+@endsection
+
+                    {{-- // $(this).closest('.render-address').append('@include('tours.partials.pricingExtra')'); --}}

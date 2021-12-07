@@ -15,8 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 <script>
+    // for chechout new Addresses
 $(document).ready(function(){
-
     $('#city').prop('disabled',true)
     $('#district').prop('disabled',true)
 
@@ -61,5 +61,25 @@ $(document).ready(function(){
         })
     }
 })
+</script>
+<script>
+    $('input[type="radio"]').on('change',function(){
+        if($(this).val() === 'new'){
+            $('#region').val('')
+            $('#city').val('')
+            $('#district').val('')
+            $('#region').prop('disabled',false)
+            $('#city').prop('disabled',true)
+            $('#district').prop('disabled',true)
+        }
+        else if($(this).val() === 'billing'){
+            $('#region').val('')
+            $('#city').val('')
+            $('#district').val('')
+            $('#region').prop('disabled',true)
+            $('#city').prop('disabled',true)
+            $('#district').prop('disabled',true)
+        }
+    })
 </script>
 @yield('extra-js')
