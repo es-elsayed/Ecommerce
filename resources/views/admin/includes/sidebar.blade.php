@@ -18,7 +18,7 @@
                 <div class="menu-title">Main Categories</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.maincategory') }}"><i class="bx bx-right-arrow-alt"></i>All Main Categories</a>
+                <li> <a href="{{ route('admin.maincategory.index') }}"><i class="bx bx-right-arrow-alt"></i>All Main Categories</a>
                 </li>
                 <li> <a href="{{ route('admin.maincategory.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Main Category</a>
                 </li>
@@ -64,7 +64,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('admin.product') }}">
+            <a href="{{ route('admin.orders') }}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Orders</div>
