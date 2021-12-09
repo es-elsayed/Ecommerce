@@ -26,7 +26,9 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
+            <div class="page-content">
+                @include('includes.alerts.success')
+                @include('includes.alerts.error')
                 @yield('content')
 			</div>
 		</div>

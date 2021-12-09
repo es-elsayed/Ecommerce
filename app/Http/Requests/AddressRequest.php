@@ -29,7 +29,6 @@ class AddressRequest extends FormRequest
                 return [
                     "region"    => isArabic($this->region) ? "exists:regions,name_ar" : "exists:regions,name_en" . "|required",
                     "city"      => isArabic($this->city) ? "exists:cities,name_ar" : "exists:cities,name_en" . "|required",
-                    "district"  => isArabic($this->district) ? "exists:districts,name_ar" : "exists:districts,name_en",
                     "zip"       => "required|integer",
                     "address"   => "required|min:5",
                 ];

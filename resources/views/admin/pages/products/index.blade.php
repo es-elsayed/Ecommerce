@@ -37,8 +37,6 @@ Products
 
     <div class="card">
         <div class="card-body">
-            @include('includes.alerts.success')
-            @include('includes.alerts.error')
             <div class="d-lg-flex align-items-center mb-4 gap-3">
                 <div class="position-relative">
                     <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span

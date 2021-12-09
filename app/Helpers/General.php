@@ -25,7 +25,7 @@ function str_slug($val)
 {
     return Str::slug($val, '-');
 }
-function currency($val)
+function currency($val = null)
 {
     return "$" . $val;
 }
@@ -45,9 +45,9 @@ function isArabic($value)
 function getNumbers()
 {
     $tax = config('shopping_cart.tax') / 100;
-    // $discount = session()->get('coupon')['discount'] ?? 0;
-    // $code = session()->get('coupon')['name'] ?? null;
-    // $newSubtotal = (Cart::getTotal() - $discount);
+    $discount = session()->get('coupon')['discount'] ?? 0;
+    $shipping_price = session()->get('billing')['shipping']['price'] ?? null;
+
     $subTotal = \Cart::getTotal();
     $items = \Cart::getContent();
     $cart_items = $items->pluck('quantity','id');
@@ -61,13 +61,14 @@ function getNumbers()
     }
 
     $newTax = $subTotal * $tax;
-    $newTotal = $subTotal * (1 + $tax);
-
+    $newTotal = $subTotal * (1 + $tax) + $shipping_price - $discount;
+    $newTotal < 0 ? $newTotal = 0 : $newTotal;
     return collect([
         'tax' => $tax,
+        'discount' => $discount,
+        'shipping_price' => $shipping_price,
         'subTotal' => $subTotal,
         'newTax' => $newTax,
         'newTotal' => $newTotal,
-        // 'total_price' => $total_price,
     ]);
 }

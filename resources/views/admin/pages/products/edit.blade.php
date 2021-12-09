@@ -40,7 +40,6 @@ Edit Product
     <div class="card-body p-4">
         <h5 class="card-title">Edit Product</h5>
         <hr />
-        @include('includes.alerts.error')
         <div class="form-body mt-4">
             <div class="row">
                 <div class="col-lg">

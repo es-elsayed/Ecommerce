@@ -47,7 +47,7 @@
                                     {{-- <div class="my-3 border-top"></div> --}}
                                     <h5 class="mb-0">{{ __('content.subtotal') }} ({{ Cart::getTotalQuantity() == 1 ? Cart::getTotalQuantity() ." ". __('content.item') : Cart::getTotalQuantity() ." ". __('content.items') }}): <span class="float-end">{{ currency(getNumbers()['subTotal']) }}</span></h5>
                                     <div class="my-4"></div>
-                                    <div class="d-grid"> <a href="{{ route('site.checkout.index') }}" class="btn btn-white btn-ecomm">{{ __('content.proceed to checkout') }}</a>
+                                    <div class="d-grid"> <a href="{{ route('site.checkout.address.index') }}" class="btn btn-white btn-ecomm">{{ __('content.proceed to checkout') }}</a>
                                     </div>
                                 </div>
                             </div>

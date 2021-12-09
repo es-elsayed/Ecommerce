@@ -17,7 +17,6 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_ar');
-            // $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('region_id')->constrained();
             $table->timestamps();
         });

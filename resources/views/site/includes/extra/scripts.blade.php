@@ -18,7 +18,7 @@
     // for chechout new Addresses
 $(document).ready(function(){
     $('#city').prop('disabled',true)
-    $('#district').prop('disabled',true)
+    $('#address').prop('disabled',true)
 
     $('#product').on('keyup',null, function(){
         search(this,'product')
@@ -29,21 +29,21 @@ $(document).ready(function(){
     $('#city').on('keyup',null, function(){
         search(this,'city',$( "#regions input[type='hidden']" ).val())
     })
-    $('#district').on('keyup',null, function(){
-        search(this,'district',$( "#regions input[type='hidden']" ).val(),$( "#citys input[type='hidden']" ).val())
+    $('#address').on('keyup',null, function(){
+        search(this,'address',$( "#regions input[type='hidden']" ).val(),$( "#citys input[type='hidden']" ).val())
     })
 
     $('#region').on('change',function()
     {
         $('#city').val('')
-        $('#district').val('')
-        $('#district').prop('disabled',true)
+        $('#address').val('')
+        $('#address').prop('disabled',true)
         $('#city').prop('disabled',false)
     });
     $('#city').on('change',function()
     {
-        $('#district').val('')
-        $('#district').prop('disabled',false)
+        $('#address').val('')
+        $('#address').prop('disabled',false)
     });
     function search(e,where, region_id=null, city_id=null){
         let target = "#"+where+"s"
@@ -63,22 +63,28 @@ $(document).ready(function(){
 })
 </script>
 <script>
+    $('div.hide-address').css('display',"none")
     $('input[type="radio"]').on('change',function(){
-        if($(this).val() === 'new'){
-            $('#region').val('')
-            $('#city').val('')
-            $('#district').val('')
-            $('#region').prop('disabled',false)
-            $('#city').prop('disabled',true)
-            $('#district').prop('disabled',true)
-        }
-        else if($(this).val() === 'billing'){
-            $('#region').val('')
-            $('#city').val('')
-            $('#district').val('')
-            $('#region').prop('disabled',true)
-            $('#city').prop('disabled',true)
-            $('#district').prop('disabled',true)
+        switch ($(this).val()) {
+            case 'new':
+                $('#region').val('')
+                $('#city').val('')
+                $('#address').val('')
+                $('#region').prop('disabled',false)
+                $('#city').prop('disabled',true)
+                $('#address').prop('disabled',true)
+                $('div.hide-address').css('display',"block")
+            break;
+
+            default:
+                $('#region').val('')
+                $('#city').val('')
+                $('#address').val('')
+                $('#region').prop('disabled',true)
+                $('#city').prop('disabled',true)
+                $('#address').prop('disabled',true)
+                $('div.hide-address').css('display',"none")
+            break;
         }
     })
 </script>

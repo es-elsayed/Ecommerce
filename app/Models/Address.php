@@ -25,13 +25,4 @@ class Address extends Model
         return $this->belongsTo(City::class)->select('name_'.app()->getLocale().' as name');
     }
 
-    public function district()
-    {
-        return $this->belongsTo(Districts::class)->select('name_'.app()->getLocale().' as name');
-    }
-    // public function regions()
-    // {
-    //     return $this->hasMany(Region::class,'_id');
-    // }
-
 }

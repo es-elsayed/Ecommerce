@@ -32,8 +32,11 @@
             @include('site.includes.headers.top')
             @include('site.includes.headers.center')
             @include('site.includes.headers.bottom')
-
 		</div>
+
+        @include('includes.alerts.success')
+        @include('includes.alerts.error')
+
 		<!--end top header wrapper-->
 
 		<!--start page wrapper -->

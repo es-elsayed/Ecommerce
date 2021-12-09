@@ -15,11 +15,10 @@ class CreateRegionsTable extends Migration
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
-            $table->integer('capital_city_id');
             $table->string('code');
             $table->string('name_en');
             $table->string('name_ar');
-            $table->integer('population');
+            $table->integer('shipping_price');
 
             $table->timestamps();
         });

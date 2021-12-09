@@ -9,9 +9,12 @@ class CartController extends Controller
 {
     public function index()
     {
+        if (!sizeof(\Cart::getContent()) > 0) {
+            return redirect()->route('site.shop')->with('error', 'Cart is Empty!');
+        }
         // $cartItems = \Cart::getContent()->get()->toArray();
         $cartItems = \Cart::getContent()->sortBy('id');
-        return view('site.pages.cart.index',compact('cartItems'));
+        return view('site.pages.cart.index', compact('cartItems'));
     }
 
 
@@ -45,15 +48,14 @@ class CartController extends Controller
 
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
-        return redirect()->route('site.cart.list');
+        return redirect()->back();
     }
 
     public function destroy(Request $request)
     {
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
-
-        return redirect()->back();
+        return redirect()->route('site.home');
     }
 
     public function clearAll()

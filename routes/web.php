@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Site\Cart\AddressController;
+use App\Http\Controllers\Site\Cart\OrderController;
+use App\Http\Controllers\Site\Cart\ShippingController;
+use App\Http\Controllers\Site\CartAddressController;
 use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\CheckoutController;
 use App\Http\Controllers\Site\HomeController;
@@ -75,11 +79,9 @@ Route::group(
             // *****************************************************************
             Route::middleware(['auth:web'])->group(function () {
                 Route::prefix('checkout')->name('checkout.')->group(function () {
-                    Route::get('/details', [CheckoutController::class, 'index'])->name('index');
-                    Route::post('/details', [CheckoutController::class, 'address'])->name('details');
-                    Route::get('/shipping', [CheckoutController::class, 'shipping'])->name('shipping');
-                    Route::get('/render-billingaddress', [CheckoutController::class, 'renderBilling'])->name('renderbilling');
-                    Route::get('/render-newaddress', [CheckoutController::class, 'renderNew'])->name('rendernew');
+                    Route::resource('/address',AddressController::class,['names'=>['index'=>'address.index','store'=>'address.store']]);
+                    Route::resource('/shipping',ShippingController::class,['names'=>['index'=>'shipping.index','store'=>'shipping.store']]);
+                    Route::resource('/order',OrderController::class,['names'=>['index'=>'order.index','store'=>'order.store']]);
                 });
                 Route::prefix('profile')->name('profile.')->group(function () {
                     Route::get('/', [UserController::class, 'index'])->name('index');
