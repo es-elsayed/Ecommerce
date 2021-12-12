@@ -39,7 +39,8 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                <div class="parent-icon">
+                    <i class="lni lni-grow"></i>
                 </div>
                 <div class="menu-title">Products</div>
             </a>
@@ -52,7 +53,8 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                <div class="parent-icon">
+                    <i class="lni lni-image"></i>
                 </div>
                 <div class="menu-title">Sliders</div>
             </a>
@@ -65,7 +67,8 @@
         </li>
         <li>
             <a href="{{ route('admin.orders') }}">
-                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                <div class="parent-icon">
+                    <i class="lni lni-delivery"></i>
                 </div>
                 <div class="menu-title">Orders</div>
             </a>

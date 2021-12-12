@@ -18,6 +18,7 @@ class CreateOrderProductTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('product_id')->constrained();
             $table->integer('quantity')->unsigned();
+            $table->string('billing_salary')->nullable();
             $table->timestamps();
         });
     }

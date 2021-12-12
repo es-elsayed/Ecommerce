@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Products
+Orders
 @endsection
 @section('content')
 {{ Form::hidden('', $increment = 1) }}
@@ -14,7 +14,7 @@ Products
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
                                 class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Sub Products</li>
+                    <li class="breadcrumb-item active" aria-current="page">Orders</li>
                 </ol>
             </nav>
         </div>
@@ -43,66 +43,57 @@ Products
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="{{ route('admin.product.create') }}" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
-                            class="bx bxs-plus-square"></i>Add New Record</a></div>
+                <div class="ms-auto"><a href="{{ route('admin.maincategory.create') }}"
+                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
+                        Record</a>
+                </div>
             </div>
             <div class="table-responsive">
-                <table class="table mb-0 table-border">
+                <table class="table mb-0">
                     <thead class="table-light">
-                        <tr class="text-center">
+                        <tr>
                             <th class="text-center">#</th>
-                            <th>SKU</th>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Categories</th>
+                            <th>User</th>
+                            <th>products</th>
                             <th>Status</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product )
+                        @foreach ($orders as $order )
                         <tr>
                             <td>
                                 <h6 class="mb-0 font-14 text-center">{{ $increment }}</h6>
                             </td>
                             <td>
-                                <h6 class="mb-0 font-14 text-center">{{ $product->sku }}</h6>
+                                {{ $order->billing_name }}
                             </td>
-                            <td><img src="{{ asset($product->main_image) }}" class="maincat-img"
-                                    alt="product image"></td>
-                            <td>{{ $product->name_en }}</td>
                             <td style="max-width: 15rem; overflow-x: auto;">
-                                {{-- <textarea name="categories" id="categories" class="form-control scro" style="width:15rem; line-height: 1" disabled> --}}
-                                    @foreach($product->categories as $category )
-                                    {{ $category->name }}
+                                @foreach ($order->products as $product)
+                                    {{ $product->name }}
                                     @if ($loop->count != $loop->iteration)<span class="bold text-danger"> & </span> @endif
                                 @endforeach
-                                {{-- </textarea> --}}
-
                             </td>
                             <td>
-                                <div
-                                    class="badge rounded-pill {{ $product->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
-                                    <i class="bx bxs-circle me-1"></i>{{ $product->getActive() }}</div>
+                                {{-- <div
+                                    class="badge rounded-pill {{ $order->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
+                                    <i class="bx bxs-circle me-1"></i>{{ $order }}
+                                </div> --}}
                             </td>
                             <td>
-                                <h6 class="mb-0 font-14 text-center">{{ $product->quantity }}</h6>
-                            </td>
-                            <td>
-                                <h6 class="mb-0 font-14 text-center">{{ currency($product->price) }}</h6>
-                            </td>
-                            <td>
-                                <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.product.edit', $product->slug) }}" class="ms-3"><i class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('admin.product.delete', $product->slug) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
-                                    @if ($product->status == 0)
-                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="success text-capitalize ms-3">Activate</a>
+                                {{-- <div class="d-flex order-actions">
+                                    <a href="{{ route('admin.order.edit', $order->id) }}" class="ms-3"><i
+                                            class="bx bxs-edit"></i></a>
+                                    <a href="{{ route('admin.order.delete', $order->id) }}" class="ms-3"><i
+                                            class="bx bxs-trash"></i></a>
+                                    @if ($order->status == 0)
+                                    <a href="{{ route('admin.order.active', $order->id) }}"
+                                        class="success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="danger text-capitalize ms-3">deactivate</a>
+                                    <a href="{{ route('admin.order.unactive', $order->id) }}"
+                                        class="danger text-capitalize ms-3">deactivate</a>
                                     @endif
-                                </div>
+                                </div> --}}
                             </td>
                         </tr>
                         {{ Form::hidden('', $increment += 1) }}

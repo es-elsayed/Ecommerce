@@ -37,10 +37,6 @@ class Product extends Model
         return $this->belongsToMany(Category::class)->select('categories.id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','categories.created_at','categories.updated_at');
     }
 
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class);
-    }
 
     public function images()
     {
@@ -55,4 +51,8 @@ class Product extends Model
         return Product::where('id',$id)->select('id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','created_at','updated_at')->firstOrFail();
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }

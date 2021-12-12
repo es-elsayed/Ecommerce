@@ -14,35 +14,19 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $products = ProductResource::collection(Product::all());
         return view('admin.pages.products.index', ['products' => $products]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $parent_categories = Category::where('is_parent', 1)->get();
         return view('admin.pages.products.create', ['parent_categories' => $parent_categories]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(AddProductRequest $request)
     {
         try {
@@ -98,23 +82,11 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($slug)
     {
         $product = Product::where('slug', $slug)->first();
@@ -126,25 +98,16 @@ class ProductController extends Controller
     public function active($slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();
-        $product->status = 1;
-        $product->update();
+        $product->update(['status'=>1]);
         return redirect()->route('admin.product')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
     }
     public function unActive($slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();
-
-        $product->status = 0;
-        $product->update();
+        $product->update(['status'=>0]);
         return redirect()->route('admin.product')->with('success', 'The "' . $product->name_en . '" Product status has been Unactivated Successfuly');
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateProductRequest $request, $slug)
     {
         try {
@@ -185,7 +148,6 @@ class ProductController extends Controller
                     'product_id' => $product->id
                 ]);
             }
-
             if ($request->has('deleted_images')) {
                 $deleted_images = explode(",", $request->deleted_images);
                 foreach ($deleted_images as $deleted_image) {
@@ -212,12 +174,6 @@ class ProductController extends Controller
         return redirect()->route('admin.product')->with('success', "Product Added Successfully");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();

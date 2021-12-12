@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MainCategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -86,10 +87,10 @@ Route::name('admin.')->group(function () {
             Route::get('/{slug}/edit', [SliderController::class, 'edit'])->name('slider.edit');
             Route::put('/{slug}/update', [SliderController::class, 'update'])->name('slider.update');
         });
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders');
     });
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders');
 
 // Route::group(['middleware' => 'auth:admin'], function () {
 //     Route::resource('maincategory', MainCategoryController::class,['as'=> 'admin']);

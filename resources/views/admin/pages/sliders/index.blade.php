@@ -52,7 +52,7 @@ Sliders
                 <table class="table mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>Order#</th>
+                            <th class="text-center">#</th>
                             <th>Image</th>
                             <th>Title</th>
                             <th>Status</th>
