@@ -41,7 +41,7 @@ class OrderController extends Controller
             "billing_subtotal" => getNumbers()['subTotal'],
             "billing_total" => getNumbers()['newTotal'],
             "payment_gateway" => "",
-            // "shipped" => getNumbers()['shipping_price'], //error here
+            "status" => '0',
             // "error" => ,
         ]);
         foreach (\Cart::getContent() as $item) {

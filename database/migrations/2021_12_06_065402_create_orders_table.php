@@ -35,7 +35,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_gateway')->default('paymob');
             $table->string('error')->nullable();
 
-            $table->boolean('shipped')->default(false);
+            $table->enum('status',[0,1,2,3,4])->default(0);
             $table->timestamps();
         });
     }

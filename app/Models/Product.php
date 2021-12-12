@@ -24,9 +24,6 @@ class Product extends Model
         'main_image',
     ];
 
-    /**
-     * @var array
-     */
     public function getActive()
     {
         return $this->status == 1 ? 'active' : 'in-active';

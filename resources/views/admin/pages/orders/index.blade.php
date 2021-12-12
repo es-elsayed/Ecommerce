@@ -50,7 +50,7 @@ Orders
             </div>
             <div class="table-responsive">
                 <table class="table mb-0">
-                    <thead class="table-light">
+                    <thead class="table-light text-center">
                         <tr>
                             <th class="text-center">#</th>
                             <th>User</th>
@@ -63,7 +63,7 @@ Orders
                         @foreach ($orders as $order )
                         <tr>
                             <td>
-                                <h6 class="mb-0 font-14 text-center">{{ $increment }}</h6>
+                                <h6 class="mb-0 font-14 text-center">{{ $order->id }}</h6>
                             </td>
                             <td>
                                 {{ $order->billing_name }}
@@ -75,25 +75,56 @@ Orders
                                 @endforeach
                             </td>
                             <td>
-                                {{-- <div
-                                    class="badge rounded-pill {{ $order->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
-                                    <i class="bx bxs-circle me-1"></i>{{ $order }}
-                                </div> --}}
+                                <div
+                                    class="badge rounded-pill p-2 text-uppercase px-3
+                                    @switch($order->status)
+                                        @case('0')
+                                            text-warning bg-light-warning
+                                            @break
+                                        @case('1')
+                                            text-info bg-light-info
+                                            @break
+                                        @case('2')
+                                            text-danger bg-light-danger
+                                            @break
+                                        @case('3')
+                                            text-danger bg-light-danger
+                                            @break
+                                        @case('4')
+                                            text-success bg-light-success
+                                            @break
+                                        @case('5')
+                                            text-danger bg-light-danger
+                                            @break
+                                    @endswitch
+                                    ">
+                                    @if ($order->status== "0")
+                                    <i class="bx bx-radio-circle-marked bx-burst bx-rotate-90 align-middle font-18 me-1"></i>
+                                    @else
+                                    <i class="bx bxs-circle me-1">
+                                    @endif
+                                    </i>{{ $order->getActive() }}
+                                </div>
                             </td>
                             <td>
-                                {{-- <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.order.edit', $order->id) }}" class="ms-3"><i
-                                            class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('admin.order.delete', $order->id) }}" class="ms-3"><i
-                                            class="bx bxs-trash"></i></a>
-                                    @if ($order->status == 0)
-                                    <a href="{{ route('admin.order.active', $order->id) }}"
-                                        class="success text-capitalize ms-3">Activate</a>
-                                    @else
-                                    <a href="{{ route('admin.order.unactive', $order->id) }}"
-                                        class="danger text-capitalize ms-3">deactivate</a>
-                                    @endif
-                                </div> --}}
+                                <div class="d-flex order-actions">
+                                    <a href="" class="ms-3"><i class="bx bxs-edit"></i></a>
+                                    <form action="{{ route('admin.orders.store',['id'=>$order->id]) }}" method="POST">
+                                        @csrf
+                                    @switch($order->status)
+                                        @case('0')
+                                        <button name="action" value="1" class="custom-a info text-capitalize ms-3">Shipped</button>
+                                        <button name="action" value="2" class="custom-a danger text-capitalize ms-3">Rejected</button>
+                                            @break
+                                        @case('1')
+                                        <button name="action" value="4" class="custom-a success text-capitalize ms-3">Delevered</button>
+                                        <button name="action" value="5" class="custom-a danger text-capitalize ms-3">Error</button>
+                                        @break
+                                        @default
+                                        @endswitch
+                                        </form>
+                                </div>
+
                             </td>
                         </tr>
                         {{ Form::hidden('', $increment += 1) }}

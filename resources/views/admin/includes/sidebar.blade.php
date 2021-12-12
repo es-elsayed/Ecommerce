@@ -66,7 +66,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('admin.orders') }}">
+            <a href="{{ route('admin.orders.index') }}">
                 <div class="parent-icon">
                     <i class="lni lni-delivery"></i>
                 </div>

@@ -87,11 +87,12 @@ Route::name('admin.')->group(function () {
             Route::get('/{slug}/edit', [SliderController::class, 'edit'])->name('slider.edit');
             Route::put('/{slug}/update', [SliderController::class, 'update'])->name('slider.update');
         });
-        Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+        // Route::get('/orders', [OrderController::class, 'index'])->name('orders');
     });
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-// Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::resource('orders', OrderController::class,['as'=> 'admin']);
 //     Route::resource('maincategory', MainCategoryController::class,['as'=> 'admin']);
-// });
+});

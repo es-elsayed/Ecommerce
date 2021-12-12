@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -21,9 +22,10 @@ class OrderController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        Order::findOrFail($request->id)->update(['status'=>"$request->action"]);
+        return redirect()->route('admin.orders.index');
     }
 
     public function show($id)
