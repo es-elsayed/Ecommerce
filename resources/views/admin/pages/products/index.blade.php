@@ -98,9 +98,9 @@ Products
                                     <a href="{{ route('admin.product.edit', $product->slug) }}" class="ms-3"><i class="bx bxs-edit"></i></a>
                                     <a href="{{ route('admin.product.delete', $product->slug) }}" class="ms-3"><i class="bx bxs-trash"></i></a>
                                     @if ($product->status == 0)
-                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="success text-capitalize ms-3">Activate</a>
+                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="custom-a success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="danger text-capitalize ms-3">deactivate</a>
+                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="custom-a danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>
                             </td>

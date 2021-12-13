@@ -24,7 +24,14 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'action' => 'required'
+            'action' => 'required|in:0,1,2,4,5'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'required' => 'this field is req',
+            'in' => 'in valid action'
         ];
     }
 }

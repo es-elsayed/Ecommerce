@@ -81,10 +81,10 @@ Sliders
                                             class="bx bxs-trash"></i></a>
                                     @if ($slider->status == 0)
                                     <a href="{{ route('admin.slider.active', $slider->id) }}"
-                                        class="success text-capitalize ms-3">Activate</a>
+                                        class="custom-a success text-capitalize ms-3">Activate</a>
                                     @else
                                     <a href="{{ route('admin.slider.unactive', $slider->id) }}"
-                                        class="danger text-capitalize ms-3">deactivate</a>
+                                        class="custom-a danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>
                             </td>

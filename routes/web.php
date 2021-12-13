@@ -8,12 +8,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\Cart\AddressController;
 use App\Http\Controllers\Site\Cart\OrderController;
 use App\Http\Controllers\Site\Cart\ShippingController;
-use App\Http\Controllers\Site\CartAddressController;
 use App\Http\Controllers\Site\CategoryController;
-use App\Http\Controllers\Site\CheckoutController;
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\ProfileController;
 use App\Http\Controllers\Site\SearchController;
-use App\Http\Controllers\Site\UserController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -83,11 +81,14 @@ Route::group(
                     Route::resource('/shipping',ShippingController::class,['names'=>['index'=>'shipping.index','store'=>'shipping.store']]);
                     Route::resource('/order',OrderController::class,['names'=>['index'=>'order.index','store'=>'order.store']]);
                 });
-                Route::prefix('profile')->name('profile.')->group(function () {
-                    Route::get('/', [UserController::class, 'index'])->name('index');
-                    // Route::get('/', [CheckoutController::class, 'index'])->name('index');
-                });
+                // Route::prefix('profile')->name('profile.')->group(function () {
+                //     Route::get('/', [ProfileController::class, 'index'])->name('index');
+                //     // Route::get('/', [CheckoutController::class, 'index'])->name('index');
+                // });
             });
         });
     }
 );
+Route::group(['middleware'=>'auth:web'],function () {
+    Route::resource('/profile', ProfileController::class,['as'=>'site']);
+});

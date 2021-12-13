@@ -12,7 +12,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::paginate(PAGINATION_COUNT);
+        $orders = Order::orderBy('id', 'desc')->paginate(PAGINATION_COUNT);
         // return $orders[0]->products;
         return view('admin.pages.orders.index',compact('orders'));
     }
@@ -35,7 +35,7 @@ class OrderController extends Controller
 
     public function edit($id)
     {
-        //
+        return 'hi';
     }
 
     public function update(Request $request, $id)
