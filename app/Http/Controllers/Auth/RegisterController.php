@@ -75,6 +75,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        return redirect()->route('site.home');
+        return redirect()->route('site.home.index');
     }
 }

@@ -55,7 +55,7 @@ class CartController extends Controller
     {
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
-        return redirect()->route('site.home');
+        return redirect()->back();
     }
 
     public function clearAll()

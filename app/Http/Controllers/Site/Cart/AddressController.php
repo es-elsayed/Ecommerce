@@ -14,8 +14,8 @@ class AddressController extends Controller
     public function index()
     {
         session()->pull('billing');
-        if (!sizeof(\Cart::getContent())>0) {
-            return redirect()->route('site.shop.index')->with('error','Cart is Empty!');
+        if (!sizeof(\Cart::getContent()) > 0) {
+            return redirect()->route('site.shop.index')->with('error', 'Cart is Empty!');
         }
         $addresses = Address::where('user_id', auth()->user()->id)->get();
         return view('site.pages.checkout.details', compact('addresses'));
@@ -86,6 +86,8 @@ class AddressController extends Controller
 
     public function destroy($id)
     {
-        //
+        $address = Address::where(['id' => $id, 'user_id' => auth()->user()->id])->firstOrFail();
+        $address->delete();
+        return redirect()->back()->with('success', 'The Address Deleted Successfulle');
     }
 }

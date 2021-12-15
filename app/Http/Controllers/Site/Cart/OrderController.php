@@ -55,7 +55,7 @@ class OrderController extends Controller
         }
         DB::commit();
         \Cart::clear();
-        return redirect()->route('site.home')->with('success', 'Congrats.. The order done successfully');
+        return redirect()->route('site.home.index')->with('success', 'Congrats.. The order done successfully');
         Db::rollBack();
     }
 

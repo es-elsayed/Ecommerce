@@ -5,7 +5,7 @@
             <div class="ms-auto">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="{{ route('site.home') }}"><i class="bx bx-home-alt"></i> Home</a>
+                        <li class="breadcrumb-item"><a href="{{ route('site.home.index') }}"><i class="bx bx-home-alt"></i> Home</a>
                         </li>
                         <li class="breadcrumb-item"><a href="{{ route('site.shop.index') }}">Shop</a>
                         </li>

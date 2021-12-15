@@ -7,7 +7,7 @@
                             class='bx bx-menu'></i>
                     </div>
                     <div class="logo d-none d-lg-flex">
-                        <a href="index.html">
+                        <a href="{{ route('site.home.index') }}">
                             <img src="https://twision.dev/images/Logow.svg" class="logo-icon" alt="" />
                         </a>
                     </div>

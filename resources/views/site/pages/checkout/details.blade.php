@@ -96,8 +96,3 @@
     </section>
     <!--end shop cart-->
 @endsection
-@section('extra-js')
-
-@endsection
-
-                    {{-- // $(this).closest('.render-address').append('@include('tours.partials.pricingExtra')'); --}}

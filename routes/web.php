@@ -39,51 +39,37 @@ Route::group(
 
         Auth::routes(['verify' => true]);
 
+        // ************************** Guest Routes **************************
         Route::post('/register', [RegisterController::class, 'create'])->name('register');
-        Route::resource('/shop', ShopController::class,['as'=>'site']);
-        Route::resource('/search', SearchController::class,['as'=>'site']);
+        Route::resource('/shop', ShopController::class, ['as' => 'site']);
+        Route::resource('/search', SearchController::class, ['as' => 'site']);
+        Route::resource('/home', HomeController::class, ['as' => 'site']);
 
-        Route::name('site.')->group(function () {
-            // ******************************************************************
-            // ************************** Guest Routes **************************
-            // ******************************************************************
-            Route::get('/', function () {
-                return redirect()->route('site.home');
-            });
-            Route::get('/home', [HomeController::class, 'index'])->name('home');
-            // ***********************************************************
-            // ******************** Categories Routes ********************
-            // ***********************************************************
-            // Route::get('shop/{slug}', [ProductController::class, 'show'])->name('category.show');
-            // Route::get('subcategories/{slug}', [SubCategoryController::class,'show'])->name('subcategory.show');
-
-            // ***********************************************************
+        Route::prefix('cart')->name('site.cart.')->group(function () {
             // ******************** Cart Routes **************************
-            // ***********************************************************
-            Route::prefix('cart')->name('cart.')->group(function () {
-                Route::get('/', [CartController::class, 'index'])->name('list');
-                Route::post('/', [CartController::class, 'store'])->name('store');
-                Route::post('update-cart', [CartController::class, 'update'])->name('update');
-                Route::post('remove', [CartController::class, 'destroy'])->name('remove');
-                Route::post('clear', [CartController::class, 'clearAll'])->name('clear');
-            });
+            Route::get('/', [CartController::class, 'index'])->name('list');
+            Route::post('/', [CartController::class, 'store'])->name('store');
+            Route::post('update-cart', [CartController::class, 'update'])->name('update');
+            Route::post('remove', [CartController::class, 'destroy'])->name('remove');
+            Route::post('clear', [CartController::class, 'clearAll'])->name('clear');
         });
 
-Route::group(['middleware'=>'auth:web'],function () {
-    // *****************************************************************
-    // ************************** Auth Routes **************************
-    // *****************************************************************
-    Route::resource('/address',AddressController::class,['as'=>'site']);
-    Route::resource('/shipping',ShippingController::class,['as'=>'site']);
-    Route::resource('/profile', ProfileController::class,['as'=>'site']);
-    Route::resource('/order',OrderController::class,['as'=>'site']);
-    Route::get('/order/all/{id}', [OrderController::class, 'all'])->name('site.order.all');
-    Route::delete('/order/cancel/{id}', [OrderController::class, 'cancel'])->name('site.order.cancel');
+        // ************************** Auth Routes **************************
+        Route::group(['middleware' => 'auth:web'], function () {
+            Route::resource('/address', AddressController::class, ['as' => 'site']);
+            Route::resource('/shipping', ShippingController::class, ['as' => 'site']);
+            Route::resource('/profile', ProfileController::class, ['as' => 'site']);
+            Route::resource('/order', OrderController::class, ['as' => 'site']);
+            Route::get('/order/all/{id}', [OrderController::class, 'all'])->name('site.order.all');
+            Route::delete('/order/cancel/{id}', [OrderController::class, 'cancel'])->name('site.order.cancel');
+        });
 
-});
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect()->route('site.home');
-})->name('site.logout');
-
-});
+        Route::get('/', function () {
+            return redirect()->route('site.home.index');
+        });
+        Route::get('/logout', function () {
+            Auth::logout();
+            return redirect()->route('site.home.index');
+        })->name('site.logout');
+    }
+);
