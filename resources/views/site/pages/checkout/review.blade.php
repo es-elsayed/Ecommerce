@@ -84,13 +84,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="d-grid">
-                                                <a href="{{ route('site.checkout.shipping.index') }}" class="btn btn-light btn-ecomm">
+                                                <a href="{{ route('site.shipping.index') }}" class="btn btn-light btn-ecomm">
                                                     <i class="bx bx-chevron-left"></i>Back to Shipping
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                                <form class="d-grid" action="{{ route('site.checkout.order.store') }}" method="post">
+                                                <form class="d-grid" action="{{ route('site.order.store') }}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-white btn-ecomm">
                                                         Complete Order<i class="bx bx-chevron-right"></i>

@@ -17,19 +17,7 @@
                                 @include('site.includes.cards.cart-track')
                             </div>
                             <div class="card rounded-0">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="">
-                                            <img src="{{ auth()->user()->image }}" width="90" alt="" class="rounded-circle p-1 border">
-                                        </div>
-                                        <div class="ms-2">
-                                            <h6 class="mb-0">{{ auth()->user()->f_name." ".auth()->user()->l_name }}</h6>
-                                            <p class="mb-0">{{ auth()->user()->email }}</p>
-                                        </div>
-                                        <div class="ms-auto">	<a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-edit"></i> Edit Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('site.includes.cards.profile')
                             </div>
                             <div class="card rounded-0">
                                 {{-- <div class="row g-3">
@@ -51,7 +39,7 @@
                                 <div class="card-body">
                                     <div class="border p-3">
                                         <div class="form-body">
-                                            <form method="POST" action="{{ route('site.checkout.address.store') }}" class="row g-3">
+                                            <form method="POST" action="{{ route('site.address.store') }}" class="row g-3">
                                                 @csrf
                                                 <div class="col-md-12">
                                                     <h6 class="mb-0 h5">Address</h6>
@@ -70,45 +58,11 @@
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                     <br>
-                                                    <input class="form-check-input" name="address_choise" value="new" type="radio" id="new_address">
-                                                    <label class="form-check-label" for="new_address">
-                                                        Add new Address
-                                                    </label>
                                                 </div>
+
                                                 {{-- <h2 class="h5 mb-0">Address</h2>
                                                 <div class="my-3 border-bottom"></div> --}}
-                                                    <div class="col-md-6 hide-address">
-                                                        <label class="form-label">{{ __('content.region') }}</label>
-                                                        <input autocomplete="off" list="regions" name="region" id="region" value="{{ old('region') }}" class="form-control rounded-0" placeholder="{{ __('content.enter region') }}">
-                                                        @error('region')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                        <datalist id="regions">
-                                                        </datalist>
-                                                    </div>
-                                                    <div class="col-md-6 hide-address">
-                                                        <label class="form-label">{{ __('content.city') }}</label>
-                                                        <input autocomplete="off" list="citys" name="city" id="city" value="{{ old('city') }}" class="form-control rounded-0" placeholder="{{ __('content.enter city') }}">
-                                                        @error('city')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                        <datalist id="citys">
-                                                        </datalist>
-                                                    </div>
-                                                    <div class="col-md-6 hide-address">
-                                                        <label class="form-label">{{ __('content.address') }}</label>
-                                                        <input type="text" class="form-control rounded-0" id="address" name="address" value="{{ old('address') }}">
-                                                        @error('address')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="col-md-6 hide-address">
-                                                        <label class="form-label">Zip/Postal Code</label>
-                                                        <input type="text" name="zip" class="form-control rounded-0" value="{{ old('zip') }}">
-                                                        @error('zip')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
+                                                    @include('site.includes.extra.add-address')
                                                     <div class="col-md-12 form-check hide-address">
                                                         <input class="form-check-input" type="checkbox" id="save_address" name="save_address" checked="">
                                                         <label class="form-check-label" for="save_address">Save new Address</label>

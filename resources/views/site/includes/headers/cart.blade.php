@@ -7,7 +7,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="{{ route('site.home') }}"><i class="bx bx-home-alt"></i>{{ __('content.home') }}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('site.shop') }}">{{ __('content.shop') }}</a>
+                        <li class="breadcrumb-item"><a href="{{ route('site.shop.index') }}">{{ __('content.shop') }}</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">{{ __('content.cart') }}</li>
                     </ol>

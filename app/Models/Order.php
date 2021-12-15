@@ -28,7 +28,7 @@ class Order extends Model
         'error',
     ];
 
-    public function getActive()
+    public function getStatus()
     {
         switch ($this->status) {
             case 0:
@@ -57,6 +57,6 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->select('products.id', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'products.quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at', 'products.updated_at');
+        return $this->belongsToMany(Product::class)->select('products.id', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'products.quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at', 'products.updated_at')->withPivot('quantity');
     }
 }

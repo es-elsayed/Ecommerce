@@ -74,7 +74,7 @@
                                             <h5 class="mb-0 ms-auto">{{ currency(getNumbers()['subTotal']) }}</h5>
                                         </div>
                                     </a>
-                                    <div class="d-grid p-3 border-top"> <a href="{{ route('site.checkout.address.index') }}"
+                                    <div class="d-grid p-3 border-top"> <a href="{{ route('site.address.index') }}"
                                             class="btn btn-light btn-ecomm">{{ __('content.checkout') }}</a>
                                     </div>
                                 </div>

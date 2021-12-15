@@ -20,11 +20,7 @@ class UpdateMainCategoryRequest extends FormRequest
         return false;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+
     public function rules()
     {
         $update_main_cat_req = [

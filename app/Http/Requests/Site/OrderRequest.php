@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class LoginRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,23 +14,24 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (Auth::getDefaultDriver() === "web"){
+            return true;
+        }
+        return false;
     }
 
 
     public function rules()
     {
         return [
-            'email' => 'required||email|exists:admins,email',
-            'password' => 'required',
+            'action' => 'required|in:3'
         ];
     }
     public function messages()
     {
         return [
-            'required' => 'This field is required',
-            'email' => 'enter valid email',
-            'email.exists' => 'Uncorrect E-mail Address..!',
+            'required' => 'this field is req',
+            'in' => 'in valid action'
         ];
     }
 }

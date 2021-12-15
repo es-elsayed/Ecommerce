@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site\Cart;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Site\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
@@ -18,14 +19,12 @@ class OrderController extends Controller
 
     public function create()
     {
-        //
     }
 
     public function store(Request $request)
     {
         DB::beginTransaction();
         $billing = session()->get('billing');
-        // return "// the error below will fixed after payment";
         $orderId = Order::insertGetId([
             "user_id" => auth()->user()->id,
             "billing_email" => auth()->user()->email,
@@ -62,21 +61,39 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        //
+        $order = Order::where(['user_id'=>auth()->user()->id,'id'=>$id])->firstOrFail();
+        return $order;
+    }
+
+    public function all($id)
+    {
+        $orders = Order::where('user_id',auth()->user()->id)->orderBy('id', 'desc')->paginate(PAGINATION_COUNT);
+        // return $orders[2]->products;
+        return view('site.pages.profile.orders',compact('orders'));
+    }
+
+    public function cancel(OrderRequest $request,$id)
+    {
+        //  get order from db using id
+        $order = Order::where(['user_id'=>auth()->user()->id,'id'=>$id,'status'=>'0'])->firstOrFail();
+        //  get quantity to every order
+        foreach ($order->products as $order_prod) {
+            //  add quantity to order again
+            $order_prod->update(['quantity'=>$order_prod->quantity + $order_prod->pivot->quantity]);
+        }
+        $order->update(['status'=>$request->action]);
+        return redirect()->route('site.order.all',auth()->user()->id)->with('success','The Order Canceled Successfully');
     }
 
     public function edit($id)
     {
-        //
     }
 
     public function update(Request $request, $id)
     {
-        //
     }
 
     public function destroy($id)
     {
-        //
     }
 }

@@ -9,7 +9,7 @@
         <div class="container">
             <div class="d-flex align-items-center">
                 <h5 class="text-uppercase mb-0">FEATURED PRODUCTS</h5>
-                <a href="{{ route('site.shop') }}" class="btn btn-light ms-auto rounded-0">More Products<i class="bx bx-chevron-right"></i></a>
+                <a href="{{ route('site.shop.index') }}" class="btn btn-light ms-auto rounded-0">More Products<i class="bx bx-chevron-right"></i></a>
             </div>
             <hr>
             <div class="product-grid">

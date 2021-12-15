@@ -10,7 +10,7 @@ class CartController extends Controller
     public function index()
     {
         if (!sizeof(\Cart::getContent()) > 0) {
-            return redirect()->route('site.shop')->with('error', 'Cart is Empty!');
+            return redirect()->route('site.shop.index')->with('error', 'Cart is Empty!');
         }
         // $cartItems = \Cart::getContent()->get()->toArray();
         $cartItems = \Cart::getContent()->sortBy('id');

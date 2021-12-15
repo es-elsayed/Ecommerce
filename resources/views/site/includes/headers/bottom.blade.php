@@ -29,30 +29,25 @@
                     </div>
                     <!-- dropdown-large.// -->
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('site.shop') }}"> {{ __('content.shop') }} </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('site.shop.index') }}"> {{ __('content.shop') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="blog.html"> {{ __('content.blog') }} </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog.html"> {{ __('content.blog') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="about-us.html"> {{ __('content.about') }} </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="about-us.html"> {{ __('content.about') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="contact-us.html"> {{ __('content.contact') }} </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact-us.html"> {{ __('content.contact') }} </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="shop-categories.html">{{ __('content.our stores') }}</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop-categories.html">{{ __('content.our stores') }}</a>
                 </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                        data-bs-toggle="dropdown"> {{ __('content.my account') }} <i class='bx bx-chevron-down'></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="account-dashboard.html">Dashboard</a>
-                        </li>
-                        <li><a class="dropdown-item" href="account-downloads.html">Downloads</a>
-                        </li>
-                        <li><a class="dropdown-item" href="account-orders.html">Orders</a>
-                        </li>
-                        <li><a class="dropdown-item" href="account-payment-methods.html">Payment Methods</a>
-                        </li>
-                        <li><a class="dropdown-item" href="account-user-details.html">User Details</a>
-                        </li>
-                    </ul>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('site.profile.index') }}">
+                        {{ __('content.my account') }}
+                    </a>
                 </li>
             </ul>
         </nav>

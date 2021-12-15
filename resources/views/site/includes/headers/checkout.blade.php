@@ -7,7 +7,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="{{ route('site.home') }}"><i class="bx bx-home-alt"></i> Home</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('site.shop') }}">Shop</a>
+                        <li class="breadcrumb-item"><a href="{{ route('site.shop.index') }}">Shop</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Checkout</li>
                     </ol>

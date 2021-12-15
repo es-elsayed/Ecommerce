@@ -16,7 +16,7 @@
                                 @include('site.includes.cards.cart-track')
                             </div>
                             <div class="card rounded-0 shadow-none">
-                                <form action="{{ route('site.checkout.shipping.store') }}" method="POST" class="card-body">
+                                <form action="{{ route('site.shipping.store') }}" method="POST" class="card-body">
                                     @csrf
                                     <h2 class="h5 mb-0">Choose Shipping Method</h2>
                                     <div class="my-3 border-bottom"></div>
@@ -52,7 +52,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="d-grid">
-                                                <a href="{{ route('site.checkout.address.index') }}" class="btn btn-light btn-ecomm">
+                                                <a href="{{ route('site.address.index') }}" class="btn btn-light btn-ecomm">
                                                     <i class="bx bx-chevron-left"></i>Back to details
                                                 </a>
                                             </div>

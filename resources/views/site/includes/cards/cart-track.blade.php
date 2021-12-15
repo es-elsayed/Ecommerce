@@ -8,7 +8,7 @@
         </a>
         <a class="step-item
         @switch(Route::currentRouteName())
-        @case("site.checkout.address.index")
+        @case("site.address.index")
             active current
         @break
         @default
@@ -16,7 +16,7 @@
         @break
         @endswitch
         "
-        href="{{ route('site.checkout.address.index') }}">
+        href="{{ route('site.address.index') }}">
             <div class="step-progress"><span class="step-count">2</span>
             </div>
             <div class="step-label"><i class="bx bx-user-circle"></i>Details</div>
@@ -26,21 +26,21 @@
         @case("site.checkout.checkout")
             active current
         @break
-        @case("site.checkout.shipping.index")
+        @case("site.shipping.index")
             active
         @break
-        @case("site.checkout.order.index")
+        @case("site.order.index")
             active
         @break
         @endswitch
-        " href="{{ route('site.checkout.shipping.index') }}">
+        " href="{{ route('site.shipping.index') }}">
             <div class="step-progress"><span class="step-count">3</span>
             </div>
             <div class="step-label"><i class="bx bx-cube"></i>Shipping</div>
         </a>
         <a class="step-item
         @switch(Route::currentRouteName())
-        @case("site.checkout.order.index")
+        @case("site.order.index")
             active current
         @break
         @case("site.checkout.payment")

@@ -1,4 +1,4 @@
-<div class="d-lg-flex align-items-center gap-2"> <a href="{{ route('site.shop') }}"
+<div class="d-lg-flex align-items-center gap-2"> <a href="{{ route('site.shop.index') }}"
     class="btn btn-light btn-ecomm"><i class="bx bx-shopping-bag"></i>{{ __('content.continue shoping') }}</a>
     <form class="ms-auto" action="{{ route('site.cart.clear') }}" method="POST">
         @csrf

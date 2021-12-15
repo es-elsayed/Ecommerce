@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MainCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // return Config::get('app.locale');
@@ -27,22 +23,11 @@ class MainCategoryController extends Controller
         return view('admin.pages.main-categories.index', ['categories' => $categories]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.pages.main-categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function store(AddMainCategoryRequest $request)
     {
@@ -64,23 +49,11 @@ class MainCategoryController extends Controller
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function active($id)
     {
@@ -136,13 +109,6 @@ class MainCategoryController extends Controller
         }
         return view('admin.pages.main-categories.edit', get_defined_vars());
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateMainCategoryRequest $request, $slug)
     {
         try {
@@ -187,12 +153,6 @@ class MainCategoryController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id , Request $request)
     {
         dd($request);

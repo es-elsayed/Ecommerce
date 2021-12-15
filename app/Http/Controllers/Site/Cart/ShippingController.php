@@ -11,7 +11,7 @@ class ShippingController extends Controller
     public function index()
     {
         if(!session()->get('billing.region')){
-            return redirect()->route('site.checkout.address.index')->with('error','Chose Address');
+            return redirect()->route('site.address.index')->with('error','Chose Address');
         }
         $shipping_price = Region::shippingPrice();
         return view('site.pages.checkout.shipping', compact('shipping_price'));
@@ -35,7 +35,7 @@ class ShippingController extends Controller
                 $request->session()->put('billing.shipping.price', Region::shippingPrice()->shipping_price);
                 break;
         }
-        return redirect()->route('site.checkout.order.index');
+        return redirect()->route('site.order.index');
     }
 
     public function show($id)

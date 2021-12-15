@@ -51,7 +51,7 @@ $(document).ready(function(){
         // console.log();
         console.log(region_id,city_id);
         $.ajax({
-            url:"{{ route('site.search') }}",
+            url:"{{ route('site.search.index') }}",
             type: "GET",
             data: {'search':query,'where':where,region_id,city_id},
             success: function(data){

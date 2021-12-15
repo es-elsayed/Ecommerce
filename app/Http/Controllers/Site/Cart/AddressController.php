@@ -15,7 +15,7 @@ class AddressController extends Controller
     {
         session()->pull('billing');
         if (!sizeof(\Cart::getContent())>0) {
-            return redirect()->route('site.shop')->with('error','Cart is Empty!');
+            return redirect()->route('site.shop.index')->with('error','Cart is Empty!');
         }
         $addresses = Address::where('user_id', auth()->user()->id)->get();
         return view('site.pages.checkout.details', compact('addresses'));
@@ -48,7 +48,7 @@ class AddressController extends Controller
                         'address'   => $request->address,
                     ];
                     $request->session()->put('billing', $billingAddress);
-                    return redirect()->route('site.checkout.shipping.index');
+                    return redirect()->route('site.shipping.index');
                 } else {
                     return redirect()->back()->with('error', "sorry The address not matched");
                 }
@@ -62,7 +62,7 @@ class AddressController extends Controller
                     'address'       => $address->address,
                 ];
                 $request->session()->put('billing', $billingAddress);
-                return redirect()->route('site.checkout.shipping.index');
+                return redirect()->route('site.shipping.index');
                 break;
         }
         return "no";
@@ -70,7 +70,8 @@ class AddressController extends Controller
 
     public function show($id)
     {
-        //
+        $addresses = Address::where('user_id', $id)->get();
+        return view('site.pages.profile.addresses', compact('addresses'));
     }
 
     public function edit($id)

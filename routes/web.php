@@ -12,6 +12,7 @@ use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ProfileController;
 use App\Http\Controllers\Site\SearchController;
+use App\Http\Controllers\Site\ShopController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -39,6 +40,9 @@ Route::group(
         Auth::routes(['verify' => true]);
 
         Route::post('/register', [RegisterController::class, 'create'])->name('register');
+        Route::resource('/shop', ShopController::class,['as'=>'site']);
+        Route::resource('/search', SearchController::class,['as'=>'site']);
+
         Route::name('site.')->group(function () {
             // ******************************************************************
             // ************************** Guest Routes **************************
@@ -47,11 +51,10 @@ Route::group(
                 return redirect()->route('site.home');
             });
             Route::get('/home', [HomeController::class, 'index'])->name('home');
-            Route::get('/shop', [CategoryController::class, 'index'])->name('shop');
             // ***********************************************************
             // ******************** Categories Routes ********************
             // ***********************************************************
-            Route::get('categories/{slug}', [ProductController::class, 'show'])->name('category.show');
+            // Route::get('shop/{slug}', [ProductController::class, 'show'])->name('category.show');
             // Route::get('subcategories/{slug}', [SubCategoryController::class,'show'])->name('subcategory.show');
 
             // ***********************************************************
@@ -64,31 +67,23 @@ Route::group(
                 Route::post('remove', [CartController::class, 'destroy'])->name('remove');
                 Route::post('clear', [CartController::class, 'clearAll'])->name('clear');
             });
-            // ***********************************************************
-            // ******************** Search Routes ************************
-            // ***********************************************************
-            Route::prefix('search')->name('search')->group(function () {
-                Route::get('/', [SearchController::class, 'index']);
-            });
-
-
-            // *****************************************************************
-            // ************************** Auth Routes **************************
-            // *****************************************************************
-            Route::middleware(['auth:web'])->group(function () {
-                Route::prefix('checkout')->name('checkout.')->group(function () {
-                    Route::resource('/address',AddressController::class,['names'=>['index'=>'address.index','store'=>'address.store']]);
-                    Route::resource('/shipping',ShippingController::class,['names'=>['index'=>'shipping.index','store'=>'shipping.store']]);
-                    Route::resource('/order',OrderController::class,['names'=>['index'=>'order.index','store'=>'order.store']]);
-                });
-                // Route::prefix('profile')->name('profile.')->group(function () {
-                //     Route::get('/', [ProfileController::class, 'index'])->name('index');
-                //     // Route::get('/', [CheckoutController::class, 'index'])->name('index');
-                // });
-            });
         });
-    }
-);
+
 Route::group(['middleware'=>'auth:web'],function () {
+    // *****************************************************************
+    // ************************** Auth Routes **************************
+    // *****************************************************************
+    Route::resource('/address',AddressController::class,['as'=>'site']);
+    Route::resource('/shipping',ShippingController::class,['as'=>'site']);
     Route::resource('/profile', ProfileController::class,['as'=>'site']);
+    Route::resource('/order',OrderController::class,['as'=>'site']);
+    Route::get('/order/all/{id}', [OrderController::class, 'all'])->name('site.order.all');
+    Route::delete('/order/cancel/{id}', [OrderController::class, 'cancel'])->name('site.order.cancel');
+
+});
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('site.home');
+})->name('site.logout');
+
 });

@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class SubCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // return Config::get('app.locale');
@@ -24,23 +20,12 @@ class SubCategoryController extends Controller
         return view('admin.pages.sub-categories.index', ['categories' => $categories]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = Category::where('is_parent', 1)->get(['id', 'name_en', 'name_ar']);
         return view('admin.pages.sub-categories.create', ['categories' => $categories]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(AddSubCategoryRequest $request)
     {
         // dd($request['name_en']);
@@ -64,23 +49,11 @@ class SubCategoryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function active($slug)
     {
         // return 'finishing sub cat and product first';
@@ -104,13 +77,6 @@ class SubCategoryController extends Controller
         return view('admin.pages.sub-categories.edit', get_defined_vars());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateSubCategoryRequest $request, $slug)
     {
         try {
@@ -151,12 +117,6 @@ class SubCategoryController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($slug)
     {
         // dd()

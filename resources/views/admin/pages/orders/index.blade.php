@@ -228,7 +228,7 @@ Orders
                         <tr>
                             <th class="text-center">#</th>
                             <th>User</th>
-                            <th>products</th>
+                            <th>Details</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -244,7 +244,7 @@ Orders
                             </td>
                             <td style="max-width: 15rem; overflow-x: auto;">
                                 @foreach ($order->products as $product)
-                                {{ $product->name }}
+                                {{ $product->pivot->quantity ."x ".$product->name }}
                                 @if ($loop->count != $loop->iteration)<span class="bold text-danger"> & </span> @endif
                                 @endforeach
                             </td>
@@ -258,16 +258,12 @@ Orders
                                                             text-info bg-light-info
                                                             @break
                                                         @case('2')
-                                                            text-danger bg-light-danger
-                                                            @break
                                                         @case('3')
+                                                        @case('5')
                                                             text-danger bg-light-danger
                                                             @break
                                                         @case('4')
                                                             text-success bg-light-success
-                                                            @break
-                                                        @case('5')
-                                                            text-danger bg-light-danger
                                                             @break
                                                     @endswitch
                                                     ">
@@ -277,7 +273,7 @@ Orders
                                     @else
                                     <i class="bx bxs-circle me-1">
                                         @endif
-                                    </i>{{ $order->getActive() }}
+                                    </i>{{ $order->getStatus() }}
                                 </div>
                             </td>
                             <td>
