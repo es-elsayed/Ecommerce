@@ -74,7 +74,7 @@ class ProductController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('admin.product')->with('success', "Product Added Successfully");
+            return redirect()->route('admin.product.index')->with('success', "Product Added Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
             // return $ex;
@@ -99,13 +99,13 @@ class ProductController extends Controller
     {
         $product = Product::whereSlug($slug)->firstOrFail();
         $product->update(['status'=>1]);
-        return redirect()->route('admin.product')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
+        return redirect()->route('admin.product.index')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
     }
     public function unActive($slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();
         $product->update(['status'=>0]);
-        return redirect()->route('admin.product')->with('success', 'The "' . $product->name_en . '" Product status has been Unactivated Successfuly');
+        return redirect()->route('admin.product.index')->with('success', 'The "' . $product->name_en . '" Product status has been Unactivated Successfuly');
     }
 
     public function update(UpdateProductRequest $request, $slug)
@@ -165,20 +165,26 @@ class ProductController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('admin.product')->with('success', "Product has been Updated Successfully");
+            return redirect()->route('admin.product.index')->with('success', "Product has been Updated Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
         // 'category_id' => $request['category_id'],
-        return redirect()->route('admin.product')->with('success', "Product Added Successfully");
+        return redirect()->route('admin.product.index')->with('success', "Product Added Successfully");
     }
 
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $product = Product::whereSlug($slug)->firstOrFail();
-        drop_image($product->main_image);
-        $product->delete();
-        return redirect()->route('admin.product')->with('success', 'The Product has been Deleted Successfuly');
+        try {
+            //code...
+            $product = Product::findOrFail($id);
+            $product->delete();
+            drop_image($product->main_image);
+            return redirect()->route('admin.product.index')->with('success', 'The Product has been Deleted Successfuly');
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.product.index')->with('error', 'Cannot Delete Product');
+            //throw $th;
+        }
     }
 }

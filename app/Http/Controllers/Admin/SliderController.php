@@ -35,7 +35,7 @@ class SliderController extends Controller
                 'image'             => $image_path,
                 'link'              => $request->link ? $request->link : '',
             ]);
-            return redirect()->route('admin.slider')->with('success', "Slider Added Successfully");
+            return redirect()->route('admin.slider.index')->with('success', "Slider Added Successfully");
         } catch (\Exception $ex) {
             return redirect()->back()->with('error', "Sorry!! Try again later");
         }
@@ -80,7 +80,7 @@ class SliderController extends Controller
                 'image'             => $image_path,
                 'link'              => $request->link ? $request->link : $slider->link,
             ]);
-            return redirect()->route('admin.slider')->with('success', 'The' . $request->title_en . ' Slider has been Updated Successfully');
+            return redirect()->route('admin.slider.index')->with('success', 'The' . $request->title_en . ' Slider has been Updated Successfully');
         } catch (\Exception $ex) {
             return redirect()->back()->with('error', "Sorry!! Try again later");
         }
@@ -89,8 +89,8 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::findOrFail($id);
-        drop_image($slider->image);
         $slider->delete();
-        return redirect()->route('admin.slider')->with('success', 'The Slider has been Deleted Successfuly');
+        drop_image($slider->image);
+        return redirect()->route('admin.slider.index')->with('success', 'The Slider has been Deleted Successfuly');
     }
 }

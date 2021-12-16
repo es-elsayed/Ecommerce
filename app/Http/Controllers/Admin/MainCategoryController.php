@@ -9,16 +9,12 @@ use App\Http\Resources\MainCategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-
-// use Illuminate\Support\Facades\Config;
 
 class MainCategoryController extends Controller
 {
 
     public function index()
     {
-        // return Config::get('app.locale');
         $categories = MainCategoryResource::collection(Category::where('is_parent', 1)->get());
         return view('admin.pages.main-categories.index', ['categories' => $categories]);
     }
@@ -155,9 +151,8 @@ class MainCategoryController extends Controller
 
     public function destroy($id , Request $request)
     {
-        dd($request);
-        // DB::beginTransaction();
         try {
+            DB::beginTransaction();
             $main_category = Category::findOrFail($id);
             $sub_categories = Category::getChildrenByParentId($id);
             if (sizeof($sub_categories)) {
@@ -166,12 +161,14 @@ class MainCategoryController extends Controller
             if (!un_defined_cat_error($main_category)) {
                 return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
             }
+            $main_category->delete();
             drop_image($main_category->image);
             drop_image($main_category->banner);
-            $main_category->delete();
+            DB::commit();
             return redirect()->route('admin.maincategory.index')->with('success', 'The ' . $main_category->name_en . ' Category has been deleted successfully');
         } catch (\Exception $ex) {
-            return $ex;
+            Db::rollBack();
+            // return $ex;
             return redirect()->route('admin.maincategory.index')->with('error', 'The ' . $main_category->name_en . ' Cannot be deleted right now');
         }
     }

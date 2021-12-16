@@ -77,9 +77,12 @@ Main Categories
                                 <div class="d-flex order-actions">
                                     <a href="{{ route('admin.maincategory.edit', $category->slug) }}" class="ms-3"><i
                                             class="bx bxs-edit"></i></a>
-
-                                    <a href="{{ route('admin.maincategory.destroy', $category->id) }}" class="ms-3"><i
-                                            class="bx bxs-trash"></i></a>
+                                            <form action="{{ route('admin.maincategory.destroy', $category->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
+                                            </form>
                                     @if ($category->status == 0)
                                     <a href="{{ route('admin.maincategory.active', $category->id) }}"
                                         class="custom-a success text-capitalize ms-3">Activate</a>

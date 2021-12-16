@@ -31,7 +31,7 @@
                 <div class="menu-title">Sub Categories</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All Sub Categories</a>
+                <li> <a href="{{ route('admin.subcategory.index') }}"><i class="bx bx-right-arrow-alt"></i>All Sub Categories</a>
                 </li>
                 <li> <a href="{{ route('admin.subcategory.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Sub Category</a>
                 </li>
@@ -45,7 +45,7 @@
                 <div class="menu-title">Products</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.product') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
+                <li> <a href="{{ route('admin.product.index') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
                 </li>
                 <li> <a href="{{ route('admin.product.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
                 </li>
@@ -59,7 +59,7 @@
                 <div class="menu-title">Sliders</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.slider') }}"><i class="bx bx-right-arrow-alt"></i>All Sliders</a>
+                <li> <a href="{{ route('admin.slider.index') }}"><i class="bx bx-right-arrow-alt"></i>All Sliders</a>
                 </li>
                 <li> <a href="{{ route('admin.slider.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
                 </li>
