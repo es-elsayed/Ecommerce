@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,28 +21,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::name('admin.')->group(function () {
-
-    Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin'], function () {
-        Route::get('/login', [LoginController::class, 'index'])->name('getlogin');
-        Route::post('/login', [LoginController::class, 'login'])->name('login');
-    });
-    // **********************************************
-    // ********* Admin Authenicated Routes **********
-    // **********************************************
-    Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
-        Route::get('/', function () {
-            return redirect()->route('admin.dashboard');
-        });
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-        // Route::get('/orders', [OrderController::class, 'index'])->name('orders');
-    });
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-});
+Route::resource('/login', LoginController::class, ['as'=>'admin'])->middleware('guest:admin');
 
 Route::group(['middleware' => 'auth:admin'], function () {
+    Route::resource('/dashboard', DashboardController::class, ['as'=>'admin']);
+
     Route::resource('orders', OrderController::class, ['as' => 'admin']);
     // ********* Main Category Routes ***********
     Route::resource('maincategory', MainCategoryController::class, ['as' => 'admin']);
@@ -61,4 +46,14 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::resource('slider', SliderController::class, ['as' => 'admin']);
     Route::get('slider/active/{id}', [SliderController::class, 'active'])->name('admin.slider.active');
     Route::get('slider/unactive/{id}', [SliderController::class, 'unActive'])->name('admin.slider.unactive');
+
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard.index');
+    });
+
+    Route::post('/logout', function (Request $request) {
+        Auth::logout();
+        $request->session()->flush();
+        return redirect()->route('admin.login.store');
+    })->name('admin.logout');
 });

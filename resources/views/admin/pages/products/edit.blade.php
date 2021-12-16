@@ -13,7 +13,7 @@ Edit Product
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="bx bx-home-alt"></i></a>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}"><i class="bx bx-home-alt"></i></a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
             </ol>
@@ -177,12 +177,6 @@ Edit Product
 
                                     </li>
                                 </ul>
-                                {{-- <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="cat_[{{ $category->id }}]"
-                                        name="categories[]" value="{{ $category->id }}">
-                                    <label class="form-check-label" for="cat_[{{ $category->id }}]">{{
-                                        $category->name_en }}</label>
-                                </div> --}}
                                 @endforeach
                                 @if ($errors->has('categories'))
                                 @foreach ($errors->get('categories') as $message)
