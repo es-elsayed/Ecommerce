@@ -1,6 +1,17 @@
 <?php
 return [
 
+    "sign in" => "تسجيل الدخول",
+    "don't have an account yet" => "لا تملك حساب؟",
+    "sign up here" => "إنشاء حساب",
+    "sign in with" => "تسجيل الدخول ب",
+    "google" => "جوجل",
+    "facebook" => "فيسبوك",
+    "password" => "كلمة السر",
+    "remember me" => "تذكرني",
+    "forget password" => "نسيت كلمة السر؟",
+    "enter" => "أدخل",
+
     "about" => "حول",
     "blog" => "المدونة",
     "contact" => "الاتصال",
@@ -17,7 +28,7 @@ return [
     "contact info" => "معلومات الاتصال",
     "address" => "العنوان",
     "phone" => "الهاتف",
-    "email" => "الإيميل",
+    "email" => "البريد الإلكتروني",
     "working days" => "أيام العمل",
     "shop categories" => "تصنيفات المتجر",
     "popular tags" => "العلامات الشائعة",

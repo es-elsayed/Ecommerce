@@ -1,7 +1,18 @@
 <?php
 return [
 
-    "about" => "About",
+    "sign in" => "Sign In",
+    "don't have an account yet" => "Don't have an account yet?",
+    "sign up here" => "Sign up here",
+    "sign in with" => "Sign in with",
+    "google" => " Google",
+    "facebook" => " Facebook",
+    "password" => "Password",
+    "remember me" => "Remember Me",
+    "forget password" => "Forget Password?",
+    "enter" => "Enter",
+
+    "about" => " About",
     "blog" => "Blog",
     "contact" => "Contact",
     "categories" => "Categories",
@@ -17,7 +28,7 @@ return [
     "contact info" => "CONTACT INFO",
     "address" => "ADDRESS",
     "phone" => "PHONE",
-    "email" => "EMAIL",
+    "email" => " EMAIL",
     "working days" => "WORKING DAYS",
     "shop categories" => "SHOP CATEGORIES",
     "popular tags" => "POPULAR TAGS",

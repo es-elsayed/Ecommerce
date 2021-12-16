@@ -1,8 +1,9 @@
 @extends('layouts.site')
 @section('title')
-{{ __('Sign in') }}
+{{ __('content.sign in') }}
 @endsection
 @section('content')
+<!--vue default style-->
 {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -76,15 +77,13 @@
     <section class="py-3 border-bottom d-none d-md-flex">
         <div class="container">
             <div class="page-breadcrumb d-flex align-items-center">
-                <h3 class="breadcrumb-title pe-3">Sign in</h3>
+                <h3 class="breadcrumb-title pe-3">{{ __('content.sign in') }}</h3>
                 <div class="ms-auto">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> Home</a>
+                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{__('content.home')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="javascript:;">Authentication</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Sign In</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('content.sign in') }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -102,26 +101,26 @@
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
-                                        <h3 class="">Sign in</h3>
-                                        <p>Don't have an account yet? <a href="{{ route('register') }}">Sign up here</a>
+                                        <h3 class="">{{ __('content.sign in') }}</h3>
+                                        <p>{{ __("content.don't have an account yet") }}<a href="{{ route('register') }}">{{ __('content.sign up here') }}</a>
                                         </p>
                                     </div>
                                     <div class="d-grid">
                                         <a class="btn my-4 shadow-sm btn-light" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
                                             <img class="me-2" src="{{asset("assets/site/images/icons/search.svg")}}" width="16" alt="Image Description">
-                                            <span>Sign in with Google</span>
+                                            <span>{{ __('content.sign in with') }}{{__('content.google')}}</span>
                                             </span>
-                                        </a> <a href="javascript:;" class="btn btn-light"><i class="bx bxl-facebook"></i>Sign in with Facebook</a>
+                                        </a> <a href="javascript:;" class="btn btn-light"><i class="bx bxl-facebook"></i>{{ __('content.sign in with') }}{{__('content.facebook')}}</a>
                                     </div>
-                                    <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span>
+                                    <div class="login-separater text-center mb-4"> <span>{{ __('content.sign in with') }}{{ __('content.email') }}</span>
                                         <hr>
                                     </div>
                                     <div class="form-body">
                                         <form class="row g-3" method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="col-12">
-                                                <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email Address"  name="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
+                                                <label for="email" class="form-label">{{ __('content.e-mail') }}</label>
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="{{ __('content.enter')." ". __('content.email') }}"  name="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -129,9 +128,9 @@
                                                 @enderror
                                             </div>
                                             <div class="col-12">
-                                                <label for="password" class="form-label">Enter Password</label>
+                                                <label for="password" class="form-label">{{ __('content.password') }}</label>
                                                 <div class="input-group" id="show_hide_password">
-                                                    <input type="password" class="form-control border-end-0 @error('password') is-invalid @enderror" id="password" placeholder="Enter Password" name="password" required autocomplete="off"> <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
+                                                    <input type="password" class="form-control border-end-0 @error('password') is-invalid @enderror" id="password" placeholder="{{ __('content.enter')." ". __('content.password') }}" name="password" required autocomplete="off"> <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -142,14 +141,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
-                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+                                                    <label class="form-check-label" for="flexSwitchCheckChecked">{{ __('content.remember me') }}</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 text-end">	<a href="{{ route('password.request') }}">Forgot Password ?</a>
+                                            <div class="col-md-6 text-end">	<a href="{{ route('password.request') }}">{{ __('content.forget password') }}</a>
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button type="submit" class="btn btn-light"><i class="bx bxs-lock-open"></i>{{ __('Login') }}</button>
+                                                    <button type="submit" class="btn btn-light"><i class="bx bxs-lock-open"></i>{{ __('content.sign in') }}</button>
                                                     {{-- @if (Route::has('password.request'))
                                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                                             {{ __('Forgot Your Password?') }}
