@@ -106,11 +106,15 @@
                                         </p>
                                     </div>
                                     <div class="d-grid">
-                                        <a class="btn my-4 shadow-sm btn-light" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
+                                        <a class="btn my-4 shadow-sm btn-light" href="{{ route('social.login','google') }}"> <span class="d-flex justify-content-center align-items-center">
                                             <img class="me-2" src="{{asset("assets/site/images/icons/search.svg")}}" width="16" alt="Image Description">
                                             <span>{{ __('content.sign in with') }}{{__('content.google')}}</span>
                                             </span>
-                                        </a> <a href="javascript:;" class="btn btn-light"><i class="bx bxl-facebook"></i>{{ __('content.sign in with') }}{{__('content.facebook')}}</a>
+                                        </a>
+                                        <a href="{{ route('social.login','facebook') }}" class="btn btn-light">
+                                            <i class="bx bxl-facebook"></i>
+                                            {{ __('content.sign in with') }}{{__('content.facebook')}}
+                                        </a>
                                     </div>
                                     <div class="login-separater text-center mb-4"> <span>{{ __('content.sign in with') }}{{ __('content.email') }}</span>
                                         <hr>

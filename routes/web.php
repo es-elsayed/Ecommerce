@@ -3,16 +3,15 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\CartController;
-use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\Cart\AddressController;
 use App\Http\Controllers\Site\Cart\OrderController;
 use App\Http\Controllers\Site\Cart\ShippingController;
-use App\Http\Controllers\Site\CategoryController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ProfileController;
 use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\ShopController;
+use App\Http\Controllers\Site\SocialController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -44,6 +43,8 @@ Route::group(
         Route::resource('/shop', ShopController::class, ['as' => 'site']);
         Route::resource('/search', SearchController::class, ['as' => 'site']);
         Route::resource('/home', HomeController::class, ['as' => 'site']);
+        Route::get('redirect/{service}',[SocialController::class,'redirect'])->name('social.login');
+        Route::get('{service}/callback',[SocialController::class,'callback'])->name('social.callback');
 
         Route::prefix('cart')->name('site.cart.')->group(function () {
             // ******************** Cart Routes **************************
