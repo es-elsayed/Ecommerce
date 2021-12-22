@@ -6,10 +6,13 @@
                     <div class="product-compare"><span><i class="bx bx-git-compare"></i> Compare</span>
                     </div>
                 </a>
-                <a href="" data-name[{{ $loop->iteration }}]="{{ $product->name }}" class="anchor">
-                    <div class="product-wishlist"> <i class="bx bx-heart"></i>
-                    </div>
-                </a>
+                <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
+                    @csrf
+                    <button type="submit" class="bg-transparent border-0" data-name[{{ $loop->iteration }}]="{{ $product->name }}">
+                        <div class="product-wishlist"> <i class="bx bx-heart"></i>
+                        </div>
+                    </button>
+                </form>
             </div>
         </div>
         <a href="{{ route('shop.product.show',$product->slug) }}">
@@ -187,8 +190,11 @@
                                     <button class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add To Cart</button>
                                 </form>
                                 {{-- <a href="javascript:;" class="">Add to Cart</a> --}}
-                                <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
-                                    Wishlist</a>
+                                <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
+                                @csrf
+                                <button class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
+                                    Wishlist</button>
+                                </form>
                             </div>
                         </div>
                     </div>

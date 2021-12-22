@@ -93,8 +93,8 @@ Shop
                                 @endif
                             </div>
                             <div class="mt-3">
-                                <h6>{{ __('content.description') }} :</h6>
-                                <p class="mb-0">{{ $product->description}}</p>
+                                <h6>{{ __('content.details') }} :</h6>
+                                <p class="mb-0">{{ $product->details}}</p>
                             </div>
                             <dl class="row mt-3">
                                 <dt class="col-sm-3">sku: </dt>

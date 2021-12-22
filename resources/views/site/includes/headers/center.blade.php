@@ -42,8 +42,10 @@
                             <li class="nav-item"><a href="{{ route('site.profile.index') }}" class="nav-link cart-link"><i
                                         class='bx bx-user'></i></a>
                             </li>
-                            <li class="nav-item"><a href="javascript:;" class="nav-link cart-link"><i
-                                        class='bx bx-heart'></i></a>
+                            <li class="nav-item">
+                                <a href="{{ route('site.favorite.index') }}" class="nav-link cart-link">
+                                    <i class='bx bx-heart'></i>
+                                    </a>
                             </li>
                             <li class="nav-item dropdown dropdown-large">
                                 <a href="#"

@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\Cart\AddressController;
 use App\Http\Controllers\Site\Cart\OrderController;
 use App\Http\Controllers\Site\Cart\ShippingController;
+use App\Http\Controllers\Site\FavoriteProductController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\PhoneController;
 use App\Http\Controllers\Site\ProfileController;
@@ -61,6 +62,7 @@ Route::group(
         // ************************** Auth Routes **************************
         Route::group(['middleware' => 'auth:web'], function () {
             Route::resource('/address', AddressController::class, ['as' => 'site']);
+            Route::resource('/favorite', FavoriteProductController::class, ['as' => 'site']);
             Route::resource('/shipping', ShippingController::class, ['as' => 'site']);
             Route::resource('/profile', ProfileController::class, ['as' => 'site']);
             Route::resource('/order', OrderController::class, ['as' => 'site']);

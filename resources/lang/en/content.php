@@ -70,4 +70,5 @@ return [
     "saudi arabia" => "Saudi Arabia",
     "egypt" => "Egypt",
 
+    "favorite" => "Favorite",
 ];
