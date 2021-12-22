@@ -8,6 +8,7 @@ use App\Http\Controllers\Site\Cart\AddressController;
 use App\Http\Controllers\Site\Cart\OrderController;
 use App\Http\Controllers\Site\Cart\ShippingController;
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\PhoneController;
 use App\Http\Controllers\Site\ProfileController;
 use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\ShopController;
@@ -40,7 +41,9 @@ Route::group(
 
         // ************************** Guest Routes **************************
         Route::post('/register', [RegisterController::class, 'create'])->name('register');
+        Route::resource('login/phone', PhoneController::class,['as'=>'site.login']);
         Route::resource('/shop', ShopController::class, ['as' => 'site']);
+        Route::get('/shop/product/{slug}', [ShopController::class, 'product'])->name('shop.product.show');
         Route::resource('/search', SearchController::class, ['as' => 'site']);
         Route::resource('/home', HomeController::class, ['as' => 'site']);
         Route::get('redirect/{service}',[SocialController::class,'redirect'])->name('social.login');

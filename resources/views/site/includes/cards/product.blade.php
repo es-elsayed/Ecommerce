@@ -12,7 +12,7 @@
                 </a>
             </div>
         </div>
-        <a href="product-details.html">
+        <a href="{{ route('shop.product.show',$product->slug) }}">
             <img src="{{ asset($product->main_image) }}" class="card-img-top" alt="...">
         </a>
         <div class="card-body">
@@ -75,10 +75,6 @@
                         <div class="image-zoom-section">
                             <div class="product-gallery owl-carousel owl-theme border mb-3 p-3 owl-loaded owl-drag"
                                 data-slider-id="1">
-
-
-
-
                                 <div class="owl-stage-outer">
                                     <div class="owl-stage"
                                         style="transform: translate3d(-1039px, 0px, 0px); transition: all 0s ease 0s; width: 4156px;">

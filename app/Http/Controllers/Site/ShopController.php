@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MainCategoryResource;
 use App\Http\Resources\SubCategoryResource;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -13,7 +14,7 @@ class ShopController extends Controller
 
     public function index(){
         $categories = Category::activeParent()->paginate(PAGINATION_COUNT);
-        return view('site.pages.shop.categories', get_defined_vars());
+        return view('site.pages.shop.index', get_defined_vars());
     }
 
     public function create()
@@ -71,5 +72,14 @@ class ShopController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function product(Request $request,$slug)
+    {
+        $product = Product::activeProductBySlug($slug);
+        if($product->status === 0){
+            return view('site.pages.shop.show')->with('error','Sorry..! Product unAvailable Now');
+        }
+        return view('site.pages.shop.show',compact('product'));
     }
 }

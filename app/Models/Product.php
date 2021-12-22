@@ -47,6 +47,9 @@ class Product extends Model
     static function getProductById($id){
         return Product::where('id',$id)->select('id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','created_at','updated_at')->firstOrFail();
     }
+    static function activeProductBySlug($slug){
+        return Product::whereSlug($slug)->select('id','sku','slug','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','created_at','updated_at')->firstOrFail();
+    }
 
     public function orders()
     {

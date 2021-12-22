@@ -37,7 +37,7 @@ class SocialController extends Controller
                 case 'facebook':
                     $fullName = explode(" ", $user->getName());
                     $isUser = User::create([
-                        'google_id' => $user->id,
+                        'facebook_id' => $user->getId(),
                         'f_name' => $fullName[0],
                         'l_name' => $fullName[1],
                         'image' => $user->avatar_original,
