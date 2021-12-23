@@ -49,13 +49,13 @@ $(document).ready(function(){
         let target = "#"+where+"s"
         var query = e.value;
         // console.log();
-        console.log(region_id,city_id);
+        // console.log(region_id,city_id);
         $.ajax({
             url:"{{ route('site.search.index') }}",
             type: "GET",
             data: {'search':query,'where':where,region_id,city_id},
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 $(target).html(data);
             }
         })
@@ -63,6 +63,7 @@ $(document).ready(function(){
 })
 </script>
 <script>
+    // Check-out Addresses
     $('div.hide-address').css('display',"none")
     $('input[type="radio"]').on('change',function(){
         switch ($(this).val()) {
@@ -87,5 +88,10 @@ $(document).ready(function(){
             break;
         }
     })
+</script>
+<script>
+    $("#product").on('change', function (e) {
+        window.location = $( "#products input[type='hidden']" ).val();
+});
 </script>
 @yield('extra-js')

@@ -89,10 +89,3 @@
         <!--end row-->
     </div>
 </div>
-@section('extra-js')
-<script>
-    $("#product").on('change', function () {
-    console.log('changed');
-});
-</script>
-@endsection

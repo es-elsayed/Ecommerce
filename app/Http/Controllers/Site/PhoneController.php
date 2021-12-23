@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PhoneController extends Controller
 {
@@ -30,7 +32,13 @@ class PhoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'f_name' => $request['f_name'],
+            'l_name' => $request['l_name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->route('site.home.index');
     }
 
     /**
