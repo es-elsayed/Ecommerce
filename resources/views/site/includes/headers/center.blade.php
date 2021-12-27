@@ -15,16 +15,18 @@
             </div>
             <div class="col-12 col-md order-4 order-md-2">
                 <div class="input-group flex-nowrap px-xl-4">
-                    <input autocomplete="off" list="products" name="product" id="product" class="form-control w-100" placeholder="{{ __('content.search for products') }}">
+                    <input autocomplete="off" list="products" name="product" id="product" class="form-control w-100"
+                        placeholder="{{ __('content.search for products') }}">
                     <datalist id="products">
                     </datalist>
-                    <select class="form-select flex-shrink-0" aria-label="Default select example"
+                    {{-- <select class="form-select flex-shrink-0" aria-label="Default select example"
                         style="width: 10.5rem;">
                         <option selected>{{ __('content.categories') }}</option>
                         @foreach (\App\Models\Category::activeParent()->get() as $main_category)
                         <option value="{{ $main_category->id }}">{{ $main_category->name }}</option>
                         @endforeach
-                    </select> <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
+                    </select> --}}
+                    <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
             </div>
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
@@ -39,13 +41,13 @@
                 <div class="top-cart-icons">
                     <nav class="navbar navbar-expand">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a href="{{ route('site.profile.index') }}" class="nav-link cart-link"><i
-                                        class='bx bx-user'></i></a>
+                            <li class="nav-item"><a href="{{ route('site.profile.index') }}"
+                                    class="nav-link cart-link"><i class='bx bx-user'></i></a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('site.favorite.index') }}" class="nav-link cart-link">
                                     <i class='bx bx-heart'></i>
-                                    </a>
+                                </a>
                             </li>
                             <li class="nav-item dropdown dropdown-large">
                                 <a href="#"
@@ -57,7 +59,9 @@
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="{{ route('site.cart.list') }}">
                                         <div class="cart-header">
-                                            <p class="cart-header-title mb-0">{{ Cart::getTotalQuantity() == 1 ? Cart::getTotalQuantity() ." ". __('content.item') : Cart::getTotalQuantity() ." ". __('content.items') }}</p>
+                                            <p class="cart-header-title mb-0">{{ Cart::getTotalQuantity() == 1 ?
+                                                Cart::getTotalQuantity() ." ". __('content.item') :
+                                                Cart::getTotalQuantity() ." ". __('content.items') }}</p>
                                             <p class="cart-header-clear ms-auto mb-0">{{ __('content.view cart') }}</p>
                                         </div>
                                     </a>

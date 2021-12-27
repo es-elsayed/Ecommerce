@@ -13,7 +13,7 @@
 	<title>@yield('title')</title>
 </head>
 
-<body class="bg-theme bg-theme1">	<b class="screen-overlay"></b>
+<body class="bg-theme bg-notheme">	<b class="screen-overlay"></b>
 	<!--wrapper-->
 	<div class="wrapper">
 		{{-- <div class="discount-alert bg-dark-1 d-none d-lg-block">

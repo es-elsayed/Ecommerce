@@ -10,6 +10,8 @@
         <p class="mb-0">Gaussian Texture</p>
         <hr>
         <ul class="switcher">
+            <li id="notheme"></li>
+            <li id="theme0"></li>
             <li id="theme1"></li>
             <li id="theme2"></li>
             <li id="theme3"></li>

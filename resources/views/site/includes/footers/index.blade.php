@@ -1,5 +1,5 @@
 <footer>
-    <section class="py-4 bg-dark-1">
+    <section class="py-4 bg-dark-1 border-top">
         <div class="container">
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
                 <div class="col">
@@ -29,9 +29,10 @@
                         <h6 class="mb-3 text-uppercase"> {{ __('content.shop categories') }} </h6>
                         <ul class="list-unstyled">
                             @foreach (\App\Models\Category::activeParent()->paginate(5) as $main_category)
-                            <li class="mb-1"><a href="{{ route('site.shop.show', $main_category->slug) }}"><i class='bx bx-chevron-right'></i> {{ $main_category->name }} </a>
+                            <li class="mb-1">
+                                <a href="{{ route('site.shop.show', $main_category->slug) }}" class="tag-link"><i class='bx bx-chevron-right'></i> {{ $main_category->name }} </a>
                             </li>
-                            <a href="" class="tag-link">Electronis</a>includes.product.product-card'
+                            <a href="" class="tag-link">Electronis</a>
                             @endforeach
                             </li>
                         </ul>
