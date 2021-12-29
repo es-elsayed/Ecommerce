@@ -19,6 +19,7 @@ class CreateRegionsTable extends Migration
             $table->string('name_en');
             $table->string('name_ar');
             $table->integer('shipping_price');
+            $table->integer('fast_shipping_price');
 
             $table->timestamps();
         });

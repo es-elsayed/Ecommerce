@@ -18,6 +18,7 @@ class Region extends Model
     static function shippingPrice(){
         $address = session()->get('billing.region');
         return Region::where('name_en', $address)
-                        ->orwhere('name_ar', $address)->firstOrFail(['shipping_price','fast_shipping_price']);
+                        ->orwhere('name_ar', $address)
+                        ->firstOrFail(['shipping_price','fast_shipping_price']);
     }
 }

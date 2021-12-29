@@ -27,28 +27,33 @@ Shop
                                     <ul class="list-unstyled mb-0 categories-list">
                                         @foreach ($sub_categories as $sub_category)
                                         <li>
-                                            <a href="{{ route('site.shop.show', $sub_category->slug) }}">{{ $sub_category->name}}
+                                            <a href="{{ route('site.shop.show', $sub_category->slug) }}">{{
+                                                $sub_category->name}}
                                                 {{-- <span class="float-end badge rounded-pill bg-light">42</span> --}}
                                             </a>
                                         </li>
                                         @endforeach
                                         <hr>
+                                        <h6 class="text-uppercase mb-3">{{ __('content.sort by price') }}</h6>
+                                        <li class="form-check">
+                                            <input class="form-check-input sort" type="radio" data-sort="low-to-high"
+                                                name="sort" @if(request()->get('sort')=='low-to-high') checked @endif>
+                                            <a href="{{ route('site.shop.show',[$category->slug,'sort'=>'low-to-high']) }}"
+                                                id="id1"> {{ __('content.low to high') }} </a>
+                                        </li>
+                                        <li class="form-check">
+                                            <input class="form-check-input sort" type="radio" data-sort="high-to-low"
+                                                name="sort" @if(request()->get('sort')=='high-to-low') checked @endif>
+                                            <a href="{{ route('site.shop.show',[$category->slug,'sort'=>'high-to-low']) }}"
+                                                id="id2"> {{ __('content.high to low') }} </a>
+                                        </li>
                                     </ul>
-                                </div>
-                                <div class="size-range">
-                                    <h6 class="text-uppercase mb-3">{{ __('content.sort by price') }}</h6>
-                                            <div class="form-check">
-                                                <input class="form-check-input sort" type="radio" data-sort="low-to-high" name="sort" @if(request()->get('sort')=='low-to-high') checked @endif>
-                                                <a href="{{ route('site.shop.show',[$category->slug,'sort'=>'low-to-high']) }}" id="id1"> {{ __('content.low to high') }} </a>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input sort" type="radio" data-sort="high-to-low" name="sort" @if(request()->get('sort')=='high-to-low') checked @endif>
-                                                <a href="{{ route('site.shop.show',[$category->slug,'sort'=>'high-to-low']) }}" id="id2"> {{ __('content.high to low') }} </a>
-                                            </div>
                                 </div>
                                 <hr>
                                 <div class="d-flex align-items-center">
-                                    <a href="{{ route('site.shop.show',$category->slug) }}"  class="btn btn-white btn-sm text-uppercase rounded-0 font-13 fw-500"> {{ __('content.clear') }} </a>
+                                    <a href="{{ route('site.shop.show',$category->slug) }}"
+                                        class="btn btn-white btn-sm text-uppercase rounded-0 font-13 fw-500"> {{
+                                        __('content.clear') }} </a>
                                     {{-- <button type="button">{{ __('content.clear') }}</button> --}}
                                 </div>
                                 {{--
@@ -188,13 +193,18 @@ Shop
                                 <div class="d-flex align-items-center flex-nowrap">
                                     <p class="mb-0 font-13 text-nowrap text-white">Sort By:</p>
                                     <select class="form-select ms-3 rounded-0">
-                                        <option value="menu_order" selected="selected"><a href="{{ route('site.shop.show',$category->slug) }}">Default sorting</a></option>
-                                        <option value="popularity"><a href="{{ route('site.shop.show',$category->slug, ['sort'=>'low to high']) }}">Low to Height</a></option>
-                                        <option value="rating"><a href="{{ Request::url().'ll' }}">Height to Low</a></option>
+                                        <option value="menu_order" selected="selected"><a
+                                                href="{{ route('site.shop.show',$category->slug) }}">Default sorting</a>
+                                        </option>
+                                        <option value="popularity"><a
+                                                href="{{ route('site.shop.show',$category->slug, ['sort'=>'low to high']) }}">Low
+                                                to Height</a></option>
+                                        <option value="rating"><a href="{{ Request::url().'ll' }}">Height to Low</a>
+                                        </option>
                                     </select>
                                 </div>
                             </div>
-                             <div class="d-flex flex-wrap">
+                            <div class="d-flex flex-wrap">
                                 <div class="d-flex align-items-center flex-nowrap">
                                     <p class="mb-0 font-13 text-nowrap text-white">Show:</p>
                                     <select class="form-select ms-3 rounded-0">
@@ -207,7 +217,7 @@ Shop
                                     </select>
                                 </div>
                             </div>
-                             <div> <a href="shop-grid-left-sidebar.html" class="btn btn-white rounded-0"><i
+                            <div> <a href="shop-grid-left-sidebar.html" class="btn btn-white rounded-0"><i
                                         class="bx bxs-grid me-0"></i></a>
                             </div>
                             <div> <a href="shop-list-left-sidebar.html" class="btn btn-light rounded-0"><i
@@ -279,4 +289,3 @@ sorting_buttons.forEach(button => {
     })
 </script>
 @endsection
-

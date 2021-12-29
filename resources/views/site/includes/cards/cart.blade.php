@@ -24,10 +24,12 @@ $cart_prod = \App\Models\Product::getProductById($item->id)
         </div>
     </div>
     <div class="col-12 col-lg-3">
-        <form class="cart-action text-center" data-parent id="parent-{{ $loop->iteration }}" action="{{ route('site.cart.update') }}" method="POST">
+        <form class="cart-action text-center" data-parent id="parent-{{ $loop->iteration }}"
+            action="{{ route('site.cart.update') }}" method="POST">
             @csrf
             <input type="hidden" name="id" data-child="#parent-{{ $loop->iteration }}" value="{{ $item->id}}">
-            <input type="number" class="form-control rounded-0 qty" name="quantity" value="{{ $item->quantity }}" min="1">
+            <input type="number" class="form-control rounded-0 qty" name="quantity" value="{{ $item->quantity }}"
+                min="1">
             {{-- <button type="submit" class="btn btn-white btn-ecomm"><i class="bx bx-x-circle"></i> Clear
                 Cart</button> --}}
         </form>
@@ -37,14 +39,17 @@ $cart_prod = \App\Models\Product::getProductById($item->id)
     <div class="col-12 col-lg-3">
         <div class="text-center">
             <div class="d-flex gap-2 justify-content-center justify-content-lg-end">
-                    <form class="" action="{{ route('site.cart.remove') }}" method="POST">
-                        @csrf
-                        <input type="hidden" value="{{ $item->id }}" name="id">
-                        <button type="submit"  class="btn btn-light rounded-0 btn-ecomm"> <i class="bx bx-x-circle"></i>{{ __('content.remove') }}</button>
-                    </form>
-                <a href="{{ route('site.cart.remove',) }}" class="btn btn-light rounded-0 btn-ecomm">
-                    <i class="bx bx-heart me-0"></i>
-                </a>
+                <form class="" action="{{ route('site.cart.remove') }}" method="POST">
+                    @csrf
+                    <input type="hidden" value="{{ $item->id }}" name="id">
+                    <button type="submit" class="btn btn-dark rounded-0 btn-ecomm"> <i class="bx bx-x-circle"></i>{{
+                        __('content.remove') }}</button>
+                </form>
+                <form action="{{ route('site.favorite.store',['id'=>$item->id]) }}" method="post">
+                    @csrf
+                    <button class="btn btn-light btn-ecomm d-inline-block">
+                        <i class="bx bx-heart"></i></button>
+                </form>
             </div>
         </div>
     </div>

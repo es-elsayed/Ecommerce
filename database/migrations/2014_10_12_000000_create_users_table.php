@@ -19,8 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('l_name');
             $table->string('image')->default('https://png.pngitem.com/pimgs/s/247-2472278_admin-admin-icon-png-transparent-png.png');
             $table->string('phone')->nullable()->unique();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('google_id')->nullable();

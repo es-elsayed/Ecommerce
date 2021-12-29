@@ -44,33 +44,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password')
-                                }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm
-                                Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -119,7 +92,8 @@
                                     </p>
                                 </div>
                                 @include('site.includes.cards.social')
-                                <div class="login-separater text-center mb-4"> <span>OR SIGN UP WITH EMAIL</span>
+                                <div class="login-separater text-center mb-4">
+                                    <span>OR SIGN UP WITH EMAIL</span>
                                     <hr />
                                 </div>
                                 <div class="form-body">
@@ -159,12 +133,23 @@
                                             @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="inputChoosePassword" class="form-label">Password</label>
+                                            <label for="phone" class="form-label">{{ __('content.phone number')
+                                                }}</label>
+                                            <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                                id="phone" name="phone" placeholder="0123456789">
+                                            @error('phone')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="password" class="form-label">{{ __('Password')}}</label>
                                             <div class="input-group" id="show_hide_password">
                                                 <input type="password"
                                                     class="form-control border-end-0 @error('password') is-invalid @enderror"
-                                                    id="inputChoosePassword" name="password" {{-- value="12345678" --}}
-                                                    placeholder="Enter Password"> <a href="javascript:;"
+                                                    id="password" name="password" placeholder="Enter Password" required
+                                                    autocomplete="new-password"> <a href="javascript:;"
                                                     class="input-group-text bg-transparent"><i
                                                         class='bx bx-hide'></i></a>
                                             </div>
@@ -174,36 +159,33 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        {{-- <div class="col-12">
-                                            <label for="inputSelectCountry" class="form-label">Country</label>
-                                            <select class="form-select @error('country') is-invalid @enderror"
-                                                id="inputSelectCountry" name="country"
-                                                aria-label="Default select example">
-                                                <option selected>India</option>
-                                                <option value="1">United Kingdom</option>
-                                                <option value="2">America</option>
-                                                <option value="3">Dubai</option>
-                                            </select>
-                                            @error('country')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div> --}}
-                                        {{-- <div class="col-12">
-                                            <div class="form-check form-switch">
-                                                <input
-                                                    class="form-check-input @error('conditions_agree') is-invalid @enderror"
-                                                    type="checkbox" id="flexSwitchCheckChecked" name="conditions_agree">
-                                                <label class="form-check-label" for="flexSwitchCheckChecked">I read and
-                                                    agree to Terms & Conditions</label>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
-                                            @error('conditions_agree')
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="password-confirm" class="form-label">{{ __('Confirm Password')
+                                                }}</label>
+                                            <div class="input-group" id="show_hide_password">
+                                                <input type="password"
+                                                    class="form-control border-end-0 @error('password_confirmation') is-invalid @enderror"
+                                                    id="password-confirm" name="password_confirmation"
+                                                    placeholder="Enter Password" required autocomplete="new-password">
+                                                <a href="javascript:;" class="input-group-text bg-transparent"><i
+                                                        class='bx bx-hide'></i></a>
+                                            </div>
+                                            @error('password_confirmation')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
-                                        </div> --}}
+                                        </div>
                                         <div class="col-12">
                                             <div class="d-grid">
                                                 <button type="submit" class="btn btn-light"><i class='bx bx-user'></i>{{

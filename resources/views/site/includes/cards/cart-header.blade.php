@@ -1,7 +1,7 @@
 @php
 $cart_prod = \App\Models\Product::getProductById($item->id)
 @endphp
-<a class="dropdown-item" href="javascript:;">
+<a class="dropdown-item" href="{{ route('shop.product.show',$cart_prod->slug) }}">
     <div class="d-flex align-items-center">
         <div class="flex-grow-1">
             <h6 class="cart-product-title">{{ $cart_prod->name }}</h6>

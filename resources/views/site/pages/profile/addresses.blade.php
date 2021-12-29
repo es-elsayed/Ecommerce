@@ -21,8 +21,8 @@
             <div class="border-bottom"></div>
             @endforeach
     </div>
-    <form action="{{ route('site.address.store',auth()->user()->id) }}" class="row g-3 my-3">
-
+    <form method="POST" action="{{ route('site.address.store') }}" class="row g-3">
+        @csrf
         @include('site.includes.extra.add-address')
         <div class="col-md-6 hide-address">
             <input type="hidden" name="save_address" value="true">
