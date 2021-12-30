@@ -3,12 +3,14 @@
         <div class="card-header bg-transparent border-bottom-0">
             <div class="d-flex align-items-center justify-content-end gap-3">
                 <a href="javascript:;">
-                    <div class="product-compare"><span><i class="bx bx-git-compare"></i> Compare</span>
+                    <div class="product-compare"><span><i class="bx bx-git-compare"></i> {{ __('content.compare')
+                            }}</span>
                     </div>
                 </a>
                 <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
                     @csrf
-                    <button type="submit" class="bg-transparent border-0" data-name[{{ $loop->iteration }}]="{{ $product->name }}">
+                    <button type="submit" class="bg-transparent border-0" data-name[{{ $loop->iteration }}]="{{
+                        $product->name }}">
                         <div class="product-wishlist"> <i class="bx bx-heart"></i>
                         </div>
                     </button>
@@ -45,20 +47,23 @@
                 <div class="product-action mt-2">
                     <div class="d-grid gap-2">
                         <form action="{{ route('site.cart.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" value="{{ $product->id }}" name="id">
-                        <input type="hidden" value="{{ $product->name }}" name="name">
-                        <input type="hidden" value="{{ $product->price }}" name="price">
-                        <input type="hidden" value="{{ $product->main_image }}"  name="image">
-                        <input type="hidden" value="1" name="quantity">
-                        <button class="btn btn-dark btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>Add To Cart</button>
-                    </form>
-{{--
+                            @csrf
+                            <input type="hidden" value="{{ $product->id }}" name="id">
+                            <input type="hidden" value="{{ $product->name }}" name="name">
+                            <input type="hidden" value="{{ $product->price }}" name="price">
+                            <input type="hidden" value="{{ $product->main_image }}" name="image">
+                            <input type="hidden" value="1" name="quantity">
+                            <button class="btn btn-dark btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>
+                                {{ __('content.add to cart') }}
+                            </button>
+                        </form>
+                        {{--
                         <a href="javascript:;" class=""> <i class="bx bxs-cart-add"></i>Add to
                             Cart</a> --}}
                         <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal"
-                            data-bs-target="#QuickViewProduct-{{ $loop->iteration }}"><i class="bx bx-zoom-in"></i>Quick
-                            View</a>
+                            data-bs-target="#QuickViewProduct-{{ $loop->iteration }}"><i class="bx bx-zoom-in"></i>
+                            {{ __("content.quick view") }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -83,15 +88,13 @@
                                         style="transform: translate3d(-1039px, 0px, 0px); transition: all 0s ease 0s; width: 4156px;">
                                         <div class="owl-item active" style="width: 509.5px; margin-right: 10px;">
                                             <div class="item">
-                                                <img src="{{ asset($product->main_image) }}" class="img-fluid"
-                                                    alt="">
+                                                <img src="{{ asset($product->main_image) }}" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         @foreach ($product->images as $prod_image )
                                         <div class="owl-item" style="width: 509.5px; margin-right: 10px;">
                                             <div class="item">
-                                                <img src="{{ asset($prod_image->image) }}" class="img-fluid"
-                                                    alt="">
+                                                <img src="{{ asset($prod_image->image) }}" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         @endforeach
@@ -180,20 +183,22 @@
                             </div>
                             <!--end row-->
                             <div class="d-flex gap-2 mt-3">
-                                <form action="{{ route('site.cart.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('site.cart.store') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" value="{{ $product->id }}" name="id">
                                     <input type="hidden" value="{{ $product->name }}" name="name">
                                     <input type="hidden" value="{{ $product->price }}" name="price">
-                                    <input type="hidden" value="{{ $product->image }}"  name="image">
+                                    <input type="hidden" value="{{ $product->image }}" name="image">
                                     <input type="hidden" value="1" name="quantity">
-                                    <button class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add To Cart</button>
+                                    <button class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add To
+                                        Cart</button>
                                 </form>
                                 {{-- <a href="javascript:;" class="">Add to Cart</a> --}}
                                 <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
-                                @csrf
-                                <button class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
-                                    Wishlist</button>
+                                    @csrf
+                                    <button class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
+                                        Wishlist</button>
                                 </form>
                             </div>
                         </div>
@@ -205,4 +210,3 @@
     </div>
 </div>
 {{-- ======================= End Pop up details==================== --}}
-

@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
-    Favorite
+{{ __('content.favorite') }}
 @endsection
 @section('content')
 <div class="page-content">
@@ -33,7 +33,7 @@
                                 @forelse ($products as $product )
                                 @include('site.includes.cards.product')
                                 @empty
-                                <div>No Products</div>
+                                <div>{{ __('content.favorite')." ".__('content.is empty') }}</div>
                                 @endforelse
                             </div>
                             <!--end row-->

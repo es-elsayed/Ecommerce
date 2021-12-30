@@ -1,6 +1,6 @@
 <div class="form-check">
     <input class="form-check-input" name="address_choise" value="new" type="radio" id="new_address">
-    <label class="form-check-label" for="new_address">Add new Address</label>
+    <label class="form-check-label" for="new_address">{{ __('content.add new address') }}</label>
 </div>
 <div class="col-md-6 hide-address">
     <label class="form-label">{{ __('content.region') }}</label>
@@ -28,7 +28,7 @@
     @enderror
 </div>
 <div class="col-md-6 hide-address">
-    <label class="form-label">Zip/Postal Code</label>
+    <label class="form-label">{{ __('content.zip') }}</label>
     <input type="text" name="zip" class="form-control rounded-0" value="{{ old('zip') }}">
     @error('zip')
         <span class="text-danger">{{ $message }}</span>

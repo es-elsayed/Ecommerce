@@ -5,47 +5,47 @@
         @csrf
         @method('put')
         <div class="col-md-6">
-            <label class="form-label">First Name</label>
+            <label class="form-label">{{ __('content.first name') }}</label>
             <input type="text" name="f_name" class="form-control" value="{{ auth()->user()->f_name }}">
         </div>
         @error('f_name')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
         <div class="col-md-6">
-            <label class="form-label">Last Name</label>
+            <label class="form-label">{{ __('content.last name') }}</label>
             <input type="text" name="l_name" class="form-control" value="{{ auth()->user()->l_name }}">
         </div>
         @error('l_name')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
         <div class="col-12">
-            <label class="form-label">Email address</label>
+            <label class="form-label">{{ __('content.email') }}</label>
             <input type="text" name="email" class="form-control" value="{{ auth()->user()->email }}">
         </div>
         @error('email')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
         <div class="col-12">
-            <label class="form-label">Phone Number</label>
+            <label class="form-label">{{ __('content.phone number') }}</label>
             <input type="tel" name="phone" class="form-control" value="{{ auth()->user()->phone }}">
         </div>
         @error('phone')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
         <div class="col-12">
-            <label class="form-label">Current Password</label>
+            <label class="form-label">{{ __('content.password') }}</label>
             <input type="password" name="password"  id="password" class="form-control" value="" autocomplete="off" autofill="off">
         </div>
         @error('password')
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
         <div class="col-12">
-            <label class="form-label">New Password</label>
+            <label class="form-label">{{ __('content.change password') }}</label>
             <input type="password" name="new_password" id="new_password" class="form-control" autocomplete="off"
                 autofill="off">
         </div>
         <div class="col-12">
-            <label class="form-label">Confirm New Password</label>
+            <label class="form-label">{{ __('content.confirm new password') }}</label>
             <input type="password" name="confirm_password" id="confirm_password" class="form-control" autocomplete="off"
                 autofill="off">
         </div>
@@ -54,7 +54,7 @@
             <div class="invalid-feedback d-block">{{ $message }}</div>
         @enderror
         <div class="col-12">
-            <button type="submit" class="btn btn-light btn-ecomm">Save Changes</button>
+            <button type="submit" class="btn btn-light btn-ecomm">{{ __('content.save changes') }}</button>
         </div>
     </form>
 </div>

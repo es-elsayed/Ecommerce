@@ -62,8 +62,8 @@
                     <div class="footer-section4 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.stay informed') }} </h6>
                         <div class="subscribe">
-                            <input type="text" class="form-control radius-30" placeholder="Enter Your Email" />
-                            <div class="mt-2 d-grid">	<a href="javascript:;" class="btn btn-white btn-ecomm radius-30">Subscribe</a>
+                            <input type="text" class="form-control radius-30" placeholder="{{ __('content.enter')." ".__('content.email') }}" />
+                            <div class="mt-2 d-grid">	<a href="javascript:;" class="btn btn-white btn-ecomm radius-30">{{ __('content.subscribe') }}</a>
                             </div>
                             <p class="mt-2 mb-0 font-13">Subscribe to our newsletter to receive early discount offers, updates and new products info.</p>
                         </div>

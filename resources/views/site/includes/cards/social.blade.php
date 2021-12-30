@@ -8,8 +8,4 @@
         <i class="bx bxl-facebook"></i>
         {{ __('content.sign in with') }}{{__('content.facebook')}}
     </a>
-    <a href="{{ route('site.login.phone.index') }}" class="my-4 btn btn-light">
-        <i class="bx bx-mobile"></i>
-        {{ __('content.sign in with') }} {{__('content.phone')}}
-    </a>
 </div>

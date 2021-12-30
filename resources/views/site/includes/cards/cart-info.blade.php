@@ -13,7 +13,7 @@
                 </div>
                 <div class="card rounded-0 border bg-transparent shadow-none">
                     <div class="card-body">
-                        <p class="fs-5 text-white">Order summary</p>
+                        <p class="fs-5 text-white">{{ __("content.order summary") }}</p>
 
                         @foreach (\Cart::getContent() as $item)
                         @include('site.includes.cards.cart-checkout')

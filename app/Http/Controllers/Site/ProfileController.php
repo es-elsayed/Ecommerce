@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('site.pages.profile.index');
+        return view('site.pages.profile.details');
     }
 
     public function create()

@@ -1974,10 +1974,17 @@ body.bg-notheme .list-group-item {
 body.bg-notheme .login-separater span {
     background-color: #000;
 }
+body.bg-notheme .bg-dark-4 {
+    background-color: #fff;
+}
 
 body.bg-notheme ul.categories-list li a,
 body.bg-notheme address{
     color: #212529;
+}
+body.bg-notheme .dropdown-item:focus,
+body.bg-notheme .dropdown-item:hover{
+    background-color: #212529;
 }
 
 body.bg-notheme .table-light {

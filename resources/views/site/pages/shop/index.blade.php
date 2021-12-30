@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
-    Shop
+{{ __('content.shop') }}
 @endsection
 @section('content')
 				<!--start breadcrumb-->
@@ -11,11 +11,9 @@
                     <div class="container">
                         <div class="product-categories">
 							<div class="row row-cols-1 row-cols-lg-4">
-                                @forelse ($categories as $category )
+                                @foreach ($categories as $category )
                                 @include('site.includes.cards.category')
-                                @empty
-                                <div>No Products</div>
-                                @endforelse
+                                @endforeach
                             </div>
 							<!--end row-->
 						</div>

@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
-Shop
+{{ __('content.shop') }}
 @endsection
 @section('content')
 <!--start breadcrumb-->
@@ -11,12 +11,20 @@ Shop
             <div class="ms-auto">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="{{ route('site.home.index') }}"><i
-                                    class="bx bx-home-alt"></i> Home</a>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('site.home.index') }}">
+                                <i class="bx bx-home-alt"></i>
+                                {{ __('content.home') }}
+                            </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('site.shop.index') }}">Shop</a>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('site.shop.index') }}">
+                            {{ __('content.shop') }}
+                            </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{ $product->name }}
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -141,8 +149,9 @@ Shop
                                 <input type="hidden" value="{{ $product->price }}" name="price">
                                 <input type="hidden" value="{{ $product->main_image }}" name="image">
                                 <input type="hidden" value="1" name="quantity">
-                                <button class="btn btn-light btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>Add To
-                                    Cart</button>
+                                <button class="btn btn-light btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>
+                                    {{ __('content.add to cart') }}
+                                </button>
                             </form>
                             <hr>
                             <div class="product-sharing">

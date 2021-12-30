@@ -113,7 +113,7 @@
                                         <form class="row g-3" method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="col-12">
-                                                <label for="email" class="form-label">{{ __('content.e-mail') }} / {{ __('content.phone') }}</label>
+                                                <label for="email" class="form-label">{{ __('content.email') }} / {{ __('content.phone') }}</label>
                                                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="{{ __('content.enter')." ". __('content.email')." / ". __('content.phone') }}"  name="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">

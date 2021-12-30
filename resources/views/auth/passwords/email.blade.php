@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('title')
-Forgot Password
+{{ __('content.forget password') }}
 @endsection
 @section('content')
 {{-- <div class="container">
@@ -12,24 +12,26 @@ Forgot Password
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address')
+                                }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -52,15 +54,21 @@ Forgot Password
     <div class="container">
 
         <div class="page-breadcrumb d-flex align-items-center">
-            <h3 class="breadcrumb-title pe-3">Forgot Password</h3>
+            <h3 class="breadcrumb-title pe-3">
+                {{ __('content.forget password') }}
+            </h3>
             <div class="ms-auto">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> Home</a>
+                        <li class="breadcrumb-item">
+                            <a href="javascript:;">
+                                <i class="bx bx-home-alt"></i>
+                                {{ __('content.home') }}
+                            </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="javascript:;">Authentication</a>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{ __('content.forget password') }}
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Forgot Password</li>
                     </ol>
                 </nav>
             </div>
@@ -79,7 +87,7 @@ Forgot Password
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                        @endif
                         <div class="text-center">
                             <img src="{{ asset('assets/site/images/icons/forgot-2.png') }}" width="120" alt="" />
                         </div>
@@ -87,19 +95,24 @@ Forgot Password
                         <p class="">Enter your registered email ID to reset the password</p>
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
-                        <div class="my-4">
-                            <label class="form-label" for="email">{{ __('E-Mail Address') }}</label>
-                            <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" placeholder="example@user.com"  value="{{ old('email') }}" required autocomplete="email" autofocus />
-                            @error('email')
+                            <div class="my-4">
+                                <label class="form-label" for="email">{{ __('E-Mail Address') }}</label>
+                                <input id="email" type="email"
+                                    class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                    name="email" placeholder="example@user.com" value="{{ old('email') }}" required
+                                    autocomplete="email" autofocus />
+                                @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-light btn-lg">{{ __('Send Password Reset Link') }}</button>
-                            <a href="{{ route('login') }}" class="btn btn-light btn-lg"><i class='bx bx-arrow-back me-1'></i>Back to Login</a>
-                        </div>
+                                @enderror
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-light btn-lg">{{ __('Send Password Reset Link')
+                                    }}</button>
+                                <a href="{{ route('login') }}" class="btn btn-light btn-lg"><i
+                                        class='bx bx-arrow-back me-1'></i>Back to Login</a>
+                            </div>
                         </form>
 
                     </div>

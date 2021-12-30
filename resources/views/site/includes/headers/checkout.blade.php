@@ -5,11 +5,11 @@
             <div class="ms-auto">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="{{ route('site.home.index') }}"><i class="bx bx-home-alt"></i> Home</a>
+                        <li class="breadcrumb-item"><a href="{{ route('site.home.index') }}"><i class="bx bx-home-alt"></i>{{ __('content.home') }}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('site.shop.index') }}">Shop</a>
+                        <li class="breadcrumb-item"><a href="{{ route('site.shop.index') }}">{{ __('content.shop') }}</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('content.checkout') }}</li>
                     </ol>
                 </nav>
             </div>

@@ -6,7 +6,8 @@
                 <h5 class="py-2 text-white">Navigation</h5>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home.index') }}">{{ __('content.home') }} </a>
+                <li class="nav-item active"> <a class="nav-link" href="{{ route('site.home.index') }}">{{
+                        __('content.home') }} </a>
                 </li>
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                         data-bs-toggle="dropdown"> {{ __('content.categories') }}<i class='bx bx-chevron-down'></i></a>
@@ -14,12 +15,14 @@
                         <div class="row">
                             @foreach (\App\Models\Category::activeParent()->get() as $main_category )
                             <div class="col-md-4">
-                                <h6 class="large-menu-title">{{ $main_category->name_en }}</h6>
+                                <h6 class="large-menu-title">{{ $main_category->name }}</h6>
                                 <ul class="">
-                                    @foreach(\App\Models\Category::getChildrenByParentId($main_category->id)
-                                    as $sub_cat)
-                                    <li><a href="#">{{ $sub_cat->name_en }}</a>
-                                    @endforeach
+                                    @foreach($main_category->childs as $sub_cat)
+                                    <li>
+                                        <a href="{{ route('site.shop.show',$sub_cat->slug) }}">
+                                            {{ $sub_cat->name }}
+                                        </a>
+                                        @endforeach
                                 </ul>
                             </div>
                             @endforeach

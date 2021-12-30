@@ -56,7 +56,7 @@ class MainCategoryController extends Controller
         // return 'finishing sub cat and product first';
         DB::beginTransaction();
         $main_category = Category::findOrFail($id);
-        $sub_categories = Category::getChildrenByParentId($id);
+        $sub_categories = $main_category->childs;
         if (sizeof($sub_categories)) {
             foreach ($sub_categories as $sub_category) {
                 $sub_category->update(['status' => 1]);
@@ -78,7 +78,7 @@ class MainCategoryController extends Controller
         // return 'finishing sub cat and product first';
         DB::beginTransaction();
         $main_category = Category::findOrFail($id);
-        $sub_categories = Category::getChildrenByParentId($id);
+        $sub_categories = $main_category->childs;
         if (sizeof($sub_categories)) {
             foreach ($sub_categories as $sub_category) {
                 $sub_category->update(['status' => 0]);
@@ -154,7 +154,7 @@ class MainCategoryController extends Controller
         try {
             DB::beginTransaction();
             $main_category = Category::findOrFail($id);
-            $sub_categories = Category::getChildrenByParentId($id);
+            $sub_categories = $main_category->childs;
             if (sizeof($sub_categories)) {
                 return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Delete "' . $main_category->name_en . ' Category !! There are Sub-Categories belongs to');
             }

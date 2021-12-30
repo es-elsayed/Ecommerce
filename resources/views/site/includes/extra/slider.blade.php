@@ -16,10 +16,10 @@
                         <div class="col d-none d-lg-flex justify-content-center">
                             <div class="">
                                 {{-- <h3 class="h3 fw-light">Complete your look with</h3> --}}
-                                <h3 class="h1">{{ $slider->title_en }}</h3>
-                                <p class="pb-3">{{ $slider->description_en }}</p>
-                                <div class=""> <a class="btn btn-dark btn-ecomm" href="{{ $slider->link }}">Shop Now <i
-                                            class="bx bx-chevron-right"></i></a>
+                                <h3 class="h1">{{ $slider->title }}</h3>
+                                <p class="pb-3">{{ $slider->description }}</p>
+                                <div class=""> <a class="btn btn-light btn-ecomm" href="{{ $slider->link }}">{{
+                                        __('content.shop now') }}<i class="bx bx-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
-Shop
+{{ __('content.shop') }}
 @endsection
 @section('content')
 <div class="page-content">

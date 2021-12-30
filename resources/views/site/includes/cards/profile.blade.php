@@ -10,7 +10,9 @@
         </div>
         <div class="ms-auto">
             <a href="{{ route('site.profile.edit',auth()->user()->id) }}" class="btn btn-light btn-ecomm">
-                <i class="bx bx-edit"></i> Edit Profile</a>
+                <i class="bx bx-edit"></i>
+                {{ __('content.edit profile') }}
+            </a>
         </div>
     </div>
 </div>

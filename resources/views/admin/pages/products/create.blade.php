@@ -154,14 +154,13 @@ Add Product
                                         <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
                                             $parent_category->name_en }}</label>
                                         <ul>
-                                            @foreach(\App\Models\Category::getChildrenByParentId($parent_category->id)
-                                            as $sub_cat)
+                                            @foreach($parent_category->childs as $sub_cat)
                                             <li class="d-inline">
                                                 <input class="form-check-input sub-cat" type="checkbox"
                                                     id="cat_[{{ $sub_cat->id }}]" name="categories[]"
                                                     value="{{ $sub_cat->id }}">
                                                 <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">{{
-                                                    $sub_cat->name_en }}</label>
+                                                    $sub_cat->name }}</label>
 
                                             </li>
                                             @endforeach

@@ -32,17 +32,22 @@ class Category extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function childs()
+    {
+        return $this->hasMany(Category::class,'parent_id')->select('categories.id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','categories.created_at','categories.updated_at');
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class)->select('products.id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','products.created_at','products.updated_at');
     }
 
+
     // ----------------------------------------------------------
     // ------------------------ FOR ADMIN ------------------------
     // ----------------------------------------------------------
-    static function getChildrenByParentId($id){
-        return Category::where(['is_parent'=> 0, 'parent_id'=>$id])->get();
-    }
+
     static function isChild($slug){
         return Category::where(['is_parent'=> 0, 'slug'=>$slug])->firstOrFail();
     }

@@ -11,9 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::where('status',1)->get();
-        $main_categories = Category::activeParent();
+        $sliders = Slider::activeSlider();
         $products = Product::popularProduct();
+
         return view('site.home',get_defined_vars());
     }
 }

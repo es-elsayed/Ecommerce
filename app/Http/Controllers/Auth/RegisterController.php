@@ -48,6 +48,7 @@ class RegisterController extends Controller
             'f_name' => $data['f_name'],
             'l_name' => $data['l_name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
         return redirect()->route('site.home.index');

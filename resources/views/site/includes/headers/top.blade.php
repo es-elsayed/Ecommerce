@@ -36,7 +36,7 @@
                                     @else
                                     <i class="flag-icon flag-icon-ae me-2"></i>
                                     @endif
-                                    {{ $properties['native'] }}
+                                    <span>{{ $properties['native'] }}</span>
                                 </a>
                             {{-- </li> --}}
                         @endforeach
