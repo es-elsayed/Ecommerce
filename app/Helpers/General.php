@@ -41,7 +41,10 @@ function isArabic($value)
 {
     return preg_match('/\p{Arabic}/u', $value);
 }
-
+function reviewsCount($review)
+{
+    return count($review) ?? 0 ;
+}
 function getNumbers()
 {
     $tax = config('shopping_cart.tax') / 100;
@@ -50,13 +53,13 @@ function getNumbers()
 
     $subTotal = \Cart::getTotal();
     $items = \Cart::getContent();
-    $cart_items = $items->pluck('quantity','id');
+    $cart_items = $items->pluck('quantity', 'id');
 
     $products = Product::whereIn('id', $cart_items->keys())->get();
     $subTotal = 0;
     foreach ($products as $product) {
         $price = $product->sale ? $product->sale_price :  $product->price;
-        $price = $price*$cart_items[$product->id];
+        $price = $price * $cart_items[$product->id];
         $subTotal += $price;
     }
 

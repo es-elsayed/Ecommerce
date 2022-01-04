@@ -58,6 +58,7 @@ Products
                             <th>Status</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Featured</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -74,12 +75,12 @@ Products
                                     alt="product image"></td>
                             <td>{{ $product->name_en }}</td>
                             <td style="max-width: 15rem; overflow-x: auto;">
-                                {{-- <textarea name="categories" id="categories" class="form-control scro" style="width:15rem; line-height: 1" disabled> --}}
+                                <p style="width:100%; height: 100%; overflow: auto;" disabled>
                                     @foreach($product->categories as $category )
                                     {{ $category->name }}
                                     @if ($loop->count != $loop->iteration)<span class="bold text-danger"> & </span> @endif
                                 @endforeach
-                                {{-- </textarea> --}}
+                                </p>
 
                             </td>
                             <td>
@@ -94,18 +95,25 @@ Products
                                 <h6 class="mb-0 font-14 text-center">{{ currency($product->price) }}</h6>
                             </td>
                             <td>
+                                @if ($product->status == 0)
+                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="ms-3"><i class="lni lni-star"></i></a>
+                                    @else
+                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="ms-3"><i class="lni lni-star-filled text-warning"></i></a>
+                                    @endif
+                            </td>
+                            <td>
                                 <div class="d-flex order-actions">
                                     <a href="{{ route('admin.product.edit', $product->slug) }}" class="ms-3"><i class="bx bxs-edit"></i></a>
-                                    <form action="{{ route('admin.product.destroy', $product->id) }}"
+                                    {{-- <form action="{{ route('admin.product.destroy', $product->id) }}"
                                         method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
-                                    </form>
+                                    </form> --}}
                                     @if ($product->status == 0)
-                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="custom-a success text-capitalize ms-3">Activate</a>
+                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="ms-3"><i class="lni lni-checkmark-circle text-success"></i></a>
                                     @else
-                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="custom-a danger text-capitalize ms-3">deactivate</a>
+                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="ms-3"><i class="lni lni-ban text-danger"></i></a>
                                     @endif
                                 </div>
                             </td>

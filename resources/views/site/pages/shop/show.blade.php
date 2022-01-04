@@ -19,7 +19,7 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('site.shop.index') }}">
-                            {{ __('content.shop') }}
+                                {{ __('content.shop') }}
                             </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
@@ -80,17 +80,16 @@
                     <div class="col-12 col-lg-7">
                         <div class="product-info-section p-3">
                             <h3 class="mt-3 mt-lg-0 mb-0">{{ $product->name }}</h3>
-                            {{-- <div class="product-rating d-flex align-items-center mt-2">
-                                <div class="rates cursor-pointer font-13"> <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-light-4"></i>
+                            <div class="product-rating d-flex align-items-center mt-2">
+                                @if (count($reviews))
+                                <div class="rates cursor-pointer font-13">
+                                    <x-site.cards.rate :rate="round($reviews->sum('rate')/count($reviews))" />
                                 </div>
+                                @endif
                                 <div class="ms-1">
-                                    <p class="mb-0">(24 Ratings)</p>
+                                    <p class="mb-0">({{ reviewsCount($reviews) }}) Ratings</p>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="d-flex align-items-center mt-3 gap-2">
                                 @if ($product->sale)
                                 <h5 class="mb-0 text-decoration-line-through text-light-3">{{ currency($product->price)
@@ -207,14 +206,42 @@
                         </div>
                     </a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                        <div class="d-flex align-items-center">
+                            <div class="tab-title text-uppercase fw-500">({{ reviewsCount($reviews) }}) Reviews</div>
+                        </div>
+                    </a>
+                </li>
             </ul>
             <div class="tab-content pt-3">
                 <div class="tab-pane fade show active" id="discription" role="tabpanel">
                     {{$product->description}}
                 </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                    <div class="row">
+                        <div class="col col-lg-8">
+                            <div class="product-review">
+
+                                <h5 class="mb-4"> ({{ reviewsCount($reviews) }}) Reviews For The Product</h5>
+                                <div class="review-list">
+                                    @foreach ($reviews as $review )
+                                    <x-site.cards.review :review="$review" />
+
+                                    <hr>
+                                    @endforeach
+                                    @if (in_array(auth()->user()->id,$orders) &&
+                                    !in_array(auth()->user()->id,$reviews->pluck('user_id')->toArray()) )
+                                    <x-site.forms.review :id="$product->id " />
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <!--end row-->
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 <!--end product more info-->
 @endsection

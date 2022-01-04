@@ -67,7 +67,7 @@ class OrderController extends Controller
 
     public function all($id)
     {
-        $orders = Order::where('user_id',auth()->user()->id)->orderBy('id', 'desc')->paginate(PAGINATION_COUNT);
+        $orders = Order::with(['products'])->where('user_id',auth()->user()->id)->orderBy('id', 'desc')->paginate(PAGINATION_COUNT);
         // return $orders[2]->products;
         return view('site.pages.profile.orders',compact('orders'));
     }

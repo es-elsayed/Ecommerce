@@ -19,13 +19,6 @@
                         placeholder="{{ __('content.search for products') }}">
                     <datalist id="products">
                     </datalist>
-                    {{-- <select class="form-select flex-shrink-0" aria-label="Default select example"
-                        style="width: 10.5rem;">
-                        <option selected>{{ __('content.categories') }}</option>
-                        @foreach (\App\Models\Category::activeParent()->get() as $main_category)
-                        <option value="{{ $main_category->id }}">{{ $main_category->name }}</option>
-                        @endforeach
-                    </select> --}}
                     <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
             </div>

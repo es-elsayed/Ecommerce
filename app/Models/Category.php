@@ -40,7 +40,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->select('products.id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','products.created_at','products.updated_at');
+        return $this->belongsToMany(Product::class)->where('status',1)->select('products.id','name_'.app()->getLocale().' as name','details_'.app()->getLocale().' as details','description_'.app()->getLocale().' as description','status','quantity', 'main_image', 'price','sale_price','sale','products.created_at','products.updated_at');
     }
 
 
@@ -63,7 +63,7 @@ class Category extends Model
     // ----------------------------------------------------------
 
     static function activeParent(){
-        return Category::where(['is_parent'=> 1, 'status'=>1])->select('id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','created_at','updated_at');
+        return Category::with('childs')->where(['is_parent'=> 1, 'status'=>1])->select('id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','created_at','updated_at');
     }
     static function getActiveChildrenByParentSlug($slug){
         $category = Category::whereSlug($slug)->firstOrFail();

@@ -37,12 +37,13 @@
                         <span class="text-white fs-5">{{ currency($product->price) }}</span>
                         @endif
                     </div>
-                    {{-- <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
-                        <i class="bx bxs-star text-white"></i>
-                        <i class="bx bxs-star text-white"></i>
-                        <i class="bx bxs-star text-white"></i>
-                        <i class="bx bxs-star text-white"></i>
-                    </div> --}}
+                    <div class="cursor-pointer ms-auto">
+                        @if (count($product->reviews))
+                        <x-site.cards.rate :rate="round($product->reviews->sum('rate')/count($product->reviews))" />
+                        @else
+                        <x-site.cards.rate :rate="0" />
+                        @endif
+                    </div>
                 </div>
                 <div class="product-action mt-2">
                     <div class="d-grid gap-2">
@@ -137,8 +138,12 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mt-3 gap-2">
-                                <h5 class="mb-0 text-decoration-line-through text-light-3">$98.00</h5>
-                                <h4 class="mb-0">$49.00</h4>
+                                @if ($product->sale)
+                                <span class="me-1 text-decoration-line-through">{{ currency($product->price) }}</span>
+                                <span class="text-white fs-5">{{ currency($product->sale_price) }}</span>
+                                @else
+                                <span class="text-white fs-5">{{ currency($product->price) }}</span>
+                                @endif
                             </div>
                             <div class="mt-3">
                                 <h6>{{ __('content.details') }} :</h6>

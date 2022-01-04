@@ -4,22 +4,18 @@
     <h6 class="mb-4">The following addresses will be used on the checkuot page by default.</h6>
     <div class="row">
         <h5 class="mb-3">Shipping Addresses</h5>
-            @foreach ($addresses as $address )
-            <address class="col-12 my-3 d-flex justify-content-between">
-                {{ $address->region->name }},
-                {{ $address->city->name }},
-                {{ $address->address }}
-                ({{ $address->zip }})
-                <form action="{{ route('site.address.destroy',$address->id) }}" method="post">
-                @csrf
-                @method('delete')
-                <button class="btn btn-light rounded-0 btn-ecomm">
-                    <i class="bx bx-x-circle me-0"></i></button>
-            </form>
-            </address>
+        @foreach ($addresses as $address )
+        <address class="col-12 my-3 d-flex justify-content-between">
+            {{ $address->region->name }},
+            {{ $address->city->name }},
+            {{ $address->address }}
+            ({{ $address->zip }})
 
-            <div class="border-bottom"></div>
-            @endforeach
+            <x-site.forms.btn-delete :action="route('site.address.destroy',$address->id)" />
+        </address>
+
+        <div class="border-bottom"></div>
+        @endforeach
     </div>
     <form method="POST" action="{{ route('site.address.store') }}" class="row g-3">
         @csrf
