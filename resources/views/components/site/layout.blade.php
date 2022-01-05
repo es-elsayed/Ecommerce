@@ -1,3 +1,4 @@
+@props(['title'])
 <!doctype html>
 <html lang="en">
 
@@ -10,7 +11,9 @@
 	<!--plugins-->
     @include('site.includes.extra.style')
 
-	<title>@yield('title')</title>
+	<title>
+        {{ $title }}
+    </title>
 </head>
 
 <body class="bg-theme bg-notheme">	<b class="screen-overlay"></b>
@@ -43,7 +46,7 @@
 		<div class="page-wrapper">
 			<div class="page-content">
 				<!--start content-->
-                @yield('content')
+                {{ $slot }}
 				<!--end content-->
 			</div>
 		</div>

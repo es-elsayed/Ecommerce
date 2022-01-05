@@ -1,11 +1,11 @@
-@extends('layouts.site')
-@section('title')
-{{ __('content.sign up') }}
-@endsection
-@section('content')
-<!--start breadcrumb-->
-<section class="py-3 border-bottom d-none d-md-flex">
-    <div class="container">
+<x-site.layout>
+    <x-slot name="title">
+        {{ __('content.sign up') }}
+    </x-slot>
+
+    <!--start breadcrumb-->
+    <section class="py-3 border-bottom d-none d-md-flex">
+        <div class="container">
         <div class="page-breadcrumb d-flex align-items-center">
             <h3 class="breadcrumb-title pe-3">{{ __('content.sign up') }}</h3>
             <div class="ms-auto">
@@ -15,15 +15,15 @@
                             <i class="bx bx-home-alt"></i>
                             {{ __('content.home') }}
                         </a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            {{ __('content.sign up') }}
-                        </li>
-                    </ol>
-                </nav>
-            </div>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ __('content.sign up') }}
+                    </li>
+                </ol>
+            </nav>
         </div>
     </div>
+</div>
 </section>
 <!--end breadcrumb-->
 <!--start shop cart-->
@@ -52,9 +52,9 @@
                                             <label for="f_name" class="form-label">{{ __('content.first name')
                                                 }}</label>
                                             <input type="text"
-                                                class="form-control @error('f_name') is-invalid @enderror" id="f_name"
-                                                name="f_name"
-                                                placeholder="{{ __('content.enter')." ".__('content.first name') }}">
+                                            class="form-control @error('f_name') is-invalid @enderror" id="f_name"
+                                            name="f_name"
+                                            placeholder="{{ __('content.enter')." ".__('content.first name') }}">
                                             @error('f_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -65,9 +65,9 @@
                                             <label for="l_name" class="form-label">{{ __('content.first name')
                                                 }}</label>
                                             <input type="text"
-                                                class="form-control @error('l_name') is-invalid @enderror" id="l_name"
-                                                name="l_name"
-                                                placeholder="{{ __('content.enter')." ".__('content.last name') }}">
+                                            class="form-control @error('l_name') is-invalid @enderror" id="l_name"
+                                            name="l_name"
+                                            placeholder="{{ __('content.enter')." ".__('content.last name') }}">
                                             @error('l_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -77,8 +77,8 @@
                                         <div class="col-12">
                                             <label for="email" class="form-label">{{ __('content.email') }}</label>
                                             <input type="email"
-                                                class="form-control @error('email') is-invalid @enderror" id="email"
-                                                name="email" placeholder="example@user.com">
+                                            class="form-control @error('email') is-invalid @enderror" id="email"
+                                            name="email" placeholder="example@user.com">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                                             <label for="phone" class="form-label">{{ __('content.phone number')
                                                 }}</label>
                                             <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                                                id="phone" name="phone" placeholder="0123456789">
+                                            id="phone" name="phone" placeholder="0123456789">
                                             @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -100,12 +100,12 @@
                                             <label for="password" class="form-label">{{ __('content.password')}}</label>
                                             <div class="input-group" id="show_hide_password">
                                                 <input type="password"
-                                                    class="form-control border-end-0 @error('password') is-invalid @enderror"
-                                                    id="password" name="password"
-                                                    placeholder="{{ __('content.enter')." ".__('content.password') }}"
-                                                    required autocomplete="new-password"> <a href="javascript:;"
+                                                class="form-control border-end-0 @error('password') is-invalid @enderror"
+                                                id="password" name="password"
+                                                placeholder="{{ __('content.enter')." ".__('content.password') }}"
+                                                required autocomplete="new-password"> <a href="javascript:;"
                                                     class="input-group-text bg-transparent"><i
-                                                        class='bx bx-hide'></i></a>
+                                                    class='bx bx-hide'></i></a>
                                             </div>
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -129,9 +129,9 @@
                                             </label>
                                             <div class="input-group" id="show_hide_password">
                                                 <input type="password"
-                                                    class="form-control border-end-0 @error('password_confirmation') is-invalid @enderror"
-                                                    id="password-confirm" name="password_confirmation"
-                                                    placeholder="{{ __('content.enter')." ".__('content.password') }}" required autocomplete="new-password">
+                                                class="form-control border-end-0 @error('password_confirmation') is-invalid @enderror"
+                                                id="password-confirm" name="password_confirmation"
+                                                placeholder="{{ __('content.enter')." ".__('content.password') }}" required autocomplete="new-password">
                                                 <a href="javascript:;" class="input-group-text bg-transparent">
                                                     <i class='bx bx-hide'></i>
                                                 </a>
@@ -160,4 +160,4 @@
     </div>
 </section>
 <!--end shop cart-->
-@endsection
+</x-site.layout>

@@ -27,7 +27,7 @@
             </div>
             <div class="step-label">
                 <i class="bx bx-cube"></i>
-                {{ __('content.details') }}
+                {{ __('content.shipping') }}
             </div>
         </a>
         <a class="step-item
