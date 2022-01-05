@@ -16,7 +16,7 @@ class SliderFactory extends Factory
     {
         $faker_ar = Faker::create('ar_JO');
         return [
-            'image' => 'assets/site/images/slider/0'. $this->faker->unique()->numberBetween(1,6) .'.png',
+            'image' => 'assets/site/images/slider/0'. $this->faker->unique()->numberBetween(1,5) .'.png',
                 'title_en' =>$this->faker->sentence(8),
                 'title_ar' =>  $faker_ar->sentence(8),
                 'description_en' => $this->faker->realText('30'),
