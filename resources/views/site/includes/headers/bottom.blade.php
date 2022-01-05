@@ -17,7 +17,7 @@
                             <div class="col-md-4">
                                 <h6 class="large-menu-title">{{ $main_category->name }}</h6>
                                 <ul class="">
-                                    @foreach($main_category->childs as $sub_cat)
+                                    @foreach($main_category->activeChilds as $sub_cat)
                                     <li>
                                         <a href="{{ route('site.shop.show',$sub_cat->slug) }}">
                                             {{ $sub_cat->name }}

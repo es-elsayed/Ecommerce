@@ -1,3 +1,4 @@
+@props(['sliders'])
 <section class="slider-section">
     <div class="first-slider">
         <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
@@ -18,8 +19,10 @@
                                 {{-- <h3 class="h3 fw-light">Complete your look with</h3> --}}
                                 <h3 class="h1">{{ $slider->title }}</h3>
                                 <p class="pb-3">{{ $slider->description }}</p>
-                                <div class=""> <a class="btn btn-light btn-ecomm" href="{{ $slider->link }}">{{
-                                        __('content.shop now') }}<i class="bx bx-chevron-right"></i></a>
+                                <div class="">
+                                    <x-site.a class="btn-light" href="/{{ $slider->link }}">
+                                        {{ __('content.shop now') }}<i class="bx bx-chevron-right"></i>
+                                    </x-site.a>
                                 </div>
                             </div>
                         </div>

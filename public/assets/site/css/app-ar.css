@@ -1856,7 +1856,9 @@ body.bg-notheme .bg-dark-1 {
     background-color: transparent !important;
 }
 
-body.bg-notheme a,
+
+/* body.bg-notheme a, */
+
 body.bg-notheme .btn.btn-link {
     color: #212529b6;
 }

@@ -31,13 +31,17 @@ class ShopController extends Controller
     public function show(Request $request,$slug)
     {
         $category = Category::where(['slug'=>$slug])->select('id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','created_at','updated_at')->firstOrFail();
-        // return $sub_categories = $category->getActiveChildrenByParentSlug($slug);
         if ($category->parent) {
-            // if Sub Category
-            $sub_categories = $category->getActiveChildrenByParentSlug($category->parent->slug);
+            /*
+            * if Sub Category
+            * return sibling category in same parent
+            */
+            $sub_categories = $category->parent->activeChilds;
         } else {
-            // if Main Category
-            $sub_categories = $category->getActiveChildrenByParentSlug($slug);
+            /*
+            * if Main Category
+            * return sub category
+            */            $sub_categories = $category->activeChilds;
         }
         if (request()->has('sort')) {
             switch (request()->get('sort')) {
@@ -85,5 +89,17 @@ class ShopController extends Controller
             return view('site.pages.shop.show')->with('error','Sorry..! Product unAvailable Now');
         }
         return view('site.pages.shop.show',get_defined_vars());
+    }
+    public function featured()
+    {
+        $products = Product::featuredProduct();
+        return view('site.pages.shop.products',compact('products'));
+        // return $products;
+        // $reviews = $product->reviews->load('user');
+        // $orders = $product->orders->pluck('user_id')->toArray();
+        // if($product->status === 0){
+        //     return view('site.pages.shop.show')->with('error','Sorry..! Product unAvailable Now');
+        // }
+        // return view('site.pages.shop.show',get_defined_vars());
     }
 }
