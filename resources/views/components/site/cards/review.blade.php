@@ -9,8 +9,10 @@
             <p class="mb-0 ms-auto">{{ $review->created_at->format('d F Y') }}</p>
         </div>
         <p class="w-100">{{ $review->comment }}</p>
+        @if (auth()->user())
         @if ($review->user_id === auth()->user()->id)
         <x-site.forms.btn-delete :action="route('site.review.destroy',$review->id)" />
+        @endif
         @endif
     </div>
 </div>

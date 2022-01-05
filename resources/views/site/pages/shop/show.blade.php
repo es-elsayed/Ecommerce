@@ -235,9 +235,11 @@
 
                                         <hr>
                                         @endforeach
+                                        @if (auth()->user())
                                         @if (in_array(auth()->user()->id,$orders) &&
                                         !in_array(auth()->user()->id,$reviews->pluck('user_id')->toArray()) )
                                         <x-site.forms.review :id="$product->id " />
+                                        @endif
                                         @endif
                                     </div>
                                 </div>
