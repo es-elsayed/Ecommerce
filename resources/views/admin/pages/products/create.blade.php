@@ -39,7 +39,7 @@ Add Product
         <div class="form-body mt-4">
             <div class="row">
                 <div class="col-lg">
-                    <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="border border-3 p-4 rounded">
                             <div class="row">

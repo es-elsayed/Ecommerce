@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,19 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Product::factory(10)->create();
+        Slider::factory(6)->create();
         $this->call([
             AdminSeeder::class,
-            SliderSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
+            RegionsSeeder::class,
+            CitiesSeeder::class,
         ]);
-        $categories = Category::all();
-        Product::all()->each(function($product) use ($categories) {
-            $product->categories()->attach(
-                $categories->random(2)->pluck('id')->toArray()
-            );
-        });
 
     }
 }

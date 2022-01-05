@@ -38,9 +38,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('subcategory/unactive/{id}', [SubCategoryController::class, 'unActive'])->name('admin.subcategory.unactive');
 
     // ********** Product Routes **********
-    Route::resource('product', ProductController::class, ['as' => 'admin']);
-    Route::get('product/active/{id}', [ProductController::class, 'active'])->name('admin.product.active');
-    Route::get('product/unactive/{id}', [ProductController::class, 'unActive'])->name('admin.product.unactive');
+    Route::resource('products', ProductController::class, ['as' => 'admin']);
+    Route::put('products/activate/{product}', [ProductController::class, 'activate'])->name('admin.products.activate');
+    Route::put('products/featured/{product}', [ProductController::class, 'featured'])->name('admin.products.featured');
 
     // ********** Slider Routes **********
     Route::resource('slider', SliderController::class, ['as' => 'admin']);

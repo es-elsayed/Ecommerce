@@ -4,9 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use Faker\Factory as Faker;
 
 class CategorySeeder extends Seeder
 {
@@ -17,8 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //create default main-category
-        Category::insert([
+        Category::factory()->create([
             'name_en' => 'un-defined',
             'name_ar' =>  'غير معروف',
             'status' => 0,
@@ -26,22 +22,10 @@ class CategorySeeder extends Seeder
             'image' => 'assets/images/notfound.jpg',
             'slug' => 'un-defined',
         ]);
-        //create random main-categories
-        \App\Models\Category::factory(10)->create();
-
-
-        //create random sub-categories
-        for ($i = 1; $i < 12; $i++) {
-            $cat_en =  Faker::create()->name;
-            Category::insert([
-                'name_en' => $cat_en,
-                'name_ar' =>  Faker::create('ar_JO')->name,
-                'status' => rand(0,1) || rand(0,1) ? 1: 0,
-                'is_parent' => 0,
-                'image' => 'assets/site/images/categories/0'. $i .'.png',
-                'slug' => Str::slug($cat_en),
-                'parent_id' => rand(1,8)
-            ]);
-        }
+        Category::factory(6)->create();
+        Category::factory(10)->create([
+            'is_parent' => 0,
+            'parent_id' => rand(1, 6)
+        ]);
     }
 }

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AcitvateRequest;
 use App\Http\Requests\Product\AddProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use App\Http\Requests\ProductActionsRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\ImageProduct;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -74,7 +77,7 @@ class ProductController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('admin.product.index')->with('success', "Product Added Successfully");
+            return redirect()->route('admin.products.index')->with('success', "Product Added Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
             // return $ex;
@@ -95,17 +98,15 @@ class ProductController extends Controller
         $images = $product->images;
         return view('admin.pages.products.edit', get_defined_vars());
     }
-    public function active($slug)
+    public function activate(ProductActionsRequest $request,Product $product)
     {
-        $product = Product::whereSlug($slug)->firstOrFail();
-        $product->update(['status'=>1]);
-        return redirect()->route('admin.product.index')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
+        $product->update(['status'=>$request->status]);
+        return redirect()->route('admin.products.index')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
     }
-    public function unActive($slug)
+    public function featured(ProductActionsRequest $request,Product $product)
     {
-        $product = Product::whereSlug($slug)->firstOrFail();
-        $product->update(['status'=>0]);
-        return redirect()->route('admin.product.index')->with('success', 'The "' . $product->name_en . '" Product status has been Unactivated Successfuly');
+        $product->update(['featured'=>$request->status]);
+        return redirect()->route('admin.products.index')->with('success', 'The "' . $product->name_en . '" Added to Featured Product Successfuly');
     }
 
     public function update(UpdateProductRequest $request, $slug)
@@ -165,13 +166,13 @@ class ProductController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('admin.product.index')->with('success', "Product has been Updated Successfully");
+            return redirect()->route('admin.products.index')->with('success', "Product has been Updated Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
         // 'category_id' => $request['category_id'],
-        return redirect()->route('admin.product.index')->with('success', "Product Added Successfully");
+        return redirect()->route('admin.products.index')->with('success', "Product Added Successfully");
     }
 
     public function destroy($id)
@@ -181,9 +182,9 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
             $product->delete();
             drop_image($product->main_image);
-            return redirect()->route('admin.product.index')->with('success', 'The Product has been Deleted Successfuly');
+            return redirect()->route('admin.products.index')->with('success', 'The Product has been Deleted Successfuly');
         } catch (\Exception $ex) {
-            return redirect()->route('admin.product.index')->with('error', 'Cannot Delete Product');
+            return redirect()->route('admin.products.index')->with('error', 'Cannot Delete Product');
             //throw $th;
         }
     }

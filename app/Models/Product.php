@@ -30,9 +30,16 @@ class Product extends Model
     {
         return $this->status == 1 ? 'active' : 'in-active';
     }
-    public static function popularProduct()
+    public static function featuredProduct()
     {
-        return Product::with('images')->where('status',1)->select('products.id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at', 'products.updated_at')->paginate(PAGINATION_COUNT);
+        return Product::with('images')
+                        ->where(['status'=>1,'featured'=>1])
+                        ->select('products.id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name',
+                        'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description',
+                        'status','featured', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at',
+                        'products.updated_at')
+                        ->inRandomOrder()
+                        ->paginate(PAGINATION_COUNT);
     }
     static function getProductById($id)
     {

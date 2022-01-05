@@ -43,7 +43,7 @@ Edit Product
         <div class="form-body mt-4">
             <div class="row">
                 <div class="col-lg">
-                    <form action="{{ route('admin.product.update', $product->slug) }}" method="post"
+                    <form action="{{ route('admin.products.update', $product->slug) }}" method="post"
                         enctype="multipart/form-data">
                         @method('put')
                         @csrf

@@ -43,8 +43,9 @@ Products
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="{{ route('admin.product.create') }}" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
-                            class="bx bxs-plus-square"></i>Add New Record</a></div>
+                <div class="ms-auto"><a href="{{ route('admin.products.create') }}"
+                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
+                        Record</a></div>
             </div>
             <div class="table-responsive">
                 <table class="table mb-0 table-border">
@@ -71,22 +72,24 @@ Products
                             <td>
                                 <h6 class="mb-0 font-14 text-center">{{ $product->sku }}</h6>
                             </td>
-                            <td><img src="{{ asset($product->main_image) }}" class="maincat-img"
-                                    alt="product image"></td>
+                            <td><img src="{{ asset($product->main_image) }}" class="maincat-img" alt="product image">
+                            </td>
                             <td>{{ $product->name_en }}</td>
                             <td style="max-width: 15rem; overflow-x: auto;">
                                 <p style="width:100%; height: 100%; overflow: auto;" disabled>
                                     @foreach($product->categories as $category )
                                     {{ $category->name }}
-                                    @if ($loop->count != $loop->iteration)<span class="bold text-danger"> & </span> @endif
-                                @endforeach
+                                    @if ($loop->count != $loop->iteration)<span class="bold text-danger"> & </span>
+                                    @endif
+                                    @endforeach
                                 </p>
 
                             </td>
                             <td>
                                 <div
                                     class="badge rounded-pill {{ $product->status ? 'text-success bg-light-success': 'text-danger bg-light-danger' }} p-2 text-uppercase px-3">
-                                    <i class="bx bxs-circle me-1"></i>{{ $product->getActive() }}</div>
+                                    <i class="bx bxs-circle me-1"></i>{{ $product->getActive() }}
+                                </div>
                             </td>
                             <td>
                                 <h6 class="mb-0 font-14 text-center">{{ $product->quantity }}</h6>
@@ -95,25 +98,34 @@ Products
                                 <h6 class="mb-0 font-14 text-center">{{ currency($product->price) }}</h6>
                             </td>
                             <td>
-                                @if ($product->status == 0)
-                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="ms-3"><i class="lni lni-star"></i></a>
+                                <div class="d-flex order-actions">
+                                    @if ($product->featured == 1)
+                                    <x-admin.forms.actions :route="'products.featured'" :value="0" :id="$product->id">
+                                        <i class="lni lni-star-filled text-warning"></i>
+                                    </x-admin.forms.actions>
+                                    {{-- <a href="{{ route('admin.products.activate', $product->slug) }}"
+                                        class="ms-3"><i class="lni lni-star"></i></a> --}}
                                     @else
-                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="ms-3"><i class="lni lni-star-filled text-warning"></i></a>
+                                    <x-admin.forms.actions :route="'products.featured'" :value="1" :id="$product->id">
+                                        <i class="lni lni-star"></i>
+                                    </x-admin.forms.actions>
+                                    {{-- <a href="{{ route('admin.products.activate', $product->slug) }}"
+                                        class="ms-3"><i class="lni lni-star-filled text-warning"></i></a> --}}
                                     @endif
+                                </div>
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.product.edit', $product->slug) }}" class="ms-3"><i class="bx bxs-edit"></i></a>
-                                    {{-- <form action="{{ route('admin.product.destroy', $product->id) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
-                                    </form> --}}
+                                    <a href="{{ route('admin.products.edit', $product->slug) }}" class="ms-3"><i
+                                            class="bx bxs-edit"></i></a>
                                     @if ($product->status == 0)
-                                    <a href="{{ route('admin.product.active', $product->slug) }}" class="ms-3"><i class="lni lni-checkmark-circle text-success"></i></a>
+                                    <x-admin.forms.actions :route="'products.activate'" :value="1" :id="$product->id">
+                                        <i class="lni lni-checkmark-circle text-success"></i>
+                                    </x-admin.forms.actions>
                                     @else
-                                    <a href="{{ route('admin.product.unactive', $product->slug) }}" class="ms-3"><i class="lni lni-ban text-danger"></i></a>
+                                    <x-admin.forms.actions :route="'products.activate'" :value="0" :id="$product->id">
+                                        <i class="lni lni-ban text-danger"></i>
+                                    </x-admin.forms.actions>
                                     @endif
                                 </div>
                             </td>

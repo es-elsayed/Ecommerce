@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Slider::activeSlider();
-        $products = Product::popularProduct();
+        $featuredProducts = Product::featuredProduct();
 
         return view('site.home',get_defined_vars());
     }

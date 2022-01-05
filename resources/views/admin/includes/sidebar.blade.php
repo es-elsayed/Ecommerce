@@ -45,9 +45,9 @@
                 <div class="menu-title">Products</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.product.index') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
+                <li> <a href="{{ route('admin.products.index') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
                 </li>
-                <li> <a href="{{ route('admin.product.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+                <li> <a href="{{ route('admin.products.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
                 </li>
             </ul>
         </li>
