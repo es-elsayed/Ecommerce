@@ -14,7 +14,7 @@ class CartController extends Controller
         }
         // $cartItems = \Cart::getContent()->get()->toArray();
         $cartItems = \Cart::getContent()->sortBy('id');
-        return view('site.pages.cart.index', compact('cartItems'));
+        return view('site.pages.cart', compact('cartItems'));
     }
 
 

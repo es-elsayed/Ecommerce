@@ -50,6 +50,7 @@ return [
     "confirm new password" => "تأكيد كلمة السر الجديدة",
     "confirm password" => "تأكيد كلمة السر",
     "save changes" => "حفظ التعديلات",
+    "top rated products" => "المنتجات الأعلى تصنيفًا",
 
     "about" => "حول",
     "blog" => "المدونة",
@@ -57,7 +58,7 @@ return [
     "categories" => "التصنيفات",
     "our stores" => "مخازننا",
     "welcome to our store!" => "!مرحبًا بكم في متجرنا",
-    "track order" => "!مرحبًا بكم في متجرنا",
+    "track order" => "تتبع الطلب",
     "help" => "المساعدة",
     "lang" => "اللغة",
     "search for products" => "ابحث عن منتج",

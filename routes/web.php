@@ -44,9 +44,12 @@ Route::group(
         // ************************** Guest Routes **************************
         Route::post('/register', [RegisterController::class, 'create'])->name('register');
         Route::resource('login/phone', PhoneController::class,['as'=>'site.login']);
+
         Route::resource('/shop', ShopController::class, ['as' => 'site']);
         Route::get('/shop/product/featured', [ShopController::class, 'featured'])->name('site.shop.product.featured');
+        Route::get('/shop/product/toprated', [ShopController::class, 'toprated'])->name('site.shop.product.toprated');
         Route::get('/shop/product/{slug}', [ShopController::class, 'product'])->name('shop.product.show');
+
         Route::resource('/search', SearchController::class, ['as' => 'site']);
         Route::resource('/home', HomeController::class, ['as' => 'site']);
         Route::get('redirect/{service}',[SocialController::class,'redirect'])->name('social.login');

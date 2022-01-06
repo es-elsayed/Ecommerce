@@ -3,29 +3,17 @@
         {{ __('content.home') }}
     </x-slot>
 
-    @if (count($sliders)>0)
+    @if (count($sliders ?? []) > 0)
     <x-site.includes.slider :sliders="$sliders" />
     @endif
 
-    @if (count($featured_products)>0)
-    <section class="py-4">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <h5 class="text-uppercase mb-0">{{ __('content.featured products') }}</h5>
-                <x-site.a class="btn-dark" href="{{ route('site.shop.product.featured') }}">
-                    {{ __('content.more products') }}<i class="bx bx-chevron-right"></i>
-                </x-site.a>
-            </div>
-            <hr>
-            <div class="product-grid">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-                    @foreach ($featured_products as $product )
-                    @include('site.includes.cards.product')
-                    @endforeach
-                </div>
-                <!--end row-->
-            </div>
-        </div>
-    </section>
+    @if (count($featured_products ?? []) > 0)
+    <x-site.product-section :products="$featured_products" :name="__('content.featured products')"
+        :route="route('site.shop.product.featured')" />
+    @endif
+
+    @if (count($top_rated ?? []) > 0)
+    <x-site.product-section :products="$top_rated" :name="__('content.top rated products')"
+        :route="route('site.shop.product.toprated')" />
     @endif
 </x-site.layout>

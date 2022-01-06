@@ -6,7 +6,7 @@
         </div>
         <div class="d-flex align-items-center mb-2">
             <h6 class="mb-0">{{ $review->user->f_name." ".$review->user->l_name }}</h6>
-            <p class="mb-0 ms-auto">{{ $review->created_at->format('d F Y') }}</p>
+            <p class="mb-0 ms-auto">{{ $review->created_at ? $reviews->created_at->format('d F Y') : '' }}</p>
         </div>
         <p class="w-100">{{ $review->comment }}</p>
         @if (auth()->user())

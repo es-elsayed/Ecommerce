@@ -5,7 +5,7 @@
 
     <div class="page-content">
         <!--start breadcrumb-->
-        @include('site.includes.headers.shop')
+        <x-site.includes.headers.shop />
         <!--end breadcrumb-->
         <!--start shop area-->
         <section class="py-4">

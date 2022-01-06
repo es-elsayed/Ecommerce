@@ -58,9 +58,6 @@
                                 {{ __('content.add to cart') }}
                             </button>
                         </form>
-                        {{--
-                        <a href="javascript:;" class=""> <i class="bx bxs-cart-add"></i>Add to
-                            Cart</a> --}}
                         <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal"
                             data-bs-target="#QuickViewProduct-{{ $loop->iteration }}"><i class="bx bx-zoom-in"></i>
                             {{ __("content.quick view") }}

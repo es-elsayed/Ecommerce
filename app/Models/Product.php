@@ -33,13 +33,26 @@ class Product extends Model
     public static function featuredProduct()
     {
         return Product::with('images')
-                        ->where(['status'=>1,'featured'=>1])
-                        ->select('products.id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name',
-                        'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description',
-                        'status','featured', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at',
-                        'products.updated_at')
-                        ->inRandomOrder()
-                        ->paginate(PAGINATION_COUNT);
+            ->where(['status' => 1, 'featured' => 1])
+            ->select(
+                'products.id',
+                'sku',
+                'slug',
+                'name_' . app()->getLocale() . ' as name',
+                'details_' . app()->getLocale() . ' as details',
+                'description_' . app()->getLocale() . ' as description',
+                'status',
+                'featured',
+                'quantity',
+                'main_image',
+                'price',
+                'sale_price',
+                'sale',
+                'products.created_at',
+                'products.updated_at'
+            )
+            ->inRandomOrder()
+            ->paginate(PAGINATION_COUNT);
     }
     static function getProductById($id)
     {
@@ -47,7 +60,7 @@ class Product extends Model
     }
     static function activeProductBySlug($slug)
     {
-        return Product::where(['slug'=>$slug,'status'=>1])->select('id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'created_at', 'updated_at')->firstOrFail();
+        return Product::where(['slug' => $slug, 'status' => 1])->select('id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'created_at', 'updated_at')->firstOrFail();
     }
 
     // relatins
@@ -76,5 +89,11 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+    static function ratings()
+    {
+        return Product::select('products.id','products.slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at', 'products.updated_at')
+            ->withAvg('reviews', 'rate')
+            ->orderBy('reviews_avg_rate', 'desc');
     }
 }

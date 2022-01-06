@@ -232,7 +232,6 @@
                                     <div class="review-list">
                                         @foreach ($reviews as $review )
                                         <x-site.cards.review :review="$review" />
-
                                         <hr>
                                         @endforeach
                                         @if (auth()->user())

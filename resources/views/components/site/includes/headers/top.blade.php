@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg-end">
+                    <div class="dropdown-menu dropdown-menu-lg-end p-0">
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             {{-- <li> --}}
                                 <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="dropdown-item d-flex allign-items-center">

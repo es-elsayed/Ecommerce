@@ -3,63 +3,60 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--favicon-->
-	@include('includes.icon')
-	<!--plugins-->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--favicon-->
+    @include('includes.icon')
+    <!--plugins-->
     @include('site.includes.extra.style')
 
-	<title>
+    <title>
         {{ $title }}
     </title>
 </head>
 
-<body class="bg-theme bg-notheme">	<b class="screen-overlay"></b>
-	<!--wrapper-->
-	<div class="wrapper">
-		{{-- <div class="discount-alert bg-dark-1 d-none d-lg-block">
-			<div class="alert alert-dismissible fade show shadow-none rounded-0 mb-0 border-bottom">
-				<div class="d-lg-flex align-items-center gap-2 justify-content-center">
-					<p class="mb-0 text-white">Get Up to <strong>40% OFF</strong> New-Season Styles</p>	<a href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Men</a>
-					<a href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Women</a>
-					<p class="mb-0 font-13 text-light-3">*Limited time only</p>
-				</div>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		</div> --}}
-		<!--start top header wrapper-->
-		<div class="header-wrapper bg-dark-1">
+<body class="bg-theme bg-notheme"> <b class="screen-overlay"></b>
+    <!--wrapper-->
+    <div class="wrapper">
+        {{-- <div class="discount-alert bg-dark-1 d-none d-lg-block">
+            <div class="alert alert-dismissible fade show shadow-none rounded-0 mb-0 border-bottom">
+                <div class="d-lg-flex align-items-center gap-2 justify-content-center">
+                    <p class="mb-0 text-white">Get Up to <strong>40% OFF</strong> New-Season Styles</p> <a
+                        href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Men</a>
+                    <a href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Women</a>
+                    <p class="mb-0 font-13 text-light-3">*Limited time only</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div> --}}
+        <!--start top header wrapper-->
 
-            @include('site.includes.headers.top')
-            @include('site.includes.headers.center')
-            @include('site.includes.headers.bottom')
-		</div>
+        <x-site.includes.headers.index />
 
-        @include('includes.alerts.success')
-        @include('includes.alerts.error')
+        <x-site.includes.alerts.success />
+        <x-site.includes.alerts.error />
 
-		<!--end top header wrapper-->
+        <!--end top header wrapper-->
 
-		<!--start page wrapper -->
-		<div class="page-wrapper">
-			<div class="page-content">
-				<!--start content-->
+        <!--start page wrapper -->
+        <div class="page-wrapper">
+            <div class="page-content">
+                <!--start content-->
                 {{ $slot }}
-				<!--end content-->
-			</div>
-		</div>
-		<!--end page wrapper -->
-		<!--start footer section-->
-        @include('site.includes.footers.index')
-		<!--end footer section-->
+                <!--end content-->
+            </div>
+        </div>
+        <!--end page wrapper -->
+        <!--start footer section-->
+        <x-site.includes.footers.index />
+        <!--end footer section-->
 
-	</div>
-	<!--end wrapper-->
-	<!--start switcher-->
+    </div>
+    <!--end wrapper-->
+    <!--start switcher-->
     @include('includes.themes')
-	<!--end switcher-->
+    <!--end switcher-->
     @include('site.includes.extra.scripts')
 </body>
 

@@ -27,7 +27,7 @@
                 </div>
                 <div class="ms-2">
                     <p class="mb-0 font-13">{{ __('content.call us') }}</p>
-                    <h5 class="mb-0">+011 5827918</h5>
+                    <h5 class="mb-0 d-ltr">+011 5827918</h5>
                 </div>
             </div>
             <div class="col col-md-auto order-2 order-md-4">

@@ -27,6 +27,7 @@ return [
     "fee" => "Fee",
     "flat rate" => "Flat Rate",
     "fast delivery" => "Fast Delivery",
+    "top rated products" => "Top Rated Products",
 
     "google" => " Google",
     "facebook" => " Facebook",

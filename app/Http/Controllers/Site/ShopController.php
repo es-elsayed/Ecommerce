@@ -94,12 +94,10 @@ class ShopController extends Controller
     {
         $products = Product::featuredProduct();
         return view('site.pages.shop.products',compact('products'));
-        // return $products;
-        // $reviews = $product->reviews->load('user');
-        // $orders = $product->orders->pluck('user_id')->toArray();
-        // if($product->status === 0){
-        //     return view('site.pages.shop.show')->with('error','Sorry..! Product unAvailable Now');
-        // }
-        // return view('site.pages.shop.show',get_defined_vars());
+    }
+    public function toprated()
+    {
+        $products = Product::ratings()->paginate(PAGINATION_COUNT);
+        return view('site.pages.shop.products',compact('products'));
     }
 }

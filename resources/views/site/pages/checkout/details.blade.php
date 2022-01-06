@@ -4,7 +4,7 @@
     </x-slot>
 
     <!--start breadcrumb-->
-    @include('site.includes.headers.checkout')
+    <x-site.includes.headers.checkout />
     <!--end breadcrumb-->
     <!--start shop cart-->
     <section class="py-4">
