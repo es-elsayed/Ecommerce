@@ -45,6 +45,11 @@ function reviewsCount($review)
 {
     return count($review) ?? 0 ;
 }
+function plural($title)
+{
+    return Illuminate\Support\Str::plural("$title", 5);
+}
+
 function getNumbers()
 {
     $tax = config('shopping_cart.tax') / 100;

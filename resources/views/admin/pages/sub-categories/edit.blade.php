@@ -42,7 +42,7 @@ Edit Sub-Category
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg">
-                        <form action="{{ route('admin.subcategory.update', $category->slug) }}" method="post"
+                        <form action="{{ route('admin.subcategories.update', $category->slug) }}" method="post"
                             enctype="multipart/form-data">
                             @method('put')
                             @csrf

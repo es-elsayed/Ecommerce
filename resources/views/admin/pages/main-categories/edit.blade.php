@@ -39,11 +39,10 @@ Edit Main-Category
         <div class="card-body p-4">
             <h5 class="card-title">Edit Main-Category</h5>
             <hr />
-            @include('includes.alerts.error')
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg">
-                        <form action="{{ route('admin.maincategory.update',$category->slug) }}" method="post"
+                        <form action="{{ route('admin.maincategories.update',$category->slug) }}" method="post"
                             enctype="multipart/form-data">
                             @method('put')
                             @csrf

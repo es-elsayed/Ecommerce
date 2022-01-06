@@ -39,7 +39,7 @@ Edit Slider
         <div class="form-body mt-4">
             <div class="row">
                 <div class="col-lg">
-                    <form action="{{ route('admin.slider.update',$slider->id) }}" method="post"
+                    <form action="{{ route('admin.sliders.update',$slider->id) }}" method="post"
                         enctype="multipart/form-data">
                         @method('put')
                         @csrf

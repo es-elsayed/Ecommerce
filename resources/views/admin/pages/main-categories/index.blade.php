@@ -43,7 +43,7 @@ Main Categories
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="{{ route('admin.maincategory.create') }}"
+                <div class="ms-auto"><a href="{{ route('admin.maincategories.create') }}"
                         class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Record</a>
                 </div>
             </div>
@@ -75,19 +75,19 @@ Main Categories
                             <td>
                                 @if ($category->id !== 1 || $category->name_en !== "un-defined")
                                 <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.maincategory.edit', $category->slug) }}" class="ms-3"><i
+                                    <a href="{{ route('admin.maincategories.edit', $category->slug) }}" class="ms-3"><i
                                             class="bx bxs-edit"></i></a>
-                                            <form action="{{ route('admin.maincategory.destroy', $category->id) }}"
+                                            <form action="{{ route('admin.maincategories.destroy', $category->id) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
                                             </form>
                                     @if ($category->status == 0)
-                                    <a href="{{ route('admin.maincategory.active', $category->id) }}"
+                                    <a href="{{ route('admin.maincategories.active', $category->id) }}"
                                         class="custom-a success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.maincategory.unactive', $category->id) }}"
+                                    <a href="{{ route('admin.maincategories.unactive', $category->id) }}"
                                         class="custom-a danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>

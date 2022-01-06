@@ -43,7 +43,7 @@ Sub Categories
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="{{ route('admin.subcategory.create') }}"
+                <div class="ms-auto"><a href="{{ route('admin.subcategories.create') }}"
                         class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
                         Record</a></div>
             </div>
@@ -76,19 +76,19 @@ Sub Categories
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.subcategory.edit', $category->slug) }}" class="ms-3"><i
+                                    <a href="{{ route('admin.subcategories.edit', $category->slug) }}" class="ms-3"><i
                                             class="bx bxs-edit"></i></a>
-                                    <form action="{{ route('admin.subcategory.destroy', $category->slug) }}"
+                                    <form action="{{ route('admin.subcategories.destroy', $category->slug) }}"
                                         method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
                                     </form>
                                     @if ($category->status == 0)
-                                    <a href="{{ route('admin.subcategory.active', $category->slug) }}"
+                                    <a href="{{ route('admin.subcategories.active', $category->slug) }}"
                                         class="custom-a success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.subcategory.unactive', $category->slug) }}"
+                                    <a href="{{ route('admin.subcategories.unactive', $category->slug) }}"
                                         class="custom-a danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>

@@ -42,7 +42,7 @@ class SubCategoryController extends Controller
                 'image' => $image_path,
                 'banner' => $banner_path,
             ]);
-            return redirect()->route('admin.subcategory.index')->with('success', "Category Added Successfully");
+            return redirect()->route('admin.subcategories.index')->with('success', "Category Added Successfully");
         } catch (\Throwable $th) {
             return $th;
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
@@ -60,7 +60,7 @@ class SubCategoryController extends Controller
         $category = Category::isChild($slug);
         $category->status = 1;
         $category->update();
-        return redirect()->route('admin.subcategory.index')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
+        return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
     }
     public function unActive($slug)
     {
@@ -68,7 +68,7 @@ class SubCategoryController extends Controller
         $category = Category::isChild($slug);
         $category->status = 0;
         $category->update();
-        return redirect()->route('admin.subcategory.index')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
+        return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
     }
     public function edit($slug)
     {
@@ -111,7 +111,7 @@ class SubCategoryController extends Controller
                 'image' => $image_path,
                 'banner' => $banner_path,
             ]);
-            return redirect()->route('admin.subcategory.index')->with('success', 'The "' . $category->name_en . '" Category has been Updated Successfuly');
+            return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category has been Updated Successfuly');
         } catch (\Exception $ex) {
             return redirect()->back()->with('error', "Sorry!! Try again later");
         }
@@ -126,6 +126,6 @@ class SubCategoryController extends Controller
         $category->delete();
         drop_image($category->image);
         drop_image($category->banner);
-        return redirect()->route('admin.subcategory.index')->with('success', 'The ' . $category->name_en . ' Category has been deleted successfully');
+        return redirect()->route('admin.subcategories.index')->with('success', 'The ' . $category->name_en . ' Category has been deleted successfully');
     }
 }

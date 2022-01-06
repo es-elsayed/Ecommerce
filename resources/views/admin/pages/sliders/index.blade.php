@@ -43,7 +43,7 @@ Sliders
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="{{ route('admin.slider.create') }}"
+                <div class="ms-auto"><a href="{{ route('admin.sliders.create') }}"
                         class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
                         Record</a>
                 </div>
@@ -75,18 +75,18 @@ Sliders
                             </td>
                             <td>
                                 <div class="d-flex order-actions">
-                                    <a href="{{ route('admin.slider.edit', $slider->id) }}" class="ms-3"><i
+                                    <a href="{{ route('admin.sliders.edit', $slider->id) }}" class="ms-3"><i
                                             class="bx bxs-edit"></i></a>
-                                    <form action="{{ route('admin.slider.destroy', $slider->id) }}" method="post">
+                                    <form action="{{ route('admin.sliders.destroy', $slider->id) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
                                     </form>
                                     @if ($slider->status == 0)
-                                    <a href="{{ route('admin.slider.active', $slider->id) }}"
+                                    <a href="{{ route('admin.sliders.active', $slider->id) }}"
                                         class="custom-a success text-capitalize ms-3">Activate</a>
                                     @else
-                                    <a href="{{ route('admin.slider.unactive', $slider->id) }}"
+                                    <a href="{{ route('admin.sliders.unactive', $slider->id) }}"
                                         class="custom-a danger text-capitalize ms-3">deactivate</a>
                                     @endif
                                 </div>

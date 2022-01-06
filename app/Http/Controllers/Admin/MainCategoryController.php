@@ -39,7 +39,7 @@ class MainCategoryController extends Controller
                 'image' => $image_path,
                 'banner' => $banner_path,
             ]);
-            return redirect()->route('admin.maincategory.index')->with('success', "Category Added Successfully");
+            return redirect()->route('admin.maincategories.index')->with('success', "Category Added Successfully");
         } catch (\Throwable $th) {
             // return $th;
             return redirect()->back()->with('error', "sorry.. cannot add Category right now! please try again later");
@@ -64,14 +64,14 @@ class MainCategoryController extends Controller
         }
 
         if (!un_defined_cat_error($main_category)) {
-            return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
+            return redirect()->route('admin.maincategories.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
         }
 
         $main_category->update(['status' => 1]);
         DB::commit();
-        return redirect()->route('admin.maincategory.index')->with('success', 'The "' . $main_category->name_en . '" Category status has been Activated Successfuly');
+        return redirect()->route('admin.maincategories.index')->with('success', 'The "' . $main_category->name_en . '" Category status has been Activated Successfuly');
         Db::rollBack();
-        return redirect()->route('admin.maincategory.index')->with('error', 'Cannot Activate "' . $main_category->name_en . '" Category right now please try later');
+        return redirect()->route('admin.maincategories.index')->with('error', 'Cannot Activate "' . $main_category->name_en . '" Category right now please try later');
     }
     public function unActive($id)
     {
@@ -86,14 +86,14 @@ class MainCategoryController extends Controller
         }
 
         if (!un_defined_cat_error($main_category)) {
-            return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
+            return redirect()->route('admin.maincategories.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
         }
 
         $main_category->update(['status' => 0]);
         DB::commit();
-        return redirect()->route('admin.maincategory.index')->with('success', 'The "' . $main_category->name_en . '" Category status has been Unactivated Successfuly');
+        return redirect()->route('admin.maincategories.index')->with('success', 'The "' . $main_category->name_en . '" Category status has been Unactivated Successfuly');
         Db::rollBack();
-        return redirect()->route('admin.maincategory.index')->with('error', 'Cannot Activate "' . $main_category->name_en . '" Category right now please try later');
+        return redirect()->route('admin.maincategories.index')->with('error', 'Cannot Activate "' . $main_category->name_en . '" Category right now please try later');
     }
 
     public function edit($slug)
@@ -101,7 +101,7 @@ class MainCategoryController extends Controller
         $category = Category::whereSlug($slug)->firstOrFail();
 
         if (!un_defined_cat_error($category)) {
-            return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $category->name_en . ' Category !!');
+            return redirect()->route('admin.maincategories.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $category->name_en . ' Category !!');
         }
         return view('admin.pages.main-categories.edit', get_defined_vars());
     }
@@ -111,7 +111,7 @@ class MainCategoryController extends Controller
             $category = Category::whereSlug($slug)->firstOrFail();
 
             if (!un_defined_cat_error($category)) {
-                return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $category->name_en . ' Category !!');
+                return redirect()->route('admin.maincategories.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $category->name_en . ' Category !!');
             }
 
             $image_path = $category->image;
@@ -143,7 +143,7 @@ class MainCategoryController extends Controller
                 'image' => $image_path,
                 'banner' => $banner_path,
             ]);
-            return redirect()->route('admin.maincategory.index')->with('success', 'The "' . $category->name_en . '" Category has been Updated Successfuly');
+            return redirect()->route('admin.maincategories.index')->with('success', 'The "' . $category->name_en . '" Category has been Updated Successfuly');
         } catch (\Exception $ex) {
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
@@ -156,20 +156,20 @@ class MainCategoryController extends Controller
             $main_category = Category::findOrFail($id);
             $sub_categories = $main_category->childs;
             if (sizeof($sub_categories)) {
-                return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Delete "' . $main_category->name_en . ' Category !! There are Sub-Categories belongs to');
+                return redirect()->route('admin.maincategories.index')->with('error', 'Sorry.. Cannot Delete "' . $main_category->name_en . ' Category !! There are Sub-Categories belongs to');
             }
             if (!un_defined_cat_error($main_category)) {
-                return redirect()->route('admin.maincategory.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
+                return redirect()->route('admin.maincategories.index')->with('error', 'Sorry.. Cannot Change or Delete "' . $main_category->name_en . ' Category !!');
             }
             $main_category->delete();
             drop_image($main_category->image);
             drop_image($main_category->banner);
             DB::commit();
-            return redirect()->route('admin.maincategory.index')->with('success', 'The ' . $main_category->name_en . ' Category has been deleted successfully');
+            return redirect()->route('admin.maincategories.index')->with('success', 'The ' . $main_category->name_en . ' Category has been deleted successfully');
         } catch (\Exception $ex) {
             Db::rollBack();
             // return $ex;
-            return redirect()->route('admin.maincategory.index')->with('error', 'The ' . $main_category->name_en . ' Cannot be deleted right now');
+            return redirect()->route('admin.maincategories.index')->with('error', 'The ' . $main_category->name_en . ' Cannot be deleted right now');
         }
     }
 }

@@ -2,50 +2,51 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--favicon-->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--favicon-->
     @include('includes.icon')
-	<!--plugins-->
+    <!--plugins-->
     @include('admin.includes.style')
 
-	<title>@yield('title')</title>
+    <title>@yield('title')</title>
 </head>
 
 <body class="bg-theme bg-theme2">
-	<!--wrapper-->
-	<div class="wrapper">
-		<!--sidebar wrapper -->
-		@include('admin.includes.sidebar')
+    <!--wrapper-->
+    <div class="wrapper">
+        <!--sidebar wrapper -->
+        <x-admin.includes.sidebar />
 
-		<!--end sidebar wrapper -->
-		<!--start header -->
-		@include('admin.includes.header')
+        <!--end sidebar wrapper -->
+        <!--start header -->
+        <x-admin.includes.header />
 
-		<!--end header -->
-		<!--start page wrapper -->
-		<div class="page-wrapper">
+        <!--end header -->
+        <!--start page wrapper -->
+        <div class="page-wrapper">
             <div class="page-content">
-                @include('includes.alerts.success')
-                @include('includes.alerts.error')
+                <x-site.includes.alerts.success />
+                <x-site.includes.alerts.error />
                 @yield('content')
-			</div>
-		</div>
-		<!--end page wrapper -->
-		<!--start overlay-->
-		<div class="overlay toggle-icon"></div>
-		<!--end overlay-->
-		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
-		<!--End Back To Top Button-->
-		@include('admin.includes.footer')
-	</div>
-	<!--end wrapper-->
-	<!--start switcher-->
+            </div>
+        </div>
+        <!--end page wrapper -->
+        <!--start overlay-->
+        <div class="overlay toggle-icon"></div>
+        <!--end overlay-->
+        <!--Start Back To Top Button-->
+        <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+        <!--End Back To Top Button-->
+        <x-admin.includes.footer />
+    </div>
+    <!--end wrapper-->
+    <!--start switcher-->
     @include('includes.themes')
-	<!--end switcher-->
-	<!-- Bootstrap JS -->
-	@include('admin.includes.scripts')
+    <!--end switcher-->
+    <!-- Bootstrap JS -->
+    @include('admin.includes.scripts')
 </body>
 
 </html>

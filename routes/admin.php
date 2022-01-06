@@ -28,14 +28,14 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     Route::resource('orders', OrderController::class, ['as' => 'admin']);
     // ********* Main Category Routes ***********
-    Route::resource('maincategory', MainCategoryController::class, ['as' => 'admin']);
-    Route::get('maincategory/active/{id}', [MainCategoryController::class, 'active'])->name('admin.maincategory.active');
-    Route::get('maincategory/unactive/{id}', [MainCategoryController::class, 'unActive'])->name('admin.maincategory.unactive');
+    Route::resource('maincategories', MainCategoryController::class, ['as' => 'admin']);
+    Route::get('maincategories/active/{id}', [MainCategoryController::class, 'active'])->name('admin.maincategories.active');
+    Route::get('maincategories/unactive/{id}', [MainCategoryController::class, 'unActive'])->name('admin.maincategories.unactive');
 
     // ********** Sub Category Routes **********
-    Route::resource('subcategory', SubCategoryController::class, ['as' => 'admin']);
-    Route::get('subcategory/active/{id}', [SubCategoryController::class, 'active'])->name('admin.subcategory.active');
-    Route::get('subcategory/unactive/{id}', [SubCategoryController::class, 'unActive'])->name('admin.subcategory.unactive');
+    Route::resource('subcategories', SubCategoryController::class, ['as' => 'admin']);
+    Route::get('subcategories/active/{id}', [SubCategoryController::class, 'active'])->name('admin.subcategories.active');
+    Route::get('subcategories/unactive/{id}', [SubCategoryController::class, 'unActive'])->name('admin.subcategories.unactive');
 
     // ********** Product Routes **********
     Route::resource('products', ProductController::class, ['as' => 'admin']);
@@ -43,9 +43,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::put('products/featured/{product}', [ProductController::class, 'featured'])->name('admin.products.featured');
 
     // ********** Slider Routes **********
-    Route::resource('slider', SliderController::class, ['as' => 'admin']);
-    Route::get('slider/active/{id}', [SliderController::class, 'active'])->name('admin.slider.active');
-    Route::get('slider/unactive/{id}', [SliderController::class, 'unActive'])->name('admin.slider.unactive');
+    Route::resource('sliders', SliderController::class, ['as' => 'admin']);
+    Route::get('sliders/active/{id}', [SliderController::class, 'active'])->name('admin.sliders.active');
+    Route::get('sliders/unactive/{id}', [SliderController::class, 'unActive'])->name('admin.sliders.unactive');
 
     Route::get('/', function () {
         return redirect()->route('admin.dashboard.index');
