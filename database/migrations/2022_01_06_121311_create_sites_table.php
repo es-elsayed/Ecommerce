@@ -15,16 +15,18 @@ class CreateSitesTable extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('whatsapp');
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('snap');
-            $table->string('linkedin');
-            $table->string('address');
-            $table->string('location');
+            $table->string('title_en')->nullable();
+            $table->string('title_ar')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ar')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('address')->nullable();
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }

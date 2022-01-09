@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Site extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "title_en",
+        "title_ar",
+        "email",
+        "phone",
+        "whatsapp",
+        "facebook",
+        "twitter",
+        "linkedin",
+        "address",
+        "location",
+        "description_en",
+        "description_ar",
+    ];
 }

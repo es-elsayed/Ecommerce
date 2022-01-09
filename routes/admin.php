@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MainCategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Http\Request;
@@ -46,6 +47,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::resource('sliders', SliderController::class, ['as' => 'admin']);
     Route::get('sliders/active/{id}', [SliderController::class, 'active'])->name('admin.sliders.active');
     Route::get('sliders/unactive/{id}', [SliderController::class, 'unActive'])->name('admin.sliders.unactive');
+
+    // ********** Site Routes **********
+    Route::resource('site-info', SiteInfoController::class, ['as' => 'admin']);
 
     Route::get('/', function () {
         return redirect()->route('admin.dashboard.index');

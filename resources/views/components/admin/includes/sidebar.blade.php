@@ -11,16 +11,24 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <x-admin.includes.sidebar-li :title="'maincategory'" ><i class="bx bx-home-circle"></i></x-admin.includes.sidebar-li>
-        <x-admin.includes.sidebar-li :title="'subcategory'" ><i class="bx bx-home-circle"></i></x-admin.includes.sidebar-li>
-        <x-admin.includes.sidebar-li :title="'product'" ><i class="lni lni-grow"></i></x-admin.includes.sidebar-li>
-        <x-admin.includes.sidebar-li :title="'slider'" ><i class="lni lni-image"></i></x-admin.includes.sidebar-li>
+        <x-admin.includes.sidebar-li title="main category" route="maincategories" ><i class="bx bx-home-circle"></i></x-admin.includes.sidebar-li>
+        <x-admin.includes.sidebar-li title="sub category" route="subcategories" ><i class="bx bx-home-circle"></i></x-admin.includes.sidebar-li>
+        <x-admin.includes.sidebar-li title="product" route="products" ><i class="lni lni-grow"></i></x-admin.includes.sidebar-li>
+        <x-admin.includes.sidebar-li title="slider" route="sliders" ><i class="lni lni-image"></i></x-admin.includes.sidebar-li>
         <li>
             <a href="{{ route('admin.orders.index') }}">
                 <div class="parent-icon">
                     <i class="lni lni-delivery"></i>
                 </div>
                 <div class="menu-title">Orders</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.site-info.index') }}">
+                <div class="parent-icon">
+                    <i class="lni lni-information"></i>
+                </div>
+                <div class="menu-title">Site Info</div>
             </a>
         </li>
     </ul>

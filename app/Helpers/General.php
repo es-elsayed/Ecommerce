@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use App\Models\Site;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -48,6 +49,11 @@ function reviewsCount($review)
 function plural($title)
 {
     return Illuminate\Support\Str::plural("$title", 5);
+}
+function getInfo($key)
+{
+    $info = Site::first();
+    return $info[$key] ?? null;
 }
 
 function getNumbers()
