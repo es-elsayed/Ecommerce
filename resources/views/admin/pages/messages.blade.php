@@ -48,10 +48,13 @@
                                 </td>
                                 <td style="vertical-align: middle;">
                                     <div class="d-flex order-actions">
-                                        <x-admin.forms.actions :route="'messages.destroy'" :value="0"
-                                            :id="$message->id">
-                                            <i class="lni lni-checkmark-circle text-success"></i>
-                                        </x-admin.forms.actions>
+                                        <form action="{{ route('admin.messages.destroy',$message->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="ms-3">
+                                                <i class="bx bxs-trash text-danger"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
