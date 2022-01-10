@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\Cart\AddressController;
 use App\Http\Controllers\Site\Cart\OrderController;
 use App\Http\Controllers\Site\Cart\ShippingController;
+use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Site\FavoriteProductController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\PhoneController;
@@ -44,6 +45,7 @@ Route::group(
         // ************************** Guest Routes **************************
         Route::post('/register', [RegisterController::class, 'create'])->name('register');
         Route::resource('login/phone', PhoneController::class,['as'=>'site.login']);
+        Route::resource('contact', ContactController::class,['as'=>'site']);
 
         Route::resource('/shop', ShopController::class, ['as' => 'site']);
         Route::get('/shop/product/featured', [ShopController::class, 'featured'])->name('site.shop.product.featured');

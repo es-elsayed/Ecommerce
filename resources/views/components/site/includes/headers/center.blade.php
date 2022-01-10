@@ -22,14 +22,18 @@
                     <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
             </div>
+            @if (getInfo('phone'))
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>
                 <div class="ms-2">
                     <p class="mb-0 font-13">{{ __('content.call us') }}</p>
-                    <h5 class="mb-0 d-ltr">+011 5827918</h5>
+                    <h5 class="mb-0 d-ltr">
+                        <a class="nav-link" href="tel:{{ getInfo('phone') }}">{{ getInfo('phone') }}</a>
+                    </h5>
                 </div>
             </div>
+            @endif
             <div class="col col-md-auto order-2 order-md-4">
                 <div class="top-cart-icons">
                     <nav class="navbar navbar-expand">

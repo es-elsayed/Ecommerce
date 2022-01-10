@@ -15,7 +15,7 @@
                 @endif">
                     <div class="row d-flex align-items-center">
                         <div class="col d-none d-lg-flex justify-content-center">
-                            <div class="">
+                            <div class="w-75">
                                 {{-- <h3 class="h3 fw-light">Complete your look with</h3> --}}
                                 <h3 class="h1">{{ $slider->title }}</h3>
                                 <p class="pb-3">{{ $slider->description }}</p>

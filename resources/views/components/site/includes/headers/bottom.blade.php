@@ -32,26 +32,15 @@
                     </div>
                     <!-- dropdown-large.// -->
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('site.shop.index') }}"> {{ __('content.shop') }} </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html"> {{ __('content.blog') }} </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about-us.html"> {{ __('content.about') }} </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact-us.html"> {{ __('content.contact') }} </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shop-categories.html">{{ __('content.our stores') }}</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('site.profile.index') }}">
-                        {{ __('content.my account') }}
-                    </a>
-                </li>
+                <x-site.includes.li-nav-link href="{{ route('site.shop.index') }}">{{ __('content.shop') }}
+                </x-site.includes.li-nav-link>
+                <x-site.includes.li-nav-link>{{ __('content.blog') }}</x-site.includes.li-nav-link>
+                <x-site.includes.li-nav-link>{{ __('content.about') }}</x-site.includes.li-nav-link>
+                <x-site.includes.li-nav-link href="{{ route('site.contact.index') }}">{{ __('content.contact') }}
+                </x-site.includes.li-nav-link>
+                <x-site.includes.li-nav-link>{{ __('content.our stores') }}</x-site.includes.li-nav-link>
+                <x-site.includes.li-nav-link href="{{ route('site.profile.index') }}">{{ __('content.my account') }}
+                </x-site.includes.li-nav-link>
             </ul>
         </nav>
     </div>

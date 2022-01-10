@@ -31,6 +31,14 @@
                 <div class="menu-title">Site Info</div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.messages.index') }}">
+                <div class="parent-icon">
+                    <i class="bx bx-message"></i>
+                </div>
+                <div class="menu-title">Messages</div>
+            </a>
+        </li>
     </ul>
     {{-- {{ Illuminate\Support\Str::plural('child', 5) }} --}}
     <!--end navigation-->

@@ -5,7 +5,20 @@
 
     <div class="page-content">
         <!--start breadcrumb-->
-        <x-site.includes.headers.shop />
+        <x-site.includes.headers.breadcrumb title="{{ __('content.shop') }}" active="{{ $category->name }}">
+            <li class="breadcrumb-item">
+                <a href="{{ route('site.home.index') }}">
+                    <i class="bx bx-home-alt"></i>
+                    {{ __('content.home') }}
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ route('site.shop.index') }}">
+                    <i class="bx bx-shopping-bag"></i>
+                    {{ __('content.shop') }}
+                </a>
+            </li>
+        </x-site.includes.headers.breadcrumb>
         <!--end breadcrumb-->
         <!--start shop area-->
         <section class="py-4">
