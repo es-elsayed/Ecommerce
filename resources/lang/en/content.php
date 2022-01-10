@@ -27,7 +27,6 @@ return [
     "fee" => "Fee",
     "flat rate" => "Flat Rate",
     "fast delivery" => "Fast Delivery",
-    "top rated products" => "Top Rated Products",
 
     "google" => " Google",
     "facebook" => " Facebook",
@@ -51,10 +50,14 @@ return [
     "confirm new password" => "Confirm New Password",
     "confirm password" => "Confirm Password",
     "save changes" => "Save Changes",
+    "top rated products" => "Top Rated Products",
+
+    "message" => "Message",
 
     "about" => " About",
     "blog" => "Blog",
     "contact" => "Contact",
+    "contact us" => "Contact Us",
     "categories" => "Categories",
     "our stores" => "Our Stores",
     "welcome to our store!" => "Welcome to our Store!",
@@ -96,6 +99,7 @@ return [
     'discount' => 'Discount',
     "proceed to checkout"=>"Proceed to Checkout",
     "checkout"=>"Checkout",
+    "your name"=>"Your Name",
     "first name"=>"First Name",
     "last name"=>"Last Name",
     "phone number"=>"Phone Number",

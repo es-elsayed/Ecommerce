@@ -11,6 +11,7 @@ class Site extends Model
     protected $fillable = [
         "title_en",
         "title_ar",
+        "working_days",
         "email",
         "phone",
         "whatsapp",

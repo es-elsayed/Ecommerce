@@ -49,7 +49,7 @@ class ProfileController extends Controller
             ]);
             return redirect()->route('site.profile.index')->with('success','the profile has been updated');
         }
-        return redirect()->route('site.logout')->with('errors','Please Try again later');
+        return redirect()->route('site.profile.index')->with('error','Error Password');
     }
 
     public function destroy($id)

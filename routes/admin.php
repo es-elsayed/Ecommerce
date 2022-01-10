@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MainCategoryController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteInfoController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     // ********** Site Routes **********
     Route::resource('site-info', SiteInfoController::class, ['as' => 'admin']);
+    Route::resource('messages', MessageController::class, ['as' => 'admin']);
 
     Route::get('/', function () {
         return redirect()->route('admin.dashboard.index');

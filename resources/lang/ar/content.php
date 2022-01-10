@@ -50,11 +50,14 @@ return [
     "confirm new password" => "تأكيد كلمة السر الجديدة",
     "confirm password" => "تأكيد كلمة السر",
     "save changes" => "حفظ التعديلات",
+    "message" => "الرسالة",
+
     "top rated products" => "المنتجات الأعلى تصنيفًا",
 
     "about" => "حول",
     "blog" => "المدونة",
     "contact" => "الاتصال",
+    "contact" => "اتصل بنا",
     "categories" => "التصنيفات",
     "our stores" => "مخازننا",
     "welcome to our store!" => "!مرحبًا بكم في متجرنا",
@@ -96,6 +99,7 @@ return [
     "discount" => "الخصم",
     "proceed to checkout"=>"الإستمرار للدفع",
     "checkout"=>"الدفع",
+    "your name"=>"إسمك",
     "first name"=>"الاسم الأول",
     "last name"=>"الاسم الثاني",
     "phone number"=>"رقم الهاتف",

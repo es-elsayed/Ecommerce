@@ -37,7 +37,7 @@
                             <div class="border p-4 rounded">
                                 <div class="text-center">
                                     <h3 class="">{{ __('content.sign up') }}</h3>
-                                    <p>{{ __('content.already have an account') }} <a href="{{ route('login') }}">{{ __('content.sign in here') }}</a>
+                                    <p>{{ __('content.already have an account') }} <a class="nav-link d-inline" href="{{ route('login') }}">{{ __('content.sign in here') }}</a>
                                     </p>
                                 </div>
                                 @include('site.includes.cards.social')

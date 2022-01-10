@@ -54,11 +54,11 @@
                             <input type="hidden" value="{{ $product->price }}" name="price">
                             <input type="hidden" value="{{ $product->main_image }}" name="image">
                             <input type="hidden" value="1" name="quantity">
-                            <button class="btn btn-dark btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>
+                            <button class="btn btn-light btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>
                                 {{ __('content.add to cart') }}
                             </button>
                         </form>
-                        <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal"
+                        <a href="javascript:;" class="btn btn-dark btn-ecomm" data-bs-toggle="modal"
                             data-bs-target="#QuickViewProduct-{{ $loop->iteration }}"><i class="bx bx-zoom-in"></i>
                             {{ __("content.quick view") }}
                         </a>
@@ -193,13 +193,13 @@
                                     <input type="hidden" value="{{ $product->price }}" name="price">
                                     <input type="hidden" value="{{ $product->image }}" name="image">
                                     <input type="hidden" value="1" name="quantity">
-                                    <button class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add To
+                                    <button class="btn btn-light btn-ecomm"> <i class="bx bxs-cart-add"></i>Add To
                                         Cart</button>
                                 </form>
                                 {{-- <a href="javascript:;" class="">Add to Cart</a> --}}
                                 <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
                                     @csrf
-                                    <button class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
+                                    <button class="btn btn-dark btn-ecomm"><i class="bx bx-heart"></i>Add to
                                         Wishlist</button>
                                 </form>
                             </div>

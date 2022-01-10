@@ -19,6 +19,7 @@ class CreateSitesTable extends Migration
             $table->string('title_ar')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_ar')->nullable();
+            $table->string('working_days')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('whatsapp')->nullable();
@@ -26,7 +27,7 @@ class CreateSitesTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('address')->nullable();
-            $table->string('location')->nullable();
+            $table->text('location')->nullable();
             $table->timestamps();
         });
     }

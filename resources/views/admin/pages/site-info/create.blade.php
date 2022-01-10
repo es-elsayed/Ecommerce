@@ -43,25 +43,26 @@ Site Info
                         @csrf
                         <div class="border border-3 p-4 rounded">
                             <div class="row">
+                                <x-admin.forms.input-text type="email" name="email" placeholder="Enter valid Email Address" value="{{ $site_info->email ?? old('email') }}">Email</x-admin.forms.input-text>
+                                <x-admin.forms.input-text type="text" name="phone" placeholder="Enter valid Phone Number" value="{{ $site_info->phone ?? old('phone') }}">Phone</x-admin.forms.input-text>
+                                <x-admin.forms.input-text type="text" name="whatsapp" placeholder="Enter Whatsapp Number" value="{{ $site_info->whatsapp ?? old('whatsapp') }}"> Whatsapp Number <i class="lni lni-whatsapp"></i></x-admin.forms.input-text>
+                            </div>
+                            <div class="row">
                                 {{-- @dd($errors->messages) --}}
                                 <x-admin.forms.input-text type="text" name="title_en" placeholder="Enter Title in English" required value="{{ $site_info->title_en ?? old('title_en') }}">Title (en)</x-admin.forms.input-text>
                                 <x-admin.forms.input-text type="text" name="title_ar" placeholder="Enter Title in Arabic" required value="{{ $site_info->title_ar ?? old('title_ar') }}">Title (ar)</x-admin.forms.input-text>
                             </div>
                             <div class="row">
-                                <x-admin.forms.input-text type="email" name="email" placeholder="Enter valid Email Address" value="{{ $site_info->email ?? old('email') }}">Email</x-admin.forms.input-text>
-                                <x-admin.forms.input-text type="text" name="phone" placeholder="Enter valid Phone Number" value="{{ $site_info->phone ?? old('phone') }}">Phone</x-admin.forms.input-text>
-                            </div>
-                            <div class="row">
-                                <x-admin.forms.input-text type="text" name="whatsapp" placeholder="Enter Whatsapp Number" value="{{ $site_info->whatsapp ?? old('whatsapp') }}"> Whatsapp Number <i class="lni lni-whatsapp"></i></x-admin.forms.input-text>
                                 <x-admin.forms.input-text type="text" name="facebook" placeholder="Enter Facebook Link" value="{{ $site_info->facebook ?? old('facebook') }}"> Facebook Link <i class="lni lni-facebook-filled"></i></x-admin.forms.input-text>
+                                <x-admin.forms.input-text type="text" name="twitter" placeholder="Enter Twitter Link" value="{{ $site_info->twitter ?? old('twitter') }}"> Twitter Link <i class="lni lni-twitter-filled"></i></x-admin.forms.input-text>
                             </div>
                             <div class="row">
-                                <x-admin.forms.input-text type="text" name="twitter" placeholder="Enter Twitter Link" value="{{ $site_info->twitter ?? old('twitter') }}"> Twitter Link <i class="lni lni-twitter-filled"></i></x-admin.forms.input-text>
                                 <x-admin.forms.input-text type="text" name="linkedin" placeholder="Enter LinkedIn Link" value="{{ $site_info->linkedin ?? old('linkedin') }}"> LinkedIn Link <i class="lni lni-linkedin"></i></x-admin.forms.input-text>
+                                <x-admin.forms.input-text type="text" name="location" placeholder="Enter location in Google Map" value="{{ $site_info->location ?? old('location') }}"> Google-map Link <i class="lni lni-map-marker"></i></x-admin.forms.input-text>
                             </div>
                             <div class="row">
                                 <x-admin.forms.input-text type="text" name="address" placeholder="Enter Address" value="{{ $site_info->address ?? old('address') }}"> Address <i class="lni lni-map-marker"></i></x-admin.forms.input-text>
-                                <x-admin.forms.input-text type="text" name="location" placeholder="Enter location in Google Map" value="{{ $site_info->location ?? old('location') }}"> Google-map Link <i class="lni lni-map-marker"></i></x-admin.forms.input-text>
+                                <x-admin.forms.input-text type="text" name="working_days" placeholder="Enter Working Days" value="{{ $site_info->working_days ?? old('working_days') }}"> Working Days <i class="lni lni-map-marker"></i></x-admin.forms.input-text>
                             </div>
                             <div class="row">
                                 <x-admin.forms.textarea name="description_en" placeholder="Enter Description  in English" value="{{ $site_info->description_en ?? old('description_en') }}"> Description (en) </x-admin.forms.textarea>

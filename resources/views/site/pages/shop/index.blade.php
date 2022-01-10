@@ -4,7 +4,14 @@
     </x-slot>
 
     <!--start breadcrumb-->
-    <x-site.includes.headers.shop />
+    <x-site.includes.headers.breadcrumb title="{{ __('content.shop') }}">
+        <li class="breadcrumb-item">
+            <a href="{{ route('site.home.index') }}">
+                <i class="bx bx-home-alt"></i>
+                {{ __('content.home') }}
+            </a>
+        </li>
+    </x-site.includes.headers.breadcrumb>
     <!--end breadcrumb-->
     <!--start shop categories-->
     <section class="py-4">
