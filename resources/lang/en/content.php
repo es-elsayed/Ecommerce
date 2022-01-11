@@ -51,8 +51,9 @@ return [
     "confirm password" => "Confirm Password",
     "save changes" => "Save Changes",
     "top rated products" => "Top Rated Products",
-
     "message" => "Message",
+    "similar products" => "Similar Products",
+    "bought together" => "Bought Together",
 
     "about" => " About",
     "blog" => "Blog",

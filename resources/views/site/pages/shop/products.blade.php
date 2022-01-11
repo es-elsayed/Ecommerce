@@ -5,7 +5,7 @@
 
     <div class="page-content">
         <!--start breadcrumb-->
-        <x-site.includes.headers.breadcrumb title="{{ __('content.shop') }}" active="{{ $category->name }}">
+        <x-site.includes.headers.breadcrumb title="{{ __('content.shop') }}" active="{{ $category->name ?? null }}">
             <li class="breadcrumb-item">
                 <a href="{{ route('site.home.index') }}">
                     <i class="bx bx-home-alt"></i>

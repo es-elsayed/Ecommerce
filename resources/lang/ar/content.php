@@ -51,6 +51,8 @@ return [
     "confirm password" => "تأكيد كلمة السر",
     "save changes" => "حفظ التعديلات",
     "message" => "الرسالة",
+    "similar products" => "منتجات مماثلة",
+    "bought together" => "اشترى معه",
 
     "top rated products" => "المنتجات الأعلى تصنيفًا",
 

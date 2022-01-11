@@ -82,9 +82,16 @@ class ShopController extends Controller
     public function product(Request $request,$slug)
     {
         $product = Product::activeProductBySlug($slug);
-        // $reviews = $product->reviews;
         $reviews = $product->reviews->load('user');
         $orders = $product->orders->pluck('user_id')->toArray();
+        $similar_products = $product->categories->load('products')->pluck('products')[0];
+        $bought_together = $product->orders->load('products')->pluck('products')[0];
+        if($similar_products->count()>4){
+            $similar_products =$similar_products->random(4);
+        }
+        if($bought_together->count()>4){
+            $bought_together =$bought_together->random(4);
+        }
         if($product->status === 0){
             return view('site.pages.shop.show')->with('error','Sorry..! Product unAvailable Now');
         }

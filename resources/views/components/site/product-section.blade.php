@@ -3,9 +3,11 @@
     <div class="container">
         <div class="d-flex align-items-center">
             <h5 class="text-uppercase mb-0">{{ $name }}</h5>
+            @if (isset($route))
             <x-site.a class="btn-dark" href='{{ $route }}'>
                 {{ __('content.more products') }}<i class="bx bx-chevron-right"></i>
             </x-site.a>
+            @endif
         </div>
         <hr>
         <div class="product-grid">

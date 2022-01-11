@@ -4,33 +4,20 @@
     </x-slot>
 
     <!--start breadcrumb-->
-    <section class="py-3 border-bottom d-none d-md-flex">
-        <div class="container">
-            <div class="page-breadcrumb d-flex align-items-center">
-                <h3 class="breadcrumb-title pe-3">{{ $product->name }}</h3>
-                <div class="ms-auto">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('site.home.index') }}">
-                                    <i class="bx bx-home-alt"></i>
-                                    {{ __('content.home') }}
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('site.shop.index') }}">
-                                    {{ __('content.shop') }}
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                {{ $product->name }}
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-site.includes.headers.breadcrumb title="{{ $product->name }}">
+        <li class="breadcrumb-item">
+            <a href="{{ route('site.home.index') }}">
+                <i class="bx bx-home-alt"></i>
+                {{ __('content.home') }}
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('site.shop.index') }}">
+                <i class="bx bx-shopping-bag"></i>
+                {{ __('content.shop') }}
+            </a>
+        </li>
+    </x-site.includes.headers.breadcrumb>
     <!--end breadcrumb-->
     <!--start product detail-->
     <section class="py-4">
@@ -160,19 +147,19 @@
 
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <a
+                                            <a class="nav-link"
                                                 href="https://www.facebook.com/sharer/sharer.php?u=http%3A//twision-ecommerce.test/en/shop/product/{{ $product->slug }}">
                                                 <i class="bx bxl-facebook"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a
+                                            <a class="nav-link"
                                                 href="https://twitter.com/intent/tweet?text=http%3A//twision-ecommerce.test/en/shop/product/{{ $product->slug }}">
                                                 <i class="bx bxl-twitter"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="javascript:;" type="button" onclick="Copy();">
+                                            <a class="nav-link" href="javascript:;" type="button" onclick="Copy();">
                                                 <i class='bx bx-link'></i>
                                             </a>
                                         </li>
@@ -249,23 +236,29 @@
                 </div>
             </div>
     </section>
-    <!--end product more info-->
-</x-site.layout>
 
-@section('extra-js')
-<script>
-    function Copy() {
-            var dummy = document.createElement('input'),
-            text = window.location.href;
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-            document.getElementById("custom-tooltip").innerText = "Link Copied Successfully!";
-                setTimeout( function() {
-            document.getElementById("custom-tooltip").innerText = "";
-        }, 1000);
-        }
-</script>
-@endsection
+        @if (count($bought_together ?? []) > 0)
+        <x-site.product-section :products="$bought_together" :name="__('content.bought together')"/>
+        @endif
+
+    @if (count($similar_products ?? []) > 0)
+    <x-site.product-section :products="$similar_products" :name="__('content.similar products')"/>
+    @endif
+
+    <!--end product more info-->
+    <script>
+        function Copy() {
+                var dummy = document.createElement('input'),
+                text = window.location.href;
+                document.body.appendChild(dummy);
+                dummy.value = text;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                document.getElementById("custom-tooltip").innerText = "Link Copied Successfully!";
+                    setTimeout( function() {
+                document.getElementById("custom-tooltip").innerText = "";
+            }, 1000);
+            }
+    </script>
+</x-site.layout>
