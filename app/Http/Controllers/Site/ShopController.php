@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $categories = Category::activeParent()->paginate(PAGINATION_COUNT);
         return view('site.pages.shop.index', get_defined_vars());
     }
@@ -28,9 +29,9 @@ class ShopController extends Controller
         //
     }
 
-    public function show(Request $request,$slug)
+    public function show(Request $request, $slug)
     {
-        $category = Category::where(['slug'=>$slug])->select('id','name_'.app()->getLocale().' as name','status','is_parent', 'image', 'banner','slug','parent_id','created_at','updated_at')->firstOrFail();
+        $category = Category::where(['slug' => $slug])->select('id', 'name_' . app()->getLocale() . ' as name', 'status', 'is_parent', 'image', 'banner', 'slug', 'parent_id', 'created_at', 'updated_at')->firstOrFail();
         if ($category->parent) {
             /*
             * if Sub Category
@@ -41,7 +42,8 @@ class ShopController extends Controller
             /*
             * if Main Category
             * return sub category
-            */            $sub_categories = $category->activeChilds;
+            */
+            $sub_categories = $category->activeChilds;
         }
         if (request()->has('sort')) {
             switch (request()->get('sort')) {
@@ -79,32 +81,32 @@ class ShopController extends Controller
         //
     }
 
-    public function product(Request $request,$slug)
+    public function product(Request $request, $slug)
     {
         $product = Product::activeProductBySlug($slug);
         $reviews = $product->reviews->load('user');
         $orders = $product->orders->pluck('user_id')->toArray();
-        $similar_products = $product->categories->load('products')->pluck('products')[0];
-        $bought_together = $product->orders->load('products')->pluck('products')[0];
-        if($similar_products->count()>4){
-            $similar_products =$similar_products->random(4);
+        $similar_products = collect(array_multi_to_1d($product->categories->load('products')->pluck('products')))->WhereNotIn('id', $product->id);
+        $bought_together = collect(array_multi_to_1d($product->orders->load('products')->pluck('products')))->WhereNotIn('id', $product->id);
+        if ($similar_products && $similar_products->count() > 4) {
+            $similar_products = $similar_products->random(4);
         }
-        if($bought_together->count()>4){
-            $bought_together =$bought_together->random(4);
+        if ($bought_together && $bought_together->count() > 4) {
+            $bought_together = $bought_together->random(4);
         }
-        if($product->status === 0){
-            return view('site.pages.shop.show')->with('error','Sorry..! Product unAvailable Now');
+        if ($product->status === 0) {
+            return view('site.pages.shop.show')->with('error', 'Sorry..! Product unAvailable Now');
         }
-        return view('site.pages.shop.show',get_defined_vars());
+        return view('site.pages.shop.show', get_defined_vars());
     }
     public function featured()
     {
         $products = Product::featuredProduct();
-        return view('site.pages.shop.products',compact('products'));
+        return view('site.pages.shop.products', compact('products'));
     }
     public function toprated()
     {
         $products = Product::ratings()->paginate(PAGINATION_COUNT);
-        return view('site.pages.shop.products',compact('products'));
+        return view('site.pages.shop.products', compact('products'));
     }
 }

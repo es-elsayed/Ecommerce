@@ -237,12 +237,12 @@
             </div>
     </section>
 
-        @if (count($bought_together ?? []) > 0)
-        <x-site.product-section :products="$bought_together" :name="__('content.bought together')"/>
-        @endif
+    @if (count($bought_together ?? []) > 0)
+    <x-site.product-section :products="$bought_together" :name="__('content.bought together')" />
+    @endif
 
     @if (count($similar_products ?? []) > 0)
-    <x-site.product-section :products="$similar_products" :name="__('content.similar products')"/>
+    <x-site.product-section :products="$similar_products->except($product->id)" :name="__('content.similar products')" />
     @endif
 
     <!--end product more info-->

@@ -5,6 +5,17 @@ use App\Models\Site;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
+function array_multi_to_1d($input_array)
+{
+    $output_array = array();
+    for ($i = 0; $i < count($input_array); $i++) {
+        for ($j = 0; $j < count($input_array[$i]); $j++) {
+            $output_array[] = $input_array[$i][$j];
+        }
+    }
+    return $output_array;
+}
+
 function upload_image($folder, $image)
 {
     $path = "assets/images/notfound.jpg";
@@ -44,7 +55,7 @@ function isArabic($value)
 }
 function reviewsCount($review)
 {
-    return count($review) ?? 0 ;
+    return count($review) ?? 0;
 }
 function plural($title)
 {

@@ -60,7 +60,7 @@ class Product extends Model
     }
     static function activeProductBySlug($slug)
     {
-        return Product::where(['slug' => $slug, 'status' => 1])->select('id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'created_at', 'updated_at')->firstOrFail();
+        return Product::with('images')->where(['slug' => $slug, 'status' => 1])->select('id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'created_at', 'updated_at')->firstOrFail();
     }
 
     // relatins
