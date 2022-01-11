@@ -14,11 +14,11 @@
                 </div>
             </div>
             <div class="col-12 col-md order-4 order-md-2">
-                <div class="input-group flex-nowrap px-xl-4">
+                <div class="input-group flex-nowrap px-xl-4 position-relative">
                     <input autocomplete="off" list="products" name="product" id="product" class="form-control w-100"
                         placeholder="{{ __('content.search for products') }}">
-                    <datalist id="products">
-                    </datalist>
+                    <ul style="z-index: 100; color:white; background-color: rgb(0 0 0 / 84%);" class="navbar-nav position-absolute top-100 w-75" id="products">
+                    </ul>
                     <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
             </div>

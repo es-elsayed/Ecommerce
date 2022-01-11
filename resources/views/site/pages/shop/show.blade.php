@@ -242,7 +242,7 @@
     @endif
 
     @if (count($similar_products ?? []) > 0)
-    <x-site.product-section :products="$similar_products->except($product->id)" :name="__('content.similar products')" />
+    <x-site.product-section :products="$similar_products" :name="__('content.similar products')" />
     @endif
 
     <!--end product more info-->

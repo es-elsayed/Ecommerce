@@ -46,9 +46,8 @@ class SearchController extends Controller
                 if(count($data)>0){
                     foreach ($data as $row) {
                         $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
-                            $output .= '
-                            <option>'. $name .'</option>
-                            <input type="hidden" name="product_href" value="'.route('shop.product.show',$row->slug).'">';
+                            $output .= "
+                        <li class='p-3' style='border-bottom: 1px solid #dee2e6'><a class='d-block w-100' href='".route('shop.product.show',$row->slug)."'>$name</a></li>";
                         }
                 }else{
                     $output="no result";
