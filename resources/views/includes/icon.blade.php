@@ -1,1 +1,1 @@
-<link rel="shortcut icon" type="image/svg" href="https://twision.dev/images/Logow.svg"/>
+<link rel="shortcut icon" type="image/svg" href="{{ asset('assets/images/twisiop-logo.svg') }}"/>

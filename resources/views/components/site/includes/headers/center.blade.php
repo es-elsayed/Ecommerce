@@ -8,7 +8,7 @@
                     </div>
                     <div class="logo d-none d-lg-flex">
                         <a href="{{ route('site.home.index') }}">
-                            <img src="https://twision.dev/images/Logow.svg" class="logo-icon" alt="" />
+                            <img src="{{ asset('assets/images/twisiop-logo.svg') }}" class="logo-icon" alt="" />
                         </a>
                     </div>
                 </div>
