@@ -12,9 +12,9 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::orderBy('id', 'desc')->paginate(PAGINATION_COUNT);
+        $orders = Order::latest()->paginate(PAGINATION_COUNT);
         // return $orders[0]->products;
-        return view('admin.pages.orders.index',compact('orders'));
+        return view('admin.pages.orders', compact('orders'));
     }
 
     public function create()
@@ -24,7 +24,7 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        Order::findOrFail($request->id)->update(['status'=>"$request->action"]);
+        Order::findOrFail($request->id)->update(['status' => $request->action]);
         return redirect()->route('admin.orders.index');
     }
 

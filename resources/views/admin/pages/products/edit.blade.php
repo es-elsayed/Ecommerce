@@ -1,41 +1,8 @@
-@extends('layouts.admin')
-@section('title')
-Edit Product
-@endsection
-@section('extra-css')
-<link href="{{ asset('assets/admin/plugins/fancy-file-uploader/fancy_fileupload.css') }}" rel="stylesheet" />
-<link href="{{ asset('assets/admin/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet" />
-@endsection
-@section('content')
-<!--breadcrumb-->
-<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">eCommerce</div>
-    <div class="ps-3">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}"><i class="bx bx-home-alt"></i></a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="ms-auto">
-        <div class="btn-group">
-            <button type="button" class="btn btn-light">Settings</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
-                <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                    href="javascript:;">Action</a>
-                <a class="dropdown-item" href="javascript:;">Another action</a>
-                <a class="dropdown-item" href="javascript:;">Something else here</a>
-                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end breadcrumb-->
+<x-admin.layout title="Edit Product">
 
+    <!--breadcrumb-->
+    <x-admin.includes.breadcrumb>Edit Product</x-admin.includes.breadcrumb>
+    <!--end breadcrumb-->
 <div class="card">
     <div class="card-body p-4">
         <h5 class="card-title">Edit Product</h5>
@@ -242,28 +209,6 @@ Edit Product
         </div>
     </div>
 </div>
-@endsection
-@section('extra-js')
-<script src="{{ asset('assets/admin/plugins/fancy-file-uploader/jquery.ui.widget.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/fancy-file-uploader/jquery.fileupload.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/fancy-file-uploader/jquery.iframe-transport.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/fancy-file-uploader/jquery.fancy-fileupload.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
-<script>
-    $('#fancy-file-upload').FancyFileUpload({
-			params: {
-				action: 'fileuploader'
-			},
-			maxfilesize: 1000000
-		});
-</script>
-<script>
-    $(document).ready(function () {
-			$('#image-uploadify').imageuploadify();
-		})
-</script>
-<!--app JS-->
-<script src="{{ asset('assets/admin/js/app.js') }}"></script>
 <script>
     const buttons = document.querySelectorAll('.btn-danger');
     const deleted = document.querySelector('#deleted_images');
@@ -278,7 +223,6 @@ Edit Product
         })
     })
 </script>
+<x-admin.scripts.categoryproduct-check/>
 
-@include('admin.includes.product.category-check')
-
-@endsection
+</x-admin.layout>

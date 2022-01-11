@@ -12,7 +12,7 @@ class SiteInfoController extends Controller
 
     public function index()
     {
-        return view('admin.pages.site-info.create', ['site_info' => Site::first()]);
+        return view('admin.pages.site-info', ['site_info' => Site::first()]);
     }
 
     public function create()

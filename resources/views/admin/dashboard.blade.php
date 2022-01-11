@@ -1,8 +1,4 @@
-@extends('layouts.admin')
-@section('title')
-    home
-@endsection
-@section('content')
-<h1>hi</h1>
+<x-admin.layout title="Site Info">
 
-@endsection
+    <h1>Welcome {{ auth()->user()->name }} to Dashboard</h1>
+</x-admin.layout>

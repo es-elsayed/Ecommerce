@@ -1,8 +1,7 @@
 <x-admin.layout title="Messages">
-    {{ Form::hidden('', $increment = 1) }}
-    <div class="page-content">
-        <div class="card">
-            <div class="card-body">
+    <div class="card">
+        <div class="card-body">
+                {{ Form::hidden('', $increment = 1) }}
                 <div class="d-lg-flex align-items-center mb-4 gap-3">
                     <div class="position-relative">
                         <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span
