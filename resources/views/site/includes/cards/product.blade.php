@@ -47,17 +47,7 @@
                 </div>
                 <div class="product-action mt-2">
                     <div class="d-grid gap-2">
-                        <form action="{{ route('site.cart.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" value="{{ $product->id }}" name="id">
-                            <input type="hidden" value="{{ $product->name }}" name="name">
-                            <input type="hidden" value="{{ $product->price }}" name="price">
-                            <input type="hidden" value="{{ $product->main_image }}" name="image">
-                            <input type="hidden" value="1" name="quantity">
-                            <button class="btn btn-light btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>
-                                {{ __('content.add to cart') }}
-                            </button>
-                        </form>
+                        <x-site.includes.add-to-cart :product="$product" />
                         <a href="javascript:;" class="btn btn-dark btn-ecomm" data-bs-toggle="modal"
                             data-bs-target="#QuickViewProduct-{{ $loop->iteration }}"><i class="bx bx-zoom-in"></i>
                             {{ __("content.quick view") }}

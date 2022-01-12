@@ -68,6 +68,7 @@
                         <div class="col-12 col-lg-7">
                             <div class="product-info-section p-3">
                                 <h3 class="mt-3 mt-lg-0 mb-0">{{ $product->name }}</h3>
+                                <x-site.includes.stock :quantity="$product->quantity"/>
                                 <div class="product-rating d-flex align-items-center mt-2">
                                     @if (count($reviews))
                                     <div class="rates cursor-pointer font-13">
@@ -95,86 +96,11 @@
                                 <dl class="row mt-3">
                                     <dt class="col-sm-3">sku: </dt>
                                     <dd class="col-sm-9">{{ $product->sku}}</dd>
-                                    {{-- <dt class="col-sm-3">Delivery</dt>
-                                    <dd class="col-sm-9">Russia, USA, and Europe</dd> --}}
                                 </dl>
-                                {{-- <div class="row row-cols-auto align-items-center mt-3">
-                                    <div class="col">
-                                        <label class="form-label">Quantity</label>
-                                        <select class="form-select form-select-sm">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Size</label>
-                                        <select class="form-select form-select-sm">
-                                            <option>S</option>
-                                            <option>M</option>
-                                            <option>L</option>
-                                            <option>XS</option>
-                                            <option>XL</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Colors</label>
-                                        <div class="color-indigators d-flex align-items-center gap-2">
-                                            <div class="color-indigator-item bg-primary"></div>
-                                            <div class="color-indigator-item bg-danger"></div>
-                                            <div class="color-indigator-item bg-success"></div>
-                                            <div class="color-indigator-item bg-warning"></div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 <!--end row-->
-                                <form action="{{ route('site.cart.store') }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" value="{{ $product->id }}" name="id">
-                                    <input type="hidden" value="{{ $product->name }}" name="name">
-                                    <input type="hidden" value="{{ $product->price }}" name="price">
-                                    <input type="hidden" value="{{ $product->main_image }}" name="image">
-                                    <input type="hidden" value="1" name="quantity">
-                                    <button class="btn btn-light btn-ecomm w-100"> <i class="bx bxs-cart-add"></i>
-                                        {{ __('content.add to cart') }}
-                                    </button>
-                                </form>
+                                <x-site.includes.add-to-cart :product="$product" :quantity="true" />
                                 <hr>
-                                <div class="product-sharing">
-
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="nav-link"
-                                                href="https://www.facebook.com/sharer/sharer.php?u=http%3A//twision-ecommerce.test/en/shop/product/{{ $product->slug }}">
-                                                <i class="bx bxl-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="nav-link"
-                                                href="https://twitter.com/intent/tweet?text=http%3A//twision-ecommerce.test/en/shop/product/{{ $product->slug }}">
-                                                <i class="bx bxl-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" type="button" onclick="Copy();">
-                                                <i class='bx bx-link'></i>
-                                            </a>
-                                        </li>
-                                        {{-- <li class="list-inline-item"> <a href="javascript:;"><i
-                                                    class="bx bxl-instagram"></i></a>
-                                        </li>
-                                        <li class="list-inline-item"> <a href="javascript:;"><i
-                                                    class="bx bxl-linkedin"></i></a>
-                                        </li>
-                                        <li class="list-inline-item"> <a href="javascript:;"><i
-                                                    class="bx bxl-google"></i></a>
-                                        </li> --}}
-                                    </ul>
-                                    <span id="custom-tooltip"></span>
-                                </div>
+                                <x-site.includes.share :product="$product" />
                             </div>
                         </div>
                     </div>
