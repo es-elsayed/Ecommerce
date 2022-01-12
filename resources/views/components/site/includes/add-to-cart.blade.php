@@ -12,11 +12,9 @@
                 name="quantity" max="5">
         </div>
     </div>
-    <div class="row">
-        <button class="col btn btn-light btn-ecomm">
-            <i class="bx bxs-cart-add"></i>
-            {{ __('content.add to cart') }}
-        </button>
-    </div>
+    <button class="btn btn-light btn-ecomm w-100">
+        <i class="bx bxs-cart-add"></i>
+        {{ __('content.add to cart') }}
+    </button>
     @endif
 </form>
