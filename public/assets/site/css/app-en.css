@@ -2161,3 +2161,20 @@ body.bg-notheme .primary-menu .dropdown-large-menu a {
 
 
 /* End Search */
+
+/* silder icon */
+body.bg-notheme .carousel-indicators [data-bs-target] {
+    background-color: #000;
+}
+
+body.bg-notheme .carousel-control-next-icon,
+body.bg-notheme .carousel-control-prev-icon {
+    filter: invert(1) grayscale(100);
+}
+
+body.bg-notheme .border-bottom{
+    border-bottom: 1px solid #dee2e6!important;
+}
+body.bg-notheme .border-top{
+    border-top: 1px solid #dee2e6!important;
+}

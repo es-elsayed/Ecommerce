@@ -5,7 +5,7 @@
                 <div class="col">
                     <div class="footer-section1 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.contact info') }} </h6>
-                        <x-site.includes.contact-info/>
+                        <x-site.cards.contact-info/>
                     </div>
                 </div>
                 <div class="col">

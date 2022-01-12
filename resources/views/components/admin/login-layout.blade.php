@@ -17,8 +17,8 @@
 <body class="bg-theme bg-theme2">
 	<!--wrapper-->
 	<div class="wrapper">
-        <x-site.includes.alerts.success />
-        <x-site.includes.alerts.error />
+        <x-alerts.success />
+        <x-alerts.error />
 		{{ $slot }}
 	</div>
 	<!--end wrapper-->

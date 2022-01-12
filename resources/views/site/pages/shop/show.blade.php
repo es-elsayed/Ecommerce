@@ -4,7 +4,7 @@
     </x-slot>
 
     <!--start breadcrumb-->
-    <x-site.includes.headers.breadcrumb title="{{ $product->name }}">
+    <x-site.headers.breadcrumb title="{{ $product->name }}">
         <li class="breadcrumb-item">
             <a href="{{ route('site.home.index') }}">
                 <i class="bx bx-home-alt"></i>
@@ -17,7 +17,7 @@
                 {{ __('content.shop') }}
             </a>
         </li>
-    </x-site.includes.headers.breadcrumb>
+    </x-site.headers.breadcrumb>
     <!--end breadcrumb-->
     <!--start product detail-->
     <section class="py-4">
@@ -164,11 +164,11 @@
     </section>
 
     @if (count($bought_together ?? []) > 0)
-    <x-site.product-section :products="$bought_together" :name="__('content.bought together')" />
+    <x-site.sections.product :products="$bought_together" :name="__('content.bought together')" />
     @endif
 
     @if (count($similar_products ?? []) > 0)
-    <x-site.product-section :products="$similar_products" :name="__('content.similar products')" />
+    <x-site.sections.product :products="$similar_products" :name="__('content.similar products')" />
     @endif
 
     <!--end product more info-->

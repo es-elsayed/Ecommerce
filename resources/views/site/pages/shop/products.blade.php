@@ -5,7 +5,7 @@
 
     <div class="page-content">
         <!--start breadcrumb-->
-        <x-site.includes.headers.breadcrumb title="{{ __('content.shop') }}" active="{{ $category->name ?? null }}">
+        <x-site.headers.breadcrumb title="{{ __('content.shop') }}" active="{{ $category->name ?? null }}">
             <li class="breadcrumb-item">
                 <a href="{{ route('site.home.index') }}">
                     <i class="bx bx-home-alt"></i>
@@ -18,7 +18,7 @@
                     {{ __('content.shop') }}
                 </a>
             </li>
-        </x-site.includes.headers.breadcrumb>
+        </x-site.headers.breadcrumb>
         <!--end breadcrumb-->
         <!--start shop area-->
         <section class="py-4">

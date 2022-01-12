@@ -1,14 +1,14 @@
 <x-site.layout title="{{ __('content.contact') }}">
 
     <!--start breadcrumb-->
-    <x-site.includes.headers.breadcrumb title="{{ __('content.contact') }}">
+    <x-site.headers.breadcrumb title="{{ __('content.contact') }}">
         <li class="breadcrumb-item">
             <a href="{{ route('site.home.index') }}">
                 <i class="bx bx-home-alt"></i>
                 {{ __('content.home') }}
             </a>
         </li>
-    </x-site.includes.headers.breadcrumb>
+    </x-site.headers.breadcrumb>
     <!--end breadcrumb-->
     <!--start page content-->
     <section class="py-4">
@@ -52,11 +52,6 @@
                         </form>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4">
-                    <div class="p-3 bg-dark-1">
-                        <x-site.includes.contact-info />
-                    </div>
-                </div> --}}
             </div>
             <!--end row-->
         </div>

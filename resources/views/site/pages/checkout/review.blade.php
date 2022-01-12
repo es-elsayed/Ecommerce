@@ -4,7 +4,7 @@
     </x-slot>
     <div class="page-content">
         <!--start breadcrumb-->
-    <x-site.includes.headers.cart />
+    <x-site.headers.cart />
 
         <!--end breadcrumb-->
         <!--start shop cart-->

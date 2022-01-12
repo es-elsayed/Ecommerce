@@ -4,9 +4,9 @@
         <div class="d-flex align-items-center">
             <h5 class="text-uppercase mb-0">{{ $name }}</h5>
             @if (isset($route))
-            <x-site.a class="btn-dark" href='{{ $route }}'>
+            <x-site.includes.a class="btn-dark" href='{{ $route }}'>
                 {{ __('content.more products') }}<i class="bx bx-chevron-right"></i>
-            </x-site.a>
+            </x-site.includes.a>
             @endif
         </div>
         <hr>

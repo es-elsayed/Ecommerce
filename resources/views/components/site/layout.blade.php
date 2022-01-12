@@ -32,10 +32,10 @@
         </div> --}}
         <!--start top header wrapper-->
 
-        <x-site.includes.headers.index />
+        <x-site.headers.index />
 
-        <x-site.includes.alerts.success />
-        <x-site.includes.alerts.error />
+        <x-alerts.success />
+        <x-alerts.error />
 
         <!--end top header wrapper-->
 
@@ -49,7 +49,7 @@
         </div>
         <!--end page wrapper -->
         <!--start footer section-->
-        <x-site.includes.footers.index />
+        <x-site.footers.index />
         <!--end footer section-->
 
     </div>

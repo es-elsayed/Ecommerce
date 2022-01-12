@@ -20,9 +20,9 @@
                                 <h3 class="h1">{{ $slider->title }}</h3>
                                 <p class="pb-3">{{ $slider->description }}</p>
                                 <div class="">
-                                    <x-site.a class="btn-light" href="/{{ $slider->link }}">
+                                    <x-site.includes.a class="btn-light" href="/{{ $slider->link }}">
                                         {{ __('content.shop now') }}<i class="bx bx-chevron-right"></i>
-                                    </x-site.a>
+                                    </x-site.includes.a>
                                 </div>
                             </div>
                         </div>

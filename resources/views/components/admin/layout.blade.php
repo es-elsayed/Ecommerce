@@ -28,8 +28,8 @@
         <!--start page wrapper -->
         <div class="page-wrapper">
             <div class="page-content">
-                <x-site.includes.alerts.success />
-                <x-site.includes.alerts.error />
+                <x-alerts.success />
+                <x-alerts.error />
                 {{ $slot }}
             </div>
         </div>

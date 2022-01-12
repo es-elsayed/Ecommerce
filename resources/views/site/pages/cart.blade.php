@@ -5,7 +5,7 @@
 
     <div class="page-content">
         <!--start breadcrumb-->
-        <x-site.includes.headers.cart />
+        <x-site.headers.cart />
 
         <!--end breadcrumb-->
         <!--start shop cart-->
@@ -20,7 +20,7 @@
                                 @include('site.includes.cards.cart')
                                 @endforeach
                                 @endif
-                                <x-site.includes.footers.cart />
+                                <x-site.footers.cart />
                             </div>
                         </div>
                         <div class="col-12 col-xl-4">

@@ -2,7 +2,11 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
             <div class="lang d-flex gap-1">
-                <div><span> {{ __('content.lang') }} </span>
+                <div>
+                    <span>
+
+                        <i class="flag-icon flag-icon-{{ app()->getLocale()=='ar'? 'ae':'um' }} me-2"></i>
+                    </span>
                 </div>
             </div>
         </a>

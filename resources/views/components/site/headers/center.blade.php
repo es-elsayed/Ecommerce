@@ -39,7 +39,10 @@
                     <nav class="navbar navbar-expand">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a href="{{ route('site.profile.index') }}"
-                                    class="nav-link cart-link"><i class='bx bx-user'></i></a>
+                                    class="nav-link cart-link">
+
+                                    <i class='bx bx-{{ auth()->user()? 'user':'log-in'  }}'></i>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('site.favorite.index') }}" class="nav-link cart-link">
