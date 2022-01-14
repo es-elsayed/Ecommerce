@@ -12,7 +12,7 @@
                     <div class="footer-section2 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.shop categories') }} </h6>
                         <ul class="list-unstyled">
-                            @foreach (\App\Models\Category::activeParent()->paginate(PAGINATION_COUNT) as
+                            @foreach ($main_categories as
                             $main_category)
                             <li class="mb-1">
                                 <a href="{{ route('site.shop.show', $main_category->slug) }}" class="tag-link"><i

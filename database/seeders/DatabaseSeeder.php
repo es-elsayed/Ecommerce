@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Slider::factory(6)->create();
+        // Slider::factory(6)->create();
         $this->call([
-            AdminSeeder::class,
-            CategorySeeder::class,
+            // AdminSeeder::class,
+            // CategorySeeder::class,
             ProductSeeder::class,
-            RegionsSeeder::class,
-            CitiesSeeder::class,
+            // RegionsSeeder::class,
+            // CitiesSeeder::class,
         ]);
 
     }

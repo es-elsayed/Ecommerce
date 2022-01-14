@@ -14,10 +14,12 @@
     <section class="py-4">
         <div class="container">
             <h3 class="d-none">Google Map</h3>
+            @if ($siteInfo->location?? null)
             <div class="contact-map p-3 bg-dark-1 rounded-0 shadow-none">
-                <iframe src="{{ getInfo('location') }}" class="w-100" height="450" style="border:0;" allowfullscreen=""
+                <iframe src="{{ $siteInfo->location }}" class="w-100" height="450" style="border:0;" allowfullscreen=""
                     loading="lazy"></iframe>
             </div>
+            @endif
         </div>
     </section>
     <section class="py-4">

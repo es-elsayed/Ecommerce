@@ -5,7 +5,7 @@
                 <div class="card rounded-0">
                     <div class="row g-0 align-items-center">
                         <div class="col">
-                            <img src="assets/images/promo/01.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/site/images/promo/01.png') }}" class="img-fluid" alt="">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -20,7 +20,7 @@
                 <div class="card rounded-0">
                     <div class="row g-0 align-items-center">
                         <div class="col">
-                            <img src="assets/images/promo/02.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/site/images/promo/02.png') }}" class="img-fluid" alt="">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -35,7 +35,7 @@
                 <div class="card rounded-0">
                     <div class="row g-0 align-items-center">
                         <div class="col">
-                            <img src="assets/images/promo/03.png" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/site/images/promo/03.png') }}" class="img-fluid" alt="">
                         </div>
                         <div class="col">
                             <div class="card-body">

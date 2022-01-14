@@ -26,6 +26,30 @@ class Product extends Model
     ];
     protected $with = ['reviews'];
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1)->selecting();
+    }
+    public function scopeSelecting($query)
+    {
+        return $query->select(
+            'id',
+            'sku',
+            'slug',
+            'name_' . app()->getLocale() . ' as name',
+            'details_' . app()->getLocale() . ' as details',
+            'description_' . app()->getLocale() . ' as description',
+            'status',
+            'featured',
+            'quantity',
+            'main_image',
+            'price',
+            'sale_price',
+            'sale',
+            'created_at',
+            'updated_at'
+        );
+    }
     public function getActive()
     {
         return $this->status == 1 ? 'active' : 'in-active';
@@ -34,36 +58,18 @@ class Product extends Model
     {
         return Product::with('images')
             ->where(['status' => 1, 'featured' => 1])
-            ->select(
-                'products.id',
-                'sku',
-                'slug',
-                'name_' . app()->getLocale() . ' as name',
-                'details_' . app()->getLocale() . ' as details',
-                'description_' . app()->getLocale() . ' as description',
-                'status',
-                'featured',
-                'quantity',
-                'main_image',
-                'price',
-                'sale_price',
-                'sale',
-                'products.created_at',
-                'products.updated_at'
-            )
+            ->selecting()
             ->inRandomOrder()
             ->paginate(PAGINATION_COUNT);
     }
     static function getProductById($id)
     {
-        return Product::where('id', $id)->select('id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'created_at', 'updated_at')->firstOrFail();
+        return Product::where('id', $id)->selecting()->firstOrFail();
     }
     static function activeProductBySlug($slug)
     {
-        return Product::with('images')->where(['slug' => $slug, 'status' => 1])->select('id', 'sku', 'slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'created_at', 'updated_at')->firstOrFail();
+        return Product::with('images')->whereSlug($slug)->active()->selecting()->firstOrFail();
     }
-
-    // relatins
 
     public function orderQty()
     {
@@ -92,7 +98,7 @@ class Product extends Model
     }
     static function ratings()
     {
-        return Product::select('products.id','products.slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at', 'products.updated_at')
+        return Product::selecting()
             ->withAvg('reviews', 'rate')
             ->orderBy('reviews_avg_rate', 'desc');
     }

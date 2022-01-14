@@ -16,6 +16,7 @@ class HomeController extends Controller
         $sliders = Slider::activeSlider();
         $featured_products = Product::featuredProduct();
         $top_rated = Product::ratings()->paginate(PAGINATION_COUNT);
+        $new_arrivals = Product::latest()->active()->paginate(15);
         return view('site.home', get_defined_vars());
     }
 }

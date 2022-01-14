@@ -22,14 +22,14 @@
                     <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
             </div>
-            @if (getInfo('phone'))
+            @if ($siteInfo->phone)
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>
                 <div class="ms-2">
                     <p class="mb-0 font-13">{{ __('content.call us') }}</p>
                     <h5 class="mb-0 d-ltr">
-                        <a class="nav-link" href="tel:{{ getInfo('phone') }}">{{ getInfo('phone') }}</a>
+                        <a class="nav-link" href="tel:{{ $siteInfo->phone }}">{{ $siteInfo->phone }}</a>
                     </h5>
                 </div>
             </div>

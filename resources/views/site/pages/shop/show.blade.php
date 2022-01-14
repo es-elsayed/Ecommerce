@@ -138,7 +138,7 @@
                     </div>
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
                         <div class="row">
-                            <div class="col col-lg-8">
+                            <div class="col">
                                 <div class="product-review">
 
                                     <h5 class="mb-4"> ({{ reviewsCount($reviews) }}) Reviews For The Product</h5>

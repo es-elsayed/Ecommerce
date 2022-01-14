@@ -2178,3 +2178,15 @@ body.bg-notheme .border-bottom{
 body.bg-notheme .border-top{
     border-top: 1px solid #dee2e6!important;
 }
+button.border-0:focus {
+    outline: none !important;
+}
+body.bg-notheme .discount-alert .alert{
+    background-color: #fff !important;
+}
+.btn-close{
+    filter: none;
+}
+body.bg-notheme .bg-light{
+    background-color: #f8f9fa !important;
+}

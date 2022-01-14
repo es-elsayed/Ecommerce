@@ -61,11 +61,6 @@ function plural($title)
 {
     return Illuminate\Support\Str::plural("$title", 5);
 }
-function getInfo($key)
-{
-    $info = Site::first();
-    return $info[$key] ?? null;
-}
 
 function getNumbers()
 {

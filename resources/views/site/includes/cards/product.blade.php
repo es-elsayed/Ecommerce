@@ -7,14 +7,7 @@
                             }}</span>
                     </div>
                 </a>
-                <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
-                    @csrf
-                    <button type="submit" class="bg-transparent border-0" data-name[{{ $loop->iteration }}]="{{
-                        $product->name }}">
-                        <div class="product-wishlist"> <i class="bx bx-heart"></i>
-                        </div>
-                    </button>
-                </form>
+                <x-site.includes.fav-heart-icon :id="$product->id" :name="$product->name"/>
             </div>
         </div>
         <a href="{{ route('shop.product.show',$product->slug) }}">
@@ -29,14 +22,7 @@
                     <h6 class="product-name mb-2">{{ $product->name }}</h6>
                 </a>
                 <div class="d-flex align-items-center">
-                    <div class="mb-1 product-price">
-                        @if ($product->sale)
-                        <span class="me-1 text-decoration-line-through">{{ currency($product->price) }}</span>
-                        <span class="text-white fs-5">{{ currency($product->sale_price) }}</span>
-                        @else
-                        <span class="text-white fs-5">{{ currency($product->price) }}</span>
-                        @endif
-                    </div>
+                    <x-site.includes.product-price :product="$product"/>
                     <div class="cursor-pointer ms-auto">
                         @if (count($product->reviews))
                         <x-site.cards.rate :rate="round($product->reviews->sum('rate')/count($product->reviews))" />
@@ -60,7 +46,7 @@
 </div>
 
 {{-- ======================= Start Pop up details==================== --}}
-<div class="modal fade show" id="QuickViewProduct-{{ $loop->iteration }}" style="padding-right: 15px; display: none;"
+{{-- <div class="modal fade show" id="QuickViewProduct-{{ $loop->iteration }}" style="padding-right: 15px; display: none;"
     aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
         <div class="modal-content bg-dark-4 rounded-0 border-0">
@@ -173,7 +159,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--end row-->
                             <div class="d-flex gap-2 mt-3">
                                 <form action="{{ route('site.cart.store') }}" method="POST"
                                     enctype="multipart/form-data">
@@ -186,7 +171,7 @@
                                     <button class="btn btn-light btn-ecomm"> <i class="bx bxs-cart-add"></i>Add To
                                         Cart</button>
                                 </form>
-                                {{-- <a href="javascript:;" class="">Add to Cart</a> --}}
+                                <a href="javascript:;" class="">Add to Cart</a>
                                 <form action="{{ route('site.favorite.store',['id'=>$product->id]) }}" method="post">
                                     @csrf
                                     <button class="btn btn-dark btn-ecomm"><i class="bx bx-heart"></i>Add to
@@ -196,9 +181,8 @@
                         </div>
                     </div>
                 </div>
-                <!--end row-->
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- ======================= End Pop up details==================== --}}

@@ -1,24 +1,24 @@
-@if (getInfo('address'))
+@if ($siteInfo->address)
 <div class="address mb-3">
     <p class="mb-0 text-uppercase text-white"> {{ __('content.address') }} </p>
-    <p class="mb-0 font-12">{{ getInfo('address') }}</p>
+    <p class="mb-0 font-12">{{ $siteInfo->address }}</p>
 </div>
 @endif
-@if (getInfo('phone'))
+@if ($siteInfo->phone)
 <div class="phone mb-3">
     <p class="mb-0 text-uppercase text-white"> {{ __('content.phone') }} </p>
-    <p class="mb-0 font-13">{{ getInfo('phone') }}</p>
+    <p class="mb-0 font-13">{{ $siteInfo->phone }}</p>
 </div>
 @endif
-@if (getInfo('email'))
+@if ($siteInfo->email)
 <div class="email mb-3">
     <p class="mb-0 text-uppercase text-white"> {{ __('content.email') }} </p>
-    <p class="mb-0 font-13">{{ getInfo('email') }}</p>
+    <p class="mb-0 font-13">{{ $siteInfo->email }}</p>
 </div>
 @endif
-@if (getInfo('working_days'))
+@if ($siteInfo->working_days)
 <div class="working-days mb-3">
     <p class="mb-0 text-uppercase text-white"> {{ __('content.working days') }} </p>
-    <p class="mb-0 font-13">{{ getInfo('working_days') }}</p>
+    <p class="mb-0 font-13">{{ $siteInfo->working_days }}</p>
 </div>
 @endif
