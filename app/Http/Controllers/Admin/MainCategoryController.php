@@ -59,6 +59,7 @@ class MainCategoryController extends Controller
         $sub_categories = $main_category->childs;
         if (sizeof($sub_categories)) {
             foreach ($sub_categories as $sub_category) {
+
                 $sub_category->update(['status' => 1]);
             }
         }
