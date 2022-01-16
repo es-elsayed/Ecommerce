@@ -14,7 +14,7 @@
     <section class="py-4">
         <div class="container">
             <h3 class="d-none">Google Map</h3>
-            @if ($siteInfo->location?? null)
+            @if ($siteInfo->location ?? 0)
             <div class="contact-map p-3 bg-dark-1 rounded-0 shadow-none">
                 <iframe src="{{ $siteInfo->location }}" class="w-100" height="450" style="border:0;" allowfullscreen=""
                     loading="lazy"></iframe>

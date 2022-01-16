@@ -22,7 +22,7 @@
                     <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                 </div>
             </div>
-            @if ($siteInfo->phone)
+            @if ($siteInfo->phone ?? 0)
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>
