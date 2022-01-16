@@ -9,7 +9,8 @@
     <div class="row row-cols-auto align-items-center mt-3">
         <div class="col">
             <input type="{{ $quantity? 'number' : 'hidden' }}" class="form-control rounded-0 qty mb-3" value="1"
-                name="quantity" max="5">
+                name="quantity">
+                {{-- name="quantity" min="1" max="5"> --}}
         </div>
     </div>
     <button class="btn btn-light btn-ecomm w-100">

@@ -19,7 +19,7 @@
                         placeholder="{{ __('content.search for products') }}">
                     <ul style="z-index: 100; color:white; background-color: rgb(0 0 0 / 84%);" class="navbar-nav position-absolute top-100 w-75" id="products">
                     </ul>
-                    <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
+                    <label for="product" class="input-group-text cursor-pointer"><i class='bx bx-search'></i></label>
                 </div>
             </div>
             @if ($siteInfo->phone ?? 0)

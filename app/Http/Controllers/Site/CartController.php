@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Site\CartRequest;
 
 class CartController extends Controller
 {
@@ -18,8 +19,9 @@ class CartController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CartRequest $request)
     {
+        // dd($request->request);
         \Cart::add([
             'id' => $request->id,
             'name' => $request->name,
@@ -34,8 +36,9 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request)
+    public function update(CartRequest $request)
     {
+        // dd(\Cart::where('id',$request->id));
         \Cart::update(
             $request->id,
             [
