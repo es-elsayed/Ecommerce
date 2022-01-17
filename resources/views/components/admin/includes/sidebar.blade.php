@@ -11,6 +11,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
+        <x-admin.includes.sidebar-li title="brands" route="brands" ><i class="lni lni-bold"></i></x-admin.includes.sidebar-li>
         <x-admin.includes.sidebar-li title="main category" route="maincategories" ><i class="bx bx-home-circle"></i></x-admin.includes.sidebar-li>
         <x-admin.includes.sidebar-li title="sub category" route="subcategories" ><i class="bx bx-home-circle"></i></x-admin.includes.sidebar-li>
         <x-admin.includes.sidebar-li title="product" route="products" ><i class="lni lni-grow"></i></x-admin.includes.sidebar-li>

@@ -103,6 +103,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="my-3">
+            {{ $products->links() }}
+        </div>
     </div>
 </div>
 </x-admin.layout>

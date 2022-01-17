@@ -23,6 +23,7 @@ class Product extends Model
         'slug',
         'quantity',
         'main_image',
+        'brand_id',
     ];
     protected $with = ['reviews'];
 
@@ -78,7 +79,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->select('categories.id', 'name_' . app()->getLocale() . ' as name', 'status', 'is_parent', 'image', 'banner', 'slug', 'parent_id', 'categories.created_at', 'categories.updated_at');
+        return $this->belongsToMany(Category::class)->selecting();
     }
     public function images()
     {
@@ -95,6 +96,10 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
     static function ratings()
     {

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
@@ -22,7 +23,7 @@ class ProductSeeder extends Seeder
         $categories = Category::all();
         Product::all()->each(function ($product) use ($categories) {
             $product->categories()->attach(
-                $categories->random(2)->pluck('id')->toArray()
+                $categories->random(6)->pluck('id')->toArray()
             );
         });
     }

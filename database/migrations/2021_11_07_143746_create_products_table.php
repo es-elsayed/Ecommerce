@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->boolean('sale')->default(0);
             $table->boolean('featured')->default(0);
             $table->boolean('status')->default(1);
+            $table->foreignId('brand_id');
 
             $table->timestamps();
         });

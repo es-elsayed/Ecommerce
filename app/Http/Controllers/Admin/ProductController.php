@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AcitvateRequest;
+use App\Http\Requests\Admin\ChangeStatusRequest;
 use App\Http\Requests\Product\AddProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
-use App\Http\Requests\ProductActionsRequest;
-use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\ImageProduct;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -20,13 +17,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = ProductResource::collection(Product::all());
+        $products = Product::with('categories')->paginate(PAGINATION_COUNT*2);
         return view('admin.pages.products.index', ['products' => $products]);
     }
 
     public function create()
     {
-        $parent_categories = Category::where('is_parent', 1)->get();
+        $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         return view('admin.pages.products.create', ['parent_categories' => $parent_categories]);
     }
 
@@ -92,18 +89,19 @@ class ProductController extends Controller
 
     public function edit($slug)
     {
-        $product = Product::where('slug', $slug)->first();
-        $parent_categories = Category::where('is_parent', 1)->get();
+        $product = Product::where('slug', $slug)->with('categories')->first();
+        $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
         return view('admin.pages.products.edit', get_defined_vars());
     }
-    public function activate(ProductActionsRequest $request,Product $product)
+    public function activate(ChangeStatusRequest $request,Product $product)
     {
+        $action = $request->status == 0  ? 'de-activated' : 'activated';
         $product->update(['status'=>$request->status]);
-        return redirect()->route('admin.products.index')->with('success', 'The "' . $product->name_en . '" Product status has been Activated Successfuly');
+        return redirect()->route('admin.products.index')->with('success', "The  $product->name_en  Product status has been $action Successfuly");
     }
-    public function featured(ProductActionsRequest $request,Product $product)
+    public function featured(ChangeStatusRequest $request,Product $product)
     {
         $product->update(['featured'=>$request->status]);
         return redirect()->route('admin.products.index')->with('success', 'The "' . $product->name_en . '" Added to Featured Product Successfuly');

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class ProductActionsRequest extends FormRequest
+class ChangeStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,11 +14,10 @@ class ProductActionsRequest extends FormRequest
      */
     public function authorize()
     {
-        if (Auth::guard('admin')) {
+        if (Auth::guard('admin')){
             return true;
         }
-        return false;
-    }
+        return false;    }
 
     /**
      * Get the validation rules that apply to the request.

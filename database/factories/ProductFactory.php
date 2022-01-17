@@ -35,6 +35,7 @@ class ProductFactory extends Factory
             'status'            => $this->faker->numberBetween(0,1) || $this->faker->numberBetween(0,1) ? 1: 0,
             'slug'              => Str::slug($name_en),
             'quantity'          => $this->faker->numberBetween(15,60),
+            'brand_id'          => $this->faker->numberBetween(1,6),
             'main_image'        => 'assets/site/images/products/0' . $this->faker->numberBetween(1,23) . '.png',
         ];
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\BrandController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::resource('/dashboard', DashboardController::class, ['as'=>'admin']);
 
     Route::resource('orders', OrderController::class, ['as' => 'admin']);
+
+    // ********* Brand Routes ***********
+    Route::resource('brands', BrandController::class, ['as' => 'admin']);
+    Route::put('brands/{brand}/activate', [BrandController::class, 'activate'])->name('admin.brands.activate');
+
     // ********* Main Category Routes ***********
     Route::resource('maincategories', MainCategoryController::class, ['as' => 'admin']);
     Route::get('maincategories/active/{id}', [MainCategoryController::class, 'active'])->name('admin.maincategories.active');

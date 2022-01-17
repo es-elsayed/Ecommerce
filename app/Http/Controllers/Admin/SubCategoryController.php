@@ -16,7 +16,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         // return Config::get('app.locale');
-        $categories = SubCategoryResource::collection(Category::where('is_parent', 0)->get());
+        $categories = SubCategoryResource::collection(Category::where('is_parent', 0)->with('parent')->get());
         return view('admin.pages.sub-categories.index', ['categories' => $categories]);
     }
 
