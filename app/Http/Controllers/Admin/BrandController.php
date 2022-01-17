@@ -26,7 +26,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.brands.create');
     }
 
     /**
@@ -57,9 +57,10 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Brand $brand)
     {
-        //
+        // return $brand;
+        return view('admin.pages.brands.create',compact('brand'));
     }
 
     /**
