@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChangeStatusRequest;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\ImageProduct;
@@ -23,7 +24,8 @@ class ProductController extends Controller
     public function create()
     {
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
-        return view('admin.pages.products.create', ['parent_categories' => $parent_categories]);
+        $brands = Brand::all();
+        return view('admin.pages.products.create', get_defined_vars());
     }
 
     public function store(ProductRequest $request)
@@ -93,7 +95,9 @@ class ProductController extends Controller
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
-        return view('admin.pages.products.edit', get_defined_vars());
+        $brands = Brand::all();
+
+        return view('admin.pages.products.create', get_defined_vars());
     }
     public function update(ProductRequest $request, $slug)
     {

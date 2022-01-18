@@ -1,85 +1,83 @@
-<x-admin.layout title="Add Product">
+{{-- Decide route is store or update --}}
+@php
+$route =route("admin.products.store");
+$method = false;
+$title = "Add Product";
+if (Route::currentRouteName() == "admin.products.edit") {
+$route = route("admin.products.update",$product->slug);
+$method = true;
+$title = "Edit Product";
+}
+@endphp
+{{-- End --}}
+<x-admin.layout :title="$title">
 
     <!--breadcrumb-->
-    <x-admin.includes.breadcrumb>Add Product</x-admin.includes.breadcrumb>
+    <x-admin.includes.breadcrumb>{{ $title }}</x-admin.includes.breadcrumb>
     <!--end breadcrumb-->
     <div class="card">
         <div class="card-body p-4">
-            <h5 class="card-title">Add Product</h5>
+            <h5 class="card-title">{{ $title }}</h5>
             <hr />
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg">
-                        <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ $route }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @if ($method ?? 0)
+                            @method('put')
+                            @endif
                             @csrf
                             <div class="border border-3 p-4 rounded">
                                 <div class="row">
-                                    <div class="col-xl mb-3">
-                                        <label for="name_en" class="form-label">Product Name (en)</label>
-                                        <input id="name_en" type="text" name="name_en" required min="3" max="191"
-                                            class="form-control @error('name_en') is-invalid @enderror"
-                                            placeholder="Product Name in English" value="{{ old('name_en') }}">
-                                        @error('name_en')
-                                        <div class="invalid-feedback">{{ $message
-                                            }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-xl mb-3">
-                                        <label for="name_ar" class="form-label">Product Name (ar)</label>
-                                        <input id="name_ar" type="text" name="name_ar" required min="3" max="191"
-                                            class="form-control @error('name_ar') is-invalid @enderror"
-                                            placeholder="Product Name in Arabic" value="{{ old('name_ar') }}">
-                                        @error('name_ar')
-                                        <div class="invalid-feedback">{{ $message
-                                            }}</div>
-                                        @enderror
-                                    </div>
+                                    <x-admin.forms.input-text type="text" name="name_en"
+                                        placeholder="Product Name in English"
+                                        value="{{ $product->name_en ?? old('name_en') }}">Product Name (en)
+                                    </x-admin.forms.input-text>
+                                    <x-admin.forms.input-text type="text" name="name_ar"
+                                        placeholder="Product Name in Arabic"
+                                        value="{{ $product->name_ar ?? old('name_ar') }}">Product Name (ar)
+                                    </x-admin.forms.input-text>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl mb-3">
-                                        <label for="details_en" class="form-label">Details (en)</label>
-                                        <textarea class="form-control @error('details_en') is-invalid @enderror"
-                                            id="details_en" name="details_en" placeholder="Details in English..."
-                                            required min="3" max="191" rows="3">{{ old('details_en') }}</textarea>
-                                        @error('details_en')
-                                        <div class="invalid-feedback">{{ $message
-                                            }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-xl mb-3">
-                                        <label for="details_ar" class="form-label">Details (ar)</label>
-                                        <textarea class="form-control @error('details_ar') is-invalid @enderror"
-                                            id="details_ar" name="details_ar" placeholder="Details in Arabic..."
-                                            required min="3" max="191" rows="3">{{ old('details_ar') }}</textarea>
-                                        @error('details_ar')
-                                        <div class="invalid-feedback">{{ $message
-                                            }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="description_en" class="form-label">Description (en)</label>
-                                    <textarea class="form-control @error('description_en') is-invalid @enderror"
-                                        id="description_en" name="description_en" required min="3"
-                                        placeholder="Description in English..."
-                                        rows="3">{{ old('description_en') }}</textarea>
-                                    @error('description_en')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="description_ar" class="form-label">Description (ar)</label>
-                                    <textarea class="form-control @error('description_ar') is-invalid @enderror"
-                                        id="description_ar" name="description_ar" placeholder="Description in Arabic..."
-                                        required min="3" rows="3">{{ old('description_ar') }}</textarea>
-                                    @error('description_ar')
-                                    <div class="invalid-feedback">{{ $message }}
-                                    </div>
-                                    @enderror
+                                    <x-admin.forms.select name="brand_id" >
+                                        <option selected="">Select Brand</option>
+                                        @foreach ($brands as $brand )
+                                        <option value="{{ $brand->id }}" @if($brand->id === $product->brand_id )
+                                            selected>{{ $brand->name_en }}</option>
+                                        @endforeach
+                                    </x-admin.forms.select>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl mb-3">
+                                    <x-admin.forms.textarea name="details_en" placeholder="Enter Details  in English"
+                                        value="{{ $product->details ?? old('details_en') }}"> Details (en)
+                                    </x-admin.forms.textarea>
+                                    <x-admin.forms.textarea name="details_ar" placeholder="Enter Details  in Arabic"
+                                        value="{{ $product->details ?? old('details_ar') }}"> Details (ar)
+                                    </x-admin.forms.textarea>
+                                </div>
+                                <div class="row">
+                                    <x-admin.forms.textarea name="description_en"
+                                        placeholder="Enter Description  in English"
+                                        value="{{ $product->description ?? old('description_en') }}"> Description (en)
+                                    </x-admin.forms.textarea>
+                                </div>
+                                <div class="row">
+                                    <x-admin.forms.textarea name="description_ar"
+                                        placeholder="Enter Description  in Arabic"
+                                        value="{{ $product->description ?? old('description_ar') }}"> Description (ar)
+                                    </x-admin.forms.textarea>
+                                </div>
+                                <div class="row">
+                                    <x-admin.forms.input-number name="price" required
+                                        value="{{ $product->price ?? old('price') }}">Price</x-admin.forms.input-number>
+                                    <x-admin.forms.input-number name="sale_price" required
+                                        value="{{ $product->sale_price ?? old('sale_price') }}">Sale Price
+                                    </x-admin.forms.input-number>
+                                    <x-admin.forms.input-number name="qty" required
+                                        value="{{ $product->qty ?? old('qty') }}" step='1'>Quantity
+                                    </x-admin.forms.input-number>
+                                    {{-- <div class="col-xl mb-3">
                                         <label for="price" class="form-label">Price</label>
                                         <div class="input-group input-spinner">
                                             <input type="number" step=".05" class="form-control" min="0" maxlength="9"
@@ -109,7 +107,7 @@
                                         @error('qty')
                                         <div class="invalid-feedback">{{ $message}}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="mb-3 form-check form-switch">
                                     <input id="status" class="form-check-input" type="checkbox" checked=""

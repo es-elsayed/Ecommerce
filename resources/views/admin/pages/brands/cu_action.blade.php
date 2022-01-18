@@ -1,23 +1,25 @@
-<x-admin.layout title="Add Brand">
+{{-- Decide route is store or update --}}
+@php
+$route =route("admin.brands.store");
+$method = false;
+$title = "Add Brand";
+if (Route::currentRouteName() == "admin.brands.edit") {
+$route = route("admin.brands.update",$brand->id);
+$method = true;
+$title = "Edit Brand";
+}
+@endphp
+{{-- End --}}
+<x-admin.layout :title="$title">
 
     <!--breadcrumb-->
-    <x-admin.includes.breadcrumb>Add Brand</x-admin.includes.breadcrumb>
+    <x-admin.includes.breadcrumb>{{ $title }}</x-admin.includes.breadcrumb>
     <!--end breadcrumb-->
 
-    {{-- Decide route is store or update --}}
-    @php
-    $route =route("admin.brands.store");
-    $method = false;
-    if (Route::currentRouteName() == "admin.brands.edit") {
-    $route = route("admin.brands.update",$brand->id);
-    $method = true;
-    }
-    @endphp
-    {{-- End --}}
 
     <div class="card">
         <div class="card-body p-4">
-            <h5 class="card-title">Add Brand</h5>
+            <h5 class="card-title">{{ $title }}</h5>
             <hr />
             <div class="form-body mt-4">
                 <div class="row">
