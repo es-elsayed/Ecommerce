@@ -3,17 +3,18 @@
     <!--breadcrumb-->
     <x-admin.includes.breadcrumb>Main Categories</x-admin.includes.breadcrumb>
     <!--end breadcrumb-->
-<div class="card">
-    <div class="card-body">
-        <div class="d-lg-flex align-items-center mb-4 gap-3">
-            {{ Form::hidden('', $increment = 1) }}
-            <div class="position-relative">
-                <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span
+    <div class="card">
+        <div class="card-body">
+            <div class="d-lg-flex align-items-center mb-4 gap-3">
+                {{ Form::hidden('', $increment = 1) }}
+                <div class="position-relative">
+                    <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
                 <div class="ms-auto"><a href="{{ route('admin.maincategories.create') }}"
-                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Record</a>
+                        class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
+                        Record</a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -45,19 +46,15 @@
                                 @if ($category->id !== 1 || $category->name_en !== "un-defined")
                                 <div class="d-flex order-actions">
                                     <a href="{{ route('admin.maincategories.edit', $category->slug) }}" class="ms-3"><i
-                                            class="bx bxs-edit"></i></a>
-                                            <form action="{{ route('admin.maincategories.destroy', $category->id) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
-                                            </form>
+                                        class="bx bxs-edit"></i></a>
                                     @if ($category->status == 0)
-                                    <a href="{{ route('admin.maincategories.active', $category->id) }}"
-                                        class="custom-a success text-capitalize ms-3">Activate</a>
+                                    <x-admin.forms.actions :route="'maincategories.activate'" :value="1" :id="$category->id">
+                                        <i class="lni lni-checkmark-circle text-success"></i>
+                                    </x-admin.forms.actions>
                                     @else
-                                    <a href="{{ route('admin.maincategories.unactive', $category->id) }}"
-                                        class="custom-a danger text-capitalize ms-3">deactivate</a>
+                                    <x-admin.forms.actions :route="'maincategories.activate'" :value="0" :id="$category->id">
+                                        <i class="lni lni-ban text-danger"></i>
+                                    </x-admin.forms.actions>
                                     @endif
                                 </div>
                                 @endif
@@ -72,5 +69,5 @@
     </div>
 
 
-</div>
+    </div>
 </x-admin.layout>

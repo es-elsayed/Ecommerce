@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\MainCategory;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +24,8 @@ class MainCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en'=>'required|min:3|max:255|unique:categories,name_en',
-            'name_ar'=>'required|min:3|max:255|unique:categories,name_ar',
+            'name_en'=>"required|min:3|max:255". $this->isMethod('put')? "|unique:categories,name_en,$this->cat_id":'|unique:categories,name_en',
+            'name_ar'=>"required|min:3|max:255". $this->isMethod('put')? "|unique:categories,name_ar,$this->cat_id":'|unique:categories,name_ar',
             'image' => 'mimes:png,jpg,jpeg',
             'banner' => 'mimes:png,jpg,jpeg',
         ];

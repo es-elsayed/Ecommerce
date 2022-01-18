@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +37,7 @@ class ProductRequest extends FormRequest
             'qty' => 'required|min:0',
             'categories'=>'required|array',
             'categories.*'=>'exists:categories,id',
+            'main_image' => $this->isMethod('put') ? '':'required|' .'mimes:png,jpg,jpeg'
         ];
     }
     public function messages()

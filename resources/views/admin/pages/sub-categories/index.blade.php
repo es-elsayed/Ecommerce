@@ -46,19 +46,15 @@
                             <td>
                                 <div class="d-flex order-actions">
                                     <a href="{{ route('admin.subcategories.edit', $category->slug) }}" class="ms-3"><i
-                                            class="bx bxs-edit"></i></a>
-                                    <form action="{{ route('admin.subcategories.destroy', $category->slug) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="ms-3"><i class="bx bxs-trash"></i></button>
-                                    </form>
+                                        class="bx bxs-edit"></i></a>
                                     @if ($category->status == 0)
-                                    <a href="{{ route('admin.subcategories.active', $category->slug) }}"
-                                        class="custom-a success text-capitalize ms-3">Activate</a>
+                                    <x-admin.forms.actions :route="'subcategories.activate'" :value="1" :id="$category->id">
+                                        <i class="lni lni-checkmark-circle text-success"></i>
+                                    </x-admin.forms.actions>
                                     @else
-                                    <a href="{{ route('admin.subcategories.unactive', $category->slug) }}"
-                                        class="custom-a danger text-capitalize ms-3">deactivate</a>
+                                    <x-admin.forms.actions :route="'subcategories.activate'" :value="0" :id="$category->id">
+                                        <i class="lni lni-ban text-danger"></i>
+                                    </x-admin.forms.actions>
                                     @endif
                                 </div>
                             </td>

@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+define('Wrong_Message',"Something Wrong Please Try later");
+
 Route::resource('/login', LoginController::class, ['as'=>'admin'])->middleware('guest:admin');
 
 Route::group(['middleware' => 'auth:admin'], function () {
@@ -37,18 +39,17 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     // ********* Main Category Routes ***********
     Route::resource('maincategories', MainCategoryController::class, ['as' => 'admin']);
-    Route::get('maincategories/active/{id}', [MainCategoryController::class, 'active'])->name('admin.maincategories.active');
-    Route::get('maincategories/unactive/{id}', [MainCategoryController::class, 'unActive'])->name('admin.maincategories.unactive');
+    Route::put('maincategories/{category}/activate', [MainCategoryController::class, 'activate'])->name('admin.maincategories.activate');
 
     // ********** Sub Category Routes **********
     Route::resource('subcategories', SubCategoryController::class, ['as' => 'admin']);
-    Route::get('subcategories/active/{id}', [SubCategoryController::class, 'active'])->name('admin.subcategories.active');
-    Route::get('subcategories/unactive/{id}', [SubCategoryController::class, 'unActive'])->name('admin.subcategories.unactive');
+    Route::put('subcategories/{category}/activate', [SubCategoryController::class, 'activate'])->name('admin.subcategories.activate');
+    // Route::get('subcategories/unactive/{id}', [SubCategoryController::class, 'unActive'])->name('admin.subcategories.unactive');
 
     // ********** Product Routes **********
     Route::resource('products', ProductController::class, ['as' => 'admin']);
-    Route::put('products/activate/{product}', [ProductController::class, 'activate'])->name('admin.products.activate');
-    Route::put('products/featured/{product}', [ProductController::class, 'featured'])->name('admin.products.featured');
+    Route::put('products/{product}/activate', [ProductController::class, 'activate'])->name('admin.products.activate');
+    Route::put('products/{product}/featured', [ProductController::class, 'featured'])->name('admin.products.featured');
 
     // ********** Slider Routes **********
     Route::resource('sliders', SliderController::class, ['as' => 'admin']);

@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SubCategory\AddSubCategoryRequest;
-use App\Http\Requests\SubCategory\UpdateSubCategoryRequest;
+use App\Http\Requests\Admin\ChangeStatusRequest;
+use App\Http\Requests\Admin\SubCategoryRequest;
 use App\Http\Resources\SubCategoryResource;
 use App\Models\Category;
-use App\Models\CategoryProduct;
-use Illuminate\Support\Facades\Storage;
 
 class SubCategoryController extends Controller
 {
@@ -26,7 +24,7 @@ class SubCategoryController extends Controller
         return view('admin.pages.sub-categories.create', ['categories' => $categories]);
     }
 
-    public function store(AddSubCategoryRequest $request)
+    public function store(SubCategoryRequest  $request)
     {
         // dd($request['name_en']);
         try {
@@ -54,22 +52,23 @@ class SubCategoryController extends Controller
         //
     }
 
-    public function active($slug)
-    {
-        // return 'finishing sub cat and product first';
-        $category = Category::isChild($slug);
-        $category->status = 1;
-        $category->update();
-        return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
-    }
-    public function unActive($slug)
-    {
-        // return 'finishing sub cat and product first';
-        $category = Category::isChild($slug);
-        $category->status = 0;
-        $category->update();
-        return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
-    }
+    // public function active($slug)
+    // {
+    //     // return 'finishing sub cat and product first';
+    //     $category = Category::isChild($slug);
+    //     $category->status = 1;
+    //     $category->update();
+    //     return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category status has been Activated Successfuly');
+    // }
+    // public function unActive($slug)
+    // {
+    //     // return 'finishing sub cat and product first';
+    //     $category = Category::isChild($slug);
+    //     $category->status = 0;
+    //     $category->update();
+    //     return redirect()->route('admin.subcategories.index')->with('success', 'The "' . $category->name_en . '" Category status has been Unactivated Successfuly');
+    // }
+
     public function edit($slug)
     {
         $category = Category::isChild($slug);
@@ -77,7 +76,7 @@ class SubCategoryController extends Controller
         return view('admin.pages.sub-categories.edit', get_defined_vars());
     }
 
-    public function update(UpdateSubCategoryRequest $request, $slug)
+    public function update(SubCategoryRequest $request, $slug)
     {
         try {
             $category = Category::isChild($slug);
@@ -119,13 +118,24 @@ class SubCategoryController extends Controller
 
     public function destroy($slug)
     {
-        $category = Category::where(['slug' => $slug, 'is_parent' => 0])->firstOrFail();
-        if (CategoryProduct::where('category_id', $category->id)->exists()) {
-            return redirect()->back()->with('error', 'Sorry.. Cannot delete this Category!! There are products belongs to');
+        // $category = Category::where(['slug' => $slug, 'is_parent' => 0])->firstOrFail();
+        // if (CategoryProduct::where('category_id', $category->id)->exists()) {
+        //     return redirect()->back()->with('error', 'Sorry.. Cannot delete this Category!! There are products belongs to');
+        // }
+        // $category->delete();
+        // drop_image($category->image);
+        // drop_image($category->banner);
+        // return redirect()->route('admin.subcategories.index')->with('success', 'The ' . $category->name_en . ' Category has been deleted successfully');
+    }
+
+    public function activate(ChangeStatusRequest $request, Category $category)
+    {
+        // return $category->isChild($category->slug);
+        if ($category->is_parent ==0) {
+            $action = $request->status == 0  ? 'de-activated' : 'activated';
+            $category->update(['status' => $request->status]);
+            return redirect()->route('admin.subcategories.index')->with('success', "The  $category->name_en  Product status has been $action Successfuly");
         }
-        $category->delete();
-        drop_image($category->image);
-        drop_image($category->banner);
-        return redirect()->route('admin.subcategories.index')->with('success', 'The ' . $category->name_en . ' Category has been deleted successfully');
+        return redirect()->route('admin.subcategories.index')->with('error', Wrong_Message);
     }
 }
