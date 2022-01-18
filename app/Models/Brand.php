@@ -11,10 +11,12 @@ class Brand extends Model
     protected $fillable =[
         'name_en',
         'name_ar',
-        'image',
-        'title',
-        'alt',
+        'title_en',
+        'title_ar',
+        'alt_en',
+        'alt_ar',
         'status',
+        'image',
     ];
     public function getActive()
     {

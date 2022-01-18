@@ -21,8 +21,10 @@ class BrandFactory extends Factory
             'name_en'   => $name_en,
             'name_ar'   =>  $faker_ar->sentence(2),
             'image'     => 'assets/site/images/brands/0' . rand(1, 15) . '.png',
-            'title'     =>  $faker_ar->sentence(2),
-            'alt'       =>  $faker_ar->sentence(2),
+            'title_en'     =>  $this->faker->sentence(2),
+            'title_ar'     =>  $faker_ar->sentence(2),
+            'alt_en'       =>  $this->faker->sentence(2),
+            'alt_ar'       =>  $faker_ar->sentence(2),
             'status'    => $this->faker->numberBetween(0, 1) || $this->faker->numberBetween(0, 1) ? 1 : 0,
         ];
     }
