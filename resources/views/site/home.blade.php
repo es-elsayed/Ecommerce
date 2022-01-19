@@ -20,6 +20,6 @@
 
     <x-site.sections.new-arrivals :products="$new_arrivals" />
     {{-- <x-site.sections.categories :categories="$main_categories"/> --}}
-    <x-site.sections.brands/>
+    <x-site.sections.brands :brands="$brands"/>
 
 </x-site.layout>

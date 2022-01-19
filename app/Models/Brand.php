@@ -18,6 +18,14 @@ class Brand extends Model
         'status',
         'image',
     ];
+    public function scopeActive($query)
+    {
+        if ($query ?? 0) {
+            # code...
+            return $query->where('status',1);
+        }
+        return Category::where('status',1);
+    }
     public function getActive()
     {
         return $this->status == 1 ? 'active' : 'in-active';
