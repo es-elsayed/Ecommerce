@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChangeStatusRequest;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\ImageProduct;
@@ -23,7 +24,8 @@ class ProductController extends Controller
     public function create()
     {
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
-        return view('admin.pages.products.create', ['parent_categories' => $parent_categories]);
+        $brands = Brand::all();
+        return view('admin.pages.products.CU_actions', get_defined_vars());
     }
 
     public function store(ProductRequest $request)
@@ -40,22 +42,7 @@ class ProductController extends Controller
             }
 
             $image_path = upload_image('product', $request->main_image);
-            // dd('yes');
-
-            $product_id = Product::insertGetId([
-                'name_en' => $request['name_en'],
-                'name_ar' => $request['name_ar'],
-                'details_en' => $request['details_en'],
-                'details_ar' => $request['details_ar'],
-                'description_en' => $request['description_en'],
-                'description_ar' => $request['description_ar'],
-                'price' => $request['price'],
-                'sale_price' => $request['sale_price'],
-                'quantity' => $request['qty'],
-                'status' => $request->has('status') ? 1 : 0,
-                'slug' => $slug,
-                'main_image' => $image_path,
-            ]);
+            $product_id = Product::insertGetId($this->up($request, $slug, $image_path));
 
             foreach ($request->categories as $category) {
                 CategoryProduct::insert([
@@ -87,19 +74,18 @@ class ProductController extends Controller
         //
     }
 
-    public function edit($slug)
+    public function edit(Product $product)
     {
-        $product = Product::where('slug', $slug)->with('categories')->first();
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
-        return view('admin.pages.products.edit', get_defined_vars());
+        $brands = Brand::all();
+        return view('admin.pages.products.CU_actions', get_defined_vars());
     }
-    public function update(ProductRequest $request, $slug)
+    public function update(ProductRequest $request, Product $product)
     {
         try {
             DB::beginTransaction();
-            $product = Product::where('slug', $slug)->first();
             $new_slug = $product->slug;
             if ($product->name_en !== $request['name_en']) {
                 $new_slug = str_slug($request['name_en']);
@@ -114,20 +100,7 @@ class ProductController extends Controller
                 drop_image($image);
                 $image = upload_image('product', $request->main_image);
             }
-            $product->update([
-                'name_en' => $request['name_en'],
-                'name_ar' => $request['name_ar'],
-                'details_en' => $request['details_en'],
-                'details_ar' => $request['details_ar'],
-                'description_en' => $request['description_en'],
-                'description_ar' => $request['description_ar'],
-                'price' => $request['price'],
-                'sale_price' => $request['sale_price'],
-                'quantity' => $request['qty'],
-                'status' => $request->has('status') ? 1 : 0,
-                'slug' => $new_slug,
-                'main_image' => $image,
-            ]);
+            $product->update($this->up($request, $new_slug, $image));
             $old_categories = CategoryProduct::where('product_id', $product->id)->delete();
             foreach ($request->categories as $category) {
                 CategoryProduct::insert([
@@ -157,22 +130,38 @@ class ProductController extends Controller
             DB::rollback();
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
-        // 'category_id' => $request['category_id'],
         return redirect()->route('admin.products.index')->with('success', "Product Added Successfully");
     }
 
     public function destroy($id)
     {
-        try {
-            //code...
-            $product = Product::findOrFail($id);
-            $product->delete();
-            drop_image($product->main_image);
-            return redirect()->route('admin.products.index')->with('success', 'The Product has been Deleted Successfuly');
-        } catch (\Exception $ex) {
-            return redirect()->route('admin.products.index')->with('error', 'Cannot Delete Product');
-            //throw $th;
-        }
+        // try {
+        //     $product = Product::findOrFail($id);
+        //     $product->delete();
+        //     drop_image($product->main_image);
+        //     return redirect()->route('admin.products.index')->with('success', 'The Product has been Deleted Successfuly');
+        // } catch (\Exception $ex) {
+        //     return redirect()->route('admin.products.index')->with('error', 'Cannot Delete Product');
+        // }
+    }
+
+    public function up($request, $slug, $image_path)
+    {
+        return  [
+            'name_en'        => $request['name_en'],
+            'name_ar'        => $request['name_ar'],
+            'details_en'     => $request['details_en'],
+            'details_ar'     => $request['details_ar'],
+            'description_en' => $request['description_en'],
+            'description_ar' => $request['description_ar'],
+            'price'          => $request['price'],
+            'sale_price'     => $request['sale_price'],
+            'quantity'       => $request['qty'],
+            'status'         => $request->has('status') ? 1 : 0,
+            'brand_id'       => $request->brand_id,
+            'slug'           => $slug,
+            'main_image'     => $image_path,
+        ];
     }
 
     public function activate(ChangeStatusRequest $request, Product $product)
