@@ -71,20 +71,16 @@
                                 <x-admin.forms.actions :route="'products.featured'" :value="0" :id="$product->id">
                                     <i class="lni lni-star-filled text-warning"></i>
                                 </x-admin.forms.actions>
-                                {{-- <a href="{{ route('admin.products.activate', $product->slug) }}" class="ms-3"><i
-                                        class="lni lni-star"></i></a> --}}
                                 @else
                                 <x-admin.forms.actions :route="'products.featured'" :value="1" :id="$product->id">
                                     <i class="lni lni-star"></i>
                                 </x-admin.forms.actions>
-                                {{-- <a href="{{ route('admin.products.activate', $product->slug) }}" class="ms-3"><i
-                                        class="lni lni-star-filled text-warning"></i></a> --}}
                                 @endif
                             </div>
                         </td>
                         <td>
                             <div class="d-flex order-actions">
-                                <a href="{{ route('admin.products.edit', $product->slug) }}" class="ms-3"><i
+                                <a href="{{ route('admin.products.edit', $product->id) }}" class="ms-3"><i
                                         class="bx bxs-edit"></i></a>
                                 @if ($product->status == 0)
                                 <x-admin.forms.actions :route="'products.activate'" :value="1" :id="$product->id">

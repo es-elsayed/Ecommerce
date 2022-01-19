@@ -18,7 +18,7 @@ class BrandController extends Controller
 
     public function create()
     {
-        return view('admin.pages.brands.cu_action');
+        return view('admin.pages.brands.CU_actions');
     }
 
     public function store(BrandRequest $request)
@@ -40,7 +40,7 @@ class BrandController extends Controller
     public function edit(Brand $brand)
     {
         // return $brand;
-        return view('admin.pages.brands.cu_action', compact('brand'));
+        return view('admin.pages.brands.CU_actions', compact('brand'));
     }
 
     public function update(Request $request,Brand $brand)
