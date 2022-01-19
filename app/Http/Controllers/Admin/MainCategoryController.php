@@ -16,8 +16,7 @@ class MainCategoryController extends Controller
 
     public function index()
     {
-        $categories = MainCategoryResource::collection(Category::where('is_parent', 1)->get());
-        return view('admin.pages.main-categories.index', ['categories' => $categories]);
+        return view('admin.pages.main-categories.index', ['categories' => Category::where('is_parent', 1)->get()]);
     }
 
     public function create()
@@ -93,7 +92,6 @@ class MainCategoryController extends Controller
                 'name_ar' => $request['name_ar'],
                 'status' => $request->has('status') ? 1 : 0,
                 'is_parent' => 1,
-                'parent_id' => $request['parent_id'],
                 'slug' => $new_slug,
                 'image' => $image_path,
                 'banner' => $banner_path,
