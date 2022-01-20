@@ -11,16 +11,35 @@ class Site extends Model
     protected $fillable = [
         "title_en",
         "title_ar",
-        "working_days",
+        "description_en",
+        "description_ar",
+        "working_days_en",
+        "working_days_ar",
         "email",
         "phone",
         "whatsapp",
         "facebook",
         "twitter",
         "linkedin",
-        "address",
+        "address_en",
+        "address_ar",
         "location",
-        "description_en",
-        "description_ar",
     ];
+    public function scopeSelecting($query)
+    {
+        return Site::select(
+            "id",
+            "title_" . app()->getLocale() . ' as title',
+            "working_days_" . app()->getLocale() . ' as working_days',
+            "email",
+            "phone",
+            "whatsapp",
+            "facebook",
+            "twitter",
+            "linkedin",
+            "address_" . app()->getLocale() . ' as address',
+            "location",
+            "description_" . app()->getLocale() . ' as description',
+        )->first();
+    }
 }

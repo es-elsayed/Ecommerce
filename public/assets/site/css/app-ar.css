@@ -37,16 +37,6 @@ File: app.css
 
 /* General */
 
-
-/*
-* {
-    direction: rtl;
-}
-
-.d-ltr {
-    direction: ltr !important;
-} */
-
 body {
     font-size: 14px;
     letter-spacing: 0.5px;
@@ -2182,7 +2172,6 @@ body.bg-notheme .carousel-control-prev-icon {
     filter: invert(1) grayscale(100);
 }
 
-
 body.bg-notheme .border-bottom{
     border-bottom: 1px solid #dee2e6!important;
 }
@@ -2192,7 +2181,15 @@ body.bg-notheme .border-top{
 button.border-0:focus {
     outline: none !important;
 }
+body.bg-notheme .discount-alert .alert{
+    background-color: #fff !important;
+}
 .btn-close{
     filter: none;
-
+}
+body.bg-notheme .bg-light{
+    background-color: #f8f9fa !important;
+}
+body.bg-notheme .owl-item.owl-brand{
+    background-color: rgb(0, 0, 0);
 }

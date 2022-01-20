@@ -2190,3 +2190,6 @@ body.bg-notheme .discount-alert .alert{
 body.bg-notheme .bg-light{
     background-color: #f8f9fa !important;
 }
+body.bg-notheme .owl-item.owl-brand{
+    background-color: rgb(0, 0, 0);
+}

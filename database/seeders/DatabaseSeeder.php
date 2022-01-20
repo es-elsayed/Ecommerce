@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\Site;
 use App\Models\Slider;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         Slider::factory(6)->create();
         Brand::factory(6)->create();
+        Site::factory()->create();
         $this->call([
             AdminSeeder::class,
             CategorySeeder::class,

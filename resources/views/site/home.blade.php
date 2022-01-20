@@ -19,7 +19,10 @@
     @endif
 
     <x-site.sections.new-arrivals :products="$new_arrivals" />
-    {{-- <x-site.sections.categories :categories="$main_categories"/> --}}
+    <x-site.sections.categories :categories="$main_categories"/>
+
+    <x-site.sections.support-info />
+
     <x-site.sections.brands :brands="$brands"/>
 
 </x-site.layout>
