@@ -29,7 +29,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
-        view()->share('siteInfo',Site::first());
-        view()->share('main_categories',Category::activeParent()->with('activeChilds')->get());
+        if(Schema::hasTable('sites')){
+            view()->share('siteInfo',Site::first());
+        }
+        if(Schema::hasTable('categories')){
+            view()->share('main_categories',Category::activeParent()->with('activeChilds')->get());
+        }
     }
 }
