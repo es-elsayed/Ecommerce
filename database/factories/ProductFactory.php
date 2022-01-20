@@ -23,12 +23,12 @@ class ProductFactory extends Factory
         $faker_ar   = Faker::create('ar_JO');
         return [
             'name_en'           => $name_en,
-            'name_ar'           => $faker_ar->sentence(6),
-            'description_en'    => $this->faker->realText('191'),
-            'description_ar'    => $faker_ar->realText('191'),
+            'name_ar'           => $faker_ar->company,
+            'description_en'    => $this->faker->realText('391'),
+            'description_ar'    => $faker_ar->realText('391'),
             'sku'               => $this->faker->unique()->numberBetween(0,99999999999),
-            'details_en'        => $this->faker->realText('30'),
-            'details_ar'        => $faker_ar->realText('30'),
+            'details_en'        => $this->faker->realText('130'),
+            'details_ar'        => $faker_ar->realText('130'),
             'price'             => $this->faker->numberBetween(100,100000),
             'sale_price'        => $this->faker->numberBetween(10,1000),
             'status'            => $this->faker->numberBetween(0,1) || $this->faker->numberBetween(0,1) ? 1: 0,

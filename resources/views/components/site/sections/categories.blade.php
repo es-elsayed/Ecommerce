@@ -1,5 +1,5 @@
 @props(['categories'])
-<x-site.sections.automatic-slider name="Brands">
+<x-site.sections.automatic-slider name="Category">
     @foreach ($categories as $category )
     <x-site.cards.category-owl :category="$category" />
     @endforeach

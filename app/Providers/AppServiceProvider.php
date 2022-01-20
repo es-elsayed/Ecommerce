@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Site;
+use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,11 +33,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
-        if(Schema::hasTable('sites')){
-            view()->share('siteInfo',Site::first());
-        }
-        if(Schema::hasTable('categories')){
-            view()->share('main_categories',Category::activeParent()->with('activeChilds')->get());
-        }
+        view()->composer('*', function (View $view) {
+            if(Schema::hasTable('sites')){
+                view()->share('siteInfo',Site::selecting());
+            }
+            if(Schema::hasTable('categories')){
+                view()->share('main_categories',Category::activeParent()->with('activeChilds')->get());
+            }
+        });
     }
 }

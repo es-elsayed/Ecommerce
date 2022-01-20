@@ -22,7 +22,7 @@ class SiteFactory extends Factory
             'description_en'=>'We are creative people with a common goal, which is to use content marketing strategies and unique designs. We help companies of all sizes reach their customers, build brand loyalty and discover new marketing opportunities.',
             'description_ar'=>'نحن مبدعون ولدينا هدف مشترك وهو استخدام استراتيجيات تسويق المحتوى والتصميمات الفريدة. نحن نساعد الشركات من جميع الأحجام للوصول إلى عملائها ، وبناء ولاء للعلامة التجارية واكتشاف فرص تسويقية جديدة.',
             'working_days_en'=>'form sunday to thursday [8-4]',
-            'working_days_ar'=>'form sunday to thursday [8-4]',
+            'working_days_ar'=>'من الأحد إلى الأربعاء [4-8]',
             'email'=>'email@email.com',
             'phone'=>'0123456789',
             'whatsapp'=>'0123456789',
