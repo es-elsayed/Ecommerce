@@ -27,6 +27,23 @@ class Product extends Model
     ];
     protected $with = ['reviews'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        // dd($search->product);
+        $query->when($filters['product'] ?? false, fn ($query, $product) =>
+        $query->where('name_en', 'like', '%' . $product . '%')
+            ->orwhere('name_ar', 'like', '%' . $product . '%')
+            ->orwhere('details_ar', 'like', '%' . $product . '%')
+            ->orwhere('details_en', 'like', '%' . $product . '%')
+            ->orwhere('description_ar', 'like', '%' . $product . '%')
+            ->orwhere('description_en', 'like', '%' . $product . '%')
+            ->paginate(PAGINATION_COUNT));
+        $query->when(
+            $filters['category'] ?? false,
+            fn ($query, $category) =>
+            $query->whereHas('categories', fn ($query) => $query->whereSlug($category))
+        );
+    }
     public function scopeActive($query)
     {
         return $query->where('status', 1)->selecting();
@@ -60,8 +77,7 @@ class Product extends Model
         return Product::with('images')
             ->where(['status' => 1, 'featured' => 1])
             ->selecting()
-            ->inRandomOrder()
-            ->paginate(PAGINATION_COUNT);
+            ->inRandomOrder();
     }
     static function getProductById($id)
     {

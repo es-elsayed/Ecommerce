@@ -99,14 +99,5 @@ class ShopController extends Controller
         }
         return view('site.pages.shop.show', get_defined_vars());
     }
-    public function featured()
-    {
-        $products = Product::featuredProduct();
-        return view('site.pages.shop.products', compact('products'));
-    }
-    public function toprated()
-    {
-        $products = Product::ratings()->paginate(PAGINATION_COUNT);
-        return view('site.pages.shop.products', compact('products'));
-    }
+
 }

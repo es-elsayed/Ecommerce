@@ -34,4 +34,8 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public function activeProducts()
+    {
+        return $this->products()->where('status',1);
+    }
 }

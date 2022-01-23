@@ -10,12 +10,12 @@
 
     @if (count($featured_products ?? []) > 0)
     <x-site.sections.product :products="$featured_products" :name="__('content.featured products')"
-        :route="route('site.shop.product.featured')" />
+        :route="route('site.products.search',['tab'=>'featured'])" />
     @endif
 
     @if (count($top_rated ?? []) > 0)
     <x-site.sections.product :products="$top_rated" :name="__('content.top rated products')"
-        :route="route('site.shop.product.toprated')" />
+        :route="route('site.products.search',['tab'=>'top-rated'])" />
     @endif
 
     <x-site.sections.new-arrivals :products="$new_arrivals" />

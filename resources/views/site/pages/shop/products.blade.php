@@ -39,27 +39,25 @@
         <!--end shop area-->
     </div>
 
+    @if(isset($sub_categories))
+    <script>
+        // ----------------------------------------------------------
+        // -------------------- sorting product  --------------------
+        // ----------------------------------------------------------
+        const sorting_buttons = document.querySelectorAll('.sort');
+        sorting_buttons.forEach(button => {
+            button.addEventListener('click',(e)=>{
+                if(e.target.dataset.sort == 'low-to-high') {
+                    window.location.href = "{{ route('site.shop.show',[$category->slug,'sort'=>'low-to-high']) }}";
+                }
+                else if(e.target.dataset.sort == 'high-to-low'){
+                    window.location.href = "{{ route('site.shop.show',[$category->slug,'sort'=>'high-to-low']) }}";
+                }
+                else{
+                    window.location.href = "{{ route('site.shop.show',$category->slug) }}";
+                }
+            })
+        });
+    </script>
+    @endif
 </x-site.layout>
-@if(isset($sub_categories))
-<script>
-    // ----------------------------------------------------------
-    // -------------------- sorting product  --------------------
-    // ----------------------------------------------------------
-    const sorting_buttons = document.querySelectorAll('.sort');
-    sorting_buttons.forEach(button => {
-        button.addEventListener('click',(e)=>{
-            if(e.target.dataset.sort == 'low-to-high') {
-                console.log('hi');
-                window.location.href = "{{ route('site.shop.show',[$category->slug,'sort'=>'low-to-high']) }}";
-            }
-            else if(e.target.dataset.sort == 'high-to-low'){
-                console.log('bye');
-                window.location.href = "{{ route('site.shop.show',[$category->slug,'sort'=>'high-to-low']) }}";
-            }
-            else{
-                window.location.href = "{{ route('site.shop.show',$category->slug) }}";
-            }
-        })
-    });
-</script>
-@endif
