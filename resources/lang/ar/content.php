@@ -106,6 +106,7 @@ return [
     "last name"=>"الاسم الثاني",
     "phone number"=>"رقم الهاتف",
     "my account" => "حسابي",
+    "my account" => "تسجيل الدخول",
     "region" => "المنطقة",
     "enter region" => "ادخل المنطقة",
     "city" => "المدينة",
