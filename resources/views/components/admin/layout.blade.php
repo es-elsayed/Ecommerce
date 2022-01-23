@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="shortcut icon" type="image/svg" href="https://twision.dev/images/Logow.svg"/>
+    <link rel="shortcut icon" type="image/svg" href="{{ asset('assets/images/favicon.png') }}"/>
     <!--plugins-->
     @include('admin.includes.style')
 
