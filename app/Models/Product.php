@@ -43,6 +43,11 @@ class Product extends Model
             fn ($query, $category) =>
             $query->whereHas('categories', fn ($query) => $query->whereSlug($category))
         );
+        $query->when(
+            $filters['brand'] ?? false,
+            fn ($query, $brand) =>
+            $query->whereHas('brand', fn ($query) => $query->whereSlug($brand))
+        );
     }
     public function scopeActive($query)
     {
