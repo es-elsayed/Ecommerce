@@ -63,7 +63,7 @@ return [
     "our stores" => "Our Stores",
     "welcome to our store!" => "Welcome to our Store!",
     "track order" => "Track Order",
-    "help" => "help&FAQs",
+    "help" => "Help & FAQs",
     "lang" => "Lang",
     "search for products" => "Search for Product",
     "call us" => "CALL US",
