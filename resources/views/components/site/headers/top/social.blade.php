@@ -15,4 +15,8 @@
     <x-site.includes.li-nav-link href="{{ $siteInfo->linkedin }}"><i class='bx bxl-linkedin'></i>
     </x-site.includes.li-nav-link>
     @endif
+    @if (isset($siteInfo->youtube))
+    <x-site.includes.li-nav-link href="{{ $siteInfo->youtube }}"><i class='bx bxl-youtube'></i>
+    </x-site.includes.li-nav-link>
+    @endif
 </ul>

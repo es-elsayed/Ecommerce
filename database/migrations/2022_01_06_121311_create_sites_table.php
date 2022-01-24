@@ -27,6 +27,7 @@ class CreateSitesTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('youtube')->nullable();
             $table->string('address_en')->nullable();
             $table->string('address_ar')->nullable();
             $table->text('location')->nullable();
