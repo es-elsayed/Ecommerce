@@ -10,9 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 @if (app()->getLocale()=='ar')
 <link href="{{ asset('assets/site/css/app-ar.css') }}" rel="stylesheet">
-
 @else
 <link href="{{ asset('assets/site/css/app-en.css') }}" rel="stylesheet">
-
 @endif
 <link href="{{ asset('assets/site/css/icons.css') }}" rel="stylesheet">

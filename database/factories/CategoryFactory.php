@@ -15,7 +15,6 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $i = 0;
         $name_en = $this->faker->sentence(2);
         $faker_ar   = Faker::create('ar_JO');
         return [
