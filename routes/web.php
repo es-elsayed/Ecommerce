@@ -11,6 +11,7 @@ use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Site\FavoriteProductController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\PhoneController;
+use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\ProfileController;
 use App\Http\Controllers\Site\ReviewController;
 use App\Http\Controllers\Site\SearchController;
@@ -47,9 +48,9 @@ Route::group(
         Route::resource('contact', ContactController::class,['as'=>'site']);
 
         Route::resource('/shop', ShopController::class, ['as' => 'site']);
-        Route::get('/shop/product/featured', [ShopController::class, 'featured'])->name('site.shop.product.featured');
-        Route::get('/shop/product/toprated', [ShopController::class, 'toprated'])->name('site.shop.product.toprated');
         Route::get('/shop/product/{slug}', [ShopController::class, 'product'])->name('shop.product.show');
+
+        Route::get('/products', ProductController::class)->name('site.products.search');
 
         Route::resource('/search', SearchController::class, ['as' => 'site']);
         Route::resource('/home', HomeController::class, ['as' => 'site']);

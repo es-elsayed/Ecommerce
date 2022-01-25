@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Slider::activeSlider();
-        $featured_products = Product::featuredProduct();
+        $featured_products = Product::featuredProduct()->paginate(PAGINATION_COUNT);
         $top_rated = Product::ratings()->paginate(PAGINATION_COUNT);
         $new_arrivals = Product::latest()->active()->paginate(15);
         $brands = Brand::active()->get();

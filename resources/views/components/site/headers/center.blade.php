@@ -13,7 +13,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md order-4 order-md-2">
+            <form method="get" action="{{ route('site.products.search') }}" class="col-12 col-md order-4 order-md-2">
+                {{-- @csrf --}}
+                <div class="input-group flex-nowrap px-xl-4">
+                    <input type="text" name="product" value="{{ request('product') }}" class="form-control w-100" placeholder="Search for Products">
+                    <select class="form-select flex-shrink-0" name="category" aria-label="Default select example" style="width: 10.5rem;">
+                        <option value="">All Categories</option>
+                        @foreach ($main_categories as $category )
+                        <option value="{{ $category->slug }}" @if (request('category') == $category->slug)
+                            selected
+                        @endif>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="input-group-text cursor-pointer"><i class="bx bx-search"></i></button>
+                </div>
+            </form>
+            {{-- <div class="col-12 col-md order-4 order-md-2">
                 <div class="input-group flex-nowrap px-xl-4 position-relative">
                     <input autocomplete="off" list="products" name="product" id="product" class="form-control w-100"
                         placeholder="{{ __('content.search for products') }}">
@@ -21,8 +36,10 @@
                     </ul>
                     <label for="product" class="input-group-text cursor-pointer"><i class='bx bx-search'></i></label>
                 </div>
-            </div>
+            </div> --}}
+            
             @if (isset($siteInfo->phone))
+
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>

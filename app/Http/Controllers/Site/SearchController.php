@@ -28,34 +28,34 @@ class SearchController extends Controller
                 break;
         }
     }
-    public function product(Request $request)
-    {
-        // return $request->search;
-        if ($request->ajax()) {
-            $output="";
-            if(!$request->search==''){
-                $data =
-                    Product::where('name_en', 'like', '%' . $request->search . '%')
-                    ->orwhere('name_ar', 'like', '%' . $request->search . '%')
-                    ->orwhere('details_ar', 'like', '%' . $request->search . '%')
-                    ->orwhere('details_en', 'like', '%' . $request->search . '%')
-                    ->orwhere('description_ar', 'like', '%' . $request->search . '%')
-                    ->orwhere('description_en', 'like', '%' . $request->search . '%')
-                    ->paginate(PAGINATION_COUNT);
-                    // return 'hi';
-                if(count($data)>0){
-                    foreach ($data as $row) {
-                        $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
-                            $output .= "
-                        <li class='p-3' style='border-bottom: 1px solid #dee2e6'><a class='d-block w-100' href='".route('shop.product.show',$row->slug)."'>$name</a></li>";
-                        }
-                }else{
-                    $output="no result";
-                }
-            }
-        }
-        return $output;
-    }
+    // public function product(Request $request)
+    // {
+    //     // return $request->search;
+    //     if ($request->ajax()) {
+    //         $output="";
+    //         if(!$request->search==''){
+    //             $data =
+    //                 Product::where('name_en', 'like', '%' . $request->search . '%')
+    //                 ->orwhere('name_ar', 'like', '%' . $request->search . '%')
+    //                 ->orwhere('details_ar', 'like', '%' . $request->search . '%')
+    //                 ->orwhere('details_en', 'like', '%' . $request->search . '%')
+    //                 ->orwhere('description_ar', 'like', '%' . $request->search . '%')
+    //                 ->orwhere('description_en', 'like', '%' . $request->search . '%')
+    //                 ->paginate(PAGINATION_COUNT);
+    //                 // return 'hi';
+    //             if(count($data)>0){
+    //                 foreach ($data as $row) {
+    //                     $name = isArabic($request->search) == 1 ? $row->name_ar : $row->name_en;
+    //                         $output .= "
+    //                     <li class='p-3' style='border-bottom: 1px solid #dee2e6'><a class='d-block w-100' href='".route('shop.product.show',$row->slug)."'>$name</a></li>";
+    //                     }
+    //             }else{
+    //                 $output="no result";
+    //             }
+    //         }
+    //     }
+    //     return $output;
+    // }
     public function region(Request $request)
     {
         // return $request->search;

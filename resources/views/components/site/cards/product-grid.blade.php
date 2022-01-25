@@ -13,4 +13,4 @@
 <hr>
 
 {{-- =================== Larvel Pagination =================== --}}
-{{ $products->links()}}
+{{  $products->links() }}
