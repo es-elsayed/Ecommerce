@@ -31,13 +31,15 @@ class Product extends Model
     {
         // dd($search->product);
         $query->when($filters['product'] ?? false, fn ($query, $product) =>
+        $query->where(fn($query) =>
         $query->where('name_en', 'like', '%' . $product . '%')
             ->orwhere('name_ar', 'like', '%' . $product . '%')
             ->orwhere('details_ar', 'like', '%' . $product . '%')
             ->orwhere('details_en', 'like', '%' . $product . '%')
             ->orwhere('description_ar', 'like', '%' . $product . '%')
             ->orwhere('description_en', 'like', '%' . $product . '%')
-            ->paginate(PAGINATION_COUNT));
+            ->with('categories')
+            ->get()));
         $query->when(
             $filters['category'] ?? false,
             fn ($query, $category) =>

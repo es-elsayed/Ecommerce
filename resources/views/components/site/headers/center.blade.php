@@ -16,11 +16,13 @@
             <form method="get" action="{{ route('site.products.search') }}" class="col-12 col-md order-4 order-md-2">
                 {{-- @csrf --}}
                 <div class="input-group flex-nowrap px-xl-4">
-                    <input type="text" name="product" class="form-control w-100" placeholder="Search for Products">
+                    <input type="text" name="product" value="{{ request('product') }}" class="form-control w-100" placeholder="Search for Products">
                     <select class="form-select flex-shrink-0" name="category" aria-label="Default select example" style="width: 10.5rem;">
                         <option value="">All Categories</option>
                         @foreach ($main_categories as $category )
-                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                        <option value="{{ $category->slug }}" @if (request('category') == $category->slug)
+                            selected
+                        @endif>{{ $category->name }}</option>
                         @endforeach
                     </select>
                     <button type="submit" class="input-group-text cursor-pointer"><i class="bx bx-search"></i></button>

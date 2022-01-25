@@ -50,7 +50,7 @@ Route::group(
         Route::resource('/shop', ShopController::class, ['as' => 'site']);
         Route::get('/shop/product/{slug}', [ShopController::class, 'product'])->name('shop.product.show');
 
-        Route::get('/products', [ProductController::class, 'search'])->name('site.products.search');
+        Route::get('/products', ProductController::class)->name('site.products.search');
 
         Route::resource('/search', SearchController::class, ['as' => 'site']);
         Route::resource('/home', HomeController::class, ['as' => 'site']);
