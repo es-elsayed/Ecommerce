@@ -104,9 +104,13 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class)->selecting();
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
     public function images()
     {
-        return $this->hasMany(ImageProduct::class);
+        return $this->hasMany(ImageProduct::class,'image');
     }
     public function orders()
     {

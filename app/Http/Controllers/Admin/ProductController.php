@@ -24,9 +24,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
-        $brands = Brand::all();
-        return view('admin.pages.products.CU_actions', get_defined_vars());
+        // $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
+        return view('admin.pages.products.create', get_defined_vars());
     }
 
     public function store(ProductRequest $request)
@@ -43,21 +42,16 @@ class ProductController extends Controller
             }
 
             $image_path = upload_image('product', $request->main_image);
-            $product_id = Product::insertGetId($this->up($request, $slug, $image_path));
-
-            foreach ($request->categories as $category) {
-                CategoryProduct::insert([
-                    'category_id' => $category,
-                    'product_id' => $product_id
-                ]);
-            }
+            $product = Product::create($this->up($request, $slug, $image_path));
+            $product->tags()->sync($request->tags);
+            $product->categories()->sync($request->categories);
 
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $image_path = upload_image('product', $image);
                     ImageProduct::insert([
                         'image' => $image_path,
-                        'product_id' => $product_id
+                        'product_id' => $product->id
                     ]);
                 }
             }

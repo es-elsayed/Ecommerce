@@ -4,9 +4,10 @@
         @if ($tags?? false)
         @foreach ($tags as $tag )
         <li class="d-inline-block me-3">
-            <input class="form-check-input" type="checkbox" />
-            <label class="form-check-label" for="cat_[{{ $tag->id }}]">
-            {{ $tag->name_en }}</label>
+            <input class="form-check-input" type="checkbox" name="tags[]" id="tag_[{{ $tag->id }}]"
+                value="{{ $tag->id }}" />
+            <label class="form-check-label" for="tag_[{{ $tag->id }}]">
+                {{ $tag->name_en }}</label>
         </li>
         @endforeach
         @endif

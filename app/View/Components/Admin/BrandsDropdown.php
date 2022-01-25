@@ -13,7 +13,7 @@ class BrandsDropdown extends Component
      * @return void
      */
     public $brandId;
-    public function __construct($brandId)
+    public function __construct($brandId = null)
     {
         $this->brandId = $brandId;
     }
@@ -25,6 +25,6 @@ class BrandsDropdown extends Component
      */
     public function render()
     {
-        return view('components.admin.brands-dropdown',['brands'=>Brand::all()]);
+        return view('components.admin.brands-dropdown', ['brands' => Brand::all()]);
     }
 }

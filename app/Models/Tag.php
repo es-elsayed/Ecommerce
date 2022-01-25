@@ -12,4 +12,8 @@ class Tag extends Model
         'name_en',
         'name_ar'
     ];
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->where('status', 1)->select('products.id', 'products.slug', 'name_' . app()->getLocale() . ' as name', 'details_' . app()->getLocale() . ' as details', 'description_' . app()->getLocale() . ' as description', 'status', 'quantity', 'main_image', 'price', 'sale_price', 'sale', 'products.created_at', 'products.updated_at');
+    }
 }
