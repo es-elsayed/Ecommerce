@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a class="nav-link" target="_blank" {{ $attributes }}>
+    <a class="nav-link" {{ $attributes }}>
         {{ $slot }}
     </a>
 </li>
