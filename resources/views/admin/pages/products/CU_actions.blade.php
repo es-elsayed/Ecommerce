@@ -39,7 +39,7 @@ $title = "Edit Product";
                                         value="{{ $product->name_ar ?? old('name_ar') }}">Product Name (ar)
                                     </x-admin.forms.input-text>
                                 </div>
-                                <x-admin.brands-dropdown brand-id="{{ $product->brand_id ?? null }}"/>
+                                <x-admin.brands-dropdown brand-id="{{ $product->brand_id ?? null }}" />
 
                                 <div class="row">
                                     {{-- @dd($product) --}}
@@ -76,26 +76,26 @@ $title = "Edit Product";
                                 </div>
                                 <div class="mb-3 form-check form-switch">
                                     <input id="status" class="form-check-input" type="checkbox" name="status"
-                                    @if (isset($product) && $product->status == 0)
+                                        @if(isset($product) && $product->status == 0)
                                     @else
-                                        checked=''
+                                    checked=''
                                     @endif
-                                        >
+                                    >
                                     <label for="status" class="form-check-label">Activation</label>
                                 </div>
-                                <x-admin.tags-checkbox/>
+                                <x-admin.tags-checkbox />
                                 <div class="mb-3">
-                                    <label for="status" class="form-check-label d-block mb-3  border-top pt-3">Category</label>
+                                    <label for="status"
+                                        class="form-check-label d-block mb-3  border-top pt-3">Category</label>
                                     @foreach ($parent_categories as $parent_category)
                                     <ul style="list-style-type: none">
                                         <li><input class="form-check-input" type="checkbox"
                                                 id="cat_[{{ $parent_category->id }}]" name="categories[]"
-                                                value="{{ $parent_category->id }}"
-                                                @if ($product ?? null)
+                                                value="{{ $parent_category->id }}" @if ($product ?? null)
                                                 @foreach($category_shared as $shared)
                                                 @if($shared===$parent_category->id) checked @endif
-                                                @endforeach
-                                                @endif>
+                                            @endforeach
+                                            @endif>
                                             <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
                                                 $parent_category->name_en }}</label>
                                             <ul>
@@ -106,11 +106,11 @@ $title = "Edit Product";
                                                         value="{{ $sub_cat->id }}" @if ($product ?? null)
                                                         @foreach($category_shared as $shared)
                                                         @if($shared===$sub_cat->id) checked @endif
-                                                        @endforeach
+                                                    @endforeach
                                                     @endif
                                                     >
                                                     <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">
-                                                    {{ $sub_cat->name }}</label>
+                                                        {{ $sub_cat->name }}</label>
 
                                                 </li>
                                                 @endforeach
