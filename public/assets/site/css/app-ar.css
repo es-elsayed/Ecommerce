@@ -2193,11 +2193,11 @@ body.bg-notheme .bg-light{
 body.bg-notheme .owl-item.owl-brand{
     background-color: rgb(0, 0, 0);
 }
-body.bg-notheme .form-select{
+body.bg-notheme .input-group .form-select{
     color: #212529 !important;
     background-color: transparent !important;
     border: 1px solid rgb(0,0,0,15%) !important;
 }
-body.bg-notheme .input-group-text{
+body.bg-notheme .input-group .input-group-text{
     background-color: transparent !important;
 }
