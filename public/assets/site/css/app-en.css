@@ -2201,7 +2201,3 @@ body.bg-notheme .input-group .form-select{
 body.bg-notheme .input-group .input-group-text{
     background-color: transparent !important;
 }
-body.bg-notheme .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-    color: #171717 !important;
-    background-color: transparent !important;
-}
