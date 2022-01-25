@@ -9,7 +9,7 @@
                 <x-site.includes.li-nav-link href="{{ route('site.home.index') }}">{{ __('content.shop') }}
                 </x-site.includes.li-nav-link>
                 @foreach ($main_categories as $main_category)
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="{{ route('site.shop.show', $main_category->slug) }}"
+                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                         data-bs-toggle="dropdown"> {{ $main_category->name }}
                         @if (!$main_category->activeChilds->isEmpty())
                         <i class='bx bx-chevron-down'></i>
