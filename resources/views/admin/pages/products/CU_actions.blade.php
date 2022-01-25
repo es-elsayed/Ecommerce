@@ -39,19 +39,8 @@ $title = "Edit Product";
                                         value="{{ $product->name_ar ?? old('name_ar') }}">Product Name (ar)
                                     </x-admin.forms.input-text>
                                 </div>
-                                <div class="row">
-                                    <x-admin.forms.select name="brand_id">
-                                        <option selected="">Select Brand</option>
-                                        {{-- @dd($brands) --}}
-                                        @foreach ($brands as $brand )
-                                        <option value="{{ $brand->id }}" @if(isset($product) && $brand->id ===
-                                            $product->brand_id)
-                                            selected
-                                            @endif
-                                            >{{ $brand->name_en }}</option>
-                                        @endforeach
-                                    </x-admin.forms.select>
-                                </div>
+                                <x-admin.brands-dropdown brand-id="{{ $product->brand_id ?? null }}"/>
+
                                 <div class="row">
                                     {{-- @dd($product) --}}
                                     <x-admin.forms.textarea name="details_en" placeholder="Enter Details  in English"
@@ -94,28 +83,34 @@ $title = "Edit Product";
                                         >
                                     <label for="status" class="form-check-label">Activation</label>
                                 </div>
+                                <x-admin.tags-checkbox/>
                                 <div class="mb-3">
-                                    <hr /><label for="status" class="form-check-label d-block mb-3">Category</label>
+                                    <label for="status" class="form-check-label d-block mb-3  border-top pt-3">Category</label>
                                     @foreach ($parent_categories as $parent_category)
                                     <ul style="list-style-type: none">
                                         <li><input class="form-check-input" type="checkbox"
                                                 id="cat_[{{ $parent_category->id }}]" name="categories[]"
-                                                value="{{ $parent_category->id }}" @if ($product ?? null) @foreach($category_shared as $shared)
-                                                @if($shared===$parent_category->id) checked @endif @endforeach @endif>
+                                                value="{{ $parent_category->id }}"
+                                                @if ($product ?? null)
+                                                @foreach($category_shared as $shared)
+                                                @if($shared===$parent_category->id) checked @endif
+                                                @endforeach
+                                                @endif>
                                             <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
                                                 $parent_category->name_en }}</label>
                                             <ul>
                                                 @foreach($parent_category->childs as $sub_cat)
-                                                <li class="d-inline">
+                                                <li class="d-inline-block me-3">
                                                     <input class="form-check-input sub-cat" type="checkbox"
                                                         id="cat_[{{ $sub_cat->id }}]" name="categories[]"
                                                         value="{{ $sub_cat->id }}" @if ($product ?? null)
                                                         @foreach($category_shared as $shared)
-                                                        @if($shared===$sub_cat->id) checked @endif @endforeach
+                                                        @if($shared===$sub_cat->id) checked @endif
+                                                        @endforeach
                                                     @endif
                                                     >
-                                                    <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">{{
-                                                        $sub_cat->name }}</label>
+                                                    <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">
+                                                    {{ $sub_cat->name }}</label>
 
                                                 </li>
                                                 @endforeach
@@ -185,11 +180,13 @@ $title = "Edit Product";
                                 @endif
                                 <div class="col-12 mt-5">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-light">@if ($product ?? 0)
+                                        <button type="submit" class="btn btn-light">
+                                            @if ($product ?? 0)
                                             Update
                                             @else
                                             Add
-                                        @endif</button>
+                                            @endif
+                                        </button>
                                     </div>
                                 </div>
                             </div>

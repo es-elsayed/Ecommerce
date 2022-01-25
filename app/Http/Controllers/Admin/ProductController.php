@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\ImageProduct;
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -79,7 +80,6 @@ class ProductController extends Controller
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
-        $brands = Brand::all();
         return view('admin.pages.products.CU_actions', get_defined_vars());
     }
     public function update(ProductRequest $request, Product $product)
