@@ -8,7 +8,7 @@
                     </div>
                     <div class="logo d-none d-lg-flex">
                         <a href="{{ route('site.home.index') }}">
-                            <img src="{{ asset('assets/images/twisiop-logo.svg') }}" class="logo-icon" alt="" />
+                            <img src="{{ asset('assets/images/twishop-logo.svg') }}" class="logo-icon" alt="" />
                         </a>
                     </div>
                 </div>
@@ -37,7 +37,9 @@
                     <label for="product" class="input-group-text cursor-pointer"><i class='bx bx-search'></i></label>
                 </div>
             </div> --}}
-            @if ($siteInfo->phone ?? 0)
+            
+            @if (isset($siteInfo->phone))
+
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
                 <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
                 </div>

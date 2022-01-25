@@ -75,7 +75,7 @@
             <hr />
             <div class="row row-cols-1 row-cols-md-2 align-items-center">
                 <div class="col">
-                    <p class="mb-0">Copyright © 2021. All right reserved.</p>
+                    <p class="mb-0">Copyright © 2022 |  All rights reserved by <strong><a href="https://twision.dev" style="color: #033E8C">Twision</a></strong>.</p>
                 </div>
                 <div class="col text-end">
                     <div class="payment-icon">

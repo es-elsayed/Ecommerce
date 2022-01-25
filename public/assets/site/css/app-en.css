@@ -210,9 +210,9 @@ body.offcanvas-active {
 }
 
 @media all and (min-width: 992px) {
-    .primary-menu .navbar .dropdown-large-menu {
+    /* .primary-menu .navbar .dropdown-large-menu {
         min-width: 630px;
-    }
+    } */
     .primary-menu .navbar .nav-item .dropdown-menu {
         display: none;
     }

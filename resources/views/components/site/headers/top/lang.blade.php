@@ -5,7 +5,7 @@
                 <div>
                     <span>
 
-                        <i class="flag-icon flag-icon-{{ app()->getLocale()=='ar'? 'ae':'um' }} me-2"></i>
+                        <i class="flag-icon flag-icon-{{ app()->getLocale()=='ar'? 'eg':'gb' }} me-2"></i>
                     </span>
                 </div>
             </div>
@@ -16,9 +16,9 @@
                 href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
                 class="dropdown-item d-flex allign-items-center">
                 @if ($localeCode == 'en')
-                <i class="flag-icon flag-icon-um me-2"></i>
+                <i class="flag-icon flag-icon-gb me-2"></i>
                 @else
-                <i class="flag-icon flag-icon-ae me-2"></i>
+                <i class="flag-icon flag-icon-eg me-2"></i>
                 @endif
                 <span>{{ $properties['native'] }}</span>
             </a>
