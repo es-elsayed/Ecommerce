@@ -4,7 +4,6 @@
             <div class="lang d-flex gap-1">
                 <div>
                     <span>
-
                         <i class="flag-icon flag-icon-{{ app()->getLocale()=='ar'? 'eg':'gb' }} me-2"></i>
                     </span>
                 </div>
