@@ -1,3 +1,4 @@
+@props(['maincategories','site-info'])
 <footer>
     <section class="py-4 bg-dark-1 border-top">
         <div class="container">
@@ -5,14 +6,14 @@
                 <div class="col">
                     <div class="footer-section1 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.contact info') }} </h6>
-                        <x-site.cards.contact-info/>
+                        <x-site.cards.contact-info :site-info="$siteInfo" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="footer-section2 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.shop categories') }} </h6>
                         <ul class="list-unstyled">
-                            @foreach ($main_categories as
+                            @foreach ($maincategories as
                             $main_category)
                             <li class="mb-1">
                                 <a href="{{ route('site.shop.show', $main_category->slug) }}" class="tag-link"><i

@@ -1,15 +1,6 @@
-{{-- Decide route is store or update --}}
 @php
-$route =route("admin.products.store");
-$method = false;
-$title = "Add Product";
-if (Route::currentRouteName() == "admin.products.edit") {
-$route = route("admin.products.update",$product->id);
-$method = true;
 $title = "Edit Product";
-}
 @endphp
-{{-- End --}}
 <x-admin.layout :title="$title">
 
     <!--breadcrumb-->
@@ -22,11 +13,8 @@ $title = "Edit Product";
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg">
-                        <form action="{{ $route }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            @if ($method ?? 0)
+                        <form action="{{ route('admin.products.update',$product->id) }}" method="post" enctype="multipart/form-data">
                             @method('put')
-                            @endif
                             @csrf
                             <div class="border border-3 p-4 rounded">
                                 <div class="row">
@@ -40,7 +28,6 @@ $title = "Edit Product";
                                     </x-admin.forms.input-text>
                                 </div>
                                 <x-admin.brands-dropdown brand-id="{{ $product->brand_id ?? null }}" />
-
                                 <div class="row">
                                     {{-- @dd($product) --}}
                                     <x-admin.forms.textarea name="details_en" placeholder="Enter Details  in English"
@@ -111,11 +98,9 @@ $title = "Edit Product";
                                                     >
                                                     <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">
                                                         {{ $sub_cat->name }}</label>
-
                                                 </li>
                                                 @endforeach
                                             </ul>
-
                                         </li>
                                     </ul>
                                     @endforeach
@@ -123,7 +108,6 @@ $title = "Edit Product";
                                     @foreach ($errors->get('categories') as $message)
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @endforeach
-
                                     @endif
                                     @if ($errors->has('categories.*'))
                                     @foreach ($errors->get('categories.*') as $messages)
@@ -133,7 +117,6 @@ $title = "Edit Product";
                                     @endforeach
                                     @endforeach
                                     @endif
-
                                 </div>
                                 <hr>
                                 <div class="mb-3">
@@ -209,7 +192,6 @@ $title = "Edit Product";
         console.log(deleted.value);
                 // console.log(deleted.value);
                 e.target.parentElement.remove();
-
             })
         })
     </script>

@@ -74,7 +74,7 @@ class ProductController extends Controller
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
-        return view('admin.pages.products.CU_actions', get_defined_vars());
+        return view('admin.pages.products.edit', get_defined_vars());
     }
     public function update(ProductRequest $request, Product $product)
     {
