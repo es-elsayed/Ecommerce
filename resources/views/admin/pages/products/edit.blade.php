@@ -20,57 +20,74 @@ $title = "Edit Product";
                                 <div class="row">
                                     <x-admin.forms.input-text type="text" name="name_en"
                                         placeholder="Product Name in English"
-                                        value="{{ $product->name_en ?? old('name_en') }}">Product Name (en)
+                                        value="{{ $product->name_en }}">Product Name (en)
                                     </x-admin.forms.input-text>
                                     <x-admin.forms.input-text type="text" name="name_ar"
                                         placeholder="Product Name in Arabic"
-                                        value="{{ $product->name_ar ?? old('name_ar') }}">Product Name (ar)
+                                        value="{{ $product->name_ar }}">Product Name (ar)
                                     </x-admin.forms.input-text>
                                 </div>
-                                <x-admin.brands-dropdown brand-id="{{ $product->brand_id ?? null }}" />
+                                <x-admin.brands-dropdown brand-id="{{ $product->brand_id }}" />
                                 <div class="row">
                                     {{-- @dd($product) --}}
                                     <x-admin.forms.textarea name="details_en" placeholder="Enter Details  in English"
-                                        value="{{ $product->details_en ?? old('details_en') }}"> Details (en)
+                                        value="{{ $product->details_en}}"> Details (en)
                                     </x-admin.forms.textarea>
                                     <x-admin.forms.textarea name="details_ar" placeholder="Enter Details  in Arabic"
-                                        value="{{ $product->details_ar ?? old('details_ar') }}"> Details (ar)
+                                        value="{{ $product->details_ar}}"> Details (ar)
                                     </x-admin.forms.textarea>
                                 </div>
                                 <div class="row">
                                     <x-admin.forms.textarea name="description_en"
                                         placeholder="Enter Description  in English"
-                                        value="{{ $product->description_en ?? old('description_en') }}"> Description
+                                        value="{{ $product->description_en }}"> Description
                                         (en)
                                     </x-admin.forms.textarea>
                                 </div>
                                 <div class="row">
                                     <x-admin.forms.textarea name="description_ar"
                                         placeholder="Enter Description  in Arabic"
-                                        value="{{ $product->description_ar ?? old('description_ar') }}"> Description
+                                        value="{{ $product->description_ar }}"> Description
                                         (ar)
                                     </x-admin.forms.textarea>
                                 </div>
                                 <div class="row">
                                     <x-admin.forms.input-number name="price" required
-                                        value="{{ $product->price ?? old('price') }}">Price</x-admin.forms.input-number>
+                                        value="{{ $product->price }}">Price</x-admin.forms.input-number>
                                     <x-admin.forms.input-number name="sale_price" required
-                                        value="{{ $product->sale_price ?? old('sale_price') }}">Sale Price
+                                        value="{{ $product->sale_price }}">Sale Price
                                     </x-admin.forms.input-number>
                                     <x-admin.forms.input-number name="qty" required
-                                        value="{{ $product->quantity ?? old('qty') }}" step='1'>Quantity
+                                        value="{{ $product->quantity }}" step='1'>Quantity
                                     </x-admin.forms.input-number>
                                 </div>
                                 <div class="mb-3 form-check form-switch">
                                     <input id="status" class="form-check-input" type="checkbox" name="status"
-                                        @if(isset($product) && $product->status == 0)
-                                    @else
+                                        @if( $product->status ?? 0)
                                     checked=''
                                     @endif
                                     >
                                     <label for="status" class="form-check-label">Activation</label>
                                 </div>
-                                <x-admin.tags-checkbox />
+                                <div class="mb-3">
+                                    <label for="status" class="form-check-label d-block mb-3 border-top pt-3">Tags</label>
+                                    <ul style="list-style-type: none">
+                                        @foreach ($tags as $tag )
+                                        <li class="d-inline-block me-3">
+                                            <input class="form-check-input" type="checkbox" name="tags[]" id="tag_[{{ $tag->id }}]"
+                                                value="{{ $tag->id }}"
+                                                @foreach ($tags_ids as $tag_id )
+                                                    @if ($tag_id==$tag->id)
+                                                        checked
+                                                    @endif
+                                                @endforeach
+                                                />
+                                            <label class="form-check-label" for="tag_[{{ $tag->id }}]">
+                                                {{ $tag->name_en }}</label>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 <div class="mb-3">
                                     <label for="status"
                                         class="form-check-label d-block mb-3  border-top pt-3">Category</label>
@@ -78,11 +95,11 @@ $title = "Edit Product";
                                     <ul style="list-style-type: none">
                                         <li><input class="form-check-input" type="checkbox"
                                                 id="cat_[{{ $parent_category->id }}]" name="categories[]"
-                                                value="{{ $parent_category->id }}" @if ($product ?? null)
+                                                value="{{ $parent_category->id }}"
                                                 @foreach($category_shared as $shared)
                                                 @if($shared===$parent_category->id) checked @endif
                                             @endforeach
-                                            @endif>
+                                            >
                                             <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
                                                 $parent_category->name_en }}</label>
                                             <ul>
@@ -90,11 +107,10 @@ $title = "Edit Product";
                                                 <li class="d-inline-block me-3">
                                                     <input class="form-check-input sub-cat" type="checkbox"
                                                         id="cat_[{{ $sub_cat->id }}]" name="categories[]"
-                                                        value="{{ $sub_cat->id }}" @if ($product ?? null)
+                                                        value="{{ $sub_cat->id }}"
                                                         @foreach($category_shared as $shared)
                                                         @if($shared===$sub_cat->id) checked @endif
                                                     @endforeach
-                                                    @endif
                                                     >
                                                     <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">
                                                         {{ $sub_cat->name }}</label>
@@ -128,14 +144,12 @@ $title = "Edit Product";
                                     @endforeach
                                     @endif
                                 </div>
-                                @if ($product ?? 0)
                                 <div class="mb-3">
                                     <div class="img-style">
                                         <img src="{{asset($product->main_image) }}" class="img-style"
                                             data-real-src="{{ $product->main_image }}" alt="product image">
                                     </div>
                                 </div>
-                                @endif
                                 <hr>
                                 <div class="mb-3">
                                     <label for="images" class="form-label">Sub-Images</label>
@@ -149,7 +163,6 @@ $title = "Edit Product";
                                     @endforeach
                                     @endif
                                 </div>
-                                @if ($product ?? 0)
                                 <div class="mb-3">
                                     @foreach ($images as $image )
                                     <div class="img-style">
@@ -160,15 +173,10 @@ $title = "Edit Product";
                                     @endforeach
                                     <input type="hidden" id="deleted_images" name="deleted_images" value="">
                                 </div>
-                                @endif
                                 <div class="col-12 mt-5">
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-light">
-                                            @if ($product ?? 0)
                                             Update
-                                            @else
-                                            Add
-                                            @endif
                                         </button>
                                     </div>
                                 </div>

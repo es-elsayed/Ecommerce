@@ -74,6 +74,8 @@ class ProductController extends Controller
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
+        $tags = Tag::all();
+        $tags_ids = $product->tags()->allRelatedIds();
         return view('admin.pages.products.edit', get_defined_vars());
     }
     public function update(ProductRequest $request, Product $product)
@@ -81,13 +83,9 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
             $new_slug = $product->slug;
+            //if name changed generate new unique slug
             if ($product->name_en !== $request['name_en']) {
-                $new_slug = str_slug($request['name_en']);
-                $count = 1;
-                while (Product::whereSlug($new_slug)->exists()) {
-                    $new_slug = str_slug($request['name_en']) . "-" . $count;
-                    $count++;
-                }
+                $new_slug = $this->generateNewSlug($request);
             }
             $image = $product->main_image;
             if ($request->hasFile('main_image')) {
@@ -95,13 +93,8 @@ class ProductController extends Controller
                 $image = upload_image('product', $request->main_image);
             }
             $product->update($this->up($request, $new_slug, $image));
-            $old_categories = CategoryProduct::where('product_id', $product->id)->delete();
-            foreach ($request->categories as $category) {
-                CategoryProduct::insert([
-                    'category_id' => $category,
-                    'product_id' => $product->id
-                ]);
-            }
+            $product->tags()->sync($request->tags);
+            $product->categories()->sync($request->categories);
             if ($request->has('deleted_images')) {
                 $deleted_images = explode(",", $request->deleted_images);
                 foreach ($deleted_images as $deleted_image) {
@@ -122,6 +115,7 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index')->with('success', "Product has been Updated Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
+            // return $ex;
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
         return redirect()->route('admin.products.index')->with('success', "Product Added Successfully");
@@ -169,5 +163,15 @@ class ProductController extends Controller
     {
         $product->update(['featured' => $request->status]);
         return redirect()->route('admin.products.index')->with('success', 'The "' . $product->name_en . '" Added to Featured Product Successfuly');
+    }
+    public function generateNewSlug($request)
+    {
+        $new_slug = str_slug($request['name_en']);
+        $count = 1;
+        while (Product::whereSlug($new_slug)->exists()) {
+            $new_slug = str_slug($request['name_en']) . "-" . $count;
+            $count++;
+        }
+        return $new_slug;
     }
 }
