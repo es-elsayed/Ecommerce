@@ -1,8 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        {{ __('content.address') }}
-    </x-slot>
-
+<x-site.layout :title="__('content.address')">
     <!--start breadcrumb-->
     <x-site.headers.checkout />
     <!--end breadcrumb-->

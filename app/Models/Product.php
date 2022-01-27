@@ -29,7 +29,6 @@ class Product extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        // dd($search->product);
         $query->when($filters['product'] ?? false, fn ($query, $product) =>
         $query->where(fn($query) =>
         $query->where('name_en', 'like', '%' . $product . '%')
@@ -44,6 +43,11 @@ class Product extends Model
             $filters['category'] ?? false,
             fn ($query, $category) =>
             $query->whereHas('categories', fn ($query) => $query->whereSlug($category))
+        );
+        $query->when(
+            $filters['tag'] ?? false,
+            fn ($query, $tag) =>
+            $query->whereHas('tags', fn ($query) => $query->where('name_en',$tag))
         );
         $query->when(
             $filters['brand'] ?? false,

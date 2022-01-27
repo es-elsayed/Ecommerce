@@ -1,7 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        {{ __('content.sign in') }}
-    </x-slot>
+<x-site.layout :title="__('content.sign in')">
     <!--start breadcrumb-->
     <section class="py-3 border-bottom d-none d-md-flex">
         <div class="container">

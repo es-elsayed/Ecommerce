@@ -1,7 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        Reset Password
-    </x-slot>
+<x-site.layout :title="__('reset')">
 
     <!--start breadcrumb-->
     <section class="py-3 border-bottom d-none d-md-flex">

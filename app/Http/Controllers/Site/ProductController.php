@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function __invoke()
     {
-        $products = Product::latest()->filter(request(['product', 'category', 'brand']))->active()->paginate(PAGINATION_COUNT);
+        $products = Product::latest()->filter(request(['product', 'category', 'brand','tag']))->active()->paginate(PAGINATION_COUNT);
         switch (request('tab')) {
             case 'top-rated':
                 $products = Product::ratings()
