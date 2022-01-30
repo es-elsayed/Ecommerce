@@ -1,7 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        {{ __('content.shop') }}
-    </x-slot>
+<x-site.layout :title=" __('content.shop')">
 
     <div class="page-content">
         <!--start breadcrumb-->

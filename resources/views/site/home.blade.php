@@ -1,7 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        {{ __('content.home') }}
-    </x-slot>
+<x-site.layout :title=" __('content.home')">
 
     @if (count($sliders ?? []) > 0)
     <x-site.includes.slider :sliders="$sliders" />

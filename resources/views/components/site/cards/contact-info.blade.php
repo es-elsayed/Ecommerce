@@ -1,3 +1,4 @@
+@props(['site-info'])
 @if (isset($siteInfo->address))
 <div class="address mb-3">
     <p class="mb-0 text-uppercase text-white"> {{ __('content.address') }} </p>

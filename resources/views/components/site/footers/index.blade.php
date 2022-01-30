@@ -1,3 +1,4 @@
+@props(['maincategories','site-info'])
 <footer>
     <section class="py-4 bg-dark-1 border-top">
         <div class="container">
@@ -5,14 +6,14 @@
                 <div class="col">
                     <div class="footer-section1 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.contact info') }} </h6>
-                        <x-site.cards.contact-info/>
+                        <x-site.cards.contact-info :site-info="$siteInfo" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="footer-section2 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.shop categories') }} </h6>
                         <ul class="list-unstyled">
-                            @foreach ($main_categories as
+                            @foreach ($maincategories as
                             $main_category)
                             <li class="mb-1">
                                 <a href="{{ route('site.shop.show', $main_category->slug) }}" class="tag-link"><i
@@ -23,26 +24,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="footer-section3 mb-3">
-                        <h6 class="mb-3 text-uppercase"> {{ __('content.popular tags') }} </h6>
-                        <div class="tags-box"> <a href="javascript:;" class="tag-link">Cloths</a>
-                            <a href="javascript:;" class="tag-link">Electronis</a>
-                            <a href="javascript:;" class="tag-link">Furniture</a>
-                            <a href="javascript:;" class="tag-link">Sports</a>
-                            <a href="javascript:;" class="tag-link">Men Wear</a>
-                            <a href="javascript:;" class="tag-link">Women Wear</a>
-                            <a href="javascript:;" class="tag-link">Laptops</a>
-                            <a href="javascript:;" class="tag-link">Formal Shirts</a>
-                            <a href="javascript:;" class="tag-link">Topwear</a>
-                            <a href="javascript:;" class="tag-link">Headphones</a>
-                            <a href="javascript:;" class="tag-link">Bottom Wear</a>
-                            <a href="javascript:;" class="tag-link">Bags</a>
-                            <a href="javascript:;" class="tag-link">Sofa</a>
-                            <a href="javascript:;" class="tag-link">Shoes</a>
-                        </div>
-                    </div>
-                </div>
+                <x-site.tags/>
                 <div class="col">
                     <div class="footer-section4 mb-3">
                         <h6 class="mb-3 text-uppercase"> {{ __('content.stay informed') }} </h6>

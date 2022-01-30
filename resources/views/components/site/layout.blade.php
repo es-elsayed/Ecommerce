@@ -1,5 +1,5 @@
-@props(['title'])
 <!doctype html>
+
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    @include('includes.icon')
+    <x-site.includes.icon/>
     <!--plugins-->
     @include('site.includes.extra.style')
 
@@ -32,7 +32,13 @@
         </div> --}}
         <!--start top header wrapper-->
 
-        <x-site.headers.index />
+        <div class="header-wrapper bg-dark-1">
+            <x-site.headers.offer />
+            <x-site.headers.top />
+
+            <x-site.headers.center :maincategories="$main_categories" />
+            <x-site.headers.bottom :maincategories="$main_categories" />
+        </div>
 
         <x-alerts.success />
         <x-alerts.error />
@@ -49,13 +55,13 @@
         </div>
         <!--end page wrapper -->
         <!--start footer section-->
-        <x-site.footers.index />
+        <x-site.footers.index :maincategories="$main_categories" :site-info="$siteInfo" />
         <!--end footer section-->
 
     </div>
     <!--end wrapper-->
     <!--start switcher-->
-    @include('includes.themes')
+    <x-site.includes.themes/>
     <!--end switcher-->
     @include('site.includes.extra.scripts')
 </body>

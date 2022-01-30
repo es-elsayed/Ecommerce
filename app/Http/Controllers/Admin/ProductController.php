@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\ImageProduct;
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -23,9 +24,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
-        $brands = Brand::all();
-        return view('admin.pages.products.CU_actions', get_defined_vars());
+        // $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
+        return view('admin.pages.products.create', get_defined_vars());
     }
 
     public function store(ProductRequest $request)
@@ -42,21 +42,16 @@ class ProductController extends Controller
             }
 
             $image_path = upload_image('product', $request->main_image);
-            $product_id = Product::insertGetId($this->up($request, $slug, $image_path));
-
-            foreach ($request->categories as $category) {
-                CategoryProduct::insert([
-                    'category_id' => $category,
-                    'product_id' => $product_id
-                ]);
-            }
+            $product = Product::create($this->up($request, $slug, $image_path));
+            $product->tags()->sync($request->tags);
+            $product->categories()->sync($request->categories);
 
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $image_path = upload_image('product', $image);
                     ImageProduct::insert([
                         'image' => $image_path,
-                        'product_id' => $product_id
+                        'product_id' => $product->id
                     ]);
                 }
             }
@@ -79,21 +74,18 @@ class ProductController extends Controller
         $parent_categories = Category::where('is_parent', 1)->with('childs')->get();
         $category_shared = $product->categories->pluck('id');
         $images = $product->images;
-        $brands = Brand::all();
-        return view('admin.pages.products.CU_actions', get_defined_vars());
+        $tags = Tag::all();
+        $tags_ids = $product->tags()->allRelatedIds();
+        return view('admin.pages.products.edit', get_defined_vars());
     }
     public function update(ProductRequest $request, Product $product)
     {
         try {
             DB::beginTransaction();
             $new_slug = $product->slug;
+            //if name changed generate new unique slug
             if ($product->name_en !== $request['name_en']) {
-                $new_slug = str_slug($request['name_en']);
-                $count = 1;
-                while (Product::whereSlug($new_slug)->exists()) {
-                    $new_slug = str_slug($request['name_en']) . "-" . $count;
-                    $count++;
-                }
+                $new_slug = $this->generateNewSlug($request);
             }
             $image = $product->main_image;
             if ($request->hasFile('main_image')) {
@@ -101,13 +93,8 @@ class ProductController extends Controller
                 $image = upload_image('product', $request->main_image);
             }
             $product->update($this->up($request, $new_slug, $image));
-            $old_categories = CategoryProduct::where('product_id', $product->id)->delete();
-            foreach ($request->categories as $category) {
-                CategoryProduct::insert([
-                    'category_id' => $category,
-                    'product_id' => $product->id
-                ]);
-            }
+            $product->tags()->sync($request->tags);
+            $product->categories()->sync($request->categories);
             if ($request->has('deleted_images')) {
                 $deleted_images = explode(",", $request->deleted_images);
                 foreach ($deleted_images as $deleted_image) {
@@ -128,6 +115,7 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index')->with('success', "Product has been Updated Successfully");
         } catch (\Exception $ex) {
             DB::rollback();
+            // return $ex;
             return redirect()->back()->with('error', "sorry.. cannot update Category right now! please try again later");
         }
         return redirect()->route('admin.products.index')->with('success', "Product Added Successfully");
@@ -175,5 +163,15 @@ class ProductController extends Controller
     {
         $product->update(['featured' => $request->status]);
         return redirect()->route('admin.products.index')->with('success', 'The "' . $product->name_en . '" Added to Featured Product Successfuly');
+    }
+    public function generateNewSlug($request)
+    {
+        $new_slug = str_slug($request['name_en']);
+        $count = 1;
+        while (Product::whereSlug($new_slug)->exists()) {
+            $new_slug = str_slug($request['name_en']) . "-" . $count;
+            $count++;
+        }
+        return $new_slug;
     }
 }

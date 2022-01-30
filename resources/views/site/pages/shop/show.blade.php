@@ -1,8 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        {{ __('content.shop') }}
-    </x-slot>
-
+<x-site.layout :title="__('content.shop')">
     <!--start breadcrumb-->
     <x-site.headers.breadcrumb title="{{ $product->name }}">
         <li class="breadcrumb-item">

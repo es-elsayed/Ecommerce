@@ -1,3 +1,4 @@
+@props(['siteInfo','maincategories'])
 <div class="header-content pb-3 pb-md-0">
     <div class="container">
         <div class="row align-items-center">
@@ -19,7 +20,7 @@
                     <input type="text" name="product" value="{{ request('product') }}" class="form-control w-100" placeholder="Search for Products">
                     <select class="form-select flex-shrink-0" name="category" aria-label="Default select example" style="width: 10.5rem;">
                         <option value="">All Categories</option>
-                        @foreach ($main_categories as $category )
+                        @foreach ($maincategories as $category )
                         <option value="{{ $category->slug }}" @if (request('category') == $category->slug)
                             selected
                         @endif>{{ $category->name }}</option>
@@ -37,7 +38,7 @@
                     <label for="product" class="input-group-text cursor-pointer"><i class='bx bx-search'></i></label>
                 </div>
             </div> --}}
-            
+
             @if (isset($siteInfo->phone))
 
             <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
