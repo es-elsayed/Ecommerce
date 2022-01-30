@@ -7,17 +7,19 @@
                 <h5 class="py-2 text-white">Navigation</h5>
             </div>
             <ul class="navbar-nav">
-                <x-site.includes.li-nav-link href="{{ route('site.shop.index') }}">{{ __('content.shop') }}
+                <x-site.includes.li-nav-link href="{{ route('site.home.index') }}">{{ __('content.shop') }}
                 </x-site.includes.li-nav-link>
                 @foreach ($maincategories as $main_category)
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                        data-bs-toggle="dropdown"> {{ $main_category->name }}<i
-                            class='bx bx-chevron-down'></i></a>
+                        data-bs-toggle="dropdown"> {{ $main_category->name }}
+                        @if (!$main_category->activeChilds->isEmpty())
+                        <i class='bx bx-chevron-down'></i>
+                        @endif
+                    </a>
+                    @if (!$main_category->activeChilds->isEmpty())
                     <div class="dropdown-menu dropdown-large-menu">
                         <div class="row">
-
                                 <div class="col-md-12">
-
                                     <ul class="">
                                         @foreach ($main_category->activeChilds as $sub_cat)
                                             <li>
@@ -28,12 +30,12 @@
                                         @endforeach
                                     </ul>
                                 </div>
-
                             <!-- end col-3 -->
                         </div>
                         <!-- end row -->
                     </div>
                     <!-- dropdown-large.// -->
+                    @endif
                     @endforeach
                 </li>
 
