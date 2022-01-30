@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-    @include('includes.icon')
+    <x-site.includes.icon/>
 
     @include('admin.includes.style')
 

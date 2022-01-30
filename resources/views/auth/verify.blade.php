@@ -1,4 +1,4 @@
-<x-site.layout>
+<x-site.layout :title="__('verify')">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

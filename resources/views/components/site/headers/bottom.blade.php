@@ -1,3 +1,4 @@
+@props(['maincategories'])
 <div class="primary-menu border-top">
     <div class="container">
         <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg justify-content-center">
@@ -8,7 +9,7 @@
             <ul class="navbar-nav">
                 <x-site.includes.li-nav-link href="{{ route('site.home.index') }}">{{ __('content.shop') }}
                 </x-site.includes.li-nav-link>
-                @foreach ($main_categories as $main_category)
+                @foreach ($maincategories as $main_category)
                 <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                         data-bs-toggle="dropdown"> {{ $main_category->name }}
                         @if (!$main_category->activeChilds->isEmpty())

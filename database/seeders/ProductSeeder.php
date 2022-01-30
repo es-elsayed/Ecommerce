@@ -20,10 +20,10 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::factory(23)->create();
-        $categories = Category::all();
+        $categories = Category::all()->pluck('id');
         Product::all()->each(function ($product) use ($categories) {
             $product->categories()->attach(
-                $categories->random(6)->pluck('id')->toArray()
+                $categories->random(2)
             );
         });
     }

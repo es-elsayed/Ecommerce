@@ -12,7 +12,7 @@
                         class="position-absolute top-50 product-show translate-middle-y"><i
                             class="bx bx-search"></i></span>
                 </div>
-                <div class="ms-auto"><a href="{{ route('admin.products.create') }}"
+                <div class="ms-auto"><a href="{{ route('admin.brands.create') }}"
                         class="btn btn-light radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New
                         Record</a></div>
             </div>

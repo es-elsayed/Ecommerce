@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         Site::factory()->create();
         $this->call([
             AdminSeeder::class,
+            TagSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
             RegionsSeeder::class,

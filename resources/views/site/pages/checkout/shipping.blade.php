@@ -1,7 +1,4 @@
-<x-site.layout>
-    <x-slot name="title">
-        {{ __('content.shipping') }}
-    </x-slot>
+<x-site.layout :title="__('content.shipping')">
     <div class="page-content">
         <!--start breadcrumb-->
         <x-site.headers.cart />

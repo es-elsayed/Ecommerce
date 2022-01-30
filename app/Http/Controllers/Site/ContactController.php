@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('site.contact');
+        return view('site.contact', ['location' => Site::first()->location]);
     }
 
     public function create()
@@ -22,9 +23,9 @@ class ContactController extends Controller
     {
         try {
             Message::create($request->except('_token'));
-            return redirect()->route('site.contact.index')->with('success','The Message Send Successfully');
+            return redirect()->route('site.contact.index')->with('success', 'The Message Send Successfully');
         } catch (\Throwable $th) {
-            return redirect()->route('site.contact.index')->with('error','Cannot Send Message right now, please try later!');
+            return redirect()->route('site.contact.index')->with('error', 'Cannot Send Message right now, please try later!');
         }
     }
 
