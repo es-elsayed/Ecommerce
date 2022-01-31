@@ -1,4 +1,5 @@
 @props(['maincategories'])
+
 <div class="primary-menu border-top">
     <div class="container">
         <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg justify-content-center">
@@ -7,29 +8,34 @@
                 <h5 class="py-2 text-white">Navigation</h5>
             </div>
             <ul class="navbar-nav">
-                <x-site.includes.li-nav-link href="{{ route('site.home.index') }}">{{ __('content.shop') }}
+                <x-site.includes.li-nav-link href="{{ route('site.shop.index') }}">{{ __('content.shop') }}
                 </x-site.includes.li-nav-link>
                 @foreach ($maincategories as $main_category)
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                        data-bs-toggle="dropdown"> {{ $main_category->name }}
-                        @if (!$main_category->activeChilds->isEmpty())
+                @php
+                $is_parent = !$main_category->activeChilds->isEmpty();
+                @endphp
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
+                        href="{{ route('site.shop.show', $main_category->slug) }}"
+                        @if($is_parent)data-bs-toggle="dropdown" @endif> {{ $main_category->name }}
+                        @if ($is_parent)
                         <i class='bx bx-chevron-down'></i>
                         @endif
                     </a>
-                    @if (!$main_category->activeChilds->isEmpty())
+                    @if ($is_parent)
                     <div class="dropdown-menu dropdown-large-menu">
                         <div class="row">
-                                <div class="col-md-12">
-                                    <ul class="">
-                                        @foreach ($main_category->activeChilds as $sub_cat)
-                                            <li>
-                                                <a href="{{ route('site.shop.show', $sub_cat->slug) }}">
-                                                    {{ $sub_cat->name }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                            <div class="col-md-12">
+                                <ul class="">
+                                    @foreach ($main_category->activeChilds as $sub_cat)
+                                    <li>
+                                        <a href="{{ route('site.shop.show', $sub_cat->slug) }}">
+                                            {{ $sub_cat->name }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             <!-- end col-3 -->
                         </div>
                         <!-- end row -->

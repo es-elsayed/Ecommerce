@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    // protected $append = 'name';
     protected $fillable = [
         'sku',
         'name_en',
@@ -59,6 +60,11 @@ class Product extends Model
     {
         return $query->where('status', 1)->selecting();
     }
+    // public function getNameAttribute( $var = null)
+    // {
+    //     return app()->isLocale('en') ? $this->name_en : $this->name_ar;
+    // }
+
     public function scopeSelecting($query)
     {
         return $query->select(
