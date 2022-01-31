@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Brand;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
@@ -14,15 +14,15 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        Brand::factory()->create([
+        Tag::factory()->create([
             'name_en' => 'men',
             'name_ar' => 'رجال'
         ]);
-        Brand::factory()->create([
+        Tag::factory()->create([
             'name_en' => 'women',
             'name_ar' => 'سيدات'
         ]);
-        Brand::factory(6)->create();
+        Tag::factory(6)->create();
 
     }
 }
