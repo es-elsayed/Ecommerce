@@ -148,7 +148,7 @@ class MainCategoryController extends Controller
         return redirect()->route('admin.maincategories.index')->with('success', "The  $category->name_en  Category status has been $action Successfuly");
     } catch (Exception $ex) {
             Db::rollBack();
-            return redirect()->route('admin.maincategories.index')->with('error', Wrong_Message);
+            return redirect()->route('admin.maincategories.index')->with('error', WRONG_MESSAGE);
         }
     }
 }
