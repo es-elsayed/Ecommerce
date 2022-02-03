@@ -22,4 +22,6 @@
 
     <x-site.sections.brands :brands="$brands"/>
 
+    <x-site.sections.discounts :discounts="$discounts"/>
+
 </x-site.layout>

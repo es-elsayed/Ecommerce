@@ -41,6 +41,9 @@
                         </td>
                         <td><img src="{{ asset($discount->image) }}" class="maincat-img" alt="product image">
                         </td>
+                        <td>
+                            <h6 class="mb-0 font-14 text-center">{{ $discount->category_id }}</h6>
+                        </td>
                         <td style="max-width: 15rem; overflow-x: auto;">
                             <p style="width:100%; height: 100%; overflow: auto;" disabled>
                                 {{ $discount->description_en }}
@@ -50,9 +53,6 @@
                             <p style="width:100%; height: 100%; overflow: auto;" disabled>
                                 {{ $discount->description_ar }}
                             </p>
-                        </td>
-                        <td>
-                            <h6 class="mb-0 font-14 text-center">{{ $discount->category_id }}</h6>
                         </td>
                         <td>
                             <h6 class="mb-0 font-14 text-center">{{  Carbon\Carbon::parse($discount->from)->format('d-m-Y i') }}</h6>

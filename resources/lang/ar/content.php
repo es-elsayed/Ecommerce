@@ -27,6 +27,7 @@ return [
     "fee" => "الرسوم",
     "flat rate" => "سعر موحد",
     "fast delivery" => "شحن سريع",
+    "sales" => "تخفيضات",
 
     "google" => "جوجل",
     "facebook" => "فيسبوك",

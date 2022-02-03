@@ -33,6 +33,8 @@ class DiscountRequest extends FormRequest
             'description_en' => "required|string|min:10|max:255",
             'description_ar' => "required|string|min:10|max:255",
             'image' => "required|mimes:png,jpg,jpeg",
+            'from' => "required|date",
+            'to' => "required|date",
         ];
     }
 }

@@ -17,7 +17,8 @@ $title = "Add Discout";
                             @csrf
                             <div class="border border-3 p-4 rounded">
                                 <div class="row">
-                                    <x-admin.forms.input-number step="1" name="discount" required value="{{ old('discount') }}">
+                                    <x-admin.forms.input-number step="1" name="discount" required
+                                        value="{{ old('discount') }}">
                                         Discount (%)
                                     </x-admin.forms.input-number>
                                     <div class="col-xl mb-3">
@@ -26,7 +27,8 @@ $title = "Add Discout";
                                             aria-label="Default select example">
                                             <option selected="">Choose from Main Categories</option>
                                             @foreach ($categories as $category )
-                                            <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }}>{{ $category->name_en }}</option>
+                                            <option value="{{ $category->id }}" {{ $category->id == old('category_id') ?
+                                                'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('category_id')
@@ -52,15 +54,23 @@ $title = "Add Discout";
                                 <div class="row">
                                     <div class="col-xl">
                                         <div class="mb-3">
-										<label class="form-label">Start from:</label>
-										<input type="datetime-local" class="form-control" name="from" value="{{ old('from') }}">
-									</div>
+                                            <label class="form-label">Start from:</label>
+                                            <input type="datetime-local" class="form-control" name="from"
+                                                value="{{ old('from') }}">
+                                            @error('from')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col-xl">
                                         <div class="mb-3">
-										<label class="form-label">End in:</label>
-										<input type="datetime-local" class="form-control" name="to" value="{{ old('to') }}">
-									</div>
+                                            <label class="form-label">End in:</label>
+                                            <input type="datetime-local" class="form-control" name="to"
+                                                value="{{ old('to') }}">
+                                            @error('to')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">

@@ -1,5 +1,5 @@
 @php
-$title = "Edit Product";
+$title = "Edit Discout";
 @endphp
 <x-admin.layout :title="$title">
 
@@ -13,170 +13,81 @@ $title = "Edit Product";
             <div class="form-body mt-4">
                 <div class="row">
                     <div class="col-lg">
-                        <form action="{{ route('admin.products.update',$product->id) }}" method="post" enctype="multipart/form-data">
-                            @method('put')
+                        <form action="{{ route('admin.discounts.update',$discount->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                             <div class="border border-3 p-4 rounded">
                                 <div class="row">
-                                    <x-admin.forms.input-text type="text" name="name_en"
-                                        placeholder="Product Name in English"
-                                        value="{{ $product->name_en }}">Product Name (en)
-                                    </x-admin.forms.input-text>
-                                    <x-admin.forms.input-text type="text" name="name_ar"
-                                        placeholder="Product Name in Arabic"
-                                        value="{{ $product->name_ar }}">Product Name (ar)
-                                    </x-admin.forms.input-text>
+                                    <x-admin.forms.input-number step="1" name="discount" required
+                                        value="{{ $discount->discount }}">
+                                        Discount (%)
+                                    </x-admin.forms.input-number>
+                                    <div class="col-xl mb-3">
+                                        <label for="category" class="form-label">Select Category</label>
+                                        <select class="form-select" name="category_id"
+                                            aria-label="Default select example">
+                                            <option selected="">Choose from Main Categories</option>
+                                            @foreach ($categories as $category )
+                                            <option value="{{ $category->id }}" {{ $category->id == $discount->category_id ?
+                                                'selected' : '' }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <x-admin.brands-dropdown brand-id="{{ $product->brand_id }}" />
-                                <div class="row">
-                                    {{-- @dd($product) --}}
-                                    <x-admin.forms.textarea name="details_en" placeholder="Enter Details  in English"
-                                        value="{{ $product->details_en}}"> Details (en)
-                                    </x-admin.forms.textarea>
-                                    <x-admin.forms.textarea name="details_ar" placeholder="Enter Details  in Arabic"
-                                        value="{{ $product->details_ar}}"> Details (ar)
-                                    </x-admin.forms.textarea>
-                                </div>
+
                                 <div class="row">
                                     <x-admin.forms.textarea name="description_en"
-                                        placeholder="Enter Description  in English"
-                                        value="{{ $product->description_en }}"> Description
+                                        placeholder="Enter Description  in English" value="{{ $discount->description_en }}">
+                                        Description
                                         (en)
                                     </x-admin.forms.textarea>
                                 </div>
                                 <div class="row">
                                     <x-admin.forms.textarea name="description_ar"
-                                        placeholder="Enter Description  in Arabic"
-                                        value="{{ $product->description_ar }}"> Description
+                                        placeholder="Enter Description  in Arabic" value="{{  $discount->description_ar }}">
+                                        Description
                                         (ar)
                                     </x-admin.forms.textarea>
                                 </div>
                                 <div class="row">
-                                    <x-admin.forms.input-number name="price" required
-                                        value="{{ $product->price }}">Price</x-admin.forms.input-number>
-                                    <x-admin.forms.input-number name="sale_price" required
-                                        value="{{ $product->sale_price }}">Sale Price
-                                    </x-admin.forms.input-number>
-                                    <x-admin.forms.input-number name="qty" required
-                                        value="{{ $product->quantity }}" step='1'>Quantity
-                                    </x-admin.forms.input-number>
-                                </div>
-                                <div class="mb-3 form-check form-switch">
-                                    <input id="status" class="form-check-input" type="checkbox" name="status"
-                                        @if( $product->status ?? 0)
-                                    checked=''
-                                    @endif
-                                    >
-                                    <label for="status" class="form-check-label">Activation</label>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="status" class="form-check-label d-block mb-3 border-top pt-3">Tags</label>
-                                    <ul style="list-style-type: none">
-                                        @foreach ($tags as $tag )
-                                        <li class="d-inline-block me-3">
-                                            <input class="form-check-input" type="checkbox" name="tags[]" id="tag_[{{ $tag->id }}]"
-                                                value="{{ $tag->id }}"
-                                                @foreach ($tags_ids as $tag_id )
-                                                    @if ($tag_id==$tag->id)
-                                                        checked
-                                                    @endif
-                                                @endforeach
-                                                />
-                                            <label class="form-check-label" for="tag_[{{ $tag->id }}]">
-                                                {{ $tag->name_en }}</label>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="status"
-                                        class="form-check-label d-block mb-3  border-top pt-3">Category</label>
-                                    @foreach ($parent_categories as $parent_category)
-                                    <ul style="list-style-type: none">
-                                        <li><input class="form-check-input" type="checkbox"
-                                                id="cat_[{{ $parent_category->id }}]" name="categories[]"
-                                                value="{{ $parent_category->id }}"
-                                                @foreach($category_shared as $shared)
-                                                @if($shared===$parent_category->id) checked @endif
-                                            @endforeach
-                                            >
-                                            <label class="form-check-label" for="cat_[{{ $parent_category->id }}]">{{
-                                                $parent_category->name_en }}</label>
-                                            <ul>
-                                                @foreach($parent_category->childs as $sub_cat)
-                                                <li class="d-inline-block me-3">
-                                                    <input class="form-check-input sub-cat" type="checkbox"
-                                                        id="cat_[{{ $sub_cat->id }}]" name="categories[]"
-                                                        value="{{ $sub_cat->id }}"
-                                                        @foreach($category_shared as $shared)
-                                                        @if($shared===$sub_cat->id) checked @endif
-                                                    @endforeach
-                                                    >
-                                                    <label class="form-check-label" for="cat_[{{ $sub_cat->id }}]">
-                                                        {{ $sub_cat->name }}</label>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    @endforeach
-                                    @if ($errors->has('categories'))
-                                    @foreach ($errors->get('categories') as $message)
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                    @endforeach
-                                    @endif
-                                    @if ($errors->has('categories.*'))
-                                    @foreach ($errors->get('categories.*') as $messages)
-                                    @foreach($messages as $message)
-                                    <div class="invalid-feedback d-block">Image no: {{ $loop->parent->iteration }} {{
-                                        $message }}</div>
-                                    @endforeach
-                                    @endforeach
-                                    @endif
-                                </div>
-                                <hr>
-                                <div class="mb-3">
-                                    <label for="main_image" class="form-label">Main Image</label>
-                                    <input id="main_image" type="file" name="main_image" class="form-control">
-                                    @if ($errors->has('main_image'))
-                                    @foreach ($errors->get('main_image') as $message)
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                    @endforeach
-                                    @endif
-                                </div>
-                                <div class="mb-3">
-                                    <div class="img-style">
-                                        <img src="{{asset($product->main_image) }}" class="img-style"
-                                            data-real-src="{{ $product->main_image }}" alt="product image">
+                                    <div class="col-xl">
+                                        <div class="mb-3">
+                                            <label class="form-label">Start from:</label>
+                                            <input type="datetime-local" class="form-control" name="from"
+                                                value="{{ Carbon\Carbon::parse($discount->from)->format('Y-m-d\TH:i')  }}">
+                                            @error('from')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-xl">
+                                        <div class="mb-3">
+                                            <label class="form-label">End in:</label>
+                                            <input type="datetime-local" class="form-control" name="to"
+                                                value="{{ Carbon\Carbon::parse($discount->to)->format('Y-m-d\TH:i') }}">
+                                            @error('to')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-                                <hr>
                                 <div class="mb-3">
-                                    <label for="images" class="form-label">Sub-Images</label>
-                                    <input id="images" type="file" name="images[]" class="form-control" multiple>
-                                    @if ($errors->has('images.*'))
-                                    @foreach ($errors->get('images.*') as $messages)
-                                    @foreach($messages as $message)
-                                    <div class="invalid-feedback d-block">Image no: {{ $loop->parent->iteration }} {{
-                                        $message }}</div>
-                                    @endforeach
-                                    @endforeach
-                                    @endif
-                                </div>
-                                <div class="mb-3">
-                                    @foreach ($images as $image )
-                                    <div class="img-style">
-                                        <img src="{{asset($image->image) }}" class="img-style"
-                                            data-real-src="{{ $image->image }}" alt="product image">
-                                        <button type="button" class="btn btn-danger">x</button>
+                                    <label for="image" class="form-label">Image</label>
+                                    <input id="image" type="file" name="image" class="form-control">
+                                    <div class="d-block my-2">
+                                        <img src="{{ asset($discount->image) }}" alt="" id="img">
                                     </div>
-                                    @endforeach
-                                    <input type="hidden" id="deleted_images" name="deleted_images" value="">
+                                    @error('image')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-12 mt-5">
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-light">
-                                            Update
+                                            Add
                                         </button>
                                     </div>
                                 </div>
@@ -188,19 +99,12 @@ $title = "Edit Product";
             </div>
         </div>
     </div>
-    <x-admin.scripts.categoryproduct-check />
     <script>
-        const buttons = document.querySelectorAll('.btn-danger');
-        const deleted = document.querySelector('#deleted_images');
-        const deleted_array = [];
-        buttons.forEach((button)=>{
-            button.addEventListener('click', (e)=>{
-                deleted_array.push(e.target.previousElementSibling.dataset.realSrc);
-                deleted.value=deleted_array
-        console.log(deleted.value);
-                // console.log(deleted.value);
-                e.target.parentElement.remove();
-            })
-        })
+        image.onchange = evt => {
+        const [file] = image.files
+        if (file) {
+            img.src = URL.createObjectURL(file)
+        }
+        }
     </script>
 </x-admin.layout>

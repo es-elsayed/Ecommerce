@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,4 +18,14 @@ class Discount extends Model
         'to',
         'image'
     ];
+    protected $appends = ['description'];
+
+    public function getDescriptionAttribute()
+    {
+        return app()->isLocale('en') ? $this->description_en : $this->description_ar;
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class)->selecting();
+    }
 }
