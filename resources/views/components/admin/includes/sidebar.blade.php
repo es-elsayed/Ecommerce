@@ -17,6 +17,7 @@
         <x-admin.includes.sidebar-li title="product" route="products" ><i class="lni lni-grow"></i></x-admin.includes.sidebar-li>
         <x-admin.includes.sidebar-li title="Tag" route="tags" ><i class="lni lni-tag"></i></x-admin.includes.sidebar-li>
         <x-admin.includes.sidebar-li title="slider" route="sliders" ><i class="lni lni-image"></i></x-admin.includes.sidebar-li>
+        <x-admin.includes.sidebar-li title="discount" route="discounts" ><i class="lni lni-invest-monitor"></i></x-admin.includes.sidebar-li>
         <li>
             <a href="{{ route('admin.orders.index') }}">
                 <div class="parent-icon">

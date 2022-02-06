@@ -58,7 +58,7 @@ class ProductController extends Controller
         } catch (\Exception $ex) {
             DB::rollback();
             return $ex;
-            return redirect()->back()->with('error', Wrong_Message);
+            return redirect()->back()->with('error', WRONG_MESSAGE);
         }
     }
 

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    // protected $append = 'name';
     protected $fillable = [
         'sku',
         'name_en',
@@ -27,7 +26,6 @@ class Product extends Model
         'brand_id',
     ];
     protected $with = ['reviews'];
-
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['product'] ?? false, fn ($query, $product) =>

@@ -50,7 +50,6 @@
                                     @error('parent_id')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
-
                                 </div>
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Select Image</label>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-define('Wrong_Message',"Something Wrong Please Try later");
+define('WRONG_MESSAGE',"Something Wrong Please Try later");
 
 Route::resource('/login', LoginController::class, ['as'=>'admin'])->middleware('guest:admin');
 
@@ -33,6 +34,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::resource('/dashboard', DashboardController::class, ['as'=>'admin']);
 
     Route::resource('orders', OrderController::class, ['as' => 'admin']);
+
+    // ********* Brand Routes ***********
+    Route::resource('discounts', DiscountController::class, ['as' => 'admin']);
 
     // ********* Brand Routes ***********
     Route::resource('brands', BrandController::class, ['as' => 'admin']);

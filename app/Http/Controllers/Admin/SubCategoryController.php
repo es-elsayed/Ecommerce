@@ -136,6 +136,6 @@ class SubCategoryController extends Controller
             $category->update(['status' => $request->status]);
             return redirect()->route('admin.subcategories.index')->with('success', "The  $category->name_en  Product status has been $action Successfuly");
         }
-        return redirect()->route('admin.subcategories.index')->with('error', Wrong_Message);
+        return redirect()->route('admin.subcategories.index')->with('error', WRONG_MESSAGE);
     }
 }

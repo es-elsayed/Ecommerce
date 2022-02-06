@@ -27,6 +27,7 @@ return [
     "fee" => "Fee",
     "flat rate" => "Flat Rate",
     "fast delivery" => "Fast Delivery",
+    "sales" => "Sales",
 
     "google" => " Google",
     "facebook" => " Facebook",

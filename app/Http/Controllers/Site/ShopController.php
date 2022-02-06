@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -31,7 +32,7 @@ class ShopController extends Controller
 
     public function show(Request $request, $slug)
     {
-        $category = Category::where(['slug' => $slug])->select('id', 'name_' . app()->getLocale() . ' as name', 'status', 'is_parent', 'image', 'banner', 'slug', 'parent_id', 'created_at', 'updated_at')->firstOrFail();
+        $category = Category::whereSlug($slug)->selecting()->firstOrFail();
         if ($category->parent) {
             /*
             * if Sub Category
@@ -49,18 +50,20 @@ class ShopController extends Controller
             switch (request()->get('sort')) {
                 case 'low-to-high':
                     $products = $category->products()->with('images')->orderBy('price', 'ASC')->paginate(PAGINATION_COUNT);
-                    # code...
                     break;
                 case 'high-to-low':
-                    # code...
                     $products = $category->products()->with('images')->orderBy('price', 'DESC')->paginate(PAGINATION_COUNT);
+                    break;
+                case 'discount':
+                    $products = $category->products()->addSelect(DB::raw('IF(sale=1, price, sale_price ) AS current_price'))
+                    ->orderBy('current_price','DESC')
+                    ->paginate(PAGINATION_COUNT);
                     break;
                 default:
                     $products = $category->products()->with('images')->paginate(PAGINATION_COUNT);
                     break;
             }
         } else {
-
             $products = $category->products()->with('images')->paginate(PAGINATION_COUNT);
         }
         return view('site.pages.shop.products', get_defined_vars());

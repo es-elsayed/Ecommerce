@@ -2255,3 +2255,10 @@ body.bg-notheme .dropdown-item:hover {
 body.bg-notheme .form-select option {
     background-color: transparent;
 }
+
+body.bg-notheme .card-img,
+body.bg-notheme .card-img-bottom,
+body.bg-notheme .card-img-top {
+    max-width: 100% !important;
+    max-height: auto !important;
+}
